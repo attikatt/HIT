@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+.centerPiece{
+  color: blue;
+  text-align: center;
+  vertical-align: middle;
+  padding: 15%;
+  border-color: black;
+}
+
+.mainMenuButtons{
+  display: grid;
+  grid-template-columns: 80px 80px;
+  grid-template-rows: 40px 40px;
+}
+
+button {
+  padding: 10px;
+}
