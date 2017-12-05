@@ -4,18 +4,21 @@
 
 .centerPiece{
   color: blue;
+  margin:auto;
+  width: 40em;
+  border: 10px solid blue;
   text-align: center;
-  vertical-align: middle;
+  /*vertical-align: middle;
   padding: 15%;
-  border-color: black;
+  border-color: black;*/
 }
 
 .mainMenuButtons{
-  display: grid;
   grid-template-columns: 80px 80px;
   grid-template-rows: 40px 40px;
 }
 
 button {
   padding: 10px;
+  border: 1px solid #cdc;
 }
