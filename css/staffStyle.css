@@ -1,24 +1,52 @@
-* {
-  box-sizing: border-box;
+body {
+  background-color: dimgrey;
+  color: white;
 }
 
-.centerPiece{
-  color: blue;
-  margin:auto;
-  width: 40em;
-  border: 10px solid blue;
+#mainDiv{
+  height: 90vh;
+  line-height: 90vh;
   text-align: center;
-  /*vertical-align: middle;
-  padding: 15%;
-  border-color: black;*/
 }
 
-.mainMenuButtons{
-  grid-template-columns: 80px 80px;
-  grid-template-rows: 40px 40px;
+#centerDiv{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+h1 {
+  font-size: 4vw;
+  text-transform: uppercase;
 }
 
 button {
   padding: 10px;
-  border: 1px solid #cdc;
+  margin: 2vw;
+  border: 0.1em solid;
+  border-radius: 12px;
+  font-size: 2.5vw;
+  width: 12em;
+  height: 6em;
+  color: rgba(255,255,255,1);
+}
+
+#lagerB {
+  background: rgba(33,68,229,0.4);
+  border-color: rgb(33,68,229);
+}
+
+#forberedB {
+  background: rgba(255,142,0,0.4);
+  border-color: rgb(255,142,0);
+}
+
+#historikB {
+  background: rgba(39,166,17,0.4);
+  border-color: rgb(39,166,17);
+}
+
+#statistikB {
+  background: rgba(255,238,0,0.4);
+  border-color: rgb(255,238,0);
 }
