@@ -50,3 +50,11 @@ button {
   background: rgba(255,238,0,0.4);
   border-color: rgb(255,238,0);
 }
+
+div.time {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 1vw;
+  font-size: 2vw;
+}
