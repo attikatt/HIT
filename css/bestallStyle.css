@@ -13,7 +13,7 @@
 }
 
 @font-face {
-    font-family: 'crapaudgros';
+    font-family: 'champagne__limousinesregular';
     src: url('fonts/crapaud/crapaud_gros-webfont.eot');
     src: url('fonts/crapaud/crapaud_gros-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/crapaud/crapaud_gros-webfont.woff2') format('woff2'),
@@ -26,7 +26,7 @@
 
 body {
   font-family: "crapaudgros",arial,sans-serif;
-  background-color: dimgrey;
+  background-color: rgb(64,64,64);
   color: white;
 }
 
