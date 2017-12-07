@@ -1,3 +1,5 @@
+@import url("reset.css")
+@import url('http://fonts.googleapis.com/css?family=Pacifico|Dois');
 @font-face {
     font-family: 'champagne__limousinesregular';
     src: url('/css/fonts/champagne_limousines-webfont.eot');
