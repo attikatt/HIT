@@ -1,0 +1,94 @@
+body {
+  background-color: white;
+  color: darkorange;
+}
+
+#mainDiv{
+  height: 90vh;
+  line-height: 90vh;
+  text-align: center;
+}
+
+#centerDiv{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+h1 {
+  font-size: 4vw;
+  text-transform: uppercase;
+}
+
+#headSection{
+  width: 100%;
+}
+
+#cancelOrderB {
+  width: 5em;
+  height: 4em;
+  background: white;
+  border-color: darkorange;
+  float:left;
+}
+
+#logo{ text-align: center;
+
+}
+
+#basketB{
+  width: 5em;
+  height: 4em;
+  background: white;
+  border-color: darkorange;
+ float:right;
+}
+
+
+
+button {
+  padding: 5px;
+  margin: 1.5vw;
+  border: 0.1em solid;
+  border-radius: 12px;
+  font-size: 2.5vw;
+  color:black;
+
+  
+}
+#buttonT{
+  margin-left: 10vw;
+  margin-right: 10vw;
+
+}
+
+#ingredientB {
+  background: white;
+  border-color: darkorange;
+  width: 27em;
+  height: 3em;
+}
+#bottomSection{
+  width: 100%;
+}
+
+#goBackB{
+  width: 5em;
+  height: 4em;
+  background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-back-256.png) no-repeat;
+  background-size: 140px;
+  border-color: white;
+  background-position: left;
+  float:left;
+
+
+}
+#goForwardB{
+  width: 5em;
+  height: 4em;
+  background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-forward-512.png) no-repeat;
+  background-size: 140px;
+  border-color: white;
+  background-position: right;
+  float:right;
+}
