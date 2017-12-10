@@ -1,15 +1,45 @@
+@import url("reset.css")
+@import url('http://fonts.googleapis.com/css?family=Pacifico|Dois');
+
+@font-face {
+    font-family: 'champagne__limousinesregular';
+    src: url('fonts/champagne/champagne_limousines-webfont.eot');
+    src: url('fonts/champagne/champagne_limousines-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/champagne/champagne_limousines-webfont.woff2') format('woff2'),
+         url('fonts/champagne/champagne_limousines-webfont.woff') format('woff'),
+         url('fonts/champagne/champagne_limousines-webfont.svg#champagne__limousinesregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'crapaudgros';
+    src: url('fonts/crapaud/crapaud_gros-webfont.eot');
+    src: url('fonts/crapaud/crapaud_gros-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/crapaud/crapaud_gros-webfont.woff2') format('woff2'),
+         url('fonts/crapaud/crapaud_gros-webfont.woff') format('woff'),
+         url('fonts/crapaud/crapaud_gros-webfont.svg#crapaudgros') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+* {
+  font-family: 'champagne__limousinesregular', arial, sans-serif;
+}
+
 body {
   background-color: white;
   color: darkorange;
 }
 
-#mainDiv{
+#mainDiv {
   height: 90vh;
   line-height: 90vh;
   text-align: center;
 }
 
-#centerDiv{
+#centerDiv {
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
@@ -17,10 +47,15 @@ body {
 
 h1 {
   font-size: 4vw;
-  text-transform: uppercase;
 }
 
-#headSection{
+h1, h2, h3, h4, h5 {
+  text-transform: uppercase;
+  letter-spacing: 3pt;
+}
+
+
+#headSection {
   width: 100%;
 }
 
@@ -32,19 +67,17 @@ h1 {
   float:left;
 }
 
-#logo{ text-align: center;
-
+#logo {
+  text-align: center;
 }
 
-#basketB{
+#basketB {
   width: 5em;
   height: 4em;
   background: white;
   border-color: darkorange;
- float:right;
+  float:right;
 }
-
-
 
 button {
   padding: 5px;
@@ -52,14 +85,12 @@ button {
   border: 0.1em solid;
   border-radius: 12px;
   font-size: 2.5vw;
-  color:black;
-
-  
+  color:black;  
 }
-#buttonT{
+
+#buttonT {
   margin-left: 10vw;
   margin-right: 10vw;
-
 }
 
 #ingredientB {
@@ -68,11 +99,12 @@ button {
   width: 27em;
   height: 3em;
 }
-#bottomSection{
+
+#bottomSection {
   width: 100%;
 }
 
-#goBackB{
+#goBackB {
   width: 5em;
   height: 4em;
   background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-back-256.png) no-repeat;
@@ -80,10 +112,9 @@ button {
   border-color: white;
   background-position: left;
   float:left;
-
-
 }
-#goForwardB{
+
+#goForwardB {
   width: 5em;
   height: 4em;
   background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-forward-512.png) no-repeat;

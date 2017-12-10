@@ -25,7 +25,7 @@
 }
 
 body {
-  font-family: 'crapaudgros', arial, sans-serif;
+  font-family: 'crapaudgros', arial, sans-serif; /* Ska denna font användas också? */
   background-color: rgb(64,64,64);
   color: white;
 }
