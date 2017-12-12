@@ -1,5 +1,10 @@
-@import url("reset.css")
-@import url('http://fonts.googleapis.com/css?family=Pacifico|Dois');
+@import url("reset.css");
+@media screen and (aspect-ratio: 16/9) {
+  body {
+    background-color: white;
+    color: rgb(215,83,14);
+  }
+}
 
 @font-face {
     font-family: 'champagne__limousinesregular';
@@ -21,7 +26,6 @@
          url('fonts/crapaud/crapaud_gros-webfont.svg#crapaudgros') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 * {
@@ -30,76 +34,90 @@
 
 body {
   background-color: white;
-  color: darkorange;
+  color: rgb(215,83,14);
 }
 
-#mainDiv {
-  height: 90vh;
-  line-height: 90vh;
+/* Layout */
+header {
+  height: 15vh;
+  background-color: blue; 
+}
+
+main {
+  height: 85vh;
+  line-height: 85vh;
   text-align: center;
+  background-color: green;
 }
 
-#centerDiv {
+#centerSecStartP {
   display: inline-block;
-  vertical-align: middle;
   line-height: normal;
+  background-color: yellow;
 }
 
+#centerSecYourDrinkP {
+  display: block;
+  line-height: normal;
+  background-color: yellow;
+}
+
+/* Headlines */
 h1 {
   font-size: 4vw;
 }
 
 h1, h2, h3, h4, h5 {
   text-transform: uppercase;
-  letter-spacing: 3pt;
+  letter-spacing: 0.3em;
 }
 
 
-#headSection {
+/* General */
+button {
+  padding: 1em;
+  margin: 1.5vw;
+  border: 0.1em solid;
+  border-radius: 1em;
+  font-size: 100%;
+  color: black;  
+  border-color: rgb(215,83,14);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Upper section */
+#headTable {
   width: 100%;
+}
+
+#title {
+  text-align: center;
 }
 
 #cancelOrderB {
   width: 5em;
   height: 4em;
   background: white;
-  border-color: darkorange;
   float:left;
-}
-
-#logo {
-  text-align: center;
 }
 
 #basketB {
   width: 5em;
   height: 4em;
   background: white;
-  border-color: darkorange;
   float:right;
+  border-color: transparent;
 }
 
-button {
-  padding: 5px;
-  margin: 1.5vw;
-  border: 0.1em solid;
-  border-radius: 12px;
-  font-size: 2.5vw;
-  color:black;  
+#basketLogo {
+  width: 4em;
 }
 
-#buttonT {
-  margin-left: 10vw;
-  margin-right: 10vw;
-}
+/* Central section */
 
-#ingredientB {
-  background: white;
-  border-color: darkorange;
-  width: 27em;
-  height: 3em;
-}
-
+/* Bottom section */
 #bottomSection {
   width: 100%;
 }
@@ -107,8 +125,6 @@ button {
 #goBackB {
   width: 5em;
   height: 4em;
-  background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-back-256.png) no-repeat;
-  background-size: 140px;
   border-color: white;
   background-position: left;
   float:left;
@@ -117,9 +133,54 @@ button {
 #goForwardB {
   width: 5em;
   height: 4em;
-  background: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-forward-512.png) no-repeat;
-  background-size: 140px;
   border-color: white;
   background-position: right;
   float:right;
 }
+
+.arrow {
+  width: 90%;
+}
+
+/* Page 1 */
+#languageB {
+  height: 80%;
+  float: right;
+}
+
+#juiciferLogo {
+  width: 50%;
+  margin-bottom: 5%;
+}
+
+#buttonDiv {
+  width: 100vw;
+  height: 30vh;
+}
+
+#juicifersFavB {
+  width: 80%;
+  height: 100%;
+}
+
+#makeYourOwnB {
+  width: 80%;
+  height: 100%;
+}
+
+/* Page 5 */
+#buttonT {
+  background-color: red;
+  width: 100%;
+  height: 100%;
+}
+
+#ingredientB {
+  background: white;
+  width: 27em;
+  height: 3em;
+}
+
+
+
+
