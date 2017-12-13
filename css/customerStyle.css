@@ -45,14 +45,29 @@ main {
   height: 85vh;
   line-height: 85vh;
   text-align: center;
-  background-color: green;
+    background-color: green;
 }
 
 /* Headlines */
 h1 {
-  font-size: 5vw;
+  font-size: 6vh;
 }
 
+h2 {
+    font-size: 5vh;
+}
+
+h3 {
+    font-size: 4vh;
+}
+
+h4 {
+    font-size: 3vh;
+}
+
+h5 {
+    font-size: 2vh;
+}
 h1, h2, h3, h4, h5 {
   text-transform: uppercase;
   letter-spacing: 0.3em;
@@ -77,24 +92,32 @@ font-family: 'champagne__limousinesregular', arial, sans-serif;
 /* Upper section */
 #headTable {
   width: 100%;
+    table-layout: fixed;
 }
 
 #title {
-  text-align: center;
+    margin-top: 7%;
+    text-align: center;
+    vertical-align: middle;
+    background-color: white;
+    font-size: 5vh;
+    text-transform: uppercase;
+    letter-spacing: 1.5vw;
 }
 
 #cancelOrderB {
   width: 22vw;
   height: 12vh;
   float:left;
+    font-size: 4vw;
+    font-size-adjust: auto;
 }
 
 #cancelOrderText {
     display: block;
 width: auto;
  height: 80%;
-margin-left: auto;
- margin-right: auto;
+padding-top: 2.5vh;
 }
 
 #basketB {
@@ -114,14 +137,25 @@ margin-left: auto;
 /* Central section */
 
 #buttonTable {
-  background-color: red;
   width: 100%;
+    background-color: red;
+    margin-bottom: 10vh;
 }
+
+
+#lowerTable {
+  width: 100%;
+    background-color: red;
+    margin-top: 7vh;
+}
+
+
 
 /* Bottom section */
 #bottomTable {
   width: 100%;
-  /*margin-top: 3vh;*/
+    position: fixed;
+    bottom: 0px;
 }
 
 .goB {
@@ -129,6 +163,7 @@ margin-left: auto;
   height: 12vh;
   border-color: white;
   font-size: 4vw;
+    vertical-align: baseline;
 }
 
 #goBackB {
@@ -148,9 +183,9 @@ margin-left: auto;
 
 /* Start page */
 #centerSecStartP {
-  display: inline-block;
+  display: block;
   line-height: normal;
-    height: 80vh;
+    height: 85vh;
     background-color: yellow;
 }
 
@@ -169,20 +204,19 @@ margin-left: auto;
 
 #juicifersFavB {
   width: 80%;
-  height: 14vh;
+  height: 11vh;
 }
 
 #makeYourOwnB {
   width: 80%;
-  height: 14vh;
+  height: 11vh;
 }
 
 /* Your drink page */
 #centerSecYourDrinkP {
   display: block;
   line-height: normal;
-    height: 80vh;
-  background-color: yellow;
+    height: 85vh;
 }
 
 .ingredientB {
@@ -190,8 +224,120 @@ margin-left: auto;
   height: 8vh;
 }
 
+#forwardInfo {
+    margin-left: 30vw;
+    position: relative;
+}
 
-@media all and (max-height: 400px) {
+/* Change ingredients page */
+#categoryTable {
+    width: 100%;
+}
+
+.categoryB {
+    width: 30vw;
+    height: 8vh;
+    font-size: 3vw;
+    font-size-adjust: auto;
+}
+
+#ingredientsGrid {
+    display: grid;
+    border-color: black;
+    grid-template-columns: repeat(3, 20px [3]);
+    
+}
+
+/* Choose Type page */
+#centerSecChooseTypeP {
+    margin-top: 15%;
+    display: block;
+  line-height: normal;
+    height: 85vh;
+    background-color: yellow;
+}
+
+#goBackToStart {
+    position: fixed;
+    bottom: 0px;
+}
+
+/* Choose Size page */
+
+#cupLogoS {
+    height: 37%;
+    width: auto;
+    margin-top: 6.5vh;
+}
+
+#cupLogoM {
+    height: 47%;
+    width: auto;
+    margin-top: 5vh;
+}
+
+#cupLogoL {
+    height: 57%;
+    width: auto;
+}
+
+.cup {
+    width: 30vw;
+    height: 33vh;
+    vertical-align: middle;
+}
+/* Cart Page*/
+
+#titleCart {
+    padding-top: 7%;
+    padding-right:23%;
+    text-align:center;
+    background-color: cyan;
+    font-size: 5vh;
+    text-transform: uppercase;
+    letter-spacing: 1.5vw;
+}
+
+#cartTable {
+    width: 100%;
+}
+
+#goBackBCart {
+    position:fixed;
+    left: 0px;
+    bottom:0px; 
+}
+
+#payB{
+    position:fixed;
+    right: 0px;
+    bottom:0px; 
+}
+
+#addMoreDrinksDiv{
+    margin-top:50vh;
+}
+
+hr {
+    border-color: black;
+    width: 80%;
+}
+
+
+
+@media all and (max-height: 450px) {
+    header {
+        height: 60px;
+    }
+    
+    #cancelOrderB {
+        height: 50px;
+    }
+        
+    #basketB {
+        height: 50px;
+    }
+        
     .ingredientB {
         height: 40px;
     }
@@ -199,5 +345,28 @@ margin-left: auto;
     .goB {
         height: 50px;
     }
+    
+    #bottomTable {
+        position: sticky;
+    }
+    
+    #cancelOrderB {
+        font-size: 15px;
+    }
+    
+    #goBackToStart {
+        position: sticky;
+        float: left;
+    }
+    #goBackBCart {
+    position: sticky;
+    float: left;
+    }
+
+    #payB{
+    position: sticky;
+    float: right;
+    }
+    
 }
 
