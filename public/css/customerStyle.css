@@ -1,0 +1,573 @@
+@import url("reset.css");
+
+@font-face {
+    font-family: 'champagne__limousinesregular';
+    src: url('fonts/champagne/champagne_limousines-webfont.eot');
+    src: url('fonts/champagne/champagne_limousines-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/champagne/champagne_limousines-webfont.woff2') format('woff2'),
+         url('fonts/champagne/champagne_limousines-webfont.woff') format('woff'),
+         url('fonts/champagne/champagne_limousines-webfont.svg#champagne__limousinesregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'crapaudgros';
+    src: url('fonts/crapaud/crapaud_gros-webfont.eot');
+    src: url('fonts/crapaud/crapaud_gros-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/crapaud/crapaud_gros-webfont.woff2') format('woff2'),
+         url('fonts/crapaud/crapaud_gros-webfont.woff') format('woff'),
+         url('fonts/crapaud/crapaud_gros-webfont.svg#crapaudgros') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  background-color: white;
+font-family: 'champagne__limousinesregular', arial, sans-serif;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Layout */
+header {
+  height: 15vh;
+  background-color: white;
+    /*padding-bottom: 3vh;*/
+}
+
+main {
+  height: 85vh;
+  line-height: 85vh;
+  text-align: center;
+}
+
+/* Headlines */
+h1 {
+  font-size: 6vh;
+}
+
+h2 {
+    font-size: 5vh;
+}
+
+h3 {
+    font-size: 4vh;
+}
+
+h4 {
+    font-size: 3vh;
+}
+
+h5 {
+    font-size: 2vh;
+}
+h1, h2, h3, h4, h5 {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+.lowerCaseHeadline {
+    text-transform: inherit;
+}
+
+/* General */
+button {
+  margin: 1.5vw;
+  border: 0.1em solid;
+  border-radius: 1em;
+  font-size: 4vw;
+background-color: white;
+  border-color: rgb(215,83,14);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: bold;
+font-family: 'champagne__limousinesregular', arial, sans-serif;
+}
+
+/* Upper section */
+#headTable {
+  width: 100%;
+    table-layout: fixed;
+}
+
+#title {
+    margin-top: 7%;
+    text-align: center;
+    vertical-align: middle;
+    background-color: white;
+    font-size: 5vh;
+    text-transform: uppercase;
+    letter-spacing: 1.5vw;
+}
+
+#cancelOrderB {
+  width: 22vw;
+  height: 12vh;
+  float:left;
+    font-size: 4vw;
+    font-size-adjust: auto;
+}
+
+#cancelOrderText {
+    display: block;
+width: auto;
+ height: 80%;
+padding-top: 2.5vh;
+}
+
+#basketB {
+  width: 22vw;
+  height: 12vh;
+  float:right;
+  border-color: transparent;
+}
+
+#basketLogo {
+ width: auto;
+ height: 80%;
+margin-left: auto;
+ margin-right: auto;
+}
+
+/* Central section */
+
+#buttonTable {
+  width: 100%;
+    background-color: red;
+}
+
+
+#lowerTable {
+  width: 100%;
+    background-color: red;
+    margin-top: 7vh;
+}
+
+
+
+/* Bottom section */
+#bottomTable {
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    background-color: white;
+}
+
+.goB {
+  width: auto;
+  height: 12vh;
+  border-color: white;
+  font-size: 4vw;
+    vertical-align: baseline;
+}
+
+#goBackB {
+    left: 0;
+}
+
+#goForwardB {
+  right: 0;
+}
+
+.arrow {
+ width: auto;
+ height: 90%;
+margin-left: auto;
+ margin-right: auto;
+}
+
+/* Start page */
+#centerSecStartP {
+  display: block;
+  line-height: normal;
+    height: 85vh;
+    background-color: yellow;
+}
+
+#languageB {
+    width: 22vw;
+  height: 10vh;
+  float: right;
+    margin: 1em;
+    font-size: 3vw;
+}
+
+#juiciferLogo {
+  width: 50%;
+  margin-bottom: 5%;
+}
+
+#juicifersFavB {
+  width: 80%;
+  height: 11vh;
+}
+
+#makeYourOwnB {
+  width: 80%;
+  height: 11vh;
+}
+
+/* Your drink page */
+#centerSecYourDrinkP {
+  display: block;
+  line-height: normal;
+    height: 85vh;
+}
+
+.ingredientOblongB {
+  width: 75%;
+  height: 8vh;
+}
+
+#forwardInfo {
+    margin-left: 30vw;
+    /* want to vertical align: middle, baseline
+    krånglar till det */
+}
+
+/* Change ingredients page */
+
+#headerChangeIngP {
+    position: fixed;
+    top: 0px;
+}
+#upperSecChangeIngP {
+  display: block;
+  line-height: normal;
+    height: 15vh;
+    position: fixed;
+    top: 15vh;
+    background-color: white;
+    padding-bottom: 5vh;
+}
+
+#middleSec {
+  display: block;
+  line-height: normal;
+    margin-top: 28vh; 
+    margin-bottom: 17vh;
+}
+
+
+#lowerSecChangeIngP {
+  display: block;
+  line-height: normal;
+}
+
+#categoryTable {
+    width: 100%;
+}
+
+.categoryB {
+    width: 30vw;
+    height: 8vh;
+    font-size: 3vw;
+    font-size-adjust: auto;
+}
+
+.ingredientsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-row-gap: 1vh;
+}
+
+.ordering {
+    margin-top: 70vh;
+}
+
+.ingredient {
+    border: 1px solid black;
+    padding: 1vw;
+    width: 22vw;
+    margin: auto;
+}
+
+.ingredientSquareB {
+  width: 20vw;
+  height: 20vw;
+    font-size: 2vw;
+    border-radius: 6vw;
+    
+}
+
+.ingImg {
+    height: 10vh;
+    max-width: 17vw;
+    max-height: 10vw;
+}
+
+/* Choose Type page */
+#centerSecChooseTypeP {
+    margin-top: 15%;
+    display: block;
+  line-height: normal;
+    height: 85vh;
+    background-color: yellow;
+}
+
+#goBackToStart {
+    position: fixed;
+    bottom: 0px;
+}
+
+/* Choose Size page */
+
+#cupLogoS {
+    height: 37%;
+    width: auto;
+    margin-top: 6.5vh;
+}
+
+#cupLogoM {
+    height: 47%;
+    width: auto;
+    margin-top: 5vh;
+}
+
+#cupLogoL {
+    height: 57%;
+    width: auto;
+}
+
+.cup {
+    width: 30vw;
+    height: 33vh;
+    vertical-align: middle;
+}
+/* Cart Page*/
+
+#titleCart {
+    padding-top: 7%;
+    padding-right:23%;
+    text-align:center;
+    background-color: cyan;
+    font-size: 5vh;
+    text-transform: uppercase;
+    letter-spacing: 1.5vw;
+}
+
+#cartTable {
+    width: 100%;
+}
+
+#goBackBCart {
+    position:fixed;
+    left: 0px;
+    bottom:0px; 
+}
+
+#payB{
+    position:fixed;
+    right: 0px;
+    bottom:0px; 
+    border-color: rgb(215,83,14);
+}
+
+#addMoreDrinksDiv{
+    margin-top:50vh;
+}
+
+hr {
+    border-color: black;
+    width: 80%;
+}
+
+/* Your order div*/
+#yourOrderDiv {
+    margin-top: 10vh;
+}
+
+#newOrderDiv {
+    margin-top: 30vh;
+}
+
+#newOrderB {
+    width: 50vw;
+    height: 15vh;
+}
+
+/* Choose Ingredient page */
+.stepCircle {
+    width: 13vw;
+    height: 13vw;
+    background-color: lightgrey;
+    border-radius: 9vw;
+    font-size: 12vw;
+    font-weight: bold;
+    color: grey; 
+}
+
+#step1 {
+    background-color: white;
+    color: black;
+}
+
+#stepPanel {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 2vw;
+    height: 1em;
+    width: 80vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    
+}
+
+#upperSecChooseIngP {
+  display: block;
+  line-height: normal;
+    height: 22vh;
+    width: 100vw;
+    position: fixed;
+    top: 12vh;
+    background-color: yellow;
+    padding-bottom: 5vh;
+    margin-top: 2vh;
+}
+
+#middleSecChooseIng {
+  display: block;
+  line-height: normal;
+    margin-top: 40vh; 
+    margin-bottom: 17vh;
+}
+
+#lowerUpperChooseIng {
+    display: block;
+  line-height: normal;
+    width: 100vw;
+    height: 13vh;
+    margin-top: -13vh;
+    background-color: white;
+    position: fixed;
+}
+
+#stepText {
+    letter-spacing: 2.5vw;
+}
+
+/* Choose Base Piff page*/
+
+#chooseBasePiffText {
+    margin-top: 10vh;
+}
+
+#upperSecChooseBasePiff{
+  display: block;
+  line-height: normal;
+    height: 8vh;
+    width: 100vw;
+    position: fixed;
+    top: 12vh;
+    background-color: white;
+    padding-bottom: 5vh;
+    margin-top: 2vh;
+}
+
+#lowerSecChooseBasePiff {
+      display: block;
+  line-height: normal;
+    margin-top: 35vh;
+}
+
+#vegetableB, #otherB {
+    color: grey;
+    border-color: grey;
+}
+
+/* Fav Page */
+
+#favSec {
+  display: block;
+  line-height: normal;
+   margin-top: 10vh;    
+}
+
+#chooseFavTitle {
+    position: fixed;
+    background-color: white;
+    width: 100vw;
+    padding-bottom: 2vh;
+}
+
+.favGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 2vh;
+    margin-top: 15vh;
+    margin-bottom: 14vh;
+}
+
+#goBackToType {
+    display: block;
+    line-height: normal;
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    text-align: left;
+    background-color: white;
+}
+
+
+
+/* MEDIA STUFF */
+
+@media all and (max-height: 450px) {
+    header {
+        height: 60px;
+    }
+    
+    #cancelOrderB {
+        height: 50px;
+    }
+        
+    #basketB {
+        height: 50px;
+    }
+        
+    .ingredientB {
+        height: 40px;
+    }
+    
+    .goB {
+        height: 50px;
+    }
+    
+    #bottomTable {
+        position: relative;
+        /* Måste fixa så den ej centreras då
+        höjden på fönstret minskas */
+    }
+    
+    #cancelOrderB {
+        font-size: 15px;
+    }
+    
+    #goBackToStart {
+        position: sticky;
+        float: left;
+    }
+    
+    #goBackBCart {
+    position: sticky;
+    float: left;
+    }
+
+    #payB{
+    position: sticky;
+    float: right;
+    }
+    
+}
+
+
+
+
+@media screen and (aspect-ratio: 16/9) {
+  body {
+  }
+}
