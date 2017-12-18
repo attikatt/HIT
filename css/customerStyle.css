@@ -24,14 +24,18 @@
 
 body {
   background-color: white;
-  color: rgb(215,83,14);
 font-family: 'champagne__limousinesregular', arial, sans-serif;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 /* Layout */
 header {
   height: 15vh;
-  background-color: blue;
+  background-color: white;
     /*padding-bottom: 3vh;*/
 }
 
@@ -39,7 +43,6 @@ main {
   height: 85vh;
   line-height: 85vh;
   text-align: center;
-    background-color: green;
 }
 
 /* Headlines */
@@ -77,7 +80,6 @@ button {
   border: 0.1em solid;
   border-radius: 1em;
   font-size: 4vw;
-  color: black;
 background-color: white;
   border-color: rgb(215,83,14);
   letter-spacing: 0.3em;
@@ -149,9 +151,10 @@ margin-left: auto;
 
 /* Bottom section */
 #bottomTable {
-  width: 100%;
+    width: 100%;
     position: fixed;
     bottom: 0px;
+    background-color: white;
 }
 
 .goB {
@@ -215,17 +218,46 @@ margin-left: auto;
     height: 85vh;
 }
 
-.ingredientB {
+.ingredientOblongB {
   width: 75%;
   height: 8vh;
 }
 
 #forwardInfo {
     margin-left: 30vw;
-    position: relative;
+    /* want to vertical align: middle, baseline
+    krånglar till det */
 }
 
 /* Change ingredients page */
+
+#headerChangeIngP {
+    position: fixed;
+    top: 0px;
+}
+#upperSecChangeIngP {
+  display: block;
+  line-height: normal;
+    height: 15vh;
+    position: fixed;
+    top: 15vh;
+    background-color: white;
+    padding-bottom: 5vh;
+}
+
+#middleSec {
+  display: block;
+  line-height: normal;
+    margin-top: 28vh; 
+    margin-bottom: 17vh;
+}
+
+
+#lowerSecChangeIngP {
+  display: block;
+  line-height: normal;
+}
+
 #categoryTable {
     width: 100%;
 }
@@ -237,11 +269,35 @@ margin-left: auto;
     font-size-adjust: auto;
 }
 
-#ingredientsGrid {
+.ingredientsGrid {
     display: grid;
-    border-color: black;
-    grid-template-columns: repeat(3, 20px [3]);
+    grid-template-columns: repeat(4, 1fr);
+    grid-row-gap: 1vh;
+}
+
+.ordering {
+    margin-top: 70vh;
+}
+
+.ingredient {
+    border: 1px solid black;
+    padding: 1vw;
+    width: 22vw;
+    margin: auto;
+}
+
+.ingredientSquareB {
+  width: 20vw;
+  height: 20vw;
+    font-size: 2vw;
+    border-radius: 6vw;
     
+}
+
+.ingImg {
+    height: 10vh;
+    max-width: 17vw;
+    max-height: 10vw;
 }
 
 /* Choose Type page */
@@ -334,6 +390,132 @@ hr {
     height: 15vh;
 }
 
+/* Choose Ingredient page */
+.stepCircle {
+    width: 13vw;
+    height: 13vw;
+    background-color: lightgrey;
+    border-radius: 9vw;
+    font-size: 12vw;
+    font-weight: bold;
+    color: grey; 
+}
+
+#step1 {
+    background-color: white;
+    color: black;
+}
+
+#stepPanel {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 2vw;
+    height: 1em;
+    width: 80vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    
+}
+
+#upperSecChooseIngP {
+  display: block;
+  line-height: normal;
+    height: 22vh;
+    width: 100vw;
+    position: fixed;
+    top: 12vh;
+    background-color: yellow;
+    padding-bottom: 5vh;
+    margin-top: 2vh;
+}
+
+#middleSecChooseIng {
+  display: block;
+  line-height: normal;
+    margin-top: 40vh; 
+    margin-bottom: 17vh;
+}
+
+#lowerUpperChooseIng {
+    display: block;
+  line-height: normal;
+    width: 100vw;
+    height: 13vh;
+    margin-top: -13vh;
+    background-color: white;
+    position: fixed;
+}
+
+#stepText {
+    letter-spacing: 2.5vw;
+}
+
+/* Choose Base Piff page*/
+
+#chooseBasePiffText {
+    margin-top: 10vh;
+}
+
+#upperSecChooseBasePiff{
+  display: block;
+  line-height: normal;
+    height: 8vh;
+    width: 100vw;
+    position: fixed;
+    top: 12vh;
+    background-color: white;
+    padding-bottom: 5vh;
+    margin-top: 2vh;
+}
+
+#lowerSecChooseBasePiff {
+      display: block;
+  line-height: normal;
+    margin-top: 35vh;
+}
+
+#vegetableB, #otherB {
+    color: grey;
+    border-color: grey;
+}
+
+/* Fav Page */
+
+#favSec {
+  display: block;
+  line-height: normal;
+   margin-top: 10vh;    
+}
+
+#chooseFavTitle {
+    position: fixed;
+    background-color: white;
+    width: 100vw;
+    padding-bottom: 2vh;
+}
+
+.favGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 2vh;
+    margin-top: 15vh;
+    margin-bottom: 14vh;
+}
+
+#goBackToType {
+    display: block;
+    line-height: normal;
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    text-align: left;
+    background-color: white;
+}
+
+
+
+/* MEDIA STUFF */
+
 @media all and (max-height: 450px) {
     header {
         height: 60px;
@@ -356,7 +538,9 @@ hr {
     }
     
     #bottomTable {
-        position: sticky;
+        position: relative;
+        /* Måste fixa så den ej centreras då
+        höjden på fönstret minskas */
     }
     
     #cancelOrderB {
@@ -367,6 +551,7 @@ hr {
         position: sticky;
         float: left;
     }
+    
     #goBackBCart {
     position: sticky;
     float: left;
@@ -378,6 +563,9 @@ hr {
     }
     
 }
+
+
+
 
 @media screen and (aspect-ratio: 16/9) {
   body {
