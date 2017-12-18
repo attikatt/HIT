@@ -4,13 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/customerStyle.css">
+ <script src="/vue/vue.js" defer></script>
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="js/juicifer-main.js" defer></script>
+  <script src="js/ordering.js" defer></script>
 </head>
 <body>
+  <div id="ordering">
   <header>
     <table id="headTable">
       <tbody> 
         <tr>
-          <td> <button id="cancelOrderB"> <div id="cancelOrderText"> Avbryt köp </div> </button></td>
+          <td> <button id="cancelOrderB"> <div id="cancelOrderText"> {{ uiLabels.cancelOrder }} </div> </button></td>
           <td id="title"> Juicifer </td>
           <td> <button id="basketB"> <img id="basketLogo" src="images/basket.png"> </button> </td>
         </tr>
@@ -27,9 +32,9 @@
             <table id="categoryTable">
                 <tbody>
                     <tr>
-                        <td> <button class="categoryB"> Frukter </button></td>
-                        <td> <button class="categoryB"> Grönsaker </button></td>
-                        <td> <button class="categoryB"> Övrigt </button></td>
+                        <td> <button class="categoryB"> {{ uiLabels.fruit }} </button></td>
+                        <td> <button class="categoryB"> {{ uiLabels.vegetable }} </button></td>
+                        <td> <button class="categoryB"> {{ uiLabels.other }} </button></td>
                     </tr>
                 </tbody>
             </table>
@@ -41,13 +46,14 @@
         <table id="bottomTable"> 
             <tr>
               <td> <button id="goBackB" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
-              <td> <h4 id="forwardInfo"> Välj storlek </h4> </td>
+              <td> <h4 id="forwardInfo"> {{ uiLabels.chooseSize }} </h4> </td>
               <td> <button id="goForwardB" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
              </tr>
          </table>
       </div>
     </section>
   </main>
+</div>
 </body>
 </html>
  

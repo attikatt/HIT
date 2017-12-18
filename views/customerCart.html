@@ -4,31 +4,38 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/customerStyle.css">
+  <script src="/vue/vue.js" defer></script>
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="js/juicifer-main.js" defer></script>
+  <script src="js/ordering.js" defer></script>
 </head>
 <body>
+  <div id="ordering">
   <header>
-    <div id = "cartTable"><button id="cancelOrderB"> Avbryt köp </button></div>
+    <div id = "cartTable">
+      <button id="cancelOrderB"> {{ uiLabels.cancelOrder }}  </button></div>
       <h1 id = "titleCart"> Juicifer </h1>
   </header>
   <main>
     <section id="centerSecYourDrinkP">
       <div>
-        <h2> Kundkorg </h2>
+        <h2> {{ uiLabels.basket }} </h2>
         <hr>
       </div>
       <div id ="cartGrid">
       </div>
         <div id ="addMoreDrinksDiv">
-            <button id="addMoreDrinksB"> Lägg till <br>fler varor</button>
+            <button id="addMoreDrinksB"> {{ uiLabels.addToOrder1 }}<br>{{ uiLabels.addToOrder2 }}</button>
             <hr>
         </div>
         
       <div>
         <button id="goBackBCart" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
-          <button id="payB" class="goB"> Betala</button> 
+          <button id="payB" class="goB"> {{ uiLabels.pay }}</button> 
       </div>
     </section>
   </main>
+</div>
 </body>
 </html>
  
