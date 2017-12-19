@@ -87,16 +87,32 @@ var vm = new Vue({
     },
       
     getIngredientById: function (id) {
-      for (var i = 0; i < this.ingredients.length; i += 1) {
-        if (this.ingredients[i].ingredient_id === id){
+      for (var i = 0; i <= this.ingredients.length; i += 1) {
+          console.log(this.ingredients[i].ingredient_id);
+          var intId = parseInt(id);
+          console.log(id);
+          console.log(intId);
+        if (this.ingredients[i].ingredient_id === intId) {
           return this.ingredients[i];
         }
-      }
+    }
     },
     orderReadymade: function(rm) {
       for (var i = 0; i < rm.rm_ingredients.length; i += 1) {
         this.addToOrder(this.getIngredientById(rm.rm_ingredients[i]), rm.rm_type);
       }
+    },
+    
+    getIngredientNameList: function (idArr) {
+        console.log(typeof idArr);
+        var arrayIdArr = idArr.split(" ");
+        console.log(arrayIdArr);
+      var ingredientList = "", tempIngredient;
+      for (var i = 0; i < arrayIdArr.length ; i += 1) {
+        tempIngredient = this.getIngredientById(arrayIdArr[i]);
+        ingredientList += tempIngredient["ingredient_" + this.lang] + ", ";
+      }
+      return ingredientList;
     },
     
     showBase: function() {

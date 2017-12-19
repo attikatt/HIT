@@ -28,7 +28,7 @@
         <div id="ordering">
             <div class="favGrid">
                 <div v-for="preparedDrink in readymade">
-                   {{preparedDrink.rm_ingredients}} <button v-on:click="orderReadymade(preparedDrink)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
+                    <button v-on:click="orderReadymade(preparedDrink)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}} {{ getIngredientNameList(preparedDrink.rm_ingredients) }}</button>
                 </div>
               </div>
       </div>
