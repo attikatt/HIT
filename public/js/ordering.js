@@ -102,7 +102,6 @@ var vm = new Vue({
     },
     
     getIngredientNameList: function (idArr) {
-        console.log(typeof idArr);
       var ingredientList = "", tempIngredient;
       for (var i = 0; i < idArr.length ; i += 1) {
         tempIngredient = this.getIngredientById(idArr[i]);
