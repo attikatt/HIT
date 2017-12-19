@@ -16,6 +16,7 @@ var sharedVueStuff = {
     orders: {},
     uiLabels: {},
     ingredients: {},
+    readymade: {},
     lang: "en"
   },
   created: function () {
@@ -23,6 +24,7 @@ var sharedVueStuff = {
       this.orders = data.orders;
       this.uiLabels = data.uiLabels;
       this.ingredients = data.ingredients;
+        this.readymade = data.readymade;
     }.bind(this));
 
     socket.on('switchLang', function (data) {
