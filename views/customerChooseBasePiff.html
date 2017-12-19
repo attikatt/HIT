@@ -84,21 +84,21 @@
                 </div>
 <!-- This is step 5 -->
                     <div v-if="piffShown">
-                    <h4 id ="chooseBasePiffText"> {{ uiLabels.choosePiff }} </h4>
-                    <section id="middleSec">
-                      <div class="ingredientsGrid">
-                        <ingredient
-                          ref="ingredient"
-                          type="smoothie"
-                          v-for="item in ingredients"
-                          v-if="item.vol_smoothie > 0 && item.ingredient_category === 'piff'"
-                          v-on:increment="addToOrder(item, 'smoothie')"  
-                          :item="item" 
-                          :lang="lang"
-                          :key="item.ingredient_id">
-                        </ingredient>
-                      </div>
-                    </section>
+                        <h4 id ="chooseBasePiffText"> {{ uiLabels.choosePiff }} </h4>
+                        <section id="middleSec">
+                          <div class="ingredientsGrid">
+                            <ingredient
+                              ref="ingredient"
+                              type="smoothie"
+                              v-for="item in ingredients"
+                              v-if="item.vol_smoothie > 0 && item.ingredient_category === 'piff'"
+                              v-on:increment="addToOrder(item, 'smoothie')"  
+                              :item="item" 
+                              :lang="lang"
+                              :key="item.ingredient_id">
+                            </ingredient>
+                          </div>
+                        </section>
                     </div>
         <section id="lowerSecChooseBasePiff">
           <div> 
