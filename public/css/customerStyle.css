@@ -548,6 +548,20 @@ hr {
     height: 30vh;
 }
 
+#tastePanel {
+    width: 100vw;
+    position: fixed;
+    bottom: 15vh;
+    background-color: white;
+    table-layout: fixed;
+}
+
+.tasteClock {
+   
+    width: auto;
+    height: 17vw;
+}
+
 /* MEDIA STUFF */
 
 @media all and (max-height: 450px) {
