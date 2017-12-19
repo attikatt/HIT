@@ -247,18 +247,9 @@ margin-left: auto;
 #middleSecChangeIng {
   display: block;
   line-height: normal;
-    margin-top: 25vh; 
-    margin-bottom: 20vh;
-}
-
-/* Används denna? */
-#middleSec {
-  display: block;
-  line-height: normal;
-    margin-top: 10vh; 
+    margin-top: 40vh; 
     margin-bottom: 17vh;
 }
-
 
 #lowerSecChangeIngP {
   display: block;
@@ -448,7 +439,7 @@ hr {
   line-height: normal;
     width: 100vw;
     height: 13vh;
-    margin-top: -13vh;
+    margin-top: -14vh;
     background-color: white;
     position: fixed;
 }
@@ -460,7 +451,12 @@ hr {
 /* Choose Base Piff page*/
 
 #chooseBasePiffText {
-    margin-top: 10vh;
+    display: block;
+  line-height: normal;
+    width: 100vw;
+    position: fixed;
+    margin-top: -7vh;
+    background-color: white;
 }
 
 #upperSecChooseBasePiff{
@@ -473,6 +469,13 @@ hr {
     background-color: white;
     padding-bottom: 5vh;
     margin-top: 2vh;
+}
+
+#middleSec {
+  display: block;
+  line-height: normal;
+    margin-top: 33vh; 
+    margin-bottom: 17vh;
 }
 
 #lowerSecChooseBasePiff {
@@ -509,7 +512,7 @@ hr {
     margin-bottom: 14vh;
 }
 
-#goBackToType {
+#goBackFullDiv {
     display: block;
     line-height: normal;
     position: fixed;
