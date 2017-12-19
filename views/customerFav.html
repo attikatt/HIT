@@ -38,11 +38,12 @@
     </div>
       
     <div v-if="drinkInfoShown">
-        <section id="centerSecYourDrinkP">
+        <section id="drinkInfoSec">
             <div id="drinkInfoDiv">
                 <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_name === chosenFavDrink">
                     <img id="bigDrinkImg" v-bind:src="preparedDrink.rm_img"><br> 
                     <h2>{{preparedDrink.rm_name}}</h2> <br>
+                    <h3>{{uiLabels.content}}</h3> <br>
                     {{ getIngredientNameList(preparedDrink.rm_ingredients) }}
                 </div>
             </div>

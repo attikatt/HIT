@@ -532,15 +532,20 @@ hr {
 }
 
 /* Drink Info page */
+#drinkInfoSec {
+  display: block;
+  line-height: normal;
+    position: fixed;
+    width: 100vw;
+}
+
 #drinkInfoDiv {
-    display: grid;
-    margin-top: 25vh;
-    margin-bottom: 14vh;
+    margin-top: 18vh;
     background-color: blue;
 }
 
 #bigDrinkImg {
-    height: 20vh;
+    height: 30vh;
 }
 
 /* MEDIA STUFF */
