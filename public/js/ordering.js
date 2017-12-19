@@ -6,7 +6,7 @@ Vue.component('ingredient', {
   props: ['item', 'type', 'lang'],
   template: ' <div class="ingredient">\
                   <label>\
-                    <button class="ingredientSquareB" v-on:click="changePage"><img class="ingImg" v-bind:src="item.ingredient_img">\ <br>\{{item["ingredient_"+ lang]}} </button>\
+                    <button class="ingredientSquareB" v-on:click="changePage();incrementCounter()"><img class="ingImg" v-bind:src="item.ingredient_img">\ <br>\{{item["ingredient_"+ lang]}} </button>\
                   </label>\
               </div>',
   data: function () {
@@ -54,7 +54,8 @@ var vm = new Vue({
     step: 1,
     ingType: 'fruit',
     favShown: true,
-    drinkInfoShown: false
+    drinkInfoShown: false,
+    chosenFavDrink: ''
   },
   methods: {
     addToOrder: function (item, type) {
@@ -66,6 +67,11 @@ var vm = new Vue({
         this.volume += +item.vol_juice;
       }
       this.price += +item.selling_price;
+    },
+    markDrink: function (favDrink) {
+        this.chosenFavDrink = '';
+        this.chosenFavDrink = favDrink;
+        console.log(this.chosenFavDrink);
     },
     placeOrder: function () {
       var i,

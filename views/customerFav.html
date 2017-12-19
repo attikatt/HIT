@@ -28,10 +28,9 @@
         <h3 id="chooseFavTitle">{{ uiLabels.chooseSmoothie }} </h3>
         <div class="favGrid">
             <div v-for="preparedDrink in readymade">
-                <button class="favSquareB" v-on:click="showDrinkInfo"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}} {{ getIngredientNameList(preparedDrink.rm_ingredients) }}</button>
+                <button class="favSquareB" v-on:click="showDrinkInfo(); markDrink(preparedDrink.rm_name)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}} {{ getIngredientNameList(preparedDrink.rm_ingredients) }}</button>
             </div>
         </div>
-          <!-- Ta bort vänstra pilen och "välj storlek" -->
       <div id="goBackFullDiv">
           <button id="goBackB" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
       </div>
@@ -40,18 +39,17 @@
       
     <div v-if="drinkInfoShown">
         <section id="centerSecYourDrinkP">
-          <div>
-            <table id="lowerTable">
-              <tbody>
-                  <tr><td> <h2> {{Hej}} </h2> </td></tr>
-                  <tr><td> </td></tr>
-              </tbody>
-            </table>
-          </div>
+            <div id="drinkInfoDiv">
+                <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_name === chosenFavDrink">
+                    <img id="bigDrinkImg" v-bind:src="preparedDrink.rm_img"><br> 
+                    <h2>{{preparedDrink.rm_name}}</h2> <br>
+                    {{ getIngredientNameList(preparedDrink.rm_ingredients) }}
+                </div>
+            </div>
           <div> 
             <table id="bottomTable"> 
                 <tr>
-                  <td> <button id="goBackB" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
+                  <td> <button id="goBackB" class="goB" v-on:click="showFav()"> <img class="arrow" src="images/backArrow.png"> </button> </td>
                   <td> <h4 id="pickSize"> {{uiLabels.choose}} </h4> </td>
                   <td> <button id="goForwardB" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
                  </tr>
