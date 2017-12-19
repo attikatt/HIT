@@ -166,12 +166,12 @@ data.initializeData(ingredientsDataName);
 data.initializeData(transactionsDataName);
 
 // Readymade
-var readymadeData = "readymade";
-data.initializeData(readymadeData);
+var readymadeDataName = "readymade";
+data.initializeData(readymadeDataName);
 
 Data.prototype.getReadymade = function () {
 var d = this.data;
-return d[readymadeData];  
+return d[readymadeDataName];  
 }
 
 io.on('connection', function (socket) {
