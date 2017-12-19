@@ -160,6 +160,15 @@ data.initializeData(ingredientsDataName);
 // Load initial stock. Make alterations in the CSV file.
 data.initializeData(transactionsDataName);
 
+// Readymade
+var readymadeData = "readymade";
+data.initializeData(readymadeData);
+
+Data.prototype.getReadymade = function () {
+var d = this.data;
+return d[readymadeData];  
+}
+
 io.on('connection', function (socket) {
   // Send list of orders and text labels when a client connects
   socket.emit('initialize', { orders: data.getAllOrders(),
@@ -182,6 +191,12 @@ io.on('connection', function (socket) {
     data.markOrderDone(orderId);
     io.emit('currentQueue', {orders: data.getAllOrders() });
   });
+    
+    // send readyMade
+    socket.emit('initialize', { orders: data.getAllOrders(),
+                          uiLabels: data.getUILabels(),
+                          ingredients: data.getIngredients(),
+                          readymade: data.getReadymade() });
 });
 
 var server = http.listen(app.get('port'), function () {

@@ -27,16 +27,16 @@
         <h3 id="chooseFavTitle">{{ uiLabels.chooseSmoothie }} </h3>
         <div id="ordering">
           <div class="favGrid">
-            <ingredient
-              ref="ingredient"
+            <readymade
+              ref="readymade"
               type="smoothie"
-              v-for="item in ingredients"
-              v-if="item.vol_smoothie > 0"
+              v-for="item in readymade"
+              v-if="item.rm_id > 0"
               v-on:increment="addToOrder(item, 'smoothie')"  
               :item="item" 
               :lang="lang"
-              :key="item.ingredient_id">
-            </ingredient>
+              :key="item.rm_id">
+            </readymade>
           </div>
       </div>
           <!-- Ta bort vänstra pilen och "välj storlek" -->
