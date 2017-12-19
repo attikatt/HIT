@@ -77,6 +77,11 @@ app.get('/customerFav', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/customerFav.html'));
 });
 
+// Serve customerDrinkInfo.html as subpage
+app.get('/customerDrinkInfo', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/customerDrinkInfo.html'));
+});
+
 // Store data in an object to keep the global namespace clean
 function Data() {
   this.data = {};
