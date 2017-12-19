@@ -52,7 +52,9 @@ var vm = new Vue({
     piffShown: false,
     ingShown: false,
     step: 1,
-    ingType: 'fruit' 
+    ingType: 'fruit',
+    favShown: true,
+    drinkInfoShown: false
   },
   methods: {
     addToOrder: function (item, type) {
@@ -184,6 +186,14 @@ var vm = new Vue({
         }
         document.getElementById(choosenIngType+"B").style.color = "black"; document.getElementById(choosenIngType+"B").style.borderColor = "rgb(215,83,14)"; 
         // när man går tillbaka från steg 5 till 4, ska det vara förvalt frukter (knappen är så nu) eller senast valda kategori? (filtreringen så nu)
+    },
+    showFav: function () {
+      this.favShown = true;
+      this.drinkInfoShown = false;
+    },
+    showDrinkInfo: function () {
+      this.favShown = false;
+      this.drinkInfoShown = true;
     }
 
   }

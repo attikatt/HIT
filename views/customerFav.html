@@ -10,7 +10,7 @@
   <script src="js/ordering.js" defer></script>
 </head>
 <body>
-  <div id="ordering">
+<div id="ordering">
   <header id="headerChangeIngP">
     <table id="headTable">
       <tbody> 
@@ -23,6 +23,7 @@
     </table>
   </header>
   <main>
+    <div v-if="favShown">
       <section id="favSec">
         <h3 id="chooseFavTitle">{{ uiLabels.chooseSmoothie }} </h3>
         <div id="ordering">
@@ -36,7 +37,30 @@
       <div id="goBackFullDiv">
           <button id="goBackB" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
       </div>
-    </section>     
+    </section> 
+    </div>
+      
+    <div v-if="drinkInfoShown">
+        <section id="centerSecYourDrinkP">
+          <div>
+            <table id="lowerTable">
+              <tbody>
+                  <tr><td> <h2> {{preparedDrink.rm_name}} </h2> </td></tr>
+                  <tr><td> </td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div> 
+            <table id="bottomTable"> 
+                <tr>
+                  <td> <button id="goBackB" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
+                  <td> <h4 id="pickSize"> {{uiLabels.choose}} </h4> </td>
+                  <td> <button id="goForwardB" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
+                 </tr>
+             </table>
+          </div>
+        </section>
+    </div>  
   </main>
 </div>
 </body>

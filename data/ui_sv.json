@@ -17,6 +17,7 @@
   "vegetable" : "Grönsaker",
   "other" : "Övrigt",
   "baseIngPiff" : "Bas  Ingredienser Piff",
+    "choose" : "Välj",
   "chooseBase" : "Välj bas till din dryck",
   "chooseIng" : "Välj en ingrediens",
   "choosePiff" : "Välj piff till din dryck",
