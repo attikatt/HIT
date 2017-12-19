@@ -10,11 +10,12 @@
   <script src="js/ordering.js" defer></script>
 </head>
 <body>
+  <div id="ordering">
   <header id="headerChangeIngP">
     <table id="headTable">
       <tbody> 
         <tr>
-          <td> <button id="cancelOrderB"> <div id="cancelOrderText"> Avbryt köp </div> </button></td>
+          <td> <button id="cancelOrderB"> <div id="cancelOrderText"> {{ uiLabels.cancelOrder }} </div> </button></td>
           <td id="title"> Juicifer </td>
           <td> <button id="basketB"> <img id="basketLogo" src="images/basket.png"> </button> </td>
         </tr>
@@ -60,9 +61,9 @@
                         <tbody>
                             <tr>
                             <!-- Fixa kategorifiltrering -->
-                                <td> <button class="categoryB" id="fruitB" v-on:click="filterIngType('fruit')"> Frukter </button></td>
-                                <td> <button class="categoryB" id="vegetableB" v-on:click="filterIngType('vegetable')"> Grönsaker </button></td>
-                                <td> <button class="categoryB" id="otherB" v-on:click="filterIngType('other')"> Övrigt </button></td>
+                                <td> <button class="categoryB" id="fruitB" v-on:click="filterIngType('fruit')"> {{ uiLabels.fruit }} </button></td>
+                                <td> <button class="categoryB" id="vegetableB" v-on:click="filterIngType('vegetable')"> {{ uiLabels.vegetable }} </button></td>
+                                <td> <button class="categoryB" id="otherB" v-on:click="filterIngType('other')"> {{ uiLabels.other }} </button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -105,7 +106,7 @@
             <table id="bottomTable"> 
                 <tr>
                   <td> <button id="goBackB" class="goB" v-on:click="changePage(false)"> <img class="arrow" src="images/backArrow.png"> </button> </td>
-                  <td> <h4 id="forwardInfo"> Nästa </h4> </td>
+                  <td> <h4 id="forwardInfo"> {{ uiLabels.next }} </h4> </td>
                   <td> <button id="goForwardB" class="goB" v-on:click="changePage(true)"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
                  </tr>
              </table>
@@ -113,6 +114,7 @@
         </section>
     </div>
   </main>
+</div>
 </body>
 </html>
  

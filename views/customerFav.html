@@ -10,11 +10,12 @@
   <script src="js/ordering.js" defer></script>
 </head>
 <body>
+  <div id="ordering">
   <header id="headerChangeIngP">
     <table id="headTable">
       <tbody> 
         <tr>
-          <td> <button id="cancelOrderB"> <div id="cancelOrderText"> Avbryt köp </div> </button></td>
+          <td> <button id="cancelOrderB"> <div id="cancelOrderText"> {{ uiLabels.cancelOrder }} </div> </button></td>
           <td id="title"> Juicifer </td>
           <td> <button id="basketB"> <img id="basketLogo" src="images/basket.png"> </button> </td>
         </tr>
@@ -23,7 +24,7 @@
   </header>
   <main>
       <section id="favSec">
-        <h3 id="chooseFavTitle">Välj din smoothie</h3>
+        <h3 id="chooseFavTitle">{{ uiLabels.chooseSmoothie }} </h3>
         <div id="ordering">
           <div class="favGrid">
             <ingredient
@@ -44,6 +45,7 @@
       </div>
     </section>     
   </main>
+</div>
 </body>
 </html>
  

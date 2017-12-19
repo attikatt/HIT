@@ -4,23 +4,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/customerStyle.css">
+  <script src="/vue/vue.js" defer></script>
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="js/juicifer-main.js" defer></script>
+  <script src="js/ordering.js" defer></script>
 </head>
 <body>
+  <div id="ordering">
     <header>
     </header>
   <main>
     <section id="centerSecStartP">
         <div>
-            <h1 class="lowerCaseHeadline"> Tack för din beställning!</h1>
+            <h1 class="lowerCaseHeadline"> {{ uiLabels.thankOrder }}</h1>
         </div>
         <div id="yourOrderDiv">
-            <h2 class="lowerCaseHeadline">Din beställning</h2>
+            <h2 class="lowerCaseHeadline">{{ uiLabels.yourOrder }}</h2>
             <hr>
         </div>
         <div id="newOrderDiv">
-            <button id="newOrderB"> Ny beställning</button>
+            <button id="newOrderB"> {{ uiLabels.newOrder }}</button>
         </div>
     </section>
   </main>
+</div>
 </body>
 </html>
