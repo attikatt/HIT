@@ -24,7 +24,7 @@
   </header>
   <main>
         <section id="upperSecChooseBasePiff">
-        <h5 id = "stepText"> Bas  Ingredienser Piff</h5>
+        <h5 id = "stepText"> {{ uiLabels.baseIngPiff }}</h5>
         <div id="stepPanel">
             <p class="stepCircle" id="step1"> 1 </p>
             <p class="stepCircle" id="step2"> 2 </p>
@@ -38,7 +38,7 @@
 <!-- This is step 1 -->
                   <div v-if="baseShown">
                     <section id="middleSec">
-                      <h4 id ="chooseBasePiffText"> Välj bas till din dryck </h4>
+                      <h4 id ="chooseBasePiffText"> {{ uiLabels.chooseBase }} </h4>
                       <div class="ingredientsGrid">
                         <ingredient
                           ref="ingredient"
@@ -56,7 +56,7 @@
 <!-- This is step 2- 4 -->
                 <div v-if= "ingShown">
                   <div id = "lowerUpperChooseIng">
-                    <h4> Välj en ingrediens </h4>
+                    <h4> {{ uiLabels.chooseIng }}</h4>
                       <table id="categoryTable">
                         <tbody>
                             <tr>
@@ -86,7 +86,7 @@
 <!-- This is step 5 -->
                     <div v-if="piffShown">
                     <section id="middleSec">
-                        <h4 id ="chooseBasePiffText"> Välj piff till din dryck </h4>
+                        <h4 id ="chooseBasePiffText"> {{ uiLabels.choosePiff }} </h4>
                       <div class="ingredientsGrid">
                         <ingredient
                           ref="ingredient"
