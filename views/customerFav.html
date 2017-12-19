@@ -26,18 +26,11 @@
       <section id="favSec">
         <h3 id="chooseFavTitle">{{ uiLabels.chooseSmoothie }} </h3>
         <div id="ordering">
-          <div class="favGrid">
-            <readymade
-              ref="readymade"
-              type="smoothie"
-              v-for="item in readymade"
-              v-if="item.rm_id > 0"
-              v-on:increment="addToOrder(item, 'smoothie')"  
-              :item="item" 
-              :lang="lang"
-              :key="item.rm_id">
-            </readymade>
-          </div>
+            <div class="favGrid">
+                <div v-for="preparedDrink in readymade">
+                  {{preparedDrink.rm_name}} {{preparedDrink.rm_ingredients}} <button v-on:click="orderReadymade(preparedDrink)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"></button>
+                </div>
+              </div>
       </div>
           <!-- Ta bort vänstra pilen och "välj storlek" -->
       <div id="goBackToType">

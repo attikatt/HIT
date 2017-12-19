@@ -85,6 +85,19 @@ var vm = new Vue({
       this.type = '';
       this.chosenIngredients = [];
     },
+      
+    getIngredientById: function (id) {
+      for (var i = 0; i < this.ingredients.length; i += 1) {
+        if (this.ingredients[i].ingredient_id === id){
+          return this.ingredients[i];
+        }
+      }
+    },
+    orderReadymade: function(rm) {
+      for (var i = 0; i < rm.rm_ingredients.length; i += 1) {
+        this.addToOrder(this.getIngredientById(rm.rm_ingredients[i]), rm.rm_type);
+      }
+    },
     
     showBase: function() {
       this.baseShown = true;
