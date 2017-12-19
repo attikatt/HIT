@@ -238,17 +238,24 @@ margin-left: auto;
 #upperSecChangeIngP {
   display: block;
   line-height: normal;
-    height: 15vh;
+    height: 25vh;
     position: fixed;
     top: 15vh;
-    background-color: white;
-    padding-bottom: 5vh;
+    background-color: red;
 }
 
+#middleSecChangeIng {
+  display: block;
+  line-height: normal;
+    margin-top: 25vh; 
+    margin-bottom: 20vh;
+}
+
+/* Används denna? */
 #middleSec {
   display: block;
   line-height: normal;
-    margin-top: 28vh; 
+    margin-top: 10vh; 
     margin-bottom: 17vh;
 }
 

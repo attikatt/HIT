@@ -241,14 +241,14 @@ margin-left: auto;
     height: 15vh;
     position: fixed;
     top: 15vh;
-    background-color: white;
+    background-color: red;
     padding-bottom: 5vh;
 }
 
 #middleSec {
   display: block;
   line-height: normal;
-    margin-top: 28vh; 
+    margin-top: 25vh; 
     margin-bottom: 17vh;
 }
 

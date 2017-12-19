@@ -11,7 +11,7 @@
 </head>
 <body>
   <div id="ordering">
-  <header>
+  <header id="headerChangeIngP">
     <table id="headTable">
       <tbody> 
         <tr>
@@ -24,29 +24,42 @@
   </header>
   <main>
     <section id="centerSecYourDrinkP">
+    <section id="upperSecChangeIngP">
       <div>
         <h4> {{ uiLabels.changeIng }} </h4>
+          <!-- ska stå ingrediensens namn istället för
+            "Change: ingredient" -->
         <h2> {{ uiLabels.chooseIng }} </h2>
       </div>
-        <div>
-            <table id="categoryTable">
+              <table id="categoryTable">
                 <tbody>
                     <tr>
-                        <td> <button class="categoryB"> {{ uiLabels.fruit }} </button></td>
-                        <td> <button class="categoryB"> {{ uiLabels.vegetable }} </button></td>
-                        <td> <button class="categoryB"> {{ uiLabels.other }} </button></td>
+                        <td> <button class="categoryB" id="fruitB" v-on:click="filterIngType('fruit')"> {{ uiLabels.fruit }} </button></td>
+                        <td> <button class="categoryB" id="vegetableB" v-on:click="filterIngType('vegetable')"> {{ uiLabels.vegetable }} </button></td>
+                        <td> <button class="categoryB" id="otherB" v-on:click="filterIngType('other')"> {{ uiLabels.other }} </button></td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-      <div id="ingredientsGrid">
-
-      </div>
+        </section>
+            <section id="middleSecChangeIng">
+                <div class="ingredientsGrid">
+                    <ingredient
+                      ref="ingredient"
+                      type="smoothie"
+                      v-for="item in ingredients"
+                      v-if="item.vol_smoothie > 0 && item.ingredient_category === ingType"
+                      v-on:increment="addToOrder(item, 'smoothie')"  
+                      :item="item" 
+                      :lang="lang"
+                      :key="item.ingredient_id">
+                    </ingredient>
+                  </div>     
+                </section>
       <div> 
         <table id="bottomTable"> 
             <tr>
               <td> <button id="goBackB" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
-              <td> <h4 id="forwardInfo"> {{ uiLabels.chooseSize }} </h4> </td>
+              <td> <h4 id="forwardInfo"> {{ uiLabels.next }} </h4> </td>
               <td> <button id="goForwardB" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
              </tr>
          </table>
