@@ -13,27 +13,31 @@
   <div id="ordering">
   <header>
     <div id = "cartTable">
-      <button id="cancelOrderB"> {{ uiLabels.cancelOrder }}  </button></div>
-      <h1 id = "titleCart"> Juicifer </h1>
+        <div id = "cartShown">
+          <button id="cancelOrderB"> {{ uiLabels.cancelOrder }}  </button></div>
+          <h1 id = "titleCart"> Juicifer </h1>
+        </div>
   </header>
   <main>
-    <section id="centerSecYourDrinkP">
-      <div>
-        <h2> {{ uiLabels.basket }} </h2>
-        <hr>
-      </div>
-      <div id ="cartGrid">
-      </div>
-        <div id ="addMoreDrinksDiv">
-            <button id="addMoreDrinksB"> {{ uiLabels.addToOrder1 }}<br>{{ uiLabels.addToOrder2 }}</button>
+    <div id ="cartShown">
+        <section id="centerSecYourDrinkP">
+          <div>
+            <h2> {{ uiLabels.basket }} </h2>
             <hr>
-        </div>
-        
-      <div>
-        <button id="goBackBCart" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
-          <button id="payB" class="goB"> {{ uiLabels.pay }}</button> 
-      </div>
-    </section>
+          </div>
+          <div id ="cartGrid">
+          </div>
+            <div id ="addMoreDrinksDiv">
+                <button id="addMoreDrinksB"> {{ uiLabels.addToOrder1 }}<br>{{ uiLabels.addToOrder2 }}</button>
+                <hr>
+            </div>
+
+          <div>
+            <button id="goBackBCart" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
+              <button id="payB" class="goB"> {{ uiLabels.pay }}</button> 
+          </div>
+        </section>
+    </div>
   </main>
 </div>
 </body>

@@ -20,12 +20,19 @@
             <button id="languageB" v-on:click="switchLang()">{{ uiLabels.language }}</button>
         </header>
     </div>
-    <div v-if="chooseTypeShown || baseShown || ingShown || piffShown || startAgainShown">
+      
+    <div v-if = "cartShown">
+        <header>
+          <button id="cancelOrderB" v-on:click = "showPage('showStart')"> {{ uiLabels.cancelOrder }}  </button>
+          <h1 id = "titleCart"> Juicifer </h1>
+        </header>
+    </div>
+    <div v-if="chooseTypeShown || baseShown || ingShown || piffShown || startAgainShown || yourDrinkShown || sizeShown">
       <header id="headerChangeIngP">
         <table id="headTable">
           <tbody> 
             <tr>
-              <td> <button id="cancelOrderB"> <div id="cancelOrderText"> {{ uiLabels.cancelOrder }} </div> </button></td>
+              <td> <button id="cancelOrderB"  v-on:click = "showPage('showStart')"> <div id="cancelOrderText"> {{ uiLabels.cancelOrder }} </div> </button></td>
               <td id="title"> Juicifer </td>
               <td> <button id="basketB"> <img id="basketLogo" src="images/basket.png"> </button> </td>
             </tr>
@@ -43,7 +50,7 @@
             <table id="buttonTable" align="center">
               <tbody>
                   <tr><td> <button id="juicifersFavB"> {{ uiLabels.favorites }} </button> </td></tr>
-                  <tr><td> <button id="makeYourOwnB" v-on:click="showChooseType"> {{ uiLabels.makeYourOwn }} </button> </td></tr>
+                  <tr><td> <button id="makeYourOwnB" v-on:click="shownPage('showChooseType')"> {{ uiLabels.makeYourOwn }} </button> </td></tr>
               </tbody>
             </table>
           </div>
@@ -58,7 +65,7 @@
             <table id="buttonTable" align="center">
               <tbody>
                   <tr><td> <button id="juicifersFavB"> Juice </button> </td></tr>
-                  <tr><td> <button id="makeYourOwnB" v-on:click="showBase"> Smoothie </button> </td></tr>
+                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showBase')"> Smoothie </button> </td></tr>
               </tbody>
             </table>
           </div>
@@ -154,9 +161,93 @@
           </div>
         </section>
       </div>
+      
+<!-- Your drink page -->
+      <div v-if="yourDrinkShown">
+          <section id="centerSecYourDrinkP">
+              <div>
+                <h4> Din dryck </h4>
+                <h2> Drycknamn </h2>
+                <h5> (Tryck på ingrediensen för att ändra den) </h5>
+              </div>
+              <div>
+                <table id="lowerTable">
+                  <tbody>
+                      <tr><td> <button class="ingredientOblongB"> Ingrediens 1 </button> </td></tr>
+                      <tr><td> <button class="ingredientOblongB"> Ingrediens 2 </button> </td></tr>
+                      <tr><td> <button class="ingredientOblongB"> Ingrediens 3 </button> </td></tr>
+                      <tr><td> <button class="ingredientOblongB"> Ingrediens 4 </button> </td></tr> 
+                      <tr><td> <button class="ingredientOblongB"> Ingrediens 5 </button> </td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div> 
+                <table id="bottomTable"> 
+                    <tr>
+                      <td> <button id="goBackB" v-on:click = "showPage('showPiff')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
+                      <td> <h4 id="pickSize"> Välj storlek </h4> </td>
+                      <td> <button id="goForwardB" v-on:click = "showPage('showSize')" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
+                     </tr>
+                 </table>
+              </div>
+        </section>
+    </div>
+      
+<!-- Page Chose size Drink -->
+      
+    <div v-if="sizeShown"> 
+        <section id="centerSecYourDrinkP">
+          <div>
+            <h2> {{ uiLabels.chooseSize }} <br> {{ uiLabels.ofYourDrink }} </h2>
+          </div>
+          <div>
+            <table id="lowerTable">
+              <tbody>
+                  <tr><td> <button class="cup"> <img id="cupLogoS" src="images/cup.png"> <h5> {{ uiLabels.small }} (20cl)<br>36 kr</h5> </button> </td>
+                      <td> <button class="cup"> <img id="cupLogoM" src="images/cup.png"> <h5> {{ uiLabels.medium}} (33cl)<br>42 kr </h5> </button> </td>
+                      <td> <button class="cup"> <img id="cupLogoL" src="images/cup.png"> <h5> {{ uiLabels.large }} (50cl) <br>49 kr </h5></button></td></tr>
+
+              </tbody>
+            </table>
+          </div>
+          <div> 
+            <table id="bottomTable"> 
+                <tr>
+                  <td> <button id="goBackB" v-on:click = "showPage('showYourDrink')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
+                  <td> <h4 id="forwardInfo"> {{ uiLabels.add }} </h4> </td>
+                  <td> <button id="goForwardB" v-on:click = "showPage('showCart')" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
+                 </tr>
+             </table>
+          </div>
+        </section>
+    </div>      
+      
+<!-- Page Cart  -->
+    <div v-if ="cartShown">
+        <section id="centerSecYourDrinkP">
+          <div>
+            <h2> {{ uiLabels.basket }} </h2>
+            <hr>
+          </div>
+          <div id ="cartGrid">
+          </div>
+            <div id ="addMoreDrinksDiv">
+                <button id="addMoreDrinksB" v-on:click = "showPage('showStartAgain')"> {{ uiLabels.addToOrder1 }}<br>{{ uiLabels.addToOrder2 }}</button>
+                <hr>
+            </div>
+
+          <div>
+            <button id="goBackBCart" v-on:click = "showPage('showSize')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
+              <button id="payB" class="goB"> {{ uiLabels.pay }}</button> 
+          </div>
+        </section>
+    </div>      
+      
+<!-- Bottom panel -->
       <div v-if="chooseTypeShown || startAgainShown">
             <div id="goBackToStart">
-                <button id="goBackB" class="goB" v-on:click="showStart"> <img class="arrow" src="images/backArrow.png"> </button>
+                <button id="goBackB" class="goB" v-
+                on:click="showPage"> <img class="arrow" src="images/backArrow.png"> </button>
             </div>
         </div>
   </main>

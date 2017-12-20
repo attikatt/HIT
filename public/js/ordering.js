@@ -49,16 +49,20 @@ var vm = new Vue({
     volume: 0,
     price: 0,
     startShown: false,
-    chooseTypeShown: false,
+    chooseTypeShown: true,
     baseShown: false,
     piffShown: false,
     ingShown: false,
-    startAgainShown: true,
+    yourDrinkShown: false,
+    startAgainShown: false,
     step: 1,
     ingType: 'fruit',
     favShown: true,
     drinkInfoShown: false,
-    chosenFavDrink: ''
+    sizeShown: false,
+    cartShown: false,
+    chosenFavDrink: '',
+    currentPage: this.startShown
   },
   methods: {
     addToOrder: function (item, type) {
@@ -118,13 +122,64 @@ var vm = new Vue({
       }
       return ingredientList;
     },
+      
+    //below changed¨
+      
+    allpages: function(){
+        this.startShown = false;
+        this.chooseTypeShown = false;
+        this.baseShown = false;
+        this.ingShown = false;
+        this.piffShown = false;
+        this.yourDrinkShown = false;
+        this.startAgainShown = false;
+        this.sizeShown = false;
+        this.cartShown = false;
+    },  
+      
+    showPage: function(page) {
+        this.allpages();
+      console.log(page);
+        if(page === "showBase") {
+            this.baseShown = true;
+        }
+        else if (page === "showIng"){
+            this.ingShown = true;
+        }
+        else if (page === "showPiff"){
+            this.piffShown = true;
+        }
+        else if (page === "showChooseType"){
+            this.chooseTypeShown = true;
+        }
+        else if(page === "showStart"){
+            this.startShown = true;
+        }
+        else if(page === "showStartAgain"){
+            this.startAgainShown = true;
+        }
+        else if(page === "showYourDrink"){
+            this.yourDrinkShown = true;
+        }
+        else if(page === "showSize") {
+            this.sizeShown = true;
+        }
+        else if(page=== "showCart"){
+            this.cartShown = true;
+        }
+        
+    },
     
+
+/*      
+    // below ok, not changed
     showBase: function() {
         this.startShown = false;
         this.chooseTypeShown = false;
       this.baseShown = true;
         this.ingShown = false;
       this.piffShown = false;
+        this.yourDrinkShown = false;
         this.startAgainShown = false;
     },
     showIng: function() {
@@ -133,6 +188,7 @@ var vm = new Vue({
       this.baseShown = false;
     this.ingShown = true;
       this.piffShown = false;
+        this.yourDrinkShown = false;
         this.startAgainShown = false;
     },
     showPiff: function() {
@@ -141,6 +197,7 @@ var vm = new Vue({
       this.baseShown = false;
         this.ingShown = false;
       this.piffShown = true;
+        this.yourDrinkShown = false;
         this.startAgainShown = false;
     },
       
@@ -150,6 +207,7 @@ var vm = new Vue({
         this.baseShown = false;
         this.ingShown = false;
         this.piffShown = false;
+        this.yourDrinkShown = false;
         this.startAgainShown = false;
     },
       
@@ -159,6 +217,7 @@ var vm = new Vue({
         this.baseShown = false;
         this.ingShown = false;
         this.piffShown = false;
+        this.yourDrinkShown = false;
         this.startAgainShown = false;
     },
       
@@ -168,9 +227,22 @@ var vm = new Vue({
         this.baseShown = false;
         this.ingShown = false;
         this.piffShown = false;
+        this.yourDrinkShown = false;
         this.startAgainShown = true;
     },
-    
+
+    showYourDrink: function() {
+        this.startShown = false;
+        this.chooseTypeShown = false;
+        this.baseShown = false;
+        this.ingShown = false;
+        this.piffShown = false;
+        this.yourDrinkShown = true;
+        this.startAgainShown = false;
+    },
+  */
+      
+      
     changePage: function(goesForward) {
         var steps = document.getElementsByClassName("stepCircle");
         for (var i = 0; i < steps.length; i++) {
@@ -180,38 +252,38 @@ var vm = new Vue({
 
         if (goesForward) {
             if (this.step === 1) {
-                this.showIng();
+                this.showPage("showIng");
             }
             else if (this.step === 2) {
-                this.showIng();
+                this.showPage("showIng");
             }
             else if (this.step === 3) {
-                this.showIng();
+                this.showPage("showIng");
             }
             else if (this.step === 4) {
-                this.showPiff();
+                this.showPage("showPiff");
             }
             else {
-                this.showPiff();
+                this.showPage("showYourDrink");
             }
             this.step += 1;
         }
 
         else {
             if (this.step === 1) {
-                this.showChooseType();
+                this.showPage("showChooseType");
             }
             else if (this.step === 2) {
-                this.showBase();
+                this.showPage("showBase");
             }
             else if (this.step === 3) {
-                this.showIng();
+                this.showPage("showIng");
             }
             else if (this.step === 4) {
-                this.showIng();
+                this.showPage("showIng");
             }
             else {
-                this.showIng();
+                this.showPage("showIng");
             }
             this.step -= 1;
         }
@@ -237,6 +309,16 @@ var vm = new Vue({
     showDrinkInfo: function () {
       this.favShown = false;
       this.drinkInfoShown = true;
+    },
+      
+    goBack: function () {
+        if (this.chooseTypeShown) {
+            this.showStart();
+        }
+        else if (this.startAgainShown) {
+            this.showStart();
+            // ändra, ska gå till varukorgen
+        }
     }
 
   }
