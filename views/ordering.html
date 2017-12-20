@@ -64,8 +64,8 @@
            <div>   
             <table id="buttonTable" align="center">
               <tbody>
-                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('showFavOrMyo')"> Juice </button> </td></tr>
-                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showFavOrMyo')"> Smoothie </button> </td></tr>
+                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('showFavOrMyo');chooseTempType('juice')"> Juice </button> </td></tr>
+                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showFavOrMyo');chooseTempType('smoothie')"> Smoothie </button> </td></tr>
               </tbody>
             </table>
           </div>
@@ -250,7 +250,7 @@
         <h3 id="chooseFavTitle">{{ uiLabels.chooseSmoothie }} </h3>
         <div class="favGrid">
             <div v-for="preparedDrink in readymade" >
-                <button class="favSquareB" v-if="preparedDrink.rm_type === 'smoothie'" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink.rm_name)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
+                <button class="favSquareB" v-if="preparedDrink.rm_type === tempType" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink.rm_name)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
             </div>
         </div>
       <div id="goBackFullDiv">

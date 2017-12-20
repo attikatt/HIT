@@ -62,7 +62,8 @@ var vm = new Vue({
     sizeShown: false,
     cartShown: false,
     chosenFavDrink: '',
-    drinkPath: ''
+    drinkPath: '',
+    tempType: ''
   },
   methods: {
     addToOrder: function (item, type) {
@@ -325,6 +326,15 @@ var vm = new Vue({
         }
         else if (fav_or_myo === 'myo') {
             this.drinkPath = 'myo';
+        }
+    },
+      
+    chooseTempType: function (juice_or_smoothie) {
+        if (juice_or_smoothie === 'juice') {
+            this.tempType = 'juice';
+        }
+        else if (juice_or_smoothie === 'smoothie') {
+            this.tempType = 'smoothie';
         }
     }
 
