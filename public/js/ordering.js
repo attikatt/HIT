@@ -48,9 +48,12 @@ var vm = new Vue({
     chosenIngredients: [],
     volume: 0,
     price: 0,
-    baseShown: true,
+    startShown: false,
+    chooseTypeShown: false,
+    baseShown: false,
     piffShown: false,
     ingShown: false,
+    startAgainShown: true,
     step: 1,
     ingType: 'fruit',
     favShown: true,
@@ -117,19 +120,55 @@ var vm = new Vue({
     },
     
     showBase: function() {
+        this.startShown = false;
+        this.chooseTypeShown = false;
       this.baseShown = true;
         this.ingShown = false;
       this.piffShown = false;
+        this.startAgainShown = false;
     },
     showIng: function() {
+        this.startShown = false;
+        this.chooseTypeShown = false;
       this.baseShown = false;
     this.ingShown = true;
       this.piffShown = false;
+        this.startAgainShown = false;
     },
     showPiff: function() {
+        this.startShown = false;
+        this.chooseTypeShown = false;
       this.baseShown = false;
         this.ingShown = false;
       this.piffShown = true;
+        this.startAgainShown = false;
+    },
+      
+    showChooseType: function() {
+        this.startShown = false;
+        this.chooseTypeShown = true;
+        this.baseShown = false;
+        this.ingShown = false;
+        this.piffShown = false;
+        this.startAgainShown = false;
+    },
+      
+    showStart: function() {
+        this.startShown = true;
+        this.chooseTypeShown = false;
+        this.baseShown = false;
+        this.ingShown = false;
+        this.piffShown = false;
+        this.startAgainShown = false;
+    },
+      
+    showStartAgain: function() {
+        this.startShown = false;
+        this.chooseTypeShown = false;
+        this.baseShown = false;
+        this.ingShown = false;
+        this.piffShown = false;
+        this.startAgainShown = true;
     },
     
     changePage: function(goesForward) {
@@ -138,9 +177,9 @@ var vm = new Vue({
             steps[i].style.color = "grey";
             steps[i].style.backgroundColor = "lightgrey";  
         }
-        
+
         if (goesForward) {
-            if(this.step === 1) {
+            if (this.step === 1) {
                 this.showIng();
             }
             else if (this.step === 2) {
@@ -160,8 +199,7 @@ var vm = new Vue({
 
         else {
             if (this.step === 1) {
-                this.showBase();
-                // Här ska vi egentligen gå till föregående sida.
+                this.showChooseType();
             }
             else if (this.step === 2) {
                 this.showBase();

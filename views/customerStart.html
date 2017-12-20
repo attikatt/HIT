@@ -15,17 +15,19 @@
     <button id="languageB" v-on:click="switchLang()">{{ uiLabels.language }}</button>
   </header>
   <main>
-    <section id="centerSecStartP">       
-       <img id="juiciferLogo" src="images/logo.png">
-       <div>   
-        <table id="buttonTable" align="center">
-          <tbody>
-              <tr><td> <button id="juicifersFavB"> {{ uiLabels.favorites }} </button> </td></tr>
-              <tr><td> <button id="makeYourOwnB"> {{ uiLabels.makeYourOwn }} </button> </td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <div id="startShown">
+        <section id="centerSecStartP">       
+           <img id="juiciferLogo" src="images/logo.png">
+           <div>   
+            <table id="buttonTable" align="center">
+              <tbody>
+                  <tr><td> <button id="juicifersFavB"> {{ uiLabels.favorites }} </button> </td></tr>
+                  <tr><td> <button id="makeYourOwnB"> {{ uiLabels.makeYourOwn }} </button> </td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+    </div>
   </main>
 </div>
 </body>

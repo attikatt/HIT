@@ -166,7 +166,8 @@ margin-left: auto;
 }
 
 #goBackB {
-    left: 0;
+    left: 0px;
+    bottom: 0px:
 }
 
 #goForwardB {
@@ -181,10 +182,18 @@ margin-left: auto;
 }
 
 /* Start page */
+
+#headerStart {
+    position: fixed;
+    width: 100vw;
+}
+
 #centerSecStartP {
   display: block;
   line-height: normal;
+    position: fixed;
     height: 85vh;
+    margin-top: 14vh;
     background-color: yellow;
 }
 
@@ -300,14 +309,18 @@ margin-left: auto;
 
 /* Choose Type page */
 #centerSecChooseTypeP {
-    margin-top: 15%;
+    margin-top: 20vh;
     display: block;
-  line-height: normal;
+    line-height: normal;
     height: 85vh;
+    width: 100vw;
     background-color: yellow;
+    position:fixed;
 }
 
 #goBackToStart {
+    display: block;
+    line-height: normal;
     position: fixed;
     bottom: 0px;
 }
@@ -355,7 +368,7 @@ margin-left: auto;
 #goBackBCart {
     position:fixed;
     left: 0px;
-    bottom:0px; 
+    bottom: 0px; 
 }
 
 #payB{
