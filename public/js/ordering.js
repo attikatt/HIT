@@ -61,6 +61,7 @@ var vm = new Vue({
     drinkInfoShown: false,
     sizeShown: false,
     cartShown: false,
+	thanksShown:false,
     chosenFavDrink: '',
     drinkPath: '',
     tempType: ''
@@ -137,11 +138,11 @@ var vm = new Vue({
         this.cartShown = false;
         this.favShown = false;
         this.drinkInfoShown = false;
+		this.thanksShown = false;
     },  
       
     showPage: function(page) {
         this.allpages();
-      console.log(page);
         if(page === "showBase") {
             this.baseShown = true;
         }
@@ -176,6 +177,10 @@ var vm = new Vue({
         else if (page === "showFavInfo"){
             this.drinkInfoShown = true;
         }
+		else if (page ==="showThanks"){
+			this.thanksShown = true;
+		}
+		
         else if (page === "showFavOrMyo") {
             if (this.drinkPath === 'fav') {
                 this.favShown = true;

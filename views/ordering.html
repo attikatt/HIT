@@ -34,7 +34,7 @@
             <tr>
               <td> <button id="cancelOrderB"  v-on:click = "showPage('showStart')"> <div id="cancelOrderText"> {{ uiLabels.cancelOrder }} </div> </button></td>
               <td id="title"> Juicifer </td>
-              <td> <button id="basketB"> <img id="basketLogo" src="images/basket.png"> </button> </td>
+              <td> <button id="basketB" v-on:click ="showPage('showCart')"> <img id="basketLogo" src="images/basket.png"> </button> </td>
             </tr>
           </tbody>
         </table>
@@ -238,7 +238,7 @@
 
           <div>
             <button id="goBackBCart" v-on:click = "showPage('showSize')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
-              <button id="payB" v-on:click ="showPage('showFav')" class="goB"> {{ uiLabels.pay }}</button> 
+              <button id="payB" v-on:click ="showPage('showThanks')" class="goB"> {{ uiLabels.pay }}</button> 
           </div>
         </section>
     </div>      
@@ -290,12 +290,28 @@
                 <tr>
                   <td> <button id="goBackB" class="goB" v-on:click ="showPage('showFav')" > <img class="arrow" src="images/backArrow.png"> </button> </td>
                   <td> <h4 id="pickSize"> {{uiLabels.choose}} </h4> </td>
-                  <td> <button id="goForwardB"  class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
+                  <td> <button id="goForwardB" v-on:click = "showPage('showYourDrink')" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
                  </tr>
              </table>
           </div>
         </section>
-    </div>      
+    </div>    
+	  
+<!-- thanks Page -->
+	<div v-if="thanksShown">
+		<section id="centerSecStartP">
+			<div>
+				<h1 class="lowerCaseHeadline"> {{ uiLabels.thankOrder }}</h1>
+			</div>
+			<div id="yourOrderDiv">
+				<h2 class="lowerCaseHeadline">{{ uiLabels.yourOrder }}</h2>
+				<hr>
+			</div>
+			<div id="newOrderDiv">
+				<button id="newOrderB" v-on:click = "showPage('showStart')"> {{ uiLabels.newOrder }}</button>
+			</div>
+		</section>
+	</div>
       
 <!-- Bottom panel -->
       <div v-if="chooseTypeShown || startAgainShown">
