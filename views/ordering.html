@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<!-- Common for every page -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/customerStyle.css">
+<script src="/vue/vue.js" defer></script>
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="js/juicifer-main.js" defer></script>
+  <script src="js/ordering.js" defer></script>
+</head>
+    
+
+<body>
+  <div id="ordering">
+<!-- Headers -->
+    <div v-if="startShown">
+        <header id="headerStart">
+            <button id="languageB" v-on:click="switchLang()">{{ uiLabels.language }}</button>
+        </header>
+    </div>
+    <div v-if="chooseTypeShown || baseShown || ingShown || piffShown || startAgainShown">
+      <header id="headerChangeIngP">
+        <table id="headTable">
+          <tbody> 
+            <tr>
+              <td> <button id="cancelOrderB"> <div id="cancelOrderText"> {{ uiLabels.cancelOrder }} </div> </button></td>
+              <td id="title"> Juicifer </td>
+              <td> <button id="basketB"> <img id="basketLogo" src="images/basket.png"> </button> </td>
+            </tr>
+          </tbody>
+        </table>
+      </header>
+    </div>
+  <main>
+      
+<!-- Page: start & startAgain -->
+    <div v-if="startShown || startAgainShown">
+        <section id="centerSecStartP">       
+           <img id="juiciferLogo" src="images/logo.png">
+           <div>   
+            <table id="buttonTable" align="center">
+              <tbody>
+                  <tr><td> <button id="juicifersFavB"> {{ uiLabels.favorites }} </button> </td></tr>
+                  <tr><td> <button id="makeYourOwnB" v-on:click="showChooseType"> {{ uiLabels.makeYourOwn }} </button> </td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+    </div>
+      
+<!-- Page: choose type -->
+    <div v-if="chooseTypeShown">
+        <section id="centerSecChooseTypeP">       
+            <h1> {{ uiLabels.chooseType }}<br>{{ uiLabels.drink }}</h1>
+           <div>   
+            <table id="buttonTable" align="center">
+              <tbody>
+                  <tr><td> <button id="juicifersFavB"> Juice </button> </td></tr>
+                  <tr><td> <button id="makeYourOwnB" v-on:click="showBase"> Smoothie </button> </td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+    </div>
+<!-- Page: show base, ing and piff -->
+    <div v-if="baseShown || ingShown || piffShown">
+        <section id="upperSecChooseBasePiff">
+            <h5 id = "stepText"> {{ uiLabels.baseIngPiff }}</h5>
+            <div id="stepPanel">
+                <p class="stepCircle" id="step1"> 1 </p>
+                <p class="stepCircle" id="step2"> 2 </p>
+                <p class="stepCircle" id="step3"> 3 </p>
+                <p class="stepCircle" id="step4"> 4 </p>
+                <p class="stepCircle" id="step5"> 5 </p>
+            </div>
+        </section>
+  
+<!-- This is step 1 -->
+                  <div v-if="baseShown">
+                    <h4 id ="chooseBasePiffText"> {{ uiLabels.chooseBase }} </h4>
+                    <section id="middleSec">
+                      <div class="ingredientsGrid">
+                        <ingredient
+                          ref="ingredient"
+                          type="smoothie"
+                          v-for="item in ingredients"
+                          v-if="item.smoothie_base"
+                          v-on:increment="addToOrder(item, 'smoothie')"  
+                          :item="item" 
+                          :lang="lang"
+                          :key="item.ingredient_id">
+                        </ingredient>
+                      </div>
+                      </section>
+                    </div>
+<!-- This is step 2- 4 -->
+                <div v-if= "ingShown">
+                  <div id = "lowerUpperChooseIng">
+                    <h4> {{ uiLabels.chooseIng }}</h4>
+                      <table id="categoryTable">
+                        <tbody>
+                            <tr>
+                                <td> <button class="categoryB" id="fruitB" v-on:click="filterIngType('fruit')"> {{ uiLabels.fruit }} </button></td>
+                                <td> <button class="categoryB" id="vegetableB" v-on:click="filterIngType('vegetable')"> {{ uiLabels.vegetable }} </button></td>
+                                <td> <button class="categoryB" id="otherB" v-on:click="filterIngType('other')"> {{ uiLabels.other }} </button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                <section id="middleSecChooseIng">
+                    <div class="ingredientsGrid">
+                        <ingredient
+                          ref="ingredient"
+                          type="smoothie"
+                          v-for="item in ingredients"
+                          v-if="item.stock > 0 && item.ingredient_category === ingType"
+                          v-on:increment="addToOrder(item, 'smoothie')"  
+                          :item="item" 
+                          :lang="lang"
+                          :key="item.ingredient_id">
+                        </ingredient>
+                      </div>     
+                    </section>
+                </div>
+<!-- This is step 5 -->
+                    <div v-if="piffShown">
+                        <h4 id ="chooseBasePiffText"> {{ uiLabels.choosePiff }} </h4>
+                        <section id="middleSec">
+                          <div class="ingredientsGrid">
+                            <ingredient
+                              ref="ingredient"
+                              type="smoothie"
+                              v-for="item in ingredients"
+                              v-if="item.stock > 0 && item.ingredient_category === 'piff'"
+                              v-on:increment="addToOrder(item, 'smoothie')"  
+                              :item="item" 
+                              :lang="lang"
+                              :key="item.ingredient_id">
+                            </ingredient>
+                          </div>
+                        </section>
+                    </div>
+        <section id="lowerSecChooseBasePiff">
+          <div> 
+            <table id="bottomTable"> 
+                <tr>
+                  <td> <button id="goBackB" class="goB" v-on:click="changePage(false)"> <img class="arrow" src="images/backArrow.png"> </button> </td>
+                  <td> <h4 id="forwardInfo"> {{ uiLabels.next }} </h4> </td>
+                  <td> <button id="goForwardB" class="goB" v-on:click="changePage(true)"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
+                 </tr>
+             </table>
+          </div>
+        </section>
+      </div>
+      <div v-if="chooseTypeShown || startAgainShown">
+            <div id="goBackToStart">
+                <button id="goBackB" class="goB" v-on:click="showStart"> <img class="arrow" src="images/backArrow.png"> </button>
+            </div>
+        </div>
+  </main>
+</div>
+</body>
+</html>
+ 
