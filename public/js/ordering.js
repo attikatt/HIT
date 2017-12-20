@@ -78,7 +78,6 @@ var vm = new Vue({
     markDrink: function (favDrink) {
         this.chosenFavDrink = '';
         this.chosenFavDrink = favDrink;
-        console.log(this.chosenFavDrink);
     },
     placeOrder: function () {
       var i,
@@ -123,7 +122,7 @@ var vm = new Vue({
       return ingredientList;
     },
       
-    //below changed¨
+    //below changed
       
     allpages: function(){
         this.startShown = false;
@@ -175,6 +174,14 @@ var vm = new Vue({
         }
         else if (page === "showFavInfo"){
             this.drinkInfoShown = true;
+        }
+        else if (page === "showFavOrMyo") {
+            if (this.drinkPath === 'fav') {
+                this.favShown = true;
+            }
+            else if (this.drinkPath === 'myo') {
+                this.baseShown = true;
+            }
         }
         
     },
@@ -310,24 +317,6 @@ var vm = new Vue({
         }
         document.getElementById(choosenIngType+"B").style.color = "black"; document.getElementById(choosenIngType+"B").style.borderColor = "rgb(215,83,14)"; 
         // när man går tillbaka från steg 5 till 4, ska det vara förvalt frukter (knappen är så nu) eller senast valda kategori? (filtreringen så nu)
-    },
-    showFav: function () {
-      this.favShown = true;
-      this.drinkInfoShown = false;
-    },
-    showDrinkInfo: function () {
-      this.favShown = false;
-      this.drinkInfoShown = true;
-    },
-      
-    goBack: function () {
-        if (this.chooseTypeShown) {
-            this.showStart();
-        }
-        else if (this.startAgainShown) {
-            this.showStart();
-            // ändra, ska gå till varukorgen
-        }
     },
     
     choosePath: function (fav_or_myo) {
