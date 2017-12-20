@@ -48,8 +48,8 @@ var vm = new Vue({
     chosenIngredients: [],
     volume: 0,
     price: 0,
-    startShown: false,
-    chooseTypeShown: true,
+    startShown: true,
+    chooseTypeShown: false,
     baseShown: false,
     piffShown: false,
     ingShown: false,
@@ -57,12 +57,12 @@ var vm = new Vue({
     startAgainShown: false,
     step: 1,
     ingType: 'fruit',
-    favShown: true,
+    favShown: false,
     drinkInfoShown: false,
     sizeShown: false,
     cartShown: false,
     chosenFavDrink: '',
-    currentPage: this.startShown
+    drinkPath: ''
   },
   methods: {
     addToOrder: function (item, type) {
@@ -135,6 +135,8 @@ var vm = new Vue({
         this.startAgainShown = false;
         this.sizeShown = false;
         this.cartShown = false;
+        this.favShown = false;
+        this.drinkInfoShown = false;
     },  
       
     showPage: function(page) {
@@ -166,6 +168,13 @@ var vm = new Vue({
         }
         else if(page=== "showCart"){
             this.cartShown = true;
+        }
+        
+        else if(page ==="showFav"){
+            this.favShown = true;
+        }
+        else if (page === "showFavInfo"){
+            this.drinkInfoShown = true;
         }
         
     },
@@ -318,6 +327,15 @@ var vm = new Vue({
         else if (this.startAgainShown) {
             this.showStart();
             // ändra, ska gå till varukorgen
+        }
+    },
+    
+    choosePath: function (fav_or_myo) {
+        if (fav_or_myo === 'fav') {
+            this.drinkPath = 'fav';
+        }
+        else if (fav_or_myo === 'myo') {
+            this.drinkPath = 'myo';
         }
     }
 

@@ -27,7 +27,7 @@
           <h1 id = "titleCart"> Juicifer </h1>
         </header>
     </div>
-    <div v-if="chooseTypeShown || baseShown || ingShown || piffShown || startAgainShown || yourDrinkShown || sizeShown">
+    <div v-if="chooseTypeShown || baseShown || ingShown || piffShown || startAgainShown || yourDrinkShown || sizeShown || favShown || drinkInfoShown">
       <header id="headerChangeIngP">
         <table id="headTable">
           <tbody> 
@@ -49,8 +49,8 @@
            <div>   
             <table id="buttonTable" align="center">
               <tbody>
-                  <tr><td> <button id="juicifersFavB"> {{ uiLabels.favorites }} </button> </td></tr>
-                  <tr><td> <button id="makeYourOwnB" v-on:click="shownPage('showChooseType')"> {{ uiLabels.makeYourOwn }} </button> </td></tr>
+                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('showChooseType'); choosePath('fav')"> {{ uiLabels.favorites }} </button> </td></tr>
+                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showChooseType'); choosePath('myo')"> {{ uiLabels.makeYourOwn }} </button> </td></tr>
               </tbody>
             </table>
           </div>
@@ -64,7 +64,7 @@
            <div>   
             <table id="buttonTable" align="center">
               <tbody>
-                  <tr><td> <button id="juicifersFavB"> Juice </button> </td></tr>
+                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('showFav')"> Juice </button> </td></tr>
                   <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showBase')"> Smoothie </button> </td></tr>
               </tbody>
             </table>
@@ -238,7 +238,61 @@
 
           <div>
             <button id="goBackBCart" v-on:click = "showPage('showSize')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
-              <button id="payB" class="goB"> {{ uiLabels.pay }}</button> 
+              <button id="payB" v-on:click ="showPage('showFav')" class="goB"> {{ uiLabels.pay }}</button> 
+          </div>
+        </section>
+    </div>      
+
+<!-- Juicifers Favourites Page -->
+
+<div v-if="favShown">
+      <section id="favSec">
+        <h3 id="chooseFavTitle">{{ uiLabels.chooseSmoothie }} </h3>
+        <div class="favGrid">
+            <div v-for="preparedDrink in readymade">
+                <button class="favSquareB" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink.rm_name)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
+            </div>
+        </div>
+      <div id="goBackFullDiv">
+          <button id="goBackB" v-on:click ="showPage('showChooseType')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
+      </div>
+    </section> 
+    </div>
+    
+<!-- Drink Info Fav -->
+      
+    <div v-if="drinkInfoShown">
+        <section id="drinkInfoSec">
+            <div id="drinkInfoDiv">
+                <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_name === chosenFavDrink">
+                    <img id="bigDrinkImg" v-bind:src="preparedDrink.rm_img"><br> 
+                    <h2>{{preparedDrink.rm_name}}</h2> <br>
+                    <h3>{{uiLabels.content}}</h3> <br>
+                    {{ getIngredientNameList(preparedDrink.rm_ingredients) }}
+                    <div>
+                        <table id="tastePanel"> 
+                            <tr>
+                              <td> <img class="tasteClock" v-bind:src="preparedDrink.rm_sweet"></td>
+                              <td> <img class="tasteClock" v-bind:src="preparedDrink.rm_sour"> </td>
+                              <td> <img class="tasteClock" v-bind:src="preparedDrink.rm_full"> </td>
+                             </tr>
+                            <tr>
+                                <td> Sötma </td>
+                                <td> Syrlighet </td>
+                                <td> Fyllighet </td>
+                            </tr>
+                         </table>
+                     </div>
+                </div>
+            </div>
+          <div> 
+            <table id="bottomTable"> 
+                <tr>
+                  <td> <button id="goBackB" class="goB" v-on:click ="showPage('showFav')" > <img class="arrow" src="images/backArrow.png"> </button> </td>
+                  <td> <h4 id="pickSize"> {{uiLabels.choose}} </h4> </td>
+                  <td> <button id="goForwardB"  class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
+                 </tr>
+             </table>
           </div>
         </section>
     </div>      
@@ -246,10 +300,11 @@
 <!-- Bottom panel -->
       <div v-if="chooseTypeShown || startAgainShown">
             <div id="goBackToStart">
-                <button id="goBackB" class="goB" v-
+                <button id="goBackB"  class="goB" v-
                 on:click="showPage"> <img class="arrow" src="images/backArrow.png"> </button>
             </div>
         </div>
+            
   </main>
 </div>
 </body>
