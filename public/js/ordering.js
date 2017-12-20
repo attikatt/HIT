@@ -55,7 +55,7 @@ var vm = new Vue({
     ingShown: false,
     yourDrinkShown: false,
     startAgainShown: false,
-    step: 1,
+    step: 0,
     ingType: 'fruit',
     favShown: false,
     drinkInfoShown: false,
@@ -187,89 +187,20 @@ var vm = new Vue({
         
     },
     
-
-/*      
-    // below ok, not changed
-    showBase: function() {
-        this.startShown = false;
-        this.chooseTypeShown = false;
-      this.baseShown = true;
-        this.ingShown = false;
-      this.piffShown = false;
-        this.yourDrinkShown = false;
-        this.startAgainShown = false;
-    },
-    showIng: function() {
-        this.startShown = false;
-        this.chooseTypeShown = false;
-      this.baseShown = false;
-    this.ingShown = true;
-      this.piffShown = false;
-        this.yourDrinkShown = false;
-        this.startAgainShown = false;
-    },
-    showPiff: function() {
-        this.startShown = false;
-        this.chooseTypeShown = false;
-      this.baseShown = false;
-        this.ingShown = false;
-      this.piffShown = true;
-        this.yourDrinkShown = false;
-        this.startAgainShown = false;
-    },
-      
-    showChooseType: function() {
-        this.startShown = false;
-        this.chooseTypeShown = true;
-        this.baseShown = false;
-        this.ingShown = false;
-        this.piffShown = false;
-        this.yourDrinkShown = false;
-        this.startAgainShown = false;
-    },
-      
-    showStart: function() {
-        this.startShown = true;
-        this.chooseTypeShown = false;
-        this.baseShown = false;
-        this.ingShown = false;
-        this.piffShown = false;
-        this.yourDrinkShown = false;
-        this.startAgainShown = false;
-    },
-      
-    showStartAgain: function() {
-        this.startShown = false;
-        this.chooseTypeShown = false;
-        this.baseShown = false;
-        this.ingShown = false;
-        this.piffShown = false;
-        this.yourDrinkShown = false;
-        this.startAgainShown = true;
-    },
-
-    showYourDrink: function() {
-        this.startShown = false;
-        this.chooseTypeShown = false;
-        this.baseShown = false;
-        this.ingShown = false;
-        this.piffShown = false;
-        this.yourDrinkShown = true;
-        this.startAgainShown = false;
-    },
-  */
-      
       
     changePage: function(goesForward) {
         var steps = document.getElementsByClassName("stepCircle");
         for (var i = 0; i < steps.length; i++) {
+			console.log("steps color grey" + steps);
             steps[i].style.color = "grey";
             steps[i].style.backgroundColor = "lightgrey";  
         }
 
         if (goesForward) {
-            if (this.step === 1) {
+			console.log(this.step + " goes forward");
+            if (this.step <= 1) {
                 this.showPage("showIng");
+				this.step = 1;
             }
             else if (this.step === 2) {
                 this.showPage("showIng");
@@ -282,13 +213,16 @@ var vm = new Vue({
             }
             else {
                 this.showPage("showYourDrink");
+				this.step =4;
             }
             this.step += 1;
         }
 
         else {
-            if (this.step === 1) {
+			console.log(this.step + " goes back!");
+            if (this.step <= 1) {
                 this.showPage("showChooseType");
+				this.step =1;
             }
             else if (this.step === 2) {
                 this.showPage("showBase");
@@ -304,6 +238,7 @@ var vm = new Vue({
             }
             this.step -= 1;
         }
+		
         document.getElementById("step"+this.step).style.color = "black"; document.getElementById("step"+this.step).style.backgroundColor = "white";
         console.log(this.step);
         return this.step;
