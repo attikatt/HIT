@@ -137,13 +137,13 @@ margin-left: auto;
 
 #buttonTable {
   width: 100%;
-    background-color: red;
+    /*background-color: red;*/
 }
 
 
 #lowerTable {
   width: 100%;
-    background-color: red;
+   /* background-color: red;*/
     margin-top: 7vh;
 }
 
@@ -194,7 +194,7 @@ margin-left: auto;
     position: fixed;
     height: 85vh;
     margin-top: 14vh;
-    background-color: yellow;
+   /* background-color: yellow;*/
 }
 
 #languageB {
@@ -251,7 +251,7 @@ margin-left: auto;
     height: 25vh;
     position: fixed;
     top: 15vh;
-    background-color: red;
+    /*background-color: red;*/
 }
 
 #middleSecChangeIng {
@@ -281,6 +281,7 @@ margin-left: auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-row-gap: 1vh;
+	
 }
 
 .ordering {
@@ -315,7 +316,7 @@ margin-left: auto;
     line-height: normal;
     height: 85vh;
     width: 100vw;
-    background-color: yellow;
+    /*background-color: yellow;*/
     position:fixed;
 }
 
@@ -356,7 +357,7 @@ margin-left: auto;
     padding-top: 7%;
     padding-right:23%;
     text-align:center;
-    background-color: cyan;
+    /*background-color: cyan;*/
     font-size: 5vh;
     text-transform: uppercase;
     letter-spacing: 1.5vw;
@@ -436,7 +437,7 @@ hr {
     width: 100vw;
     position: fixed;
     top: 12vh;
-    background-color: yellow;
+    /*background-color: yellow;*/
     padding-bottom: 5vh;
     margin-top: 2vh;
 }
@@ -525,7 +526,7 @@ hr {
     grid-row-gap: 2vh;
     margin-top: 25vh;
     margin-bottom: 14vh;
-    background-color: blue;
+   /* background-color: blue*/
 }
 
 #goBackFullDiv {
@@ -555,7 +556,7 @@ hr {
 
 #drinkInfoDiv {
     margin-top: 18vh;
-    background-color: blue;
+    /*background-color: blue;*/
 }
 
 #bigDrinkImg {
