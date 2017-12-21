@@ -23,42 +23,44 @@
     </table>
   </header>
   <main>
-    <section id="centerSecYourDrinkP">
-    <section id="upperSecChangeIngP">
-      <div>
-        <h4> {{ uiLabels.changeIng }} </h4>
-          <!-- ska stå ingrediensens namn istället för
-            "Change: ingredient" -->
-        <h2> {{ uiLabels.chooseIng }} </h2>
-      </div>
-              <table id="categoryTable">
-                <tbody>
-                    <tr>
-                        <td> <button class="categoryB" id="fruitB" v-on:click="filterIngType('fruit')"> {{ uiLabels.fruit }} </button></td>
-                        <td> <button class="categoryB" id="vegetableB" v-on:click="filterIngType('vegetable')"> {{ uiLabels.vegetable }} </button></td>
-                        <td> <button class="categoryB" id="otherB" v-on:click="filterIngType('other')"> {{ uiLabels.other }} </button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-            <section id="middleSecChangeIng">
-                <div class="ingredientsGrid">
-                    <ingredient
-                      ref="ingredient"
-                      type="smoothie"
-                      v-for="item in ingredients"
-                      v-if="item.vol_smoothie > 0 && item.ingredient_category === ingType"
-                      v-on:increment="addToOrder(item, 'smoothie')"  
-                      :item="item" 
-                      :lang="lang"
-                      :key="item.ingredient_id">
-                    </ingredient>
-                  </div>     
-                </section>
-        <div id="goBackFullDiv">
-            <button id="goBackB" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
-        </div>
-    </section>
+	<div id ="changeIngShown">
+		<section id="centerSecYourDrinkP">
+			<section id="upperSecChangeIngP">
+			  <div>
+				<h4> {{ uiLabels.changeIng }} </h4>
+				  <!-- ska stå ingrediensens namn istället för
+					"Change: ingredient" -->
+				<h2> {{ uiLabels.chooseIng }} </h2>
+			  </div>
+				<table id="categoryTable">
+					<tbody>
+						<tr>
+							<td> <button class="categoryB" id="fruitB" v-on:click="filterIngType('fruit')"> {{ uiLabels.fruit }} </button></td>
+							<td> <button class="categoryB" id="vegetableB" v-on:click="filterIngType('vegetable')"> {{ uiLabels.vegetable }} </button></td>
+							<td> <button class="categoryB" id="otherB" v-on:click="filterIngType('other')"> {{ uiLabels.other }} </button></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+				<section id="middleSecChangeIng">
+					<div class="ingredientsGrid">
+						<ingredient
+						  ref="ingredient"
+						  type="smoothie"
+						  v-for="item in ingredients"
+						  v-if="item.vol_smoothie > 0 && item.ingredient_category === ingType"
+						  v-on:increment="addToOrder(item, 'smoothie')"  
+						  :item="item" 
+						  :lang="lang"
+						  :key="item.ingredient_id">
+						</ingredient>
+					  </div>     
+					</section>
+			<div id="goBackFullDiv">
+				<button id="goBackB" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
+			</div>
+		</section>
+	</div>
   </main>
 </div>
 </body>

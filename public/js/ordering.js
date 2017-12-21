@@ -6,7 +6,7 @@ Vue.component('ingredient', {
   props: ['item', 'type', 'lang'],
   template: ' <div class="ingredient">\
                   <label>\
-                    <button class="ingredientSquareB" v-on:click="changePage(true);incrementCounter()"><img class="ingImg" v-bind:src="item.ingredient_img">\ <br>\{{item["ingredient_"+ lang]}} </button>\
+                    <button v-bind:id="item.ingredient_id" class="ingredientSquareB" v-on:click="changePage(true);incrementCounter()"><img class="ingImg" v-bind:src="item.ingredient_img">\ <br>\{{item["ingredient_"+ lang]}} </button>\
                   </label>\
               </div>',
   data: function () {
@@ -62,9 +62,11 @@ var vm = new Vue({
     sizeShown: false,
     cartShown: false,
 	thanksShown:false,
+	changeIngShown: false,
     tempDrink: '',
     drinkPath: '',
-    tempType: ''
+    tempType: '' , 
+	tempIngChange: 0
 	
   },
   methods: {
@@ -82,6 +84,11 @@ var vm = new Vue({
     markDrink: function (drink) {
         this.tempDrink = drink;
     },
+	markIngChange: function(ingredient_id){
+		console.log(ingredient_id);
+		this.tempIngChange = parseInt(ingredient_id);
+	},
+	  
     placeOrder: function () {
       var i,
       //Wrap the order in an object
@@ -140,6 +147,7 @@ var vm = new Vue({
         this.favShown = false;
         this.drinkInfoShown = false;
 		this.thanksShown = false;
+		this.changeIngShown =false;
     },  
       
     showPage: function(page) {
@@ -181,6 +189,9 @@ var vm = new Vue({
 		else if (page ==="showThanks"){
 			this.thanksShown = true;
 		}
+		else if (page === "showChangeIng"){
+			this.changeIngShown = true;
+		}
 		
         else if (page === "showFavOrMyo") {
             if (this.drinkPath === 'fav') {
@@ -196,6 +207,9 @@ var vm = new Vue({
       
     changePage: function(goesForward) {
         var steps = document.getElementsByClassName("stepCircle");
+		//var itemClass = document.getElementsByClassName("ingredientSquareB");
+		//var itemId = document.getElementById(3).style.backgroundColor ="pink";
+		//console.log(itemClass);
         for (var i = 0; i < steps.length; i++) {
             steps[i].style.color = "grey";
             steps[i].style.backgroundColor = "lightgrey";  

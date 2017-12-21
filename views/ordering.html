@@ -27,7 +27,7 @@
           <h1 id = "titleCart"> Juicifer </h1>
         </header>
     </div>
-    <div v-if="chooseTypeShown || baseShown || ingShown || piffShown || startAgainShown || yourDrinkShown || sizeShown || favShown || drinkInfoShown">
+    <div v-if="chooseTypeShown || baseShown || ingShown || piffShown || startAgainShown || yourDrinkShown || sizeShown || favShown || drinkInfoShown || changeIngShown">
       <header id="headerChangeIngP">
         <table id="headTable">
           <tbody> 
@@ -185,14 +185,14 @@
 						 v-if ="drinkPath === 'fav' && preparedDrink.rm_name === tempDrink">
 						<button class="ingredientOblongB" 
 								v-for="containsIng in preparedDrink.rm_ingredients" 
-								v-on:click="showPage('showFavInfo'); markDrink(preparedDrink.rm_name)">
+								v-on:click="showPage('showChangeIng'); markIngChange(containsIng.ingredient_id)">
 								{{ (getIngredientById(containsIng))["ingredient_"+ lang] }} <br> 
 						</button>
 					</div>
 					<div v-if ="drinkPath === 'myo'">
 						<button class="ingredientOblongB" 
 								v-for= "containsIng in chosenIngredients"
-								v-on:click="showPage('showFavInfo'); markDrink(preparedDrink.rm_name)">
+								v-on:click="showPage('showChangeIng'); markIngChange(containsIng.ingredient_id)">
 								{{ containsIng["ingredient_"+lang] }} <br> 
 						</button>
 					</div>
@@ -200,7 +200,7 @@
               <div> 
                 <table id="bottomTable"> 
                     <tr>
-                      <td> <button id="goBackB" v-on:click = "showPage('showFavOrMyo')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
+                      <td v-if ="drinkPath === 'fav'"> <button id="goBackB" v-on:click = "showPage('showFavOrMyo')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
                       <td> <h4 id="pickSize"> {{uiLabels.chooseSize}} </h4> </td>
                       <td> <button id="goForwardB" v-on:click = "showPage('showSize')" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
                      </tr>
@@ -208,7 +208,47 @@
               </div>
         </section>
     </div>
-      
+<!-- Change Ing Page -->
+<div v-if ="changeIngShown">
+		<section id="centerSecYourDrinkP">
+			<section id="upperSecChangeIngP">
+			  <div>
+				<h4> {{ uiLabels.changeIng + (getIngredientById(tempIngChange))["ingredient_" + lang]}} </h4>
+				  <!-- ska stå ingrediensens namn istället för
+					"Change: ingredient" -->
+				<h2> {{ uiLabels.chooseIng }} </h2>
+			  </div>
+				<table id="categoryTable">
+					<tbody>
+						<tr>
+							<td> <button class="categoryB" id="fruitB" v-on:click="filterIngType('fruit')"> {{ uiLabels.fruit }} </button></td>
+							<td> <button class="categoryB" id="vegetableB" v-on:click="filterIngType('vegetable')"> {{ uiLabels.vegetable }} </button></td>
+							<td> <button class="categoryB" id="otherB" v-on:click="filterIngType('other')"> {{ uiLabels.other }} </button></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+				<section id="middleSecChangeIng">
+					<div class="ingredientsGrid">
+						<ingredient
+						  ref="ingredient"
+						  type="smoothie"
+						  v-for="item in ingredients"
+						  v-if="item.vol_smoothie > 0 && item.ingredient_category === ingType"
+						  v-on:increment="addToOrder(item, 'smoothie')"  
+						  :item="item" 
+						  :lang="lang"
+						  :key="item.ingredient_id">
+						</ingredient>
+					  </div>     
+					</section>
+			<div id="goBackFullDiv">
+				<button id="goBackB" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
+			</div>
+		</section>
+	</div>
+	  
+	  
 <!-- Page Chose size Drink -->
       
     <div v-if="sizeShown"> 
