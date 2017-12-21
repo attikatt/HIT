@@ -228,6 +228,14 @@ margin-left: auto;
     margin-top: 15vh;
 }
 
+#choosenIngGrid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 1vh;
+    margin-top: 3vh;
+    margin-bottom: 14vh;	
+}
+
 .ingredientOblongB {
   width: 75%;
   height: 8vh;
@@ -528,6 +536,8 @@ hr {
     margin-bottom: 14vh;
    /* background-color: blue*/
 }
+
+
 
 #goBackFullDiv {
     display: block;

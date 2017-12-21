@@ -70,8 +70,8 @@
            <div>   
             <table id="buttonTable" align="center">
               <tbody>
-                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('showFavOrMyo');chooseTempType('juice');markDrink('egen Juice')"> Juice </button> </td></tr>
-                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showFavOrMyo');chooseTempType('smoothie');markDrink('egen Smoothie')"> Smoothie </button> </td></tr>
+                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('showFavOrMyo');chooseTempType('juice'); markDrink(uiLabels.ownJuice)"> Juice </button> </td></tr>
+                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showFavOrMyo');chooseTempType('smoothie');markDrink(uiLabels.ownSmoothie)"> Smoothie </button> </td></tr>
               </tbody>
             </table>
           </div>
@@ -175,21 +175,16 @@
       <div v-if="yourDrinkShown">
           <section id="centerSecYourDrinkP">
               <div>
-                <h4> Din dryck </h4>
+                <h4 v-if = "drinkPath === 'fav'"> {{uiLabels.your}} {{uiLabels.drink}} </h4>
                 <h2> {{ tempDrink }} </h2>
-                <h5> (Tryck på ingrediensen för att ändra den) </h5>
+                <h5> {{uiLabels.press2Change}} </h5>
+				 <hr>
               </div>
-              <div>
-                <table id="lowerTable">
-                  <tbody>
-                      <tr><td> <button class="ingredientOblongB"> Ingrediens 1 </button> </td></tr>
-                      <tr><td> <button class="ingredientOblongB"> Ingrediens 2 </button> </td></tr>
-                      <tr><td> <button class="ingredientOblongB"> Ingrediens 3 </button> </td></tr>
-                      <tr><td> <button class="ingredientOblongB"> Ingrediens 4 </button> </td></tr> 
-                      <tr><td> <button class="ingredientOblongB"> Ingrediens 5 </button> </td></tr>
-                  </tbody>
-                </table>
-              </div>
+				<div id="choosenIngGrid">
+					<div v-for="preparedDrink in readymade" >
+						<button class="ingredientOblongB" v-if="preparedDrink.rm_type === tempType" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink.rm_name)"> <br> {{preparedDrink.rm_name}}</button>
+					</div>
+				</div>
               <div> 
                 <table id="bottomTable"> 
                     <tr>

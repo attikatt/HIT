@@ -1,6 +1,10 @@
 {
   "favorites" : "Juicifers Favoriter",
   "makeYourOwn" : "Gör Din Egen",
+	"ownSmoothie": "Egen Smoothie",
+	"ownJuice": "Egen Juice",
+	"your": "Din",
+	"press2Change":"Tryck på ingrediensen för att ändra den",
   "cancelOrder" : "Avbryt köp",
   "next" : "Nästa",
   "chooseSmoothie" : "Välj din smoothie",

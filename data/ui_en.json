@@ -1,6 +1,10 @@
 {
   "favorites" : "Juicifers Favorites",
   "makeYourOwn" : "Make Your Own",
+	"ownSmoothie": "Own Smoothie",
+	"ownJuice": "Own Juice",
+	"your": "Your",
+	"press2Change":"Press the ingredient to change it",
   "cancelOrder" : "Cancel order",
   "next" : "Next",
   "chooseSmoothie" : "Choose your smoothie",
