@@ -185,7 +185,7 @@
 						 v-if ="drinkPath === 'fav' && preparedDrink.rm_name === tempDrink">
 						<button class="ingredientOblongB" 
 								v-for="containsIng in preparedDrink.rm_ingredients" 
-								v-on:click="showPage('showChangeIng'); markIngChange(containsIng.ingredient_id)">
+								v-on:click="showPage('showChangeIng'); markIngChange(containsIng)">
 								{{ (getIngredientById(containsIng))["ingredient_"+ lang] }} <br> 
 						</button>
 					</div>
@@ -214,8 +214,6 @@
 			<section id="upperSecChangeIngP">
 			  <div>
 				<h4> {{ uiLabels.changeIng + (getIngredientById(tempIngChange))["ingredient_" + lang]}} </h4>
-				  <!-- ska stå ingrediensens namn istället för
-					"Change: ingredient" -->
 				<h2> {{ uiLabels.chooseIng }} </h2>
 			  </div>
 				<table id="categoryTable">

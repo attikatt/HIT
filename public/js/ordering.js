@@ -85,8 +85,13 @@ var vm = new Vue({
         this.tempDrink = drink;
     },
 	markIngChange: function(ingredient_id){
-		console.log(ingredient_id);
+		console.log(ingredient_id + "here i am");
 		this.tempIngChange = parseInt(ingredient_id);
+	},
+	  
+	swapIng: function (ingredient_id) {
+		console.log(ingredient_id);
+		
 	},
 	  
     placeOrder: function () {
