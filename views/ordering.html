@@ -56,6 +56,12 @@
           </div>
         </section>
     </div>
+	<div v-if = "startAgainShown">
+	   <div id="goBackToStart">
+         <button id="goBackB"  class="goB" v-on:click="showPage('showCart')"> <img class="arrow" src="images/backArrow.png"> </button>
+       </div>
+	</div>
+
       
 <!-- Page: choose type -->
     <div v-if="chooseTypeShown">
@@ -64,12 +70,15 @@
            <div>   
             <table id="buttonTable" align="center">
               <tbody>
-                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('showFavOrMyo');chooseTempType('juice')"> Juice </button> </td></tr>
-                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showFavOrMyo');chooseTempType('smoothie')"> Smoothie </button> </td></tr>
+                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('showFavOrMyo');chooseTempType('juice');markDrink('egen Juice')"> Juice </button> </td></tr>
+                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showFavOrMyo');chooseTempType('smoothie');markDrink('egen Smoothie')"> Smoothie </button> </td></tr>
               </tbody>
             </table>
           </div>
         </section>
+		<div id="goBackToStart">
+          <button id="goBackB"  class="goB" v-on:click="showPage('showStart')"> <img class="arrow" src="images/backArrow.png"> </button>
+        </div>
     </div>
 <!-- Page: show base, ing and piff -->
     <div v-if="baseShown || ingShown || piffShown">
@@ -167,7 +176,7 @@
           <section id="centerSecYourDrinkP">
               <div>
                 <h4> Din dryck </h4>
-                <h2> Drycknamn </h2>
+                <h2> {{ tempDrink }} </h2>
                 <h5> (Tryck på ingrediensen för att ändra den) </h5>
               </div>
               <div>
@@ -184,7 +193,7 @@
               <div> 
                 <table id="bottomTable"> 
                     <tr>
-                      <td> <button id="goBackB" v-on:click = "showPage('showPiff')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
+                      <td> <button id="goBackB" v-on:click = "showPage('showFavOrMyo')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
                       <td> <h4 id="pickSize"> Välj storlek </h4> </td>
                       <td> <button id="goForwardB" v-on:click = "showPage('showSize')" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
                      </tr>
@@ -247,7 +256,8 @@
 
 <div v-if="favShown">
       <section id="favSec">
-        <h3 id="chooseFavTitle">{{ uiLabels.chooseSmoothie }} </h3>
+        <h3 id="chooseFavTitle" v-if = "tempType ==='smoothie'">{{ uiLabels.chooseSmoothie }} </h3>
+		<h3 id="chooseFavTitle" v-if = "tempType ==='juice'">{{ uiLabels.chooseJuice }} </h3>
         <div class="favGrid">
             <div v-for="preparedDrink in readymade" >
                 <button class="favSquareB" v-if="preparedDrink.rm_type === tempType" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink.rm_name)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
@@ -264,7 +274,7 @@
     <div v-if="drinkInfoShown">
         <section id="drinkInfoSec">
             <div id="drinkInfoDiv">
-                <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_name === chosenFavDrink">
+                <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_name === tempDrink">
                     <img id="bigDrinkImg" v-bind:src="preparedDrink.rm_img"><br> 
                     <h2>{{preparedDrink.rm_name}}</h2> <br>
                     <h3>{{uiLabels.content}}</h3> <br>
@@ -311,16 +321,7 @@
 				<button id="newOrderB" v-on:click = "showPage('showStart')"> {{ uiLabels.newOrder }}</button>
 			</div>
 		</section>
-	</div>
-      
-<!-- Bottom panel -->
-      <div v-if="chooseTypeShown || startAgainShown">
-            <div id="goBackToStart">
-                <button id="goBackB"  class="goB" v-
-                on:click="showPage"> <img class="arrow" src="images/backArrow.png"> </button>
-            </div>
-        </div>
-            
+	  </div>  
   </main>
 </div>
 </body>

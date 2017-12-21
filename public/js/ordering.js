@@ -6,7 +6,7 @@ Vue.component('ingredient', {
   props: ['item', 'type', 'lang'],
   template: ' <div class="ingredient">\
                   <label>\
-                    <button class="ingredientSquareB" v-on:click="changePage();incrementCounter()"><img class="ingImg" v-bind:src="item.ingredient_img">\ <br>\{{item["ingredient_"+ lang]}} </button>\
+                    <button class="ingredientSquareB" v-on:click="changePage(true);incrementCounter()"><img class="ingImg" v-bind:src="item.ingredient_img">\ <br>\{{item["ingredient_"+ lang]}} </button>\
                   </label>\
               </div>',
   data: function () {
@@ -62,9 +62,10 @@ var vm = new Vue({
     sizeShown: false,
     cartShown: false,
 	thanksShown:false,
-    chosenFavDrink: '',
+    tempDrink: '',
     drinkPath: '',
     tempType: ''
+	
   },
   methods: {
     addToOrder: function (item, type) {
@@ -77,9 +78,8 @@ var vm = new Vue({
       }
       this.price += +item.selling_price;
     },
-    markDrink: function (favDrink) {
-        this.chosenFavDrink = '';
-        this.chosenFavDrink = favDrink;
+    markDrink: function (drink) {
+        this.tempDrink = drink;
     },
     placeOrder: function () {
       var i,
@@ -196,13 +196,11 @@ var vm = new Vue({
     changePage: function(goesForward) {
         var steps = document.getElementsByClassName("stepCircle");
         for (var i = 0; i < steps.length; i++) {
-			console.log("steps color grey" + steps);
             steps[i].style.color = "grey";
             steps[i].style.backgroundColor = "lightgrey";  
         }
 
         if (goesForward) {
-			console.log(this.step + " goes forward");
             if (this.step <= 1) {
                 this.showPage("showIng");
 				this.step = 1;
@@ -216,18 +214,18 @@ var vm = new Vue({
             else if (this.step === 4) {
                 this.showPage("showPiff");
             }
-            else {
+            else if (this.step === 5){
                 this.showPage("showYourDrink");
-				this.step =4;
+				this.step = 4;
             }
+
             this.step += 1;
         }
 
         else {
-			console.log(this.step + " goes back!");
             if (this.step <= 1) {
                 this.showPage("showChooseType");
-				this.step =1;
+				this.step =2;
             }
             else if (this.step === 2) {
                 this.showPage("showBase");
@@ -238,9 +236,13 @@ var vm = new Vue({
             else if (this.step === 4) {
                 this.showPage("showIng");
             }
-            else {
+            else if (this.step === 5){
                 this.showPage("showIng");
             }
+			else if(this.step ===6){
+				this.showPage("showPiff");
+				this.step = 5;
+			}
             this.step -= 1;
         }
 		
