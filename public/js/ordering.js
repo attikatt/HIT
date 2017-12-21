@@ -77,6 +77,7 @@ var vm = new Vue({
         this.volume += +item.vol_juice;
       }
       this.price += +item.selling_price;
+		console.log(this.chosenIngredients);
     },
     markDrink: function (drink) {
         this.tempDrink = drink;
@@ -245,7 +246,6 @@ var vm = new Vue({
 			}
             this.step -= 1;
         }
-		
         document.getElementById("step"+this.step).style.color = "black"; document.getElementById("step"+this.step).style.backgroundColor = "white";
         console.log(this.step);
         return this.step;

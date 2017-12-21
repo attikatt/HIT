@@ -181,15 +181,27 @@
 				 <hr>
               </div>
 				<div id="choosenIngGrid">
-					<div v-for="preparedDrink in readymade" >
-						<button class="ingredientOblongB" v-if="preparedDrink.rm_type === tempType" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink.rm_name)"> <br> {{preparedDrink.rm_name}}</button>
+					<div v-for="preparedDrink in readymade" 
+						 v-if ="drinkPath === 'fav' && preparedDrink.rm_name === tempDrink">
+						<button class="ingredientOblongB" 
+								v-for="containsIng in preparedDrink.rm_ingredients" 
+								v-on:click="showPage('showFavInfo'); markDrink(preparedDrink.rm_name)">
+								{{ (getIngredientById(containsIng))["ingredient_"+ lang] }} <br> 
+						</button>
+					</div>
+					<div v-if ="drinkPath === 'myo'">
+						<button class="ingredientOblongB" 
+								v-for= "containsIng in chosenIngredients"
+								v-on:click="showPage('showFavInfo'); markDrink(preparedDrink.rm_name)">
+								{{ containsIng["ingredient_"+lang] }} <br> 
+						</button>
 					</div>
 				</div>
               <div> 
                 <table id="bottomTable"> 
                     <tr>
                       <td> <button id="goBackB" v-on:click = "showPage('showFavOrMyo')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
-                      <td> <h4 id="pickSize"> Välj storlek </h4> </td>
+                      <td> <h4 id="pickSize"> {{uiLabels.chooseSize}} </h4> </td>
                       <td> <button id="goForwardB" v-on:click = "showPage('showSize')" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
                      </tr>
                  </table>
@@ -282,9 +294,9 @@
                               <td> <img class="tasteClock" v-bind:src="preparedDrink.rm_full"> </td>
                              </tr>
                             <tr>
-                                <td> Sötma </td>
-                                <td> Syrlighet </td>
-                                <td> Fyllighet </td>
+                                <td> {{uiLabels.sweetness}} </td>
+                                <td> {{uiLabels.tanginess}} </td>
+                                <td> {{uiLabels.richness}} </td>
                             </tr>
                          </table>
                      </div>
