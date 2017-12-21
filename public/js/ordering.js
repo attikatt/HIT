@@ -6,7 +6,7 @@ Vue.component('ingredient', {
   props: ['item', 'type', 'lang'],
   template: ' <div class="ingredient">\
                   <label>\
-                    <button v-bind:id="item.ingredient_id" class="ingredientSquareB" v-on:click="changePage(true);incrementCounter()"><img class="ingImg" v-bind:src="item.ingredient_img">\ <br>\{{item["ingredient_"+ lang]}} </button>\
+                    <button v-bind:id="item.ingredient_id" class="ingredientSquareB" v-on:click="changePage(true)"><img class="ingImg" v-bind:src="item.ingredient_img">\ <br>\{{item["ingredient_"+ lang]}} </button>\
                   </label>\
               </div>',
   data: function () {
@@ -17,13 +17,21 @@ Vue.component('ingredient', {
   methods: {
     incrementCounter: function () {
       this.counter += 1;
-      this.$emit('increment');
+      this.$emit('increment'); //meddelar html att den ska anropa addToOrder
     },
     resetCounter: function () {
       this.counter = 0;
     },
     changePage: function (goesForward) {
-        vm.changePage(true);
+        if (vm.baseShown || vm.ingShown || vm.piffShown) {
+            this.incrementCounter(); // behöver vi verkligen countern? Funkar ej nu: ändras nu ej när ingredienser byts ut. Men this.$emit('increment') behövs!
+            vm.changeStep(true);
+        }
+        else if (vm.changeIngShown) {
+            vm.swapIng(this.item.ingredient_id); // sending id of ingredient user is swapping to.
+            vm.showPage("showYourDrink");
+        }
+        console.log(this.counter + this.item.ingredient_en);
     }
   }
 });
@@ -66,8 +74,7 @@ var vm = new Vue({
     tempDrink: '',
     drinkPath: '',
     tempType: '' , 
-	tempIngChange: 0
-	
+	changeFromId: 0
   },
   methods: {
     addToOrder: function (item, type) {
@@ -79,19 +86,23 @@ var vm = new Vue({
         this.volume += +item.vol_juice;
       }
       this.price += +item.selling_price;
-		console.log(this.chosenIngredients);
     },
+      
     markDrink: function (drink) {
         this.tempDrink = drink;
     },
-	markIngChange: function(ingredient_id){
-		console.log(ingredient_id + "here i am");
-		this.tempIngChange = parseInt(ingredient_id);
+      
+	markChangeFrom: function(ingredient_id){
+		this.changeFromId = ingredient_id;
 	},
+      
+    findIngToReplace: function(ingredient) {
+        return ingredient.ingredient_id === this.changeFromId; 
+    },
 	  
-	swapIng: function (ingredient_id) {
-		console.log(ingredient_id);
-		
+	swapIng: function (changeToId) {
+		var changeIndex = this.chosenIngredients.findIndex(this.findIngToReplace);
+        this.chosenIngredients[changeIndex] = this.getIngredientById(changeToId);
 	},
 	  
     placeOrder: function () {
@@ -210,9 +221,10 @@ var vm = new Vue({
     },
     
       
-    changePage: function(goesForward) {
+    changeStep: function(goesForward) {
         var steps = document.getElementsByClassName("stepCircle");
-		//var itemClass = document.getElementsByClassName("ingredientSquareB");
+		// Här har vi försökt markera med färg vilka ingredienser som har valts, så att det syns när man klickar bakåt. Ej färdig, ska ev. tas bort.
+        //var itemClass = document.getElementsByClassName("ingredientSquareB");
 		//var itemId = document.getElementById(3).style.backgroundColor ="pink";
 		//console.log(itemClass);
         for (var i = 0; i < steps.length; i++) {

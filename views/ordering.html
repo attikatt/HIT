@@ -162,9 +162,9 @@
           <div> 
             <table id="bottomTable"> 
                 <tr>
-                  <td> <button id="goBackB" class="goB" v-on:click="changePage(false)"> <img class="arrow" src="images/backArrow.png"> </button> </td>
+                  <td> <button id="goBackB" class="goB" v-on:click="changeStep(false)"> <img class="arrow" src="images/backArrow.png"> </button> </td>
                   <td> <h4 id="forwardInfo"> {{ uiLabels.next }} </h4> </td>
-                  <td> <button id="goForwardB" class="goB" v-on:click="changePage(true)"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
+                  <td> <button id="goForwardB" class="goB" v-on:click="changeStep(true)"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
                  </tr>
              </table>
           </div>
@@ -185,14 +185,14 @@
 						 v-if ="drinkPath === 'fav' && preparedDrink.rm_name === tempDrink">
 						<button class="ingredientOblongB" 
 								v-for="containsIng in preparedDrink.rm_ingredients" 
-								v-on:click="showPage('showChangeIng'); markIngChange(containsIng)">
+								v-on:click="showPage('showChangeIng'); markChangeFrom(containsIng)">
 								{{ (getIngredientById(containsIng))["ingredient_"+ lang] }} <br> 
 						</button>
 					</div>
 					<div v-if ="drinkPath === 'myo'">
 						<button class="ingredientOblongB" 
 								v-for= "containsIng in chosenIngredients"
-								v-on:click="showPage('showChangeIng'); markIngChange(containsIng.ingredient_id)">
+								v-on:click="showPage('showChangeIng'); markChangeFrom(containsIng.ingredient_id)">
 								{{ containsIng["ingredient_"+lang] }} <br> 
 						</button>
 					</div>
@@ -208,12 +208,13 @@
               </div>
         </section>
     </div>
+      
 <!-- Change Ing Page -->
 <div v-if ="changeIngShown">
 		<section id="centerSecYourDrinkP">
 			<section id="upperSecChangeIngP">
 			  <div>
-				<h4> {{ uiLabels.changeIng + (getIngredientById(tempIngChange))["ingredient_" + lang]}} </h4>
+				<h4> {{ uiLabels.changeIng + (getIngredientById(changeFromId))["ingredient_" + lang]}} </h4>
 				<h2> {{ uiLabels.chooseIng }} </h2>
 			  </div>
 				<table id="categoryTable">
