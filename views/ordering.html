@@ -92,7 +92,9 @@
                 <p class="stepCircle" id="step5"> 5 </p>
             </div>
         </section>
-  
+
+<!-- Nu är allt smoothie-ing, vi måste fixa filtreringen-->
+        
 <!-- This is step 1 -->
                   <div v-if="baseShown">
                     <h4 id ="chooseBasePiffText"> {{ uiLabels.chooseBase }} </h4>
@@ -100,10 +102,10 @@
                       <div class="ingredientsGrid">
                         <ingredient
                           ref="ingredient"
-                          type="smoothie"
+                          type=tempType
                           v-for="item in ingredients"
-                          v-if="item.smoothie_base"
-                          v-on:increment="addToOrder(item, 'smoothie')"  
+                          v-if="item.stock > 0 && item.smoothie_base"
+                          v-on:increment="addToOrder(item, tempType)"  
                           :item="item" 
                           :lang="lang"
                           :key="item.ingredient_id">
@@ -129,10 +131,10 @@
                     <div class="ingredientsGrid">
                         <ingredient
                           ref="ingredient"
-                          type="smoothie"
+                          type=tempType
                           v-for="item in ingredients"
                           v-if="item.stock > 0 && item.ingredient_category === ingType"
-                          v-on:increment="addToOrder(item, 'smoothie')"  
+                          v-on:increment="addToOrder(item, tempType)"  
                           :item="item" 
                           :lang="lang"
                           :key="item.ingredient_id">
@@ -147,10 +149,10 @@
                           <div class="ingredientsGrid">
                             <ingredient
                               ref="ingredient"
-                              type="smoothie"
+                              type=tempType
                               v-for="item in ingredients"
                               v-if="item.stock > 0 && item.ingredient_category === 'piff'"
-                              v-on:increment="addToOrder(item, 'smoothie')"  
+                              v-on:increment="addToOrder(item, tempType)"  
                               :item="item" 
                               :lang="lang"
                               :key="item.ingredient_id">
@@ -234,10 +236,11 @@
 						  type="smoothie"
 						  v-for="item in ingredients"
 						  v-if="item.vol_smoothie > 0 && item.ingredient_category === ingType"
-						  v-on:increment="addToOrder(item, 'smoothie')"  
+						  v-on:
 						  :item="item" 
 						  :lang="lang"
 						  :key="item.ingredient_id">
+                        <!-- v-on: increment="addToOrder(item, 'smoothie')" Ska ej användas här? -->
 						</ingredient>
 					  </div>     
 					</section>
@@ -293,7 +296,7 @@
 
           <div>
             <button id="goBackBCart" v-on:click = "showPage('showSize')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
-              <button id="payB" v-on:click ="showPage('showThanks')" class="goB"> {{ uiLabels.pay }}</button> 
+              <button id="payB" v-on:click="showPage('showThanks');placeOrder()" class="goB"> {{ uiLabels.pay }}</button> 
           </div>
         </section>
     </div>      
@@ -346,7 +349,7 @@
                 <tr>
                   <td> <button id="goBackB" class="goB" v-on:click ="showPage('showFav')" > <img class="arrow" src="images/backArrow.png"> </button> </td>
                   <td> <h4 id="pickSize"> {{uiLabels.choose}} </h4> </td>
-                  <td> <button id="goForwardB" v-on:click = "showPage('showYourDrink')" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
+                  <td> <button id="goForwardB" v-on:click = "showPage('showYourDrink'); orderReadymade()" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
                  </tr>
              </table>
           </div>

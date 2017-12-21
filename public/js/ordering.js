@@ -85,8 +85,9 @@ var vm = new Vue({
       } else if (type === "juice") {
         this.volume += +item.vol_juice;
       }
-      this.price += +item.selling_price;
+        this.price += +item.selling_price;
     },
+    // Skicka även med namnet i addToOrder (fav drink eller "egen smoothie/juice")
       
     markDrink: function (drink) {
         this.tempDrink = drink;
@@ -124,6 +125,7 @@ var vm = new Vue({
       this.price = 0;
       this.type = '';
       this.chosenIngredients = [];
+        console.log("placerat order");
     },
       
     getIngredientById: function (id) {
@@ -133,8 +135,10 @@ var vm = new Vue({
         }
       }
     },
-    orderReadymade: function(rm) {
+    orderReadymade: function() {
+        var rm = this.tempDrink;
       for (var i = 0; i < rm.rm_ingredients.length; i += 1) {
+       // Felet: rm är en string, men borde vara hela objektet.
         this.addToOrder(this.getIngredientById(rm.rm_ingredients[i]), rm.rm_type);
       }
     },
