@@ -70,8 +70,8 @@
            <div>   
             <table id="buttonTable" align="center">
               <tbody>
-                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('showFavOrMyo');chooseTempType('juice'); markDrink(uiLabels.ownJuice)"> Juice </button> </td></tr>
-                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showFavOrMyo');chooseTempType('smoothie');markDrink(uiLabels.ownSmoothie)"> Smoothie </button> </td></tr>
+                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('showFavOrMyo');chooseTempType('juice')"> Juice </button> </td></tr>
+                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showFavOrMyo');chooseTempType('smoothie')"> Smoothie </button> </td></tr>
               </tbody>
             </table>
           </div>
@@ -176,26 +176,22 @@
 <!-- Your drink page -->
       <div v-if="yourDrinkShown">
           <section id="centerSecYourDrinkP">
-              <div>
-                <h4 v-if = "drinkPath === 'fav'"> {{uiLabels.your}} {{uiLabels.drink}} </h4>
-                <h2> {{ tempDrink }} </h2>
+              <div v-if = "drinkPath === 'fav'">
+                <h4> {{uiLabels.your}} {{uiLabels.drink}} </h4>
+                <h2> {{ tempDrink.rm_name }} </h2>
+              </div>
+              <div v-if = "drinkPath === 'myo'">
+                  <h2> {{ uiLabels.ownJuice }} </h2>
+                  <!-- Här ska stå egen juice ELLER smoothie-->
+              </div>
                 <h5> {{uiLabels.press2Change}} </h5>
 				 <hr>
-              </div>
-				<div id="choosenIngGrid">
-					<div v-for="preparedDrink in readymade" 
-						 v-if ="drinkPath === 'fav' && preparedDrink.rm_name === tempDrink">
+				<div id="chosenIngGrid">
+					<div>
 						<button class="ingredientOblongB" 
-								v-for="containsIng in preparedDrink.rm_ingredients" 
-								v-on:click="showPage('showChangeIng'); markChangeFrom(containsIng)">
-								{{ (getIngredientById(containsIng))["ingredient_"+ lang] }} <br> 
-						</button>
-					</div>
-					<div v-if ="drinkPath === 'myo'">
-						<button class="ingredientOblongB" 
-								v-for= "containsIng in chosenIngredients"
+								v-for="containsIng in chosenIngredients" 
 								v-on:click="showPage('showChangeIng'); markChangeFrom(containsIng.ingredient_id)">
-								{{ containsIng["ingredient_"+lang] }} <br> 
+								{{ containsIng["ingredient_"+ lang] }} <br> 
 						</button>
 					</div>
 				</div>
@@ -309,7 +305,7 @@
 		<h3 id="chooseFavTitle" v-if = "tempType ==='juice'">{{ uiLabels.chooseJuice }} </h3>
         <div class="favGrid">
             <div v-for="preparedDrink in readymade" >
-                <button class="favSquareB" v-if="preparedDrink.rm_type === tempType" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink.rm_name)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
+                <button class="favSquareB" v-if="preparedDrink.rm_type === tempType" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
             </div>
         </div>
       <div id="goBackFullDiv">
@@ -323,17 +319,16 @@
     <div v-if="drinkInfoShown">
         <section id="drinkInfoSec">
             <div id="drinkInfoDiv">
-                <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_name === tempDrink">
-                    <img id="bigDrinkImg" v-bind:src="preparedDrink.rm_img"><br> 
-                    <h2>{{preparedDrink.rm_name}}</h2> <br>
+                    <img id="bigDrinkImg" v-bind:src="tempDrink.rm_img"><br> 
+                    <h2>{{tempDrink.rm_name}}</h2> <br>
                     <h3>{{uiLabels.content}}</h3> <br>
-                    {{ getIngredientNameList(preparedDrink.rm_ingredients) }}
+                    {{ getIngredientNameList(tempDrink.rm_ingredients) }}
                     <div>
                         <table id="tastePanel"> 
                             <tr>
-                              <td> <img class="tasteClock" v-bind:src="preparedDrink.rm_sweet"></td>
-                              <td> <img class="tasteClock" v-bind:src="preparedDrink.rm_sour"> </td>
-                              <td> <img class="tasteClock" v-bind:src="preparedDrink.rm_full"> </td>
+                              <td> <img class="tasteClock" v-bind:src="tempDrink.rm_sweet"></td>
+                              <td> <img class="tasteClock" v-bind:src="tempDrink.rm_sour"> </td>
+                              <td> <img class="tasteClock" v-bind:src="tempDrink.rm_full"> </td>
                              </tr>
                             <tr>
                                 <td> {{uiLabels.sweetness}} </td>
@@ -342,14 +337,13 @@
                             </tr>
                          </table>
                      </div>
-                </div>
             </div>
           <div> 
             <table id="bottomTable"> 
                 <tr>
                   <td> <button id="goBackB" class="goB" v-on:click ="showPage('showFav')" > <img class="arrow" src="images/backArrow.png"> </button> </td>
                   <td> <h4 id="pickSize"> {{uiLabels.choose}} </h4> </td>
-                  <td> <button id="goForwardB" v-on:click = "showPage('showYourDrink'); orderReadymade()" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
+                  <td> <button id="goForwardB" v-on:click = "orderReadymade(); showPage('showYourDrink')" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
                  </tr>
              </table>
           </div>

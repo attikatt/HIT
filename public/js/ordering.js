@@ -36,6 +36,7 @@ Vue.component('ingredient', {
   }
 });
 
+/* --------- Detta ska tas bort --------- */
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -47,6 +48,8 @@ function getOrderNumber() {
   // A better idea would be to let the server decide.
   return "#" + getRandomInt(1, 1000000);
 }
+
+/* -------------------------------------- */
 
 var vm = new Vue({
   el: '#ordering',
@@ -85,9 +88,8 @@ var vm = new Vue({
       } else if (type === "juice") {
         this.volume += +item.vol_juice;
       }
-        this.price += +item.selling_price;
     },
-    // Skicka även med namnet i addToOrder (fav drink eller "egen smoothie/juice")
+    // Skicka även med namnet och storlek i addToOrder (fav drink eller "egen smoothie/juice")
       
     markDrink: function (drink) {
         this.tempDrink = drink;
@@ -107,6 +109,7 @@ var vm = new Vue({
 	},
 	  
     placeOrder: function () {
+        console.log(this.chosenIngredients);
       var i,
       //Wrap the order in an object
         order = {
@@ -118,9 +121,10 @@ var vm = new Vue({
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
       socket.emit('order', {orderId: getOrderNumber(), order: order});
       //set all counters to 0. Notice the use of $refs
+        /* CV: 'counter' ska nog bort:
       for (i = 0; i < this.$refs.ingredient.length; i += 1) {
         this.$refs.ingredient[i].resetCounter();
-      }
+      }  */
       this.volume = 0;
       this.price = 0;
       this.type = '';
@@ -135,11 +139,10 @@ var vm = new Vue({
         }
       }
     },
+      
     orderReadymade: function() {
-        var rm = this.tempDrink;
-      for (var i = 0; i < rm.rm_ingredients.length; i += 1) {
-       // Felet: rm är en string, men borde vara hela objektet.
-        this.addToOrder(this.getIngredientById(rm.rm_ingredients[i]), rm.rm_type);
+      for (var i = 0; i < this.tempDrink.rm_ingredients.length; i += 1) {
+          this.addToOrder(this.getIngredientById(this.tempDrink.rm_ingredients[i]), this.tempDrink.rm_type);
       }
     },
     

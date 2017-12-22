@@ -228,7 +228,7 @@ margin-left: auto;
     margin-top: 15vh;
 }
 
-#choosenIngGrid{
+#chosenIngGrid{
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 1vh;
