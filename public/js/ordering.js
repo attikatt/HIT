@@ -17,7 +17,7 @@ Vue.component('ingredient', {
   methods: {
     incrementCounter: function () {
       this.counter += 1;
-      this.$emit('increment'); //meddelar html att den ska anropa addToOrder
+      this.$emit('increment'); //meddelar html att den ska anropa addItemToOrder
     },
     resetCounter: function () {
       this.counter = 0;
@@ -76,11 +76,13 @@ var vm = new Vue({
 	changeIngShown: false,
     tempDrink: '',
     drinkPath: '',
-    tempType: '' , 
-	changeFromId: 0
+    tempType: '' ,
+    chosenSize: 'medium',
+	changeFromId: 0,
+    fullOrder: []
   },
   methods: {
-    addToOrder: function (item, type) {
+    addItemToOrder: function (item, type) {
       this.chosenIngredients.push(item);
       this.type = type;
       if (type === "smoothie") {
@@ -89,7 +91,63 @@ var vm = new Vue({
         this.volume += +item.vol_juice;
       }
     },
-    // Skicka även med namnet och storlek i addToOrder (fav drink eller "egen smoothie/juice")
+      
+    addDrinkToOrder: function () {
+        var i,
+        //Wrap the order (a single drink) in an object
+        order = {
+          ingredients: this.chosenIngredients,
+          type: this.type,
+            size: this.chosenSize,
+        };
+        //Add drink to the full order
+        this.fullOrder.push(order);  
+    },
+        // Skicka även med namnet i addItemToOrder (fav drink eller "egen smoothie/juice")
+	  
+    placeOrder: function () {
+
+      // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
+        for (var i = 0; i < this.fullOrder.length; i += 1) {
+            // sending each drink in full order to kitchen
+            socket.emit('order', {order: this.fullOrder[i]});
+        }
+      
+      //set all counters to 0. Notice the use of $refs
+        /* CV: 'counter' ska nog bort:
+      for (i = 0; i < this.$refs.ingredient.length; i += 1) {
+        this.$refs.ingredient[i].resetCounter();
+      }  */
+      this.volume = 0;
+      this.type = '';
+      this.chosenIngredients = [];
+        console.log("placerat order");
+    },
+      
+    orderReadymade: function() {
+      for (var i = 0; i < this.tempDrink.rm_ingredients.length; i += 1) {
+          this.addItemToOrder(this.getIngredientById(this.tempDrink.rm_ingredients[i]), this.tempDrink.rm_type);
+      }
+    },
+      
+    getIngredientById: function (id) {
+      for (var i =0; i < this.ingredients.length; i += 1) {
+        if (this.ingredients[i].ingredient_id === id){
+          return this.ingredients[i];
+        }
+      }
+    },
+    
+    getIngredientNameList: function (idArr) {
+      var ingredientList = "", tempIngredient;
+      for (var i = 0; i < idArr.length ; i += 1) {
+        tempIngredient = this.getIngredientById(idArr[i]);
+        ingredientList += tempIngredient["ingredient_" + this.lang] + ", ";
+      }
+      return ingredientList;
+    },
+      
+    //below all changed
       
     markDrink: function (drink) {
         this.tempDrink = drink;
@@ -107,55 +165,6 @@ var vm = new Vue({
 		var changeIndex = this.chosenIngredients.findIndex(this.findIngToReplace);
         this.chosenIngredients[changeIndex] = this.getIngredientById(changeToId);
 	},
-	  
-    placeOrder: function () {
-        console.log(this.chosenIngredients);
-      var i,
-      //Wrap the order in an object
-        order = {
-          ingredients: this.chosenIngredients,
-          volume: this.volume,
-          type: this.type,
-          price: this.price
-        };
-      // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-      socket.emit('order', {orderId: getOrderNumber(), order: order});
-      //set all counters to 0. Notice the use of $refs
-        /* CV: 'counter' ska nog bort:
-      for (i = 0; i < this.$refs.ingredient.length; i += 1) {
-        this.$refs.ingredient[i].resetCounter();
-      }  */
-      this.volume = 0;
-      this.price = 0;
-      this.type = '';
-      this.chosenIngredients = [];
-        console.log("placerat order");
-    },
-      
-    getIngredientById: function (id) {
-      for (var i =0; i < this.ingredients.length; i += 1) {
-        if (this.ingredients[i].ingredient_id === id){
-          return this.ingredients[i];
-        }
-      }
-    },
-      
-    orderReadymade: function() {
-      for (var i = 0; i < this.tempDrink.rm_ingredients.length; i += 1) {
-          this.addToOrder(this.getIngredientById(this.tempDrink.rm_ingredients[i]), this.tempDrink.rm_type);
-      }
-    },
-    
-    getIngredientNameList: function (idArr) {
-      var ingredientList = "", tempIngredient;
-      for (var i = 0; i < idArr.length ; i += 1) {
-        tempIngredient = this.getIngredientById(idArr[i]);
-        ingredientList += tempIngredient["ingredient_" + this.lang] + ", ";
-      }
-      return ingredientList;
-    },
-      
-    //below changed
       
     allpages: function(){
         this.startShown = false;
@@ -192,6 +201,9 @@ var vm = new Vue({
         }
         else if(page === "showStartAgain"){
             this.startAgainShown = true;
+            // set all drink order counters to 0.
+            this.type = '';
+            this.chosenIngredients = [];
         }
         else if(page === "showYourDrink"){
             this.yourDrinkShown = true;
@@ -289,14 +301,14 @@ var vm = new Vue({
         return this.step;
     },
       
-    filterIngType: function(choosenIngType) {
-        this.ingType = choosenIngType;
+    filterIngType: function(chosenIngType) {
+        this.ingType = chosenIngType;
         var categories = document.getElementsByClassName("categoryB");
         for (var i = 0; i < categories.length; i++) {
             categories[i].style.color = "grey";
             categories[i].style.borderColor = "grey";
         }
-        document.getElementById(choosenIngType+"B").style.color = "black"; document.getElementById(choosenIngType+"B").style.borderColor = "rgb(215,83,14)"; 
+        document.getElementById(chosenIngType+"B").style.color = "black"; document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)"; 
         // när man går tillbaka från steg 5 till 4, ska det vara förvalt frukter (knappen är så nu) eller senast valda kategori? (filtreringen så nu)
     },
     
@@ -316,6 +328,15 @@ var vm = new Vue({
         else if (juice_or_smoothie === 'smoothie') {
             this.tempType = 'smoothie';
         }
+    },
+      
+    setSize: function (size) {
+        this.chosenSize = size;
+        var cups = document.getElementsByClassName("cup");
+        for (var i = 0; i < cups.length; i++) {
+            cups[i].style.backgroundColor = "white";  
+        }
+        document.getElementById(size+"B").style.backgroundColor = "rgb(255,170,100)";
     }
 
   }

@@ -105,7 +105,7 @@
                           type=tempType
                           v-for="item in ingredients"
                           v-if="item.stock > 0 && item.smoothie_base"
-                          v-on:increment="addToOrder(item, tempType)"  
+                          v-on:increment="addItemToOrder(item, tempType)"  
                           :item="item" 
                           :lang="lang"
                           :key="item.ingredient_id">
@@ -134,7 +134,7 @@
                           type=tempType
                           v-for="item in ingredients"
                           v-if="item.stock > 0 && item.ingredient_category === ingType"
-                          v-on:increment="addToOrder(item, tempType)"  
+                          v-on:increment="addItemToOrder(item, tempType)"  
                           :item="item" 
                           :lang="lang"
                           :key="item.ingredient_id">
@@ -152,7 +152,7 @@
                               type=tempType
                               v-for="item in ingredients"
                               v-if="item.stock > 0 && item.ingredient_category === 'piff'"
-                              v-on:increment="addToOrder(item, tempType)"  
+                              v-on:increment="addItemToOrder(item, tempType)"  
                               :item="item" 
                               :lang="lang"
                               :key="item.ingredient_id">
@@ -236,7 +236,7 @@
 						  :item="item" 
 						  :lang="lang"
 						  :key="item.ingredient_id">
-                        <!-- v-on: increment="addToOrder(item, 'smoothie')" Ska ej användas här? -->
+                        <!-- v-on: increment="addItemToOrder(item, 'smoothie')" Ska ej användas här? -->
 						</ingredient>
 					  </div>     
 					</section>
@@ -247,7 +247,7 @@
 	</div>
 	  
 	  
-<!-- Page Chose size Drink -->
+<!-- Page Choose size Drink -->
       
     <div v-if="sizeShown"> 
         <section id="centerSecYourDrinkP">
@@ -257,10 +257,11 @@
           <div>
             <table id="lowerTable">
               <tbody>
-                  <tr><td> <button class="cup"> <img id="cupLogoS" src="images/cup.png"> <h5> {{ uiLabels.small }} (20cl)<br>36 kr</h5> </button> </td>
-                      <td> <button class="cup"> <img id="cupLogoM" src="images/cup.png"> <h5> {{ uiLabels.medium}} (33cl)<br>42 kr </h5> </button> </td>
-                      <td> <button class="cup"> <img id="cupLogoL" src="images/cup.png"> <h5> {{ uiLabels.large }} (50cl) <br>49 kr </h5></button></td></tr>
-
+                  <tr>
+                      <td> <button id="smallB" class="cup" v-on:click="setSize('small')"> <img id="cupLogoS" src="images/cup.png"> <h5> {{ uiLabels.small }} (20cl)<br>36 kr</h5> </button> </td>
+                      <td> <button id="mediumB" class="cup" v-on:click="setSize('medium')"> <img id="cupLogoM" src="images/cup.png"> <h5> {{ uiLabels.medium}} (33cl)<br>42 kr </h5> </button> </td>
+                      <td> <button id="largeB" class="cup" v-on:click="setSize('large')"> <img id="cupLogoL" src="images/cup.png"> <h5> {{ uiLabels.large }} (50cl) <br>49 kr </h5></button></td>
+                  </tr>
               </tbody>
             </table>
           </div>
@@ -269,7 +270,7 @@
                 <tr>
                   <td> <button id="goBackB" v-on:click = "showPage('showYourDrink')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
                   <td> <h4 id="forwardInfo"> {{ uiLabels.add }} </h4> </td>
-                  <td> <button id="goForwardB" v-on:click = "showPage('showCart')" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
+                  <td> <button id="goForwardB" v-on:click = "addDrinkToOrder(); showPage('showCart')" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
                  </tr>
              </table>
           </div>
