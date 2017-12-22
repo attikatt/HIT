@@ -284,6 +284,7 @@
             <hr>
           </div>
           <div id ="cartGrid">
+              <div v-for="containsIng in chosenIngredients">{{ containsIng["ingredient_"+ lang] }}</div>
           </div>
             <div id ="addMoreDrinksDiv">
                 <button id="addMoreDrinksB" v-on:click = "showPage('showStartAgain')"> {{ uiLabels.addToOrder1 }}<br>{{ uiLabels.addToOrder2 }}</button>
