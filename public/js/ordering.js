@@ -31,34 +31,18 @@ Vue.component('ingredient', {
             vm.swapIng(this.item.ingredient_id); // sending id of ingredient user is swapping to.
             vm.showPage("showYourDrink");
         }
-        console.log(this.counter + this.item.ingredient_en);
     }
   }
 });
-
-/* --------- Detta ska tas bort --------- */
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function getOrderNumber() {
-  // It's probably not a good idea to generate a random order number, client-side. 
-  // A better idea would be to let the server decide.
-  return "#" + getRandomInt(1, 1000000);
-}
-
-/* -------------------------------------- */
 
 var vm = new Vue({
   el: '#ordering',
   mixins: [sharedVueStuff], // include stuff that is used both in the ordering system and in the kitchen
   data: {
-    type: '',
-    chosenIngredients: [],
+    // ev. ta bort dessa
     volume: 0,
     price: 0,
+    // page being shown
     startShown: true,
     chooseTypeShown: false,
     baseShown: false,
@@ -66,22 +50,35 @@ var vm = new Vue({
     ingShown: false,
     yourDrinkShown: false,
     startAgainShown: false,
-    step: 0,
-    ingType: 'fruit',
     favShown: false,
     drinkInfoShown: false,
     sizeShown: false,
     cartShown: false,
 	thanksShown:false,
 	changeIngShown: false,
-    tempDrink: '',
+    step: 0,
+    ingType: 'fruit',
+    // drink currently being composed
     drinkPath: '',
-    tempType: '' ,
+    type: '',
+    tempType: '' , //(en av type och tempType ska nog bort)
+    chosenIngredients: [],
+    tempDrink: '',
     chosenSize: 'medium',
 	changeFromId: 0,
+    //all drinks in current order
     fullOrder: []
   },
-  methods: {
+  methods:{
+      
+/*----------- Adding to order and placing order ---------- */
+      // ordering readymades
+    orderReadymade: function() {
+      for (var i = 0; i < this.tempDrink.rm_ingredients.length; i += 1) {
+          this.addItemToOrder(this.getIngredientById(this.tempDrink.rm_ingredients[i]), this.tempDrink.rm_type);
+      }
+    },
+      // adds an ingredient to the drink being composed
     addItemToOrder: function (item, type) {
       this.chosenIngredients.push(item);
       this.type = type;
@@ -91,21 +88,37 @@ var vm = new Vue({
         this.volume += +item.vol_juice;
       }
     },
-      
+     
+      // adds drink to order
     addDrinkToOrder: function () {
+        // give drink its name
+        var name;
+        if (this.drinkPath === 'fav') {
+            name = this.tempDrink.rm_name;
+        }
+        else if (this.drinkPath === 'myo') {
+            if (this.tempType === 'juice') {
+                name = 'Egen juice';
+            }
+            else if (this.tempType === 'smoothie') {
+                name = 'Egen smoothie';
+            }
+        }
         var i,
         //Wrap the order (a single drink) in an object
         order = {
           ingredients: this.chosenIngredients,
           type: this.type,
             size: this.chosenSize,
+            name: name,
         };
         //Add drink to the full order
         this.fullOrder.push(order);  
     },
-        // Skicka även med namnet i addItemToOrder (fav drink eller "egen smoothie/juice")
 	  
     placeOrder: function () {
+        // lägger till den allra sista drycken i ordern (ev. tidigare drycker läggs till v-on:click Add more items)
+        this.addDrinkToOrder();
 
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
         for (var i = 0; i < this.fullOrder.length; i += 1) {
@@ -124,12 +137,7 @@ var vm = new Vue({
         console.log("placerat order");
     },
       
-    orderReadymade: function() {
-      for (var i = 0; i < this.tempDrink.rm_ingredients.length; i += 1) {
-          this.addItemToOrder(this.getIngredientById(this.tempDrink.rm_ingredients[i]), this.tempDrink.rm_type);
-      }
-    },
-      
+/*----------- To identify/present ingredients ---------- */
     getIngredientById: function (id) {
       for (var i =0; i < this.ingredients.length; i += 1) {
         if (this.ingredients[i].ingredient_id === id){
@@ -146,13 +154,9 @@ var vm = new Vue({
       }
       return ingredientList;
     },
+    
       
-    //below all changed
-      
-    markDrink: function (drink) {
-        this.tempDrink = drink;
-    },
-      
+/*----------- For replacing an ingredient ---------- */
 	markChangeFrom: function(ingredient_id){
 		this.changeFromId = ingredient_id;
 	},
@@ -166,7 +170,8 @@ var vm = new Vue({
         this.chosenIngredients[changeIndex] = this.getIngredientById(changeToId);
 	},
       
-    allpages: function(){
+/*----------- For showing the right page/view ---------- */
+    hideAllPages: function(){
         this.startShown = false;
         this.chooseTypeShown = false;
         this.baseShown = false;
@@ -183,7 +188,7 @@ var vm = new Vue({
     },  
       
     showPage: function(page) {
-        this.allpages();
+        this.hideAllPages();
         if(page === "showBase") {
             this.baseShown = true;
         }
@@ -237,8 +242,7 @@ var vm = new Vue({
             }
         }
         
-    },
-    
+    },   
       
     changeStep: function(goesForward) {
         var steps = document.getElementsByClassName("stepCircle");
@@ -312,6 +316,7 @@ var vm = new Vue({
         // när man går tillbaka från steg 5 till 4, ska det vara förvalt frukter (knappen är så nu) eller senast valda kategori? (filtreringen så nu)
     },
     
+/*--------- For composing drink ------------*/
     choosePath: function (fav_or_myo) {
         if (fav_or_myo === 'fav') {
             this.drinkPath = 'fav';
@@ -330,6 +335,11 @@ var vm = new Vue({
         }
     },
       
+    // marks which readymade drink customer is choosing
+    markDrink: function (drink) {
+        this.tempDrink = drink;
+    },
+      
     setSize: function (size) {
         this.chosenSize = size;
         var cups = document.getElementsByClassName("cup");
@@ -337,6 +347,11 @@ var vm = new Vue({
             cups[i].style.backgroundColor = "white";  
         }
         document.getElementById(size+"B").style.backgroundColor = "rgb(255,170,100)";
+    },
+    
+/*------------- Cancelling order ---------------*/
+    emptyOrder: function () {
+        this.fullOrder = [];
     }
 
   }

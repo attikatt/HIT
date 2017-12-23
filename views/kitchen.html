@@ -4,67 +4,93 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Juicifers kitchen</title>
+  <link rel="stylesheet" href="css/kitchen.css">
   <script src="/vue/vue.js" defer></script>
   <script src="/socket.io/socket.io.js" defer></script>
   <script src="js/juicifer-main.js" defer></script>
   <script src="js/kitchen.js" defer></script>
 </head>
 <body>
+  <div id="mainDiv">
+    <div id=leftDiv>
+        <div id="topDiv">
+            <h1> <button id=homeButton type="button" onclick="location.href='/staff';"> <img src="images/home.png" alt="Home Button" width=70px/> </button> BESTÄLLNINGAR</h1>
+        </div>
+        <div id="orderDiv1" class="orderDiv1">
+                  <p id = "orderInfo">
+                 <order-item-to-prepare
+                    v-for="(order,key) in orders"
+                    v-if="!order.done && activeOrder['juice'] == order"
+                    :order-id="key"
+                    :order="activeOrder['juice']"
+                    :ui-labels="uiLabels"
+                    :lang="lang"
+                    :key="key">
+                </order-item-to-prepare>
+              </p>
+        </div>
+        <div class = "radioButtons1">
+            <label class="containerEP">EJ PÅBÖRJAD
+              <input id="notDone1" type="radio" checked="checked" name="radio1" v-on:Click="ejPaborjad('juice','orderDiv1', 'solid')">
+              <span class="checkmark"></span>
+            </label>
+            <label class="containerP">PÅBÖRJA
+              <input type="radio" name="radio1" v-on:Click="paborjad('juice','orderDiv1', 'solid')">
+              <span class="checkmark"></span>
+            </label>
+            <label class="containerK">KLAR
+              <input type="radio" name="radio1" v-on:Click="klar(activeOrder['juice'],'juice','orderDiv1', 'solid','notDone1')">
+              <span class="checkmark"></span>
+            </label>
+      </div>
+        <div id="orderDiv2" class="orderDiv2">
+          <p id = "orderInfo">
+         <order-item-to-prepare
+            v-for="(order,key) in orders"
+            v-if="!order.done && activeOrder['smoothie'] == order"
+            :order-id="key"
+            :order="activeOrder['smoothie']"
+            :ui-labels="uiLabels"
+            :lang="lang"
+            :key="key">
+        </order-item-to-prepare>
+      </p>
+
+        </div>
+        <div class= "radioButtons2">
+          <label class="containerEP">EJ PÅBÖRJAD
+            <input id="notDone2" type="radio" checked="checked" name="radio2" v-on:Click="ejPaborjad('smoothie','orderDiv2', 'dashed')">
+            <span class="checkmark"></span>
+          </label>
+          <label class="containerP">PÅBÖRJA
+            <input type="radio" name="radio2" v-on:Click="paborjad('smoothie','orderDiv2', 'dashed')">
+            <span class="checkmark"></span>
+          </label>
+          <label class="containerK">KLAR
+            <input type="radio" name="radio2" v-on:Click="klar(activeOrder['smoothie'],'smoothie','orderDiv2', 'dashed','notDone2')">
+            <span class="checkmark"></span>
+          </label>
+      </div>
+    </div>
+  <div id="rightDiv">
   <div id="orders">
-    <h1>{{ uiLabels.ordersInQueue }}</h1>
-    <h2>{{ uiLabels.smoothie }}</h2>
-    <div>
-      <order-item-to-prepare
+    <div class="smallOrderList">
+      <order-list
         v-for="(order, key) in orders"
-        v-if="!order.done && order.type == 'smoothie'"
-        v-on:done="markDone(key)"
-        :order-id="key"
-        :order="order" 
-        :ui-labels="uiLabels"
-        :lang="lang"
-        :key="key">
-      </order-item-to-prepare>
-    </div>
-    <h2>{{ uiLabels.juice }}</h2>
-    <div>
-      <order-item-to-prepare
-        v-for="(order, key) in orders"
-        v-if="!order.done && order.type == 'juice'"
-        v-on:done="markDone(key)"
+        v-if="!order.done"
+        :class="getActiveOrderStage(order)"
+        v-on:active-order-juice = "activeOrder['juice'] = order"
+        v-on:active-order-smoothie = "activeOrder['smoothie'] = order"
         :order-id="key"
         :order="order"
         :ui-labels="uiLabels"
         :lang="lang"
         :key="key">
-      </order-item-to-prepare>
+      </order-list>
     </div>
-
-    <h1>{{ uiLabels.ordersFinished }}</h1>
-    <h2>{{ uiLabels.smoothie }}</h2>
-    <div>
-      <order-item
-        v-for="(order, key) in orders"
-        v-if="order.done && order.type == 'smoothie'"
-        :order-id="key"
-        :order="order"
-        :lang="lang"
-        :ui-labels="uiLabels"
-        :key="key">
-      </order-item>
-    </div>
-    <h2>{{ uiLabels.juice }}</h2>
-    <div>
-      <order-item
-        v-for="(order, key) in orders"
-        v-if="order.done && order.type == 'juice'"
-        :order-id="key"
-        :order="order"
-        :lang="lang"
-        :ui-labels="uiLabels"
-        :key="key">
-      </order-item>
-    </div>
-
   </div>
+        <p id=clock> </p>
+  </div>
+</div>
 </body>
 </html>

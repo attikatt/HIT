@@ -86,6 +86,7 @@ app.get('/customerDrinkInfo', function (req, res) {
 function Data() {
   this.data = {};
   this.orders = {};
+  this.currentOrderNumber = 0;
 }
 
 Data.prototype.getUILabels = function (lang) {
@@ -134,9 +135,17 @@ Data.prototype.initializeData = function (table) {
   stock. If you have time, you should think a bit about whether
   this is the right moment to do this.
 */
+
+Data.prototype.getOrderNumber = function () {
+  this.currentOrderNumber += 1;
+  return this.currentOrderNumber;
+}
+
 Data.prototype.addOrder = function (order) {
-  this.orders[order.orderId] = order.order;
-  this.orders[order.orderId].done = false;
+  var orderId = this.getOrderNumber();
+  this.orders[orderId] = order.order;
+  this.orders[orderId].orderId = orderId;
+  this.orders[orderId].done = false;
   var transactions = this.data[transactionsDataName],
     //find out the currently highest transaction id
     transId =  transactions[transactions.length - 1].transaction_id,
@@ -182,8 +191,9 @@ io.on('connection', function (socket) {
 
   // When someone orders something
   socket.on('order', function (order) {
-    data.addOrder(order);
+    var orderId = data.addOrder(order);
     // send updated info to all connected clients, note the use of io instead of socket
+    socket.emit('orderNumber', orderId);
     io.emit('currentQueue', { orders: data.getAllOrders(),
                           ingredients: data.getIngredients() });
   });

@@ -10,6 +10,11 @@ Vue.component('order-item', {
   template: '<div>{{orderId}} {{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }} </div>'
 });
 
+Vue.component('order-item-short',{
+  props: ['uiLabels', 'order', 'type', 'orderId','lang', 'name'],
+  template : '<div>#{{orderId}} </br> Egen dryck </br> (<span>{{order.type}}</span>)</div>'
+});
+
 // Stuff that is used both in the ordering system and in the kitchen
 var sharedVueStuff = {
   data: {

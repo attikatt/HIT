@@ -23,16 +23,17 @@
       
     <div v-if = "cartShown">
         <header>
-          <button id="cancelOrderB" v-on:click = "showPage('showStart')"> {{ uiLabels.cancelOrder }}  </button>
+          <button id="cancelOrderB" v-on:click = "emptyOrder(); showPage('showStart')"> {{ uiLabels.cancelOrder }}  </button>
           <h1 id = "titleCart"> Juicifer </h1>
         </header>
     </div>
+      
     <div v-if="chooseTypeShown || baseShown || ingShown || piffShown || startAgainShown || yourDrinkShown || sizeShown || favShown || drinkInfoShown || changeIngShown">
       <header id="headerChangeIngP">
         <table id="headTable">
           <tbody> 
             <tr>
-              <td> <button id="cancelOrderB"  v-on:click = "showPage('showStart')"> <div id="cancelOrderText"> {{ uiLabels.cancelOrder }} </div> </button></td>
+              <td> <button id="cancelOrderB"  v-on:click = "emptyOrder(); showPage('showStart')"> <div id="cancelOrderText"> {{ uiLabels.cancelOrder }} </div> </button></td>
               <td id="title"> Juicifer </td>
               <td> <button id="basketB" v-on:click ="showPage('showCart')"> <img id="basketLogo" src="images/basket.png"> </button> </td>
             </tr>
@@ -270,7 +271,7 @@
                 <tr>
                   <td> <button id="goBackB" v-on:click = "showPage('showYourDrink')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
                   <td> <h4 id="forwardInfo"> {{ uiLabels.add }} </h4> </td>
-                  <td> <button id="goForwardB" v-on:click = "addDrinkToOrder(); showPage('showCart')" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
+                  <td> <button id="goForwardB" v-on:click = "showPage('showCart')" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
                  </tr>
              </table>
           </div>
@@ -285,12 +286,16 @@
             <hr>
           </div>
           <div id ="cartGrid">
-              <div v-for="containsIng in chosenIngredients">{{ containsIng["ingredient_"+ lang] }}</div>
+              <!-- Här måste rätt info synas med uiLabels -->
+              <div v-for="drink in fullOrder">{{ 
+                  drink.name }} <br> {{ drink.size }} </div>
+              <div> {{ "sista dryckens namn" }} <br> {{ chosenSize }} </div>
           </div>
             <div id ="addMoreDrinksDiv">
-                <button id="addMoreDrinksB" v-on:click = "showPage('showStartAgain')"> {{ uiLabels.addToOrder1 }}<br>{{ uiLabels.addToOrder2 }}</button>
+                <button id="addMoreDrinksB" v-on:click = "addDrinkToOrder(); showPage('showStartAgain')"> {{ uiLabels.addToOrder1 }}<br>{{ uiLabels.addToOrder2 }}</button>
                 <hr>
             </div>
+            <!-- Lägg in "summa: pris kr" här! -->
 
           <div>
             <button id="goBackBCart" v-on:click = "showPage('showSize')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
@@ -361,6 +366,9 @@
 			<div id="yourOrderDiv">
 				<h2 class="lowerCaseHeadline">{{ uiLabels.yourOrder }}</h2>
 				<hr>
+                <div v-for="drink in fullOrder">
+                {{ drink.name }}
+                </div>
 			</div>
 			<div id="newOrderDiv">
 				<button id="newOrderB" v-on:click = "showPage('showStart')"> {{ uiLabels.newOrder }}</button>
