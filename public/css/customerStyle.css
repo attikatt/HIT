@@ -349,6 +349,10 @@ margin-left: auto;
     margin-top: 5vh;
 }
 
+#mediumB {
+	background-color: rgb(255,170,100);
+}
+
 #cupLogoL {
     height: 57%;
     width: auto;
@@ -372,6 +376,10 @@ margin-left: auto;
     letter-spacing: 1.5vw;
 }
 
+#cartGrid {
+	
+}
+
 #cartTable {
     width: 100%;
 }
@@ -390,7 +398,7 @@ margin-left: auto;
 }
 
 #addMoreDrinksDiv{
-    margin-top:50vh;
+    margin-top:30vh;
 }
 
 hr {
@@ -561,6 +569,7 @@ hr {
 #drinkInfoSec {
   display: block;
   line-height: normal;
+	margin-top: 10vh;
     position: fixed;
     width: 100vw;
 }

@@ -57,6 +57,7 @@ var vm = new Vue({
 	thanksShown:false,
 	changeIngShown: false,
     step: 0,
+	somethingInBasket:false,
     ingType: 'fruit',
     // drink currently being composed
     drinkPath: '',
@@ -113,7 +114,8 @@ var vm = new Vue({
             name: name,
         };
         //Add drink to the full order
-        this.fullOrder.push(order);  
+        this.fullOrder.push(order); 
+		this.somethingInBasket = true;
     },
 	  
     placeOrder: function () {
@@ -134,6 +136,7 @@ var vm = new Vue({
       this.volume = 0;
       this.type = '';
       this.chosenIngredients = [];
+	  this.somethingInBasket = false;
         console.log("placerat order");
     },
       
@@ -169,7 +172,8 @@ var vm = new Vue({
 		var changeIndex = this.chosenIngredients.findIndex(this.findIngToReplace);
         this.chosenIngredients[changeIndex] = this.getIngredientById(changeToId);
 	},
-      
+	  
+	  
 /*----------- For showing the right page/view ---------- */
     hideAllPages: function(){
         this.startShown = false;
@@ -339,19 +343,23 @@ var vm = new Vue({
     markDrink: function (drink) {
         this.tempDrink = drink;
     },
-      
+	  
+    // NOTE: Fix so when you go back, the property will not be null and the marked button is shown not the medium  
     setSize: function (size) {
-        this.chosenSize = size;
+		this.chosenSize = size;
         var cups = document.getElementsByClassName("cup");
         for (var i = 0; i < cups.length; i++) {
             cups[i].style.backgroundColor = "white";  
         }
         document.getElementById(size+"B").style.backgroundColor = "rgb(255,170,100)";
     },
-    
 /*------------- Cancelling order ---------------*/
     emptyOrder: function () {
         this.fullOrder = [];
+		this.ingredientList = [];
+		this.step = 0;
+		this.chosenIngredients = [];
+		this.somethingInBasket = false;
     }
 
   }
