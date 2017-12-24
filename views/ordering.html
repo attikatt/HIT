@@ -35,7 +35,7 @@
             <tr>
               <td> <button id="cancelOrderB"  v-on:click = "emptyOrder(); showPage('showStart')"> <div id="cancelOrderText"> {{ uiLabels.cancelOrder }} </div> </button></td>
               <td id="title"> Juicifer </td>
-              <td v-if ="onGoingOrder"> <button id="basketB" v-on:click ="showPage('showCart')"> <img id="basketLogo" src="images/basket.png"> </button> </td>
+              <td> <button v-if ="somethingInBasket" id="basketB" v-on:click ="showPage('showCart')"> <img id="basketLogo" src="images/basket.png"> </button> </td>
             </tr>
           </tbody>
         </table>
@@ -200,7 +200,7 @@
                 <table id="bottomTable"> 
                     <tr>
                       <td v-if ="drinkPath === 'fav'"> <button id="goBackB" v-on:click = "showPage('showFavOrMyo')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> </td>
-                      <td> <h4 id="pickSize"> {{uiLabels.chooseSize}} </h4> </td>
+                      <td id = "chooseSize"> <h4 id="pickSize"> {{uiLabels.chooseSize}} </h4> </td>
                       <td> <button id="goForwardB" v-on:click = "showPage('showSize')" class="goB"> <img class="arrow" src="images/forwardArrow.png"> </button> </td>
                      </tr>
                  </table>
@@ -298,7 +298,7 @@
             <!-- Lägg in "summa: pris kr" här! -->
 
           <div>
-            <button id="goBackBCart" v-on:click = "showPage('showSize');" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
+            <button id="goBackBCart" v-on:click = "goBackSize();showPage('showSize')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
               <button id="payB" v-on:click="showPage('showThanks');placeOrder()" class="goB"> {{ uiLabels.pay }}</button> 
           </div>
         </section>

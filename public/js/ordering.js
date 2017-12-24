@@ -353,6 +353,11 @@ var vm = new Vue({
         }
         document.getElementById(size+"B").style.backgroundColor = "rgb(255,170,100)";
     },
+	 
+	goBackSize: function() {
+		//var backSize = this.chosenSize;
+		//vm.setSize(backSize);
+	},
 /*------------- Cancelling order ---------------*/
     emptyOrder: function () {
         this.fullOrder = [];

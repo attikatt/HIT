@@ -243,6 +243,7 @@ margin-left: auto;
 
 #forwardInfo {
     margin-left: 30vw;
+	margin-bottom: 3vw;
     /* want to vertical align: middle, baseline
     krånglar till det */
 }
@@ -625,6 +626,7 @@ hr {
         /* Måste fixa så den ej centreras då
         höjden på fönstret minskas */
     }
+	
     
     #cancelOrderB {
         font-size: 15px;
