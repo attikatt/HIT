@@ -106,7 +106,7 @@
                           type=tempType
                           v-for="item in ingredients"
                           v-if="item.stock > 0 && item.smoothie_base"
-                          v-on:increment="addItemToOrder(item, tempType)"  
+                          v-on:increment="addItemToOrder(item, tempType)"
                           :item="item" 
                           :lang="lang"
                           :key="item.ingredient_id">

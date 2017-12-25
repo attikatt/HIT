@@ -56,7 +56,7 @@ var vm = new Vue({
     cartShown: false,
 	thanksShown:false,
 	changeIngShown: false,
-    step: 0,
+    step: 1,
 	somethingInBasket:false,
     ingType: 'fruit',
     // drink currently being composed
@@ -83,12 +83,36 @@ var vm = new Vue({
     addItemToOrder: function (item, type) {
       this.chosenIngredients.push(item);
       this.type = type;
+	  vm.ingText(item);
       if (type === "smoothie") {
         this.volume += +item.vol_smoothie;
+		  
       } else if (type === "juice") {
         this.volume += +item.vol_juice;
       }
+	  
     },
+/*------  Making the text of the chosing ingredient so it occurs in the circle-----*/
+// TRIED TO CONTACINATE... LOO INTO MORE OBS
+	  
+	ingText: function (ingitem){
+		var ingredientCircle;
+		if(this.lang === 'en') {
+			ingredientCircle = ingitem.ingredient_en;
+		}
+	  	else if(this.lang === 'sv'){
+			ingredientCircleingredientCircle = ingitem.ingredient_sv;	
+		}
+		var currentStep = document.getElementById("step" + this.step);
+		var textIng = document.createTextNode(ingredientCircle);
+		var h5 = document.createElement("h5");
+		h5.style.position = "absolute";
+		h5.style.overflow ="hidden";
+		h5.style.size = "2vw";
+		h5.appendChild(textIng);
+		h5.style.margin ="-6vh";
+		currentStep.appendChild(h5);
+	},
      
       // adds drink to order
     addDrinkToOrder: function () {
@@ -284,7 +308,7 @@ var vm = new Vue({
         else {
             if (this.step <= 1) {
                 this.showPage("showChooseType");
-				this.step =2;
+				this.step =1;
             }
             else if (this.step === 2) {
                 this.showPage("showBase");
@@ -353,6 +377,7 @@ var vm = new Vue({
         }
         document.getElementById(size+"B").style.backgroundColor = "rgb(255,170,100)";
     },
+	  
 	 
 	goBackSize: function() {
 		//var backSize = this.chosenSize;

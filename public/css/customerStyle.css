@@ -430,6 +430,8 @@ hr {
     font-size: 12vw;
     font-weight: bold;
     color: grey; 
+	position: relative;
+	overflow: hidden;
 }
 
 #step1 {
