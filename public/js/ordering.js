@@ -93,7 +93,7 @@ var vm = new Vue({
 	  
     },
 /*------  Making the text of the chosing ingredient so it occurs in the circle-----*/
-// TRIED TO CONTACINATE... LOO INTO MORE OBS
+// TRIED TO CONTACINATE... LOOK INTO MORE OBS
 	  
 	ingText: function (ingitem){
 		var ingredientCircle;
@@ -106,11 +106,17 @@ var vm = new Vue({
 		var currentStep = document.getElementById("step" + this.step);
 		var textIng = document.createTextNode(ingredientCircle);
 		var h5 = document.createElement("h5");
-		h5.style.position = "absolute";
-		h5.style.overflow ="hidden";
-		h5.style.size = "2vw";
+		h5.style.position ="absolute";
+		h5.style.letterSpacing = "0em";
+		h5.style.maxWidth = "7vw";
+		h5.style.verticalAlign = "center";
+		h5.style.color = "black";
+		h5.style.width = "100%";
+		h5.style.paddingLeft = "10vw";
+		h5.style.paddingRight ="4vw";
+		h5.style.margin ="-7vh";
+		
 		h5.appendChild(textIng);
-		h5.style.margin ="-6vh";
 		currentStep.appendChild(h5);
 	},
      
@@ -387,9 +393,10 @@ var vm = new Vue({
     emptyOrder: function () {
         this.fullOrder = [];
 		this.ingredientList = [];
-		this.step = 0;
+		this.step = 1;
 		this.chosenIngredients = [];
 		this.somethingInBasket = false;
+		
     }
 
   }
