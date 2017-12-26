@@ -83,18 +83,23 @@ var vm = new Vue({
     addItemToOrder: function (item, type) {
       this.chosenIngredients.push(item);
       this.type = type;
-	  vm.ingText(item);
-      if (type === "smoothie") {
-        this.volume += +item.vol_smoothie;
-		  
-      } else if (type === "juice") {
-        this.volume += +item.vol_juice;
+		if (type === "smoothie") {
+        	this.volume += +item.vol_smoothie;
+			// if the drink is not one of juicifers, making the ingredient panel 
+			if(!this.drinkInfoShown){
+				vm.ingText(item);
+			}
+		}
+		else if(type === "juice"){
+			this.volume += +item.vol_juice;
+			// if the drink is not one of juicifers, making the ingredient panel 
+			if(!this.drinkInfoShown){
+				vm.ingText(item);
+			}
       }
-	  
     },
 /*------  Making the text of the chosing ingredient so it occurs in the circle-----*/
-// TRIED TO CONTACINATE... LOOK INTO MORE OBS
-	  
+// TRIED TO CONTACINATE... LOOK INTO MORE OBS	  
 	ingText: function (ingitem){
 		var ingredientCircle;
 		if(this.lang === 'en') {
@@ -112,9 +117,9 @@ var vm = new Vue({
 		h5.style.verticalAlign = "center";
 		h5.style.color = "black";
 		h5.style.width = "100%";
-		h5.style.paddingLeft = "10vw";
+		h5.style.paddingLeft = "12vw";
 		h5.style.paddingRight ="4vw";
-		h5.style.margin ="-7vh";
+		h5.style.margin ="-6vh";
 		
 		h5.appendChild(textIng);
 		currentStep.appendChild(h5);
