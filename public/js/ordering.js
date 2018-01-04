@@ -57,7 +57,6 @@ var vm = new Vue({
 	thanksShown:false,
 	changeIngShown: false,
     step: 1,
-	somethingInBasket:false,
     ingType: 'fruit',
     // drink currently being composed
     drinkPath: '',
@@ -106,10 +105,11 @@ var vm = new Vue({
 			ingredientCircle = ingitem.ingredient_en;
 		}
 	  	else if(this.lang === 'sv'){
-			ingredientCircleingredientCircle = ingitem.ingredient_sv;	
+			ingredientCircle = ingitem.ingredient_sv;	
 		}
 		var currentStep = document.getElementById("step" + this.step);
 		var textIng = document.createTextNode(ingredientCircle);
+		
 		var h5 = document.createElement("h5");
 		h5.style.position ="absolute";
 		h5.style.letterSpacing = "0em";
@@ -120,7 +120,6 @@ var vm = new Vue({
 		h5.style.paddingLeft = "12vw";
 		h5.style.paddingRight ="4vw";
 		h5.style.margin ="-6vh";
-		
 		h5.appendChild(textIng);
 		currentStep.appendChild(h5);
 	},
@@ -150,12 +149,13 @@ var vm = new Vue({
         };
         //Add drink to the full order
         this.fullOrder.push(order); 
-		this.somethingInBasket = true;
     },
 	  
+	  //removes the drink from order
+	removeDrinkFromOrder: function () {
+	  this.fullOrder.pop();	
+	},  
     placeOrder: function () {
-        // lägger till den allra sista drycken i ordern (ev. tidigare drycker läggs till v-on:click Add more items)
-        this.addDrinkToOrder();
 
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
         for (var i = 0; i < this.fullOrder.length; i += 1) {
@@ -171,7 +171,6 @@ var vm = new Vue({
       this.volume = 0;
       this.type = '';
       this.chosenIngredients = [];
-	  this.somethingInBasket = false;
         console.log("placerat order");
     },
       
@@ -389,18 +388,23 @@ var vm = new Vue({
         document.getElementById(size+"B").style.backgroundColor = "rgb(255,170,100)";
     },
 	  
-	 
-	goBackSize: function() {
-		//var backSize = this.chosenSize;
-		//vm.setSize(backSize);
-	},
+	 getPrice: function() {
+		if(this.chosenSize === "small"){
+			return "36 kr";
+		} 
+		else if(this.chosenSize === "medium"){
+			return "42 kr";
+		} 
+		else if(this.chosenSize === "large"){
+			return "49 kr";
+		} 		 
+	 },
 /*------------- Cancelling order ---------------*/
     emptyOrder: function () {
         this.fullOrder = [];
 		this.ingredientList = [];
 		this.step = 1;
 		this.chosenIngredients = [];
-		this.somethingInBasket = false;
 		
     }
 

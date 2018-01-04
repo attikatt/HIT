@@ -115,7 +115,8 @@ font-family: 'champagne__limousinesregular', arial, sans-serif;
 #cancelOrderText {
     display: block;
 width: auto;
- height: 80%;
+ height: 60%;
+	font-size: 12px;
 padding-top: 2.5vh;
 }
 
@@ -136,6 +137,7 @@ margin-left: auto;
 /* Central section */
 
 #buttonTable {
+	margin-top: 10vh;
   width: 100%;
     /*background-color: red;*/
 }
@@ -243,8 +245,10 @@ margin-left: auto;
 
 
 #forwardInfo {
-    margin-left: 30vw;
-	margin-bottom: 3vw;
+    margin-left: 35vw;
+	vertical-align: middle;
+	display: inline-block;
+	margin-top: -25%;
     /* want to vertical align: middle, baseline
     krånglar till det */
 }
@@ -399,7 +403,7 @@ margin-left: auto;
 }
 
 #addMoreDrinksDiv{
-    margin-top:30vh;
+    margin-top:15vh;
 }
 
 hr {
@@ -564,7 +568,7 @@ hr {
 .favSquareB {
     width: 30vw;
     height: 30vw;
-    font-size: 2vw;
+    font-size: 3vw;
     border-radius: 6vw;
 }
 
@@ -609,6 +613,7 @@ hr {
     
     #cancelOrderB {
         height: 50px;
+		
     }
         
     #basketB {
