@@ -287,8 +287,8 @@
           </div>
           <div id ="cartGrid">
               <!-- Här måste rätt info synas med uiLabels -->
-              <div v-for="drink in fullOrder">
-				  {{ drink.name }} {{getPrice()}} <br> {{ drink.size }}  </div>
+              <div id="cartItem" v-for="drink in fullOrder">
+				  <div id="cartItemName">{{ drink.name }} <br> {{ drink.size }} </div> <div id="cartItemPrice"> {{getPrice()}} <button id="cancelCartItemB"></button></div> </div>
           </div>
             <div id ="addMoreDrinksDiv">
                 <button id="addMoreDrinksB" v-on:click = "showPage('showStartAgain');"> {{ uiLabels.addToOrder1 }}<br>{{ uiLabels.addToOrder2 }}</button>

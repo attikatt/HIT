@@ -399,6 +399,11 @@ var vm = new Vue({
 			return "49 kr";
 		} 		 
 	 },
+	 getSize: function() {
+		 if (this.lang === "sv"){
+			 return this.chosenSize; 
+		 }
+	 },
 /*------------- Cancelling order ---------------*/
     emptyOrder: function () {
         this.fullOrder = [];

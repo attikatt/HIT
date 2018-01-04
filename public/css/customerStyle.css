@@ -382,12 +382,34 @@ margin-left: auto;
 }
 
 #cartGrid {
+	grid-row-gap: 3vh;
+}
+
+#cartItem {
+	width:80vw;
+	padding-left: 10vw;
+	padding-right: 10vw;
+	text-align: center;
 	
+}
+
+#cartItemName{
+ 	float:left;	
+}
+
+#cartItemPrice{
+	float:right;
+}
+
+#cancelCartItemB {
+	width:6vw;
+	height: 6vw;
 }
 
 #cartTable {
     width: 100%;
 }
+
 
 #goBackBCart {
     position:fixed;
