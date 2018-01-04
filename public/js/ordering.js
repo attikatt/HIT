@@ -388,14 +388,14 @@ var vm = new Vue({
         document.getElementById(size+"B").style.backgroundColor = "rgb(255,170,100)";
     },
 	  
-	 getPrice: function() {
-		if(this.chosenSize === "small"){
+	 getPrice: function(size) {
+		if(size === "small"){
 			return "36 kr";
 		} 
-		else if(this.chosenSize === "medium"){
+		else if(size === "medium"){
 			return "42 kr";
 		} 
-		else if(this.chosenSize === "large"){
+		else if(size === "large"){
 			return "49 kr";
 		} 		 
 	 },
@@ -428,6 +428,7 @@ var vm = new Vue({
 		this.ingredientList = [];
 		this.step = 1;
 		this.chosenIngredients = [];
+        this.chosenSize = 'medium';
 		
     }
 

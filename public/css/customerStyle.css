@@ -158,6 +158,7 @@ margin-left: auto;
     line-height: normal;
     position: fixed;
     bottom: 0px;
+    background-color: white;
 }
 
 .goForwardDiv {
@@ -166,9 +167,10 @@ margin-left: auto;
     position: fixed;
     bottom: 0px;
     right: 0px;
+    background-color: white;
 }
 
-/* Ta bort bottomTable? */
+/* Ta bort bottomTable? Används inte? */
 #bottomTable {
     width: 100%;
     position: fixed;
@@ -361,10 +363,6 @@ margin-left: auto;
     height: 47%;
     width: auto;
     margin-top: 5vh;
-}
-
-#mediumB {
-	background-color: rgb(255,170,100);
 }
 
 #cupLogoL {
@@ -574,9 +572,13 @@ hr {
 }
 
 #lowerSecChooseBasePiff {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
       display: block;
   line-height: normal;
-    margin-top: 35vh;
+    margin-top: 15vh;
+    background-color: white;
 }
 
 #vegetableB, #otherB {
