@@ -152,6 +152,23 @@ margin-left: auto;
 
 
 /* Bottom section */
+/* Go back and forward buttons */
+.goBackDiv {
+    display: block;
+    line-height: normal;
+    position: fixed;
+    bottom: 0px;
+}
+
+.goForwardDiv {
+    display: block;
+    line-height: normal;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+}
+
+/* Ta bort bottomTable? */
 #bottomTable {
     width: 100%;
     position: fixed;
@@ -245,10 +262,9 @@ margin-left: auto;
 
 
 #forwardInfo {
-    margin-left: 35vw;
 	vertical-align: middle;
 	display: inline-block;
-	margin-top: -25%;
+	margin-top: -35%;
     /* want to vertical align: middle, baseline
     krånglar till det */
 }
@@ -331,13 +347,6 @@ margin-left: auto;
     width: 100vw;
     /*background-color: yellow;*/
     position:fixed;
-}
-
-#goBackToStart {
-    display: block;
-    line-height: normal;
-    position: fixed;
-    bottom: 0px;
 }
 
 /* Choose Size page */
@@ -687,7 +696,7 @@ hr {
         font-size: 15px;
     }
     
-    #goBackToStart {
+    #goBackDiv {
         position: sticky;
         float: left;
     }
