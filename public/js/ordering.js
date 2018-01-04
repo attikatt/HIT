@@ -399,6 +399,24 @@ var vm = new Vue({
 			return "49 kr";
 		} 		 
 	 },
+	  
+	 calcPrice: function() {
+		 var totalPrice = 0;
+		 for (var i = 0; i < this.fullOrder.length; i++){
+			if (this.fullOrder[i].size === "small") {
+				totalPrice += 36; 
+			}
+			else if (this.fullOrder[i].size === "medium") {
+				totalPrice += 42; 
+			}
+			else if (this.fullOrder[i].size === "large") {
+				totalPrice += 49; 
+			}	
+		 }
+		 return totalPrice;
+		  
+	 },
+	  
 	 getSize: function() {
 		 if (this.lang === "sv"){
 			 return this.chosenSize; 

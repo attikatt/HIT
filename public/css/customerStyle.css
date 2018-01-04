@@ -371,18 +371,28 @@ margin-left: auto;
 
 /* Cart Page*/
 
+
+#headerCart{
+	position:fixed;
+	top:0px;
+	width:100%;
+}
+
 #titleCart {
     padding-top: 7%;
     padding-right:23%;
     text-align:center;
-    /*background-color: cyan;*/
     font-size: 5vh;
     text-transform: uppercase;
     letter-spacing: 1.5vw;
 }
 
 #cartGrid {
+	margin-bottom: 30vh;
+	display:grid;
 	grid-row-gap: 3vh;
+	grid-template-columns: repeat(1,1fr);
+
 }
 
 #cartItem {
@@ -401,15 +411,34 @@ margin-left: auto;
 	float:right;
 }
 
+#crossImg {
+	height:100%;
+	margin: auto;
+	
+}
+
 #cancelCartItemB {
-	width:6vw;
-	height: 6vw;
+	width:12vw;
+	border-radius: 1vw;
+	height: 8vw;
+	border-color: transparent;
+
 }
 
 #cartTable {
     width: 100%;
 }
 
+#cartBottomDiv{
+	position:fixed;
+	background-color: white; 
+}
+
+#addMoreDrinksDiv{
+	position: fixed;
+	width:100%;
+	top: 75vh;
+}
 
 #goBackBCart {
     position:fixed;
@@ -422,10 +451,6 @@ margin-left: auto;
     right: 0px;
     bottom:0px; 
     border-color: rgb(215,83,14);
-}
-
-#addMoreDrinksDiv{
-    margin-top:15vh;
 }
 
 hr {
@@ -602,6 +627,7 @@ hr {
     position: fixed;
     width: 100vw;
 }
+
 
 #drinkInfoDiv {
     margin-top: 18vh;

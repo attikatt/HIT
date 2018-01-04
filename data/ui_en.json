@@ -38,6 +38,7 @@
   "addToOrder1" : "Add more",
   "addToOrder2" : "items",
   "pay" : "Pay",
+  "sum": "Sum",
   "ordersFinished" : "Finished orders",
   "ordersInQueue" : "Order queue",
   "ordersTrending" : "Trending orders",

@@ -37,6 +37,7 @@
   "addToOrder1" : "Lägg till",
   "addToOrder2" : "fler varor",
   "pay" : "Betala",
+  "sum" :"Summa",
   "ordersFinished" : "Färdiga beställningar",
   "ordersInQueue" : "Beställningar att förbereda",
   "ordersTrending" : "Populära beställningar",
