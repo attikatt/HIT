@@ -99,6 +99,11 @@ var vm = new Vue({
     removeItemFromOrder: function () {
         this.chosenIngredients.pop();
     },
+    removeFavFromOrder: function () {
+        this.chosenIngredients = [];
+    },
+
+
 /*------  Making the text of the chosing ingredient so it occurs in the circle-----*/
 // TRIED TO CONTACINATE... LOOK INTO MORE OBS	  
 	ingText: function (ingitem){

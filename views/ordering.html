@@ -216,7 +216,7 @@
 				</div>
               <div> 
                 <div class="goBackDiv" v-if ="drinkPath === 'fav'">
-                    <button id="goBackB" v-on:click = "showPage('showFavOrMyo')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
+                    <button id="goBackB" v-on:click = "showPage('showFavOrMyo'); removeFavFromOrder()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
                 </div>
                 <div class="goForwardDiv">
                   <button id="goForwardB" v-on:click = "showPage('showSize')" class="goB"> <div id="forwardinfo"> {{uiLabels.chooseSize}} </div> <img class="arrow" src="images/forwardArrow.png"> </button>
@@ -365,7 +365,7 @@
             </div>
           <div>
                 <div class="goBackDiv">
-                  <button id="goBackB" class="goB" v-on:click ="showPage('showFav')" > <img class="arrow" src="images/backArrow.png"> </button>
+                  <button id="goBackB" class="goB" v-on:click ="showPage('showFav')"> <img class="arrow" src="images/backArrow.png"> </button>
                 </div>
                 <div class="goForwardDiv">
                   <button id="goForwardB" v-on:click = "orderReadymade(); showPage('showYourDrink')" class="goB"> <div id="forwardInfo">{{uiLabels.choose}}</div> <img class="arrow" src="images/forwardArrow.png"> </button>
