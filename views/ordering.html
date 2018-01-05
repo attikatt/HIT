@@ -276,9 +276,9 @@
             <table id="lowerTable">
               <tbody>
                   <tr>
-                      <td> <button id="smallB" class="cup" v-on:click="setSize('small');showPage('showCart');addDrinkToOrder()"> <img id="cupLogoS" src="images/cup.png"> <h5> {{ uiLabels.small }} (20cl)<br>36 kr</h5> </button> </td>
-                      <td> <button id="mediumB" class="cup" v-on:click="setSize('medium');showPage('showCart');addDrinkToOrder()"> <img id="cupLogoM" src="images/cup.png"> <h5> {{ uiLabels.medium}} (33cl)<br>42 kr </h5> </button> </td>
-                      <td> <button id="largeB" class="cup" v-on:click="setSize('large');showPage('showCart');addDrinkToOrder()"> <img id="cupLogoL" src="images/cup.png"> <h5> {{ uiLabels.large }} (50cl) <br>49 kr </h5></button></td>
+                      <td> <button id="smallB" class="cup" v-on:click="setSize('small')"> <img id="cupLogoS" src="images/cup.png"> <h5> {{ uiLabels.small }} (20cl)<br>36 kr</h5> </button> </td>
+                      <td> <button id="mediumB" class="cup" v-on:click="setSize('medium')"> <img id="cupLogoM" src="images/cup.png"> <h5> {{ uiLabels.medium}} (33cl)<br>42 kr </h5> </button> </td>
+                      <td> <button id="largeB" class="cup" v-on:click="setSize('large')"> <img id="cupLogoL" src="images/cup.png"> <h5> {{ uiLabels.large }} (50cl) <br>49 kr </h5></button></td>
                   </tr>
               </tbody>
             </table>
@@ -286,6 +286,9 @@
           <div class="goBackDiv"> 
               <button id="goBackB" v-on:click = "showPage('showYourDrink')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
             </div>
+            <div class="goForwardDiv">
+              <button id="goForwardB" v-on:click = "showPage('showCart');addDrinkToOrder()" class="goB"> <div id="forwardInfo"> {{ uiLabels.add }} </div> <img class="arrow" src="images/forwardArrow.png"> </button>
+          </div>
         </section>
     </div>      
       
@@ -299,7 +302,7 @@
           <div id ="cartGrid">
               <!-- Här måste rätt info synas med uiLabels -->
               <div id="cartItem" v-for="drink in fullOrder">
-				  <div id="cartItemName">{{ drink.name }} <br> {{ drink.size }} </div> <div id="cartItemPrice"> {{getPrice(drink.size)}} <button id="cancelCartItemB" v-on:click="removeDrinkFromOrder(drink)"><img src ="images/cross.png" id="crossImg"></button></div> </div>
+				  <div id="cartItemName">{{ drink.name }} <br> {{ drink.size }} </div> <div id="cartItemPrice"> {{getPrice(drink.size)}} <button id="cancelCartItemB" v-on:click="removeDrinkFromOrder()"><img src ="images/cross.png" id="crossImg"></button></div> </div>
           </div>
 			<div id="cartBottomDiv">
 				<div id ="addMoreDrinksDiv">
@@ -342,8 +345,8 @@
         <section id="drinkInfoSec">
             <div id="drinkInfoDiv">
                     <img id="bigDrinkImg" v-bind:src="tempDrink.rm_img"><br> 
-                    <h2>{{tempDrink.rm_name}}</h2> <br>
-                    <h3>{{uiLabels.content}}</h3> <br>
+                    <h3>{{tempDrink.rm_name}}</h3> <br>
+                    <h4>{{uiLabels.content}}</h4> <br>
                     {{ getIngredientNameList(tempDrink.rm_ingredients) }}
                     <div>
                         <table id="tastePanel"> 
@@ -376,7 +379,6 @@
 		<section id="centerSecStartP">
 			<div>
 				<h1 class="lowerCaseHeadline"> {{ uiLabels.thankOrder }}</h1>
-				<h4> {{getLastOrders()}} </h4>
 			</div>
 			<item-and-id 
 			v-for = "(order,key) in orders"
