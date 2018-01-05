@@ -380,12 +380,15 @@
 			<div>
 				<h1 class="lowerCaseHeadline"> {{ uiLabels.thankOrder }}</h1>
 			</div>
-			<div id="yourOrderDiv">
-				<h2 class="lowerCaseHeadline">{{ uiLabels.yourOrder }}</h2>
-				<hr>
-                <div v-for="drink in fullOrder">
-                {{ drink.name }}
-                </div>
+			<item-and-id 
+			v-for = "(order,key) in orders"
+			:key = "key"
+			:ui-labels="uiLabels"
+            :lang="lang"
+            :order-id="key"
+            :order="order">
+			</item-and-id>
+			<div>
 			</div>
 			<div id="newOrderDiv">
 				<button id="newOrderB" v-on:click = "emptyOrder(); showPage('showStart')"> {{ uiLabels.newOrder }}</button>
