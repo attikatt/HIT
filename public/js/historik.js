@@ -66,19 +66,18 @@ var vm = new Vue({
         socket.emit("orderNotDone", order.orderId);
     },
     searchForOrder: function() {
+      console.log(numLetterList.join(''));
+
       for(var i = 1; i < Object.keys(this.orders).length +1; i +=1){
         if(Number(numLetterList.join(''))===this.orders[i].orderId){
-          console.log("Match")
           this.activeOrder = this.orders[i];
           modal.style.display = "none";
-          break;
-        } else {
-          console.log("No match");
-          console.log(Number(numLetterList.join('')));
-          document.getElementById('noSearchMatch').innerHTML = "Order #" +Number(numLetterList.join('')) + " finns inte i historiken";
+        } else if (Number(numLetterList.join('')) === 0){
+            document.getElementById('noSearchMatch').innerHTML = "Vänligen ange ett ordernummer";
+          } else {
+          document.getElementById('noSearchMatch').innerHTML = "Order #" + Number(numLetterList.join('')) + " finns inte i historiken";
         }
       }
-
       clearSaldoConsoleChild();
     }
     }
@@ -114,6 +113,7 @@ setTimeout(updateClock,1000);
  // When the user clicks the button, open the modal
  btn.onclick = function() {
      modal.style.display = "block";
+     document.getElementById("noSearchMatch").innerHTML = '';
  }
 
  // When the user clicks on <span> (x), close the modal
