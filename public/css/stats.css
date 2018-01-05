@@ -46,7 +46,7 @@ h1{
 }
 
 #donutchartIngred{
-  float: right;
+  display: inline-flex;
 }
 
 #donutchartOrders{
@@ -71,7 +71,7 @@ h1{
 #clock{
     font-size: 4vh;
     float: right;
-    padding-right: 1vw;;
+    padding-right: 1vw;
 }
 
 @media (max-width:720px) {
