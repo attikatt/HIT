@@ -61,15 +61,19 @@ var vm = new Vue({
       for (var i = 0; i < order.ingredients.length; i++){
         ingredientList.push(order.ingredients[i].ingredient_en)
       }
-        //document.getElementById('orderInfoHead').innerHTML = "#" + orderId +"<br>" + order.type.toUpperCase()
-        //document.getElementById('orderInfo').innerHTML = ingredientList.join('<br>')
-      },
+    },
       takeOrderBack: function(order){
         socket.emit("orderNotDone", order.orderId);
-      },
-      searchForOrder: function(){
-        console.log(orderNumSearch);
+    },
+    searchForOrder: function() {
+      for(var i = 1; i < Object.keys(this.orders).length +1; i +=1){
+        if(Number(numLetterList.join(''))===this.orders[i].orderId){
+          console.log("Match")
+          this.activeOrder = this.orders[i];
+          break;
+        } else {console.log("No match");}
       }
+    }
     }
   });
 
@@ -112,8 +116,7 @@ setTimeout(updateClock,1000);
      }
  }
 
-var orderNumSearch = '';
- var numLetterList = [];
+var numLetterList = [];
 
  function numberPressed(letterButton){
      var letterButton = letterButton.value;
