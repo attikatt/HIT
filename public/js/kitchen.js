@@ -42,9 +42,15 @@ Vue.component('order-list',{
              this.active = !this.active;
              if (this.order.type === "juice"){
                this.$emit('active-order-juice');
+               vm.activeOrderStage['juice']="not-started";
+               document.getElementById('notDone1').checked = ture;
+               document.getElementById('orderDiv1').style.border = "2pt solid white";
              }
              if (this.order.type === "smoothie"){
                this.$emit('active-order-smoothie');
+               vm.activeOrderStage['smoothie']="not-started";
+               document.getElementById('notDone2').checked = ture;
+               document.getElementById('orderDiv2').style.border = "2pt solid white";
              }
            }
         }
@@ -78,7 +84,6 @@ var vm = new Vue({
       document.getElementById(orderDiv).style.border = "2pt " + style + " white";
       this.activeOrderStage[type] = "not-started";
       this.activeOrder[type] = "none is chosen";
-      order.done = true;
       document.getElementById(button).checked = true;
       vm.markDone(order.orderId);
       }
