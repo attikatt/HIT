@@ -101,10 +101,9 @@
                   <div v-if="baseShown">
                     <h4 id ="chooseBasePiffText"> {{ uiLabels.chooseBase }} </h4>
                     <section id="middleSec">
-                      <div class="ingredientsGrid">
+                      <div v-if="type === 'smoothie'" class="ingredientsGrid">
                         <ingredient
                           ref="ingredient"
-                          type=type
                           v-for="item in ingredients"
                           v-if="item.stock > 0 && item.smoothie_base"
                           v-on:increment="addItemToOrder(item)"
@@ -113,6 +112,17 @@
                           :key="item.ingredient_id">
                         </ingredient>
                       </div>
+                        <div v-if="type === 'juice'" class="ingredientsGrid">
+                            <ingredient
+                              ref="ingredient"
+                              v-for="item in ingredients"
+                              v-if="item.stock > 0 && item.juice_base"
+                              v-on:increment="addItemToOrder(item)"
+                              :item="item" 
+                              :lang="lang"
+                              :key="item.ingredient_id">
+                            </ingredient>
+                          </div>
                       </section>
                     </div>
 <!-- This is step 2- 4 -->
@@ -130,10 +140,9 @@
                     </table>
                   </div>
                 <section id="middleSecChooseIng">
-                    <div class="ingredientsGrid">
+                    <div v-if="type === 'smoothie'" class="ingredientsGrid">
                         <ingredient
                           ref="ingredient"
-                          type=type
                           v-for="item in ingredients"
                           v-if="item.stock > 0 && item.ingredient_category === ingType"
                           v-on:increment="addItemToOrder(item)"  
@@ -141,7 +150,18 @@
                           :lang="lang"
                           :key="item.ingredient_id">
                         </ingredient>
-                      </div>     
+                      </div>  
+                    <div v-if="type === 'juice'" class="ingredientsGrid">
+                        <ingredient
+                          ref="ingredient"
+                          v-for="item in ingredients"
+                          v-if="item.stock > 0 && item.ingredient_category === ingType && item.juice_ok === true"
+                          v-on:increment="addItemToOrder(item)"  
+                          :item="item" 
+                          :lang="lang"
+                          :key="item.ingredient_id">
+                        </ingredient>
+                      </div>  
                     </section>
                 </div>
 <!-- This is step 5 -->
@@ -151,7 +171,6 @@
                           <div class="ingredientsGrid">
                             <ingredient
                               ref="ingredient"
-                              type=type
                               v-for="item in ingredients"
                               v-if="item.stock > 0 && item.ingredient_category === 'piff'"
                               v-on:increment="addItemToOrder(item)"  
