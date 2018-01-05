@@ -304,20 +304,19 @@
               <div id="cartItem" v-for="drink in fullOrder">
 				  <div id="cartItemName">{{ drink.name }} <br> {{ drink.size }} </div> <div id="cartItemPrice"> {{getPrice(drink.size)}} <button id="cancelCartItemB" v-on:click="removeDrinkFromOrder()"><img src ="images/cross.png" id="crossImg"></button></div> </div>
           </div>
-			<div id="cartBottom">
+			<div id="cartBottomDiv">
 				<div id ="addMoreDrinksDiv">
-                <button id="addMoreDrinksB" v-on:click = "showPage('showStartAgain');"> {{ uiLabels.addToOrder1 }}<br>{{ uiLabels.addToOrder2 }}</button>
-                <hr>
-			    <h4 id="sumCart">
-				{{ uiLabels.sum }} : {{ calcPrice() }} kr
-				</h4>
+                    <button id="addMoreDrinksB" v-on:click = "showPage('showStartAgain');"> {{ uiLabels.addToOrder1 }}<br>{{ uiLabels.addToOrder2 }}</button>
+                    <hr>
+                    <h4 id="sumCart">
+                    {{ uiLabels.sum }} : {{ calcPrice() }} kr
+                    </h4>
             	</div>
 
-          		<div >
-            	<button id="goBackBCart" v-on:click = "showPage('showSize');removeDrinkFromOrder()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
-              	<button id="payB" v-on:click="showPage('showThanks');placeOrder()" class="goB"> {{ uiLabels.pay }}</button> 
+          		<div>
+                    <button id="goBackBCart" v-on:click = "showPage('showSize');removeDrinkFromOrder()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
+                    <button id="payB" v-on:click="showPage('showThanks');placeOrder()" class="goB"> {{ uiLabels.pay }}</button> 
           		</div>		
-			
 			</div>
 
         </section>
@@ -389,7 +388,7 @@
                 </div>
 			</div>
 			<div id="newOrderDiv">
-				<button id="newOrderB" v-on:click = "showPage('showStart')"> {{ uiLabels.newOrder }}</button>
+				<button id="newOrderB" v-on:click = "emptyOrder(); showPage('showStart')"> {{ uiLabels.newOrder }}</button>
 			</div>
 		</section>
 	  </div>  

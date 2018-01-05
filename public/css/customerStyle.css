@@ -436,9 +436,11 @@ margin-left: auto;
     width: 100%;
 }
 
-#cartBottomDiv{
+#cartBottomDiv {
 	position:fixed;
 	background-color: white; 
+    width: 100%;
+    display: block;
 }
 
 #addMoreDrinksDiv{
@@ -573,10 +575,11 @@ hr {
 
 #lowerSecChooseBasePiff {
     position: fixed;
-    bottom: 0px;
+    display: block;
     width: 100%;
-      display: block;
-  line-height: normal;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin-top: 15vh;
     background-color: white;
 }

@@ -72,27 +72,16 @@ var vm = new Vue({
     paborjad: function(type,orderDiv,style){
       this.activeOrderStage[type] = "started";
       document.getElementById(orderDiv).style.border = "2pt " + style + " yellow";
+      console.log(type);
     },
     klar: function(order,type,orderDiv,style,button){
       document.getElementById(orderDiv).style.border = "2pt " + style + " white";
       this.activeOrderStage[type] = "not-started";
+      this.activeOrder[type] = "none is chosen";
       order.done = true;
       document.getElementById(button).checked = true;
       vm.markDone(order.orderId);
-
-    },
-
-    displayChosenDrink: function(order, orderId) {
-
-      var ingredientList =[]
-      var ingred = []
-      for (var i = 0; i < order.ingredients.length; i++){
-        ingredientList.push(order.ingredients[i].ingredient_en)
       }
-
-      document.getElementById('orderInfoHead').innerHTML = "#" + orderId +"<br>" + order.type.toUpperCase()
-      document.getElementById('orderInfo').innerHTML = ingredientList.join('<br>')
-    }
     }
   }
 );

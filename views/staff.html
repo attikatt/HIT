@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juicifers personel</title>
   <link rel="stylesheet" type="text/css" href="css/generalStaffStyle.css">
   <link rel="stylesheet" type="text/css" href="css/staffStyle.css">
-    
+  <script src="js/staff.js" defer></script>
 </head>
 <body>
   <main>
@@ -16,20 +17,19 @@
         <table>
           <tbody>
             <tr>
-                <td> <button id="lagerB"> <p class=buttonText> Ändra lagersaldo </p> </button> </td>
-                <td> <button id="forberedB"> <p class=buttonText>Förbered drycker  </p></button> </td>
+                <td> <button id="lagerB" onclick="location.href='/lager';"> <p class=buttonText> Ändra lagersaldo </p> </button> </td>
+                <td> <button id="forberedB" onclick="location.href='/kitchen';"> <p class=buttonText>Förbered drycker  </p></button> </td>
             </tr>
             <tr>
-                <td> <button id="historikB"><p class=buttonText> Historik </p></button> </td>
-                <td> <button id="statistikB"><p class=buttonText> Statistik </p></button> </td>
+                <td> <button id="historikB" onclick="location.href='/historik';"><p class=buttonText> Historik </p></button> </td>
+                <td> <button id="statistikB" onclick="location.href='/stats';"><p class=buttonText> Statistik </p></button> </td>
             </tr>
           </tbody>
         </table>
         </div>
       </div>
     </div>
-    <div class="time">
-      time
+    <div id="clock">
     </div>
   </main>
 </body>

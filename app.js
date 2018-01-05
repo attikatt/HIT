@@ -26,61 +26,29 @@ app.use('/vue', express.static(path.join(__dirname, '/node_modules/vue/dist/')))
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/ordering.html'));
 });
+// Serve lager.html as subpage
+app.get('/staff', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/staff.html'));
+});
 // Serve kitchen.html as subpage
 app.get('/kitchen', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/kitchen.html'));
 });
-// Serve customerStart.html as subpage
-app.get('/customerStart', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/customerStart.html'));
-});
-// Serve customerChangeIng.html as subpage
-app.get('/customerChangeIng', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/customerChangeIng.html'));
-});
-// Serve customerChangeYourDrink.html as subpage
-app.get('/customerYourDrink', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/customerYourDrink.html'));
-});
-// Serve customerChooseSize.html as subpage
-app.get('/customerChooseSize', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/customerChooseSize.html'));
-});
-// Serve customerChooseType.html as subpage
-app.get('/customerChooseType', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/customerChooseType.html'));
-});
-// Serve customerStartAgain.html as subpage
-app.get('/customerStartAgain', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/customerStartAgain.html'));
-});
-// Serve customerThanks.html as subpage
-app.get('/customerThanks', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/customerThanks.html'));
-});
-// Serve customerCart.html as subpage
-app.get('/customerCart', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/customerCart.html'));
-});
-// Serve customerChooseIng.html as subpage
-app.get('/customerChooseIng', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/customerChooseIng.html'));
+// Serve lager.html as subpage
+app.get('/lager', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/lager.html'));
 });
 
-// Serve customerChooseBasePiff.html as subpage
-app.get('/customerChooseBasePiff', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/customerChooseBasePiff.html'));
+// Serve stats.html as subpage
+app.get('/stats', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/stats.html'));
 });
 
-// Serve customerFav.html as subpage
-app.get('/customerFav', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/customerFav.html'));
+// Serve historik.html as subpage
+app.get('/historik', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/historik.html'));
 });
 
-// Serve customerDrinkInfo.html as subpage
-app.get('/customerDrinkInfo', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/customerDrinkInfo.html'));
-});
 
 // Store data in an object to keep the global namespace clean
 function Data() {
@@ -160,6 +128,17 @@ Data.prototype.addOrder = function (order) {
   }
 };
 
+Data.prototype.changeLagerSaldo = function (item, saldo) {
+  var transactions = this.data[transactionsDataName]
+  var transId = transactions[transactions.length - 1].transaction_id
+  transactions.push({transaction_id: transId,
+                     ingredient_id: item.ingredient.ingredient_id,
+                     change: saldo - item.ingredient.stock});
+};
+
+//ta emot meddelande från lager, justera lager skicka en "order" socket.on('updateStock') har funktion som kör transaktion med objectet
+//justera genom createTransaction ioemit (till alla clienter)
+
 Data.prototype.getAllOrders = function () {
   return this.orders;
 };
@@ -167,6 +146,12 @@ Data.prototype.getAllOrders = function () {
 Data.prototype.markOrderDone = function (orderId) {
   this.orders[orderId].done = true;
 };
+
+Data.prototype.markOrderNotDone = function (orderId) {
+  this.orders[orderId].done = false;
+};
+
+/*-------------------------------------------------------------------------*/
 
 var data = new Data();
 // Load initial ingredients. If you want to add columns, do it in the CSV file.
@@ -189,6 +174,8 @@ io.on('connection', function (socket) {
                           uiLabels: data.getUILabels(),
                           ingredients: data.getIngredients() });
 
+  /*-------------------------------------------------------------------------*/
+
   // When someone orders something
   socket.on('order', function (order) {
     var orderId = data.addOrder(order);
@@ -206,13 +193,25 @@ io.on('connection', function (socket) {
     data.markOrderDone(orderId);
     io.emit('currentQueue', {orders: data.getAllOrders() });
   });
+
+  socket.on('orderNotDone', function (orderId) {
+    data.markOrderNotDone(orderId);
+    io.emit('currentQueue', {orders: data.getAllOrders() });
+  });
+
+  socket.on('updateStock', function (item, saldo) {
+    data.changeLagerSaldo(item, saldo);
+    io.emit('currentQueue', {ingredients: data.getIngredients() });
+  });
     
     // send readyMade
-    socket.emit('initialize', { orders: data.getAllOrders(),
+  socket.emit('initialize', { orders: data.getAllOrders(),
                           uiLabels: data.getUILabels(),
                           ingredients: data.getIngredients(),
                           readymade: data.getReadymade() });
-});
+  });
+
+/*-------------------------------------------------------------------------*/
 
 var server = http.listen(app.get('port'), function () {
   console.log('Server listening on port ' + app.get('port'));
