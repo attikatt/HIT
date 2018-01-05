@@ -61,7 +61,6 @@ var vm = new Vue({
     // drink currently being composed
     drinkPath: '',
     type: '',
-    tempType: '' , //(en av type och tempType ska nog bort)
     chosenIngredients: [],
     tempDrink: '',
     chosenSize: 'medium',
@@ -75,21 +74,20 @@ var vm = new Vue({
       // ordering readymades
     orderReadymade: function() {
       for (var i = 0; i < this.tempDrink.rm_ingredients.length; i += 1) {
-          this.addItemToOrder(this.getIngredientById(this.tempDrink.rm_ingredients[i]), this.tempDrink.rm_type);
+          this.addItemToOrder(this.getIngredientById(this.tempDrink.rm_ingredients[i]));
       }
     },
       // adds an ingredient to the drink being composed
-    addItemToOrder: function (item, type) {
+    addItemToOrder: function (item) {
       this.chosenIngredients.push(item);
-      this.type = type;
-		if (type === "smoothie") {
+		if (this.type === "smoothie") {
         	this.volume += +item.vol_smoothie;
 			// if the drink is not one of juicifers, making the ingredient panel 
 			if(!this.drinkInfoShown){
 				vm.ingText(item);
 			}
 		}
-		else if(type === "juice"){
+		else if(this.type === "juice"){
 			this.volume += +item.vol_juice;
 			// if the drink is not one of juicifers, making the ingredient panel 
 			if(!this.drinkInfoShown){
@@ -132,10 +130,10 @@ var vm = new Vue({
             name = this.tempDrink.rm_name;
         }
         else if (this.drinkPath === 'myo') {
-            if (this.tempType === 'juice') {
+            if (this.type === 'juice') {
                 name = 'Egen juice';
             }
-            else if (this.tempType === 'smoothie') {
+            else if (this.type === 'smoothie') {
                 name = 'Egen smoothie';
             }
         }
@@ -364,12 +362,12 @@ var vm = new Vue({
         }
     },
       
-    chooseTempType: function (juice_or_smoothie) {
+    chooseType: function (juice_or_smoothie) {
         if (juice_or_smoothie === 'juice') {
-            this.tempType = 'juice';
+            this.type = 'juice';
         }
         else if (juice_or_smoothie === 'smoothie') {
-            this.tempType = 'smoothie';
+            this.type = 'smoothie';
         }
     },
       

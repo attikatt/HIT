@@ -71,8 +71,8 @@
            <div>   
             <table id="buttonTable" align="center">
               <tbody>
-                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('showFavOrMyo');chooseTempType('juice')"> Juice </button> </td></tr>
-                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showFavOrMyo');chooseTempType('smoothie')"> Smoothie </button> </td></tr>
+                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('showFavOrMyo');chooseType('juice')"> Juice </button> </td></tr>
+                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showFavOrMyo');chooseType('smoothie')"> Smoothie </button> </td></tr>
               </tbody>
             </table>
           </div>
@@ -104,10 +104,10 @@
                       <div class="ingredientsGrid">
                         <ingredient
                           ref="ingredient"
-                          type=tempType
+                          type=type
                           v-for="item in ingredients"
                           v-if="item.stock > 0 && item.smoothie_base"
-                          v-on:increment="addItemToOrder(item, tempType)"
+                          v-on:increment="addItemToOrder(item)"
                           :item="item" 
                           :lang="lang"
                           :key="item.ingredient_id">
@@ -133,10 +133,10 @@
                     <div class="ingredientsGrid">
                         <ingredient
                           ref="ingredient"
-                          type=tempType
+                          type=type
                           v-for="item in ingredients"
                           v-if="item.stock > 0 && item.ingredient_category === ingType"
-                          v-on:increment="addItemToOrder(item, tempType)"  
+                          v-on:increment="addItemToOrder(item)"  
                           :item="item" 
                           :lang="lang"
                           :key="item.ingredient_id">
@@ -151,10 +151,10 @@
                           <div class="ingredientsGrid">
                             <ingredient
                               ref="ingredient"
-                              type=tempType
+                              type=type
                               v-for="item in ingredients"
                               v-if="item.stock > 0 && item.ingredient_category === 'piff'"
-                              v-on:increment="addItemToOrder(item, tempType)"  
+                              v-on:increment="addItemToOrder(item)"  
                               :item="item" 
                               :lang="lang"
                               :key="item.ingredient_id">
@@ -308,11 +308,11 @@
 
 <div v-if="favShown">
       <section id="favSec">
-        <h3 id="chooseFavTitle" v-if = "tempType ==='smoothie'">{{ uiLabels.chooseSmoothie }} </h3>
-		<h3 id="chooseFavTitle" v-if = "tempType ==='juice'">{{ uiLabels.chooseJuice }} </h3>
+        <h3 id="chooseFavTitle" v-if = "type ==='smoothie'">{{ uiLabels.chooseSmoothie }} </h3>
+		<h3 id="chooseFavTitle" v-if = "type ==='juice'">{{ uiLabels.chooseJuice }} </h3>
         <div class="favGrid">
             <div v-for="preparedDrink in readymade" >
-                <button class="favSquareB" v-if="preparedDrink.rm_type === tempType" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
+                <button class="favSquareB" v-if="preparedDrink.rm_type === type" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
             </div>
         </div>
       <div id="goBackFullDiv">
