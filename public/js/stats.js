@@ -24,11 +24,9 @@ setTimeout(updateClock,1000);
    },
    methods: {
      getOrderData: function() {
-      //console.log(this.orders[1].ingredients.length);
-      // console.log(this.orders.hasOwnProperty('length'))
-     for (var i = 1; i < 3; i += 1) {
-       //console.log(i + " " + this.orders[i].type);
-       //console.log(this.orders[i]);
+       this.amountJuices = 0;
+       this.amountSmoothies = 0;
+     for (var i = 1; i < Object.keys(this.orders).length +1; i += 1) {
        if (this.orders[i].type === 'juice'){
          this.amountJuices += 1;
        }
@@ -48,20 +46,20 @@ setTimeout(updateClock,1000);
        ['Pear',     5],
        ['Orange',   2]
      ];
-     for (var i = 1; i < 2; i += 1) {
+  /*   for (var i = 1; i < 2; i += 1) {
        //console.log(this.orders[i].ingredients)
        //console.log(contentArr[i]);
        //console.log("Order "+i);
+       console.log(this.orders[i].ingredients.length);
       for(var j =0; j < (this.orders[i].ingredients.length); j+=1){
-            console.log(this.orders[i].ingredients[j].ingredient_en);
+            //console.log(this.orders[i].ingredients[j].ingredient_en);
          for (var i = 0; i< contentArr.length; i+=1){
            //console.log(contentArr[i]);
          }
      }
-   }
+   }*/
      return (contentArr)
    }
-
  }
 });
 
@@ -69,6 +67,7 @@ setTimeout(updateClock,1000);
 
 google.charts.load("current", {packages:["corechart"]});
 google.charts.setOnLoadCallback(drawChart);
+
 //dataVm.createData();
 function drawChart() {
   var orderData = google.visualization.arrayToDataTable(dataVm.getOrderData());
@@ -97,4 +96,6 @@ function drawChart() {
 
   var chart2 = new google.visualization.PieChart(document.getElementById('donutchartIngred'));
   chart2.draw(ingredientData, ingredientOptions);
+
+  setTimeout(drawChart,1000); //här regleras hur ofta grafen uppdateras, kan behöva sänkas om många klienter
 }
