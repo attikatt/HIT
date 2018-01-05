@@ -50,7 +50,7 @@ Vue.component('order-list',{
                this.$emit('active-order-smoothie');
                vm.activeOrderStage['smoothie']="not-started";
                document.getElementById('notDone2').checked = true;
-               document.getElementById('orderDiv2').style.border = "2pt solid white";
+               document.getElementById('orderDiv2').style.border = "2pt dashed white";
              }
            }
         }
