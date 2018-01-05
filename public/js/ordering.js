@@ -436,7 +436,10 @@ var vm = new Vue({
 	
 	getLastOrders: function() {
 		var orderLength = this.fullOrder.length;
-		console.log(this.orders.slice(-orderLength));
+		var allOrders = this.orders; 
+		for (var i=0; i < 2; i+=1) {
+			console.log(this.orders[i]);
+		}
 	  },
 /*------------- Cancelling order ---------------*/
     emptyOrder: function () {
