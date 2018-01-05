@@ -34,11 +34,11 @@ Vue.component('ingredient', {
     }
   }
 });
- //Hämtar ordeing number
 
+//Hämtar ordeing number
 Vue.component('item-and-id', {
-  props: ['uiLabels', 'order', 'orderId', 'lang','name'],
-  template: '<div id="yourOrderDiv"><h2 v-bind:class="order.name" class="lowerCaseHeadline">{{order.name}} #{{orderId}}</h2></br></div>'
+  props: ['uiLabels', 'order', 'orderId', 'lang'],
+  template: '<div id="yourOrderDiv"><h2 v-bind:class="order.name" class="lowerCaseHeadline"> #{{orderId}}</h2></br></div>'
 });
 
 
@@ -73,7 +73,8 @@ var vm = new Vue({
     chosenSize: 'medium',
 	changeFromId: 0,
     //all drinks in current order
-    fullOrder: []
+    fullOrder: [],
+	allOrders: []
   },
   methods:{
       
@@ -161,16 +162,17 @@ var vm = new Vue({
             size: this.chosenSize,
             name: name,
         };
-        //Add drink to the full order
+        //Add drink to the full order 
         this.fullOrder.push(order); 
     },
 	  
 	  //removes the drink from order
-	removeDrinkFromOrder: function () {
-	  this.fullOrder.pop();	
+	removeDrinkFromOrder: function (drink) {
+	  var index = this.fullOrder.indexOf(drink);
+	  this.fullOrder.splice(index,1);
 	},  
+	  
     placeOrder: function () {
-
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
         for (var i = 0; i < this.fullOrder.length; i += 1) {
             // sending each drink in full order to kitchen
@@ -395,11 +397,6 @@ var vm = new Vue({
     // NOTE: Fix so when you go back, the property will not be null and the marked button is shown not the medium  
     setSize: function (size) {
 		this.chosenSize = size;
-        var cups = document.getElementsByClassName("cup");
-        for (var i = 0; i < cups.length; i++) {
-            cups[i].style.backgroundColor = "white";  
-        }
-        document.getElementById(size+"B").style.backgroundColor = "rgb(255,170,100)";
     },
 	  
 	 getPrice: function(size) {
@@ -436,6 +433,11 @@ var vm = new Vue({
 			 return this.chosenSize; 
 		 }
 	 },
+	
+	getLastOrders: function() {
+		var orderLength = this.fullOrder.length;
+		console.log(this.orders);
+	  },
 /*------------- Cancelling order ---------------*/
     emptyOrder: function () {
         this.fullOrder = [];
