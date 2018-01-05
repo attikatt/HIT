@@ -7,12 +7,27 @@ var socket = io();
 
 Vue.component('order-item', {
   props: ['uiLabels', 'order', 'orderId', 'lang'],
-  template: '<div id="section"><p class="headOrderInfo">#{{orderId}} {{order.type}}</p> </br> <hr> <ul> <li v-for="item in order.ingredients" :class="item.ingredient_color"><span>{{item["ingredient_" + lang]}}</span> </li></ul></div>'
+  template: '<div id="section"><p class="headOrderInfo">#{{orderId}} {{order.name}}</p> <p id="orderSize"> {{order.size}}</p>\
+  </br> <hr> <ul> <li v-for="item in order.ingredients" :class="item.ingredient_color">\
+  <span>{{item["ingredient_" + lang]}}</span> <span id="antalIngredienser"> {{getNum(order.size)}}</span></li></ul></div>',
+  methods: {
+    getNum: function(size){
+      if (size == 'small'){
+        return '1'
+      }
+      if (size == 'medium'){
+        return '2'
+      }
+      if (size == 'large'){
+        return '3'
+      }
+    }
+  }
 });
 
 Vue.component('order-item-short',{
   props: ['uiLabels', 'order', 'type', 'orderId','lang', 'name'],
-  template : '<div>#{{orderId}} </br> Egen dryck </br> (<span>{{order.type}}</span>)</div>'
+  template : '<div>#{{orderId}} </br> {{order.name}} </br> (<span>{{order.size}} {{order.type}}</span>)</div>'
 });
 
 // Stuff that is used both in the ordering system and in the kitchen

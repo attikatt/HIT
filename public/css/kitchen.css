@@ -97,6 +97,13 @@ span {
     align-content: center;
 }
 
+#orderSize{
+  font-size: 2vw;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
 hr{
   margin-left: 1vw;
   margin-right: 1vw;
@@ -190,6 +197,12 @@ hr{
 /*-----------Färglägger texten till vit i ingredienslistan-------------*/
 li span{
   color:white;
+  font-size: 2vw;
+}
+
+#antalIngredienser{
+  text-align: right;
+  color: white;
   font-size: 2vw;
 }
 
