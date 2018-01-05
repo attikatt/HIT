@@ -70,6 +70,7 @@ var vm = new Vue({
         if(Number(numLetterList.join(''))===this.orders[i].orderId){
           console.log("Match")
           this.activeOrder = this.orders[i];
+          modal.style.display = "none";
           break;
         } else {console.log("No match");}
       }
