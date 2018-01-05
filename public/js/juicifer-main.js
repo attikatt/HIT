@@ -9,17 +9,32 @@ Vue.component('order-item', {
   props: ['uiLabels', 'order', 'orderId', 'lang'],
   template: '<div id="section"><p class="headOrderInfo">#{{orderId}} {{order.name}}</p> <p id="orderSize"> {{order.size}}</p>\
   </br> <hr> <ul> <li v-for="item in order.ingredients" :class="item.ingredient_color">\
-  <span>{{item["ingredient_" + lang]}}</span> <span id="antalIngredienser"> {{getNum(order.size)}}</span></li></ul></div>',
+  <span>{{item["ingredient_" + lang]}}</span> <span id="antalIngredienser"> {{getNum(order.size,item)}}</span></li></ul></div>',
   methods: {
-    getNum: function(size){
+    getNum: function(size,order){
       if (size == 'small'){
-        return '1'
+        if (order.juice_base || order.smoothie_base){
+          return '2'
+        }
+        else {
+          return '1'
+        }
       }
       if (size == 'medium'){
-        return '2'
+        if (order.juice_base || order.smoothie_base){
+          return '4'
+        }
+        else {
+          return '2'
+        }
       }
       if (size == 'large'){
-        return '3'
+        if (order.juice_base || order.smoothie_base){
+          return '6'
+        }
+        else {
+          return '3'
+        }
       }
     }
   }

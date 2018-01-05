@@ -43,13 +43,13 @@ Vue.component('order-list',{
              if (this.order.type === "juice"){
                this.$emit('active-order-juice');
                vm.activeOrderStage['juice']="not-started";
-               document.getElementById('notDone1').checked = ture;
+               document.getElementById('notDone1').checked = true;
                document.getElementById('orderDiv1').style.border = "2pt solid white";
              }
              if (this.order.type === "smoothie"){
                this.$emit('active-order-smoothie');
                vm.activeOrderStage['smoothie']="not-started";
-               document.getElementById('notDone2').checked = ture;
+               document.getElementById('notDone2').checked = true;
                document.getElementById('orderDiv2').style.border = "2pt solid white";
              }
            }
@@ -98,6 +98,9 @@ var now = new Date(),
     seconds = now.getSeconds();
     if (minutes < 10) {
         minutes = "0" + minutes
+    };
+    if (seconds < 10) {
+        seconds = "0" + seconds
     };
 document.getElementById('clock').innerHTML = [hours,minutes,seconds].join(':');
 setTimeout(updateClock,1000);

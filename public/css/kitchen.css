@@ -63,8 +63,9 @@ span {
 #leftDiv{
   line-height: normal;
   float: left;
-  height: 90%;
+  height: 100%;
   width: 70%;
+  border-right:1pt solid white;
 }
 
 #rightDiv{
