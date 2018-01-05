@@ -38,7 +38,7 @@ var vm = new Vue({
       if (saldoLetterList.length > 0){
       socket.emit('updateStock', {ingredient:this.chosenIng}, saldo)
       vm.chosenIng.stock = saldo;
-      clearSaldoField()
+      clearSaldoField();
     }
       //socket emit (meddelande till servern) updateStock,{ingredients:[chosenIng]+skicka med amount}
     },

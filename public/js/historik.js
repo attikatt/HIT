@@ -72,11 +72,22 @@ var vm = new Vue({
           this.activeOrder = this.orders[i];
           modal.style.display = "none";
           break;
-        } else {console.log("No match");}
+        } else {
+          console.log("No match");
+          console.log(Number(numLetterList.join('')));
+          document.getElementById('noSearchMatch').innerHTML = "Order #" +Number(numLetterList.join('')) + " finns inte i historiken";
+        }
       }
+
+      clearSaldoConsoleChild();
     }
     }
   });
+
+  function clearSaldoConsoleChild(){
+      numLetterList = [];
+      document.getElementById("changeSaldoConsoleChild").innerHTML = numLetterList.join("");
+  }
 
 function updateClock(){
 var now = new Date(),
