@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Juicifers Lager</title>
+  <link rel="stylesheet" href="css/lager.css">
+  <script src="/vue/vue.js" defer></script>
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="js/juicifer-main.js" defer></script>
+  <script src="js/lager.js" defer></script>
+</head>
+<body>
+    <div id="mainDiv">
+    <div id="topDiv">
+        <p> <button id=homeButton type="button" onclick="location.href='/staff';"> <img src="images/home.png" alt="Home Button" width=70px/> </button>LAGERSALDO </p>
+    </div>
+    <div id="lagerDiv">
+        <div id="lager">
+            <div id="alphabet">
+              <ul class="alphabet">
+                        <button type="button" value="A" onClick="scrollFunction(value)" class="alphLetter">A</button>
+                        <button type="button" value="B" onClick="scrollFunction(value)" class="alphLetter">B</button>
+                        <button type="button" value="C" onClick="scrollFunction(value)" class="alphLetter">C</button>
+                        <button type="button" value="D" onClick="scrollFunction(value)" class="alphLetter">D</button>
+                        <button type="button" value="E" onClick="scrollFunction(value)" class="alphLetter">E</button>
+                        <button type="button" value="F" onClick="scrollFunction(value)" class="alphLetter">F</button>
+                        <button type="button" value="G" onClick="scrollFunction(value)" class="alphLetter">G</button>
+                        <button type="button" value="H" onClick="scrollFunction(value)" class="alphLetter">H</button>
+                        <button type="button" value="I" onClick="scrollFunction(value)" class="alphLetter">I</button>
+                        <button type="button" value="J" onClick="scrollFunction(value)" class="alphLetter">J</button>
+                        <button type="button" value="K" onClick="scrollFunction(value)" class="alphLetter">K</button>
+                        <button type="button" value="L" onClick="scrollFunction(value)" class="alphLetter">L</button>
+                        <button type="button" value="M" onClick="scrollFunction(value)" class="alphLetter">M</button>
+                        <button type="button" value="N" onClick="scrollFunction(value)" class="alphLetter">N</button>
+                        <button type="button" value="O" onClick="scrollFunction(value)" class="alphLetter">O</button>
+                        <button type="button" value="P" onClick="scrollFunction(value)" class="alphLetter">P</button>
+                        <button type="button" value="Q" onClick="scrollFunction(value)" class="alphLetter">Q</button>
+                        <button type="button" value="R" onClick="scrollFunction(value)" class="alphLetter">R</button>
+                        <button type="button" value="S" onClick="scrollFunction(value)" class="alphLetter">S</button>
+                        <button type="button" value="T" onClick="scrollFunction(value)" class="alphLetter">T</button>
+                        <button type="button" value="U" onClick="scrollFunction(value)" class="alphLetter">U</button>
+                        <button type="button" value="V" onClick="scrollFunction(value)" class="alphLetter">V</button>
+                        <button type="button" value="W" onClick="scrollFunction(value)" class="alphLetter">W</button>
+                        <button type="button" value="X" onClick="scrollFunction(value)" class="alphLetter">X</button>
+                        <button type="button" value="Y" onClick="scrollFunction(value)" class="alphLetter">Y</button>
+                        <button type="button" value="Z" onClick="scrollFunction(value)" class="alphLetter">Z</button>
+                        <button type="button" value="Å" onClick="scrollFunction(value)" class="alphLetter">Å</button>
+                        <button type="button" value="Ä" onClick="scrollFunction(value)" class="alphLetter">Ä</button>
+                        <button type="button" value="Ö" onClick="scrollFunction(value)" class="alphLetter">Ö</button>
+                    </ul>
+            </div>
+            <div id="lagerList" class="scrollbar">
+              <!--skickar till js-->
+                <ingredient
+                  ref="ingredient"
+                  type="ingredient_butt"
+                  v-for= "item in ingredients"
+                  v-on:ingredientchosen = "chosenIng = item"
+                  :id= "item.ingredient_id"
+                  :item="item"
+                  :lang="lang"
+                  :key="item.ingredient_id">
+                </ingredient>
+            </div>
+        </div>
+        <div id="lagerConsole">
+                <p id=consoleHeader> ÄNDRA LAGERSALDO</p>
+            <p id=chosenIngredient>  {{chosenIng["ingredient_"+ lang]}}  <br>  STOCK: {{chosenIng.stock}}</p>
+            <div id=changeSaldoConsole>  <p id=changeSaldoConsoleChild></p> </div>
+                <ul id="keyboard">
+                    <input type="button" onClick="numberPressed(this)" id ="letterButton" class=letterButton value="1"><li >1</li>
+                    <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="2"><li >2</li>
+                    <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="3"><li >3</li>
+                    <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="4"><li >4</li>
+                    <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="5"><li >5</li>
+                    <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="6"><li >6</li>
+                    <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="7"><li >7</li>
+                    <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="8"><li >8</li>
+                    <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="9"><li class="letter">9</li>
+                    <button class=letterButton type="button" onClick="clearSaldoField()"><li class="clearl delete">X</li></button>
+                    <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="0"><li >0</li>
+                    <button class=letterButton type="button" value="backSpaceLetter" onClick="backSpaceLetter()"><li class="remove"><</li></button>
+                    <button class=letterButtonEnter type="button" v-on:Click="updateChosen()"><li class="return clearl enter">UPPDATERA</li></button>
+                </ul>
+            <div id=clock> </div>
+        </div>
+    </div>
+    </div>
+</body>

@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Juicifers Sats</title>
+    <link rel="stylesheet" href="css/stats.css">
+    <script src="/vue/vue.js" defer></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="js/juicifer-main.js" defer></script>
+    <script src="js/stats.js" defer></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  </head>
+  <body>
+    <div id="topDiv">
+        <p> <button id=homeButton type="button" onclick="location.href='/staff';"> <img src="images/home.png" alt="Home Button" width=70px/> </button> Statistik</p>
+    </div>
+    <div id="VueDiv">
+    <div class="donut" id="donutchartOrders"></div>
+    <div class="donut" id="donutchartIngred"></div>
+  </div>
+    <p id=clock> </p>
+  </body>
+</html>

@@ -1,0 +1,266 @@
+@font-face {
+  font-family: 'champagne__limousinesregular';
+  src: url('fonts/champagne/champagne_limousines-webfont.eot');
+  src: url('fonts/champagne/champagne_limousines-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/champagne/champagne_limousines-webfont.woff2') format('woff2'),
+  url('fonts/champagne/champagne_limousines-webfont.woff') format('woff'),
+  url('fonts/champagne/champagne_limousines-webfont.svg#champagne__limousinesregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'crapaudgros';
+  src: url('fonts/crapaud/crapaud_gros-webfont.eot');
+  src: url('fonts/crapaud/crapaud_gros-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/crapaud/crapaud_gros-webfont.woff2') format('woff2'),
+  url('fonts/crapaud/crapaud_gros-webfont.woff') format('woff'),
+  url('fonts/crapaud/crapaud_gros-webfont.svg#crapaudgros') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import url("reset.css");
+
+body{
+  font-family: 'champagne__limousinesregular', arial, sans-serif;
+  background-color: rgb(64,64,64);
+  color: white;
+}
+
+#maindiv{
+    font-family: 'champagne__limousinesregular', arial, sans-serif;
+}
+
+/* Divs */
+
+#lager{
+  width: 65vw;
+  height: 75vh;
+  float:left;
+}
+
+#lagerList{
+  width: 100%;
+  height: 95%;
+  overflow-y: scroll;
+}
+
+.ingredient {
+  font-family: 'champagne__limousinesregular', arial, sans-serif;
+  border: 1px solid white;
+  width: 60vw;
+  border-radius: 1vw;
+  font-size: 5vh;
+  padding: 0pt;
+  margin: 1%;
+}
+
+.highlight{
+    border: 3px solid white;
+}
+
+.ingredient_butt{
+    font-family: 'champagne__limousinesregular', arial, sans-serif;
+    text-align: left;
+    color: white;
+    background-color: rgb(255,255,255,0.4);
+    border: 0pt;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size:1.5vw;
+    width: 95%;
+    height: 3vw;
+    padding-left: 1%;
+
+}
+
+#ing_stock{
+  float: right;
+    padding-right:1%;
+    padding-top: 0.5%;
+}
+
+#homeButton{
+    float: left;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0pt;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#topDiv{
+  text-align: center;
+  font-size:10vh;
+}
+
+p {
+  margin: 2%;
+}
+/* Alphabet*/
+.alphabet {
+  float: left;
+  list-style-type: none;
+  margin-top:90px;
+  margin: 1%;
+  width: 100%;
+  padding: 0px;
+  color:white;
+}
+
+.alphLetter {
+  font-family: 'champagne__limousinesregular', arial, sans-serif;
+  padding:0px;
+  font-size: auto;
+  text-align: center;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  color:white;
+  background-color:transparent;
+  border: 0;
+  display:inline;
+  cursor: pointer;
+}
+
+li {
+  padding:0px;
+  font-size: auto;
+  text-align: center;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  color:transparent;
+  display:inline;
+}
+
+#chosenIngredient{
+    text-align: center;
+    margin-left: auto;
+    margin-right:6vw;;
+    font-size: 1.5vw;
+}
+
+#ing_tit{
+  font-size: auto;
+  margin-left: 1vw;
+}
+/* NumPad */
+#lagerConsole {
+  width: 30vw;
+  height: 75vh;
+  float:right;
+
+}
+
+#consoleHeader{
+    font-size: 2.1vw;
+    text-align: left;
+    margin-left: 2.6vw;
+}
+
+#changeSaldoConsole{
+    float: top;
+    text-align: center;
+    border: 1px solid rgb(255,255,255);
+    border-radius: 5px;
+    background-color: rgb(255,255,255,0.4);
+    width: 63%;
+    height: 15%;
+    margin: 19pt;
+    margin-bottom: 5pt;
+}
+
+
+#keyboard {
+width: 80%;
+height: auto;
+float:left;
+display: inline-block;
+margin: 7%;
+    margin-top: 0%;
+padding: 0;
+list-style: none;
+}
+
+#keyboard li {
+
+}
+
+.clearl {
+    clear: left;
+    color: white;
+}
+
+
+.letterButton{
+    font-family: 'champagne__limousinesregular', arial, sans-serif;
+    float: left;
+    margin: 0 5px 5px 0;
+    width: 25%;
+    height: 10%;
+    font-size: 24px;
+    line-height: 60px;
+    text-align: center;
+    border: 1px solid rgb(255,255,255);
+    border-radius: 5px;
+    background-color: rgb(255,255,255,0.4);
+    background-repeat: no-repeat;
+    border: 0pt;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#changeSaldoConsoleChild{
+    text-align:center;
+    float: center;
+    font-size: 3vw;
+    margin-top: 1.5vw;
+}
+
+
+.letterButtonEnter{
+    font-family: 'champagne__limousinesregular', arial, sans-serif;
+    float: left;
+    margin: 0 5px 5px 0;
+    font-size: 24px;
+    line-height: 60px;
+    text-align: center;
+    border: 1px solid rgb(255,255,255);
+    border-radius: 5px;
+    background-color: rgb(255,255,255,0.4);
+    background-repeat: no-repeat;
+    border: 0pt;
+    cursor: pointer;
+    overflow: hidden;
+    width: 79%;
+}
+
+.enter{
+    color:white;
+    text-align: center;
+}
+
+.remove{
+    color: white;
+}
+
+.isActive{
+    border-color: red;
+}
+
+#clock{
+    font-size: 4vh;
+    float: right;
+    padding-right: 1vw;;
+}
+
+@media (max-width:720px) {
+  .smallOrderList {
+    display:block;
+  }
+  .smallOrder {
+    border: 1px solid #900;
+    width: calc(100% -2em);
+  }
+}

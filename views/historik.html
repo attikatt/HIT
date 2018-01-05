@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Historik</title>
+  <link rel="stylesheet" href="css/historik.css">
+  <script src="/vue/vue.js" defer></script>
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="js/juicifer-main.js" defer></script>
+  <script src="js/historik.js" defer></script>
+</head>
+<body>
+  <div id="mainDiv">
+    <div id="leftDiv" class ="leftDiv">
+      <div id="topDivLeft">
+          <button id=homeButton type="button" onclick="location.href='/staff';"> <img src="images/home.png" alt="Home Button" width=70px/> </button>
+      </div>
+      <p id = "orderInfo">
+      <order-item-to-prepare
+        v-for="(order, key) in orders"
+        v-if="activeOrder == order"
+        :order-id="key"
+        :order="activeOrder"
+        :ui-labels="uiLabels"
+        :lang="lang"
+        :key="key">
+     </order-item-to-prepare>
+  </p>
+  <button id="takeOrderBack" type="button" v-on:Click="takeOrderBack(activeOrder)"> LÄGG ORDER I ORDERKÖN </button>
+    </div>
+    <div id="rightDiv">
+      <div id="topDivRight">
+          <p id ="historikHeader"> HISTORIK
+          <button id=searchButton type="button"> <img src="images/search.png" alt="Search Button" height=70px/> </button>
+        </p>
+      </div>
+      <div class="smallOrderList">
+        <order-list
+          v-for="(order, key) in orders"
+          v-if="order.done"
+          v-on:activate-order = "activeOrder = order"
+          :order-id="key"
+          :order="order"
+          :ui-labels="uiLabels"
+          :lang="lang"
+          :key="key">
+        </order-list>
+      </div>
+      <p id=clock> </p>
+    </div>
+    <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="lagerConsole">
+      <p id=consoleHeader> SÖK ORDER</p>
+      <div id=changeSaldoConsole>  <p id=changeSaldoConsoleChild></p> </div>
+      <ul id="keyboard">
+          <input type="button" onClick="numberPressed(this)" id ="letterButton" class=letterButton value="1">
+          <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="2">
+          <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="3">
+          <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="4">
+          <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="5">
+          <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="6">
+          <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="7">
+          <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="8">
+          <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="9">
+          <button class=letterButton type="button" onClick="clearSaldoField()"><li class="clearl delete">X</li></button>
+          <input type="button" onClick="numberPressed(this)" id =letterButton class=letterButton value="0">
+          <button class=letterButton type="button" value="backSpaceLetter" onClick="backSpaceLetter()"><li class="remove"><</li></button>
+          <button class=letterButtonEnter type="button" v-on:Click="searchForOrder()"><li class="return clearl enter">SÖK</li></button>
+      </ul>
+    </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

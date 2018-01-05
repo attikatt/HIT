@@ -1,0 +1,85 @@
+@font-face {
+  font-family: 'champagne__limousinesregular';
+  src: url('fonts/champagne/champagne_limousines-webfont.eot');
+  src: url('fonts/champagne/champagne_limousines-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/champagne/champagne_limousines-webfont.woff2') format('woff2'),
+  url('fonts/champagne/champagne_limousines-webfont.woff') format('woff'),
+  url('fonts/champagne/champagne_limousines-webfont.svg#champagne__limousinesregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'crapaudgros';
+  src: url('fonts/crapaud/crapaud_gros-webfont.eot');
+  src: url('fonts/crapaud/crapaud_gros-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/crapaud/crapaud_gros-webfont.woff2') format('woff2'),
+  url('fonts/crapaud/crapaud_gros-webfont.woff') format('woff'),
+  url('fonts/crapaud/crapaud_gros-webfont.svg#crapaudgros') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import url("reset.css");
+
+body{
+  font-family: 'champagne__limousinesregular', arial, sans-serif;
+  background-color: rgb(64,64,64);
+  color: white;
+}
+
+#maindiv{
+    font-family: 'champagne__limousinesregular', arial, sans-serif;
+}
+
+/* Divs */
+
+h1{
+  color: #670;
+	text-transform: uppercase;
+	letter-spacing: 2pt;
+}
+
+.donut{
+  width: 45vw;
+  height: 60vh;
+}
+
+#donutchartIngred{
+  float: right;
+}
+
+#donutchartOrders{
+  float: left;
+}
+
+#homeButton{
+    float: left;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0pt;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#topDiv{
+  text-align: center;
+  font-size:10vh;
+}
+
+
+#clock{
+    font-size: 4vh;
+    float: right;
+    padding-right: 1vw;;
+}
+
+@media (max-width:720px) {
+  .smallOrderList {
+    display:block;
+  }
+  .smallOrder {
+    border: 1px solid #900;
+    width: calc(100% -2em);
+  }
+}
