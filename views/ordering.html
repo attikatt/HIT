@@ -276,9 +276,9 @@
             <table id="lowerTable">
               <tbody>
                   <tr>
-                      <td> <button id="smallB" class="cup" v-on:click="setSize('small')"> <img id="cupLogoS" src="images/cup.png"> <h5> {{ uiLabels.small }} (20cl)<br>36 kr</h5> </button> </td>
-                      <td> <button id="mediumB" class="cup" v-on:click="setSize('medium')"> <img id="cupLogoM" src="images/cup.png"> <h5> {{ uiLabels.medium}} (33cl)<br>42 kr </h5> </button> </td>
-                      <td> <button id="largeB" class="cup" v-on:click="setSize('large')"> <img id="cupLogoL" src="images/cup.png"> <h5> {{ uiLabels.large }} (50cl) <br>49 kr </h5></button></td>
+                      <td> <button id="smallB" class="cup" v-on:click="setSize('small');addDrinkToOrder();showPage('showCart')"> <img id="cupLogoS" src="images/cup.png"> <h5> {{ uiLabels.small }} (20cl)<br>36 kr</h5> </button> </td>
+                      <td> <button id="mediumB" class="cup" v-on:click="setSize('medium');addDrinkToOrder();showPage('showCart')"> <img id="cupLogoM" src="images/cup.png"> <h5> {{ uiLabels.medium}} (33cl)<br>42 kr </h5> </button> </td>
+                      <td> <button id="largeB" class="cup" v-on:click="setSize('large');addDrinkToOrder();showPage('showCart')"> <img id="cupLogoL" src="images/cup.png"> <h5> {{ uiLabels.large }} (50cl) <br>49 kr </h5></button></td>
                   </tr>
               </tbody>
             </table>
@@ -286,9 +286,6 @@
           <div class="goBackDiv"> 
               <button id="goBackB" v-on:click = "showPage('showYourDrink')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
             </div>
-            <div class="goForwardDiv">
-              <button id="goForwardB" v-on:click = "showPage('showCart');addDrinkToOrder()" class="goB"> <div id="forwardInfo"> {{ uiLabels.add }} </div> <img class="arrow" src="images/forwardArrow.png"> </button>
-          </div>
         </section>
     </div>      
       
