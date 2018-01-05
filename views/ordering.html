@@ -376,6 +376,7 @@
 		<section id="centerSecStartP">
 			<div>
 				<h1 class="lowerCaseHeadline"> {{ uiLabels.thankOrder }}</h1>
+				<h4> {{ getLastOrders() }} </h4>
 			</div>
 			<item-and-id 
 			v-for = "(order,key) in orders"
