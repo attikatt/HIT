@@ -34,6 +34,13 @@ Vue.component('ingredient', {
     }
   }
 });
+ //Hämtar ordeing number
+
+Vue.component('item-and-id', {
+  props: ['uiLabels', 'order', 'orderId', 'lang','name'],
+  template: '<div id="yourOrderDiv"><h2 v-bind:class="order.name" class="lowerCaseHeadline">{{order.name}} #{{orderId}}</h2></br></div>'
+});
+
 
 var vm = new Vue({
   el: '#ordering',
