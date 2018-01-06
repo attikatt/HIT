@@ -366,7 +366,8 @@
                   <button id="goBackB" class="goB" v-on:click ="showPage('showFav')"> <img class="arrow" src="images/backArrow.png"> </button>
                 </div>
                 <div class="goForwardDiv">
-                  <button id="goForwardB" v-on:click = "orderReadymade(); showPage('showYourDrink')" class="goB"> <div id="forwardInfo">{{uiLabels.choose}}</div> <img class="arrow" src="images/forwardArrow.png"> </button>
+                  <h4 id="forwardInfo">{{uiLabels.choose}}</h4>
+                  <button id="goForwardB" v-on:click = "orderReadymade(); showPage('showYourDrink')" class="goB">  <img class="arrow" src="images/forwardArrow.png"> </button>
                 </div>
           </div>
         </section>

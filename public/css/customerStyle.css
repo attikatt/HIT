@@ -269,9 +269,15 @@ margin-left: auto;
 
 
 #forwardInfo {
+  margin-left: 18vw;
+  position:absolute;
+  margin-top: 5vh;
+  font-size: 4vw;
+  /*margin-left: 0vw;
 	vertical-align: middle;
 	display: inline-block;
 	margin-top: 5vh;
+  font-size: 4vw;
     /* want to vertical align: middle, baseline
     krånglar till det */
 }
