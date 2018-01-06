@@ -9,10 +9,10 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
 var csv = require("csvtojson");
- 
+
 var ingredientsDataName = "ingredients";
 var transactionsDataName = "transactions";
-var defaultLanguage = "en";
+var defaultLanguage = "sv";
 
 // Pick arbitrary port for server
 var port = 3000;
@@ -62,8 +62,8 @@ Data.prototype.getUILabels = function (lang) {
   return ui;
 };
 
-/* 
-  Returns a JSON object array of ingredients with the fields from 
+/*
+  Returns a JSON object array of ingredients with the fields from
   the CSV file, plus a calculated amount in stock, based on
   transactions.
 */
@@ -81,13 +81,13 @@ Data.prototype.getIngredients = function () {
   });
 };
 
-/* 
+/*
   Function to load initial data from CSV files into the object
 */
 Data.prototype.initializeData = function (table) {
   this.data[table] = [];
   var d = this.data[table];
-  
+
   csv({checkType: true})
     .fromFile("data/" + table + ".csv")
     .on("json", function (jsonObj) {
@@ -119,7 +119,7 @@ Data.prototype.addOrder = function (order) {
     transId =  transactions[transactions.length - 1].transaction_id,
     i = order.order.ingredients,
     k;
-    
+
   for (k = 0; k < i.length; k += 1) {
     transId += 1;
     transactions.push({transaction_id: transId,
@@ -166,7 +166,7 @@ data.initializeData(readymadeDataName);
 
 Data.prototype.getReadymade = function () {
 var d = this.data;
-return d[readymadeDataName];  
+return d[readymadeDataName];
 }
 
 io.on('connection', function (socket) {
@@ -204,7 +204,7 @@ io.on('connection', function (socket) {
     data.changeLagerSaldo(item, saldo);
     io.emit('currentQueue', {ingredients: data.getIngredients() });
   });
-    
+
     // send readyMade
   socket.emit('initialize', { orders: data.getAllOrders(),
                           uiLabels: data.getUILabels(),
