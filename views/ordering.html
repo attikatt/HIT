@@ -105,7 +105,7 @@
                         <ingredient
                           ref="ingredient"
                           v-for="item in ingredients"
-                          v-if="item.stock > 0 && item.smoothie_base"
+                          v-if="item.stock > 4 && item.smoothie_base"
                           v-on:increment="addItemToOrder(item)"
                           :item="item" 
                           :lang="lang"
@@ -116,7 +116,7 @@
                             <ingredient
                               ref="ingredient"
                               v-for="item in ingredients"
-                              v-if="item.stock > 0 && item.juice_base"
+                              v-if="item.stock > 4 && item.juice_base"
                               v-on:increment="addItemToOrder(item)"
                               :item="item" 
                               :lang="lang"
@@ -144,7 +144,7 @@
                         <ingredient
                           ref="ingredient"
                           v-for="item in ingredients"
-                          v-if="item.stock > 0 && item.ingredient_category === ingType"
+                          v-if="item.stock > 4 && item.ingredient_category === ingType"
                           v-on:increment="addItemToOrder(item)"  
                           :item="item" 
                           :lang="lang"
@@ -155,7 +155,7 @@
                         <ingredient
                           ref="ingredient"
                           v-for="item in ingredients"
-                          v-if="item.stock > 0 && item.ingredient_category === ingType && item.juice_ok === true"
+                          v-if="item.stock > 4 && item.ingredient_category === ingType && item.juice_ok === true"
                           v-on:increment="addItemToOrder(item)"  
                           :item="item" 
                           :lang="lang"
@@ -172,7 +172,7 @@
                             <ingredient
                               ref="ingredient"
                               v-for="item in ingredients"
-                              v-if="item.stock > 0 && item.ingredient_category === 'piff'"
+                              v-if="item.stock > 4 && item.ingredient_category === 'piff'"
                               v-on:increment="addItemToOrder(item)"  
                               :item="item" 
                               :lang="lang"
@@ -324,10 +324,10 @@
 
 <div v-if="favShown">
       <section id="favSec">
-        <h3 id="chooseFavTitle" v-if = "type ==='smoothie'">{{ uiLabels.chooseSmoothie }} </h3>
+        <h3 id="chooseFavTitle" v-if = "type ==='smoothie'">{{ uiLabels.chooseSmoothie }} </h3> 
 		<h3 id="chooseFavTitle" v-if = "type ==='juice'">{{ uiLabels.chooseJuice }} </h3>
         <div class="favGrid">
-            <div v-for="preparedDrink in readymade" >
+            <div v-for="preparedDrink in readymade" > <!--här-->
                 <button class="favSquareB" v-if="preparedDrink.rm_type === type" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
             </div>
         </div>
