@@ -298,7 +298,8 @@ var vm = new Vue({
         else if(page === "showStartAgain"){
             this.startAgainShown = true;
             // set all drink order counters to 0.
-            this.step=1;
+            this.step = 1;
+            this.ingType = "fruit";
             this.type = '';
             this.chosenIngredients = [];
         }
@@ -510,7 +511,7 @@ var vm = new Vue({
 		this.step = 1;
 		this.chosenIngredients = [];
         this.chosenSize = 'medium';
-		
+		this.ingType = "fruit";
     }
 
   }
