@@ -157,6 +157,7 @@ margin-left: auto;
     display: block;
     line-height: normal;
     position: fixed;
+	width:50vw;
     bottom: 0px;
     background-color: white;
 }
@@ -165,6 +166,7 @@ margin-left: auto;
     display: block;
     line-height: normal;
     position: fixed;
+	width;50vw;
     bottom: 0px;
     right: 0px;
     background-color: white;
@@ -188,6 +190,7 @@ margin-left: auto;
 
 #goBackB {
     left: 0px;
+	float:left;
     bottom: 0px:
 }
 
@@ -704,6 +707,8 @@ hr {
     #goBackDiv {
         position: sticky;
         float: left;
+		width: 50vw;
+		background-color: white;
     }
     
     #goBackBCart {
