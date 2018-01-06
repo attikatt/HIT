@@ -81,7 +81,7 @@
       <order-list
         v-for="(order, key) in orders"
         v-if="!order.done"
-        :class = "[getActiveOrderStage(order),getStarted(order)]"
+        v-bind:class = "[getActiveOrderStage(order),getStarted(order)]"
         v-on:active-order-juice = "activeOrder['juice'] = order"
         v-on:active-order-smoothie = "activeOrder['smoothie'] = order"
         :order-id="key"

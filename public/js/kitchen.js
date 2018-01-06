@@ -74,18 +74,16 @@ var vm = new Vue({
   },
   methods: {
     getActiveOrderStage: function(order) {
-      console.log(order);
         if (this.activeOrder[order.type] == order)
           return this.activeOrderStage[order.type];
+    },
+    markDone: function (orderid) {
+      socket.emit("orderDone", orderid);
     },
     getStarted: function(order) {
       if (this.startedOrders.length > 0 ){
         if (order.orderId = this.startedOrders[0].orderId){
-          console.log("Match");
-          console.log("Orderns id");
-          console.log(order.orderId);
-          console.log("Arrayens id");
-          console.log(this.startedOrders[0].orderId);
+          console.log("getStarted functionen och order Id:" + order.orderId);
         }
       }
     },
@@ -95,7 +93,12 @@ var vm = new Vue({
     },
     paborjad: function(order,type,orderDiv,style){
       this.activeOrderStage[type] = "started";
+      console.log(order.orderId);
       this.startedOrders.push(order);
+      var orders;
+      for (orders in this.startedOrders){
+        console.log(this.startedOrders[orders]);
+      }
       document.getElementById(orderDiv).style.border = "2pt " + style + " yellow";
     },
     klar: function(order,type,orderDiv,style,button){
@@ -104,9 +107,6 @@ var vm = new Vue({
       this.activeOrder[type] = "none is chosen";
       document.getElementById(button).checked = true;
       vm.markDone(order.orderId);
-    },
-    markDone: function (orderid) {
-      socket.emit("orderDone", orderid);
     }
     }
   }
