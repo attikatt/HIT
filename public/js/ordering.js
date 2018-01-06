@@ -127,7 +127,27 @@ var vm = new Vue({
 		console.log(ingitem);
 		var ingImg = ingitem.ingredient_img;
 		var img = document.createElement("img");
-		img.appendChild(ingImg);
+		img.setAttribute("src",ingImg);
+		img.style.position ="absolute";
+		img.style.width ="100%";
+		img.style.high = "40vh";
+		img.style.marginLeft ="-10vw";
+		
+		var numStep = document.createTextNode(this.step);
+		console.log(numStep);
+		var h3 = document.createElement("h3");
+		h3.appendChild(numStep);
+		h3.style.color= "pink";
+		h3.style.backgroundColor = "blue";
+		h3.style.position ="absolute";
+		h3.style.width ="100%";
+		h3.style.high = "20vh";
+		h3.style.marginLeft ="0vw";
+		
+		var currentStep = document.getElementById("step" + this.step);
+		currentStep.appendChild(img);
+		currentStep.appendChild(h3);
+		
 		
 		
 		/*if(this.lang === 'en') {
