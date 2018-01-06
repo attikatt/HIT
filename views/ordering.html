@@ -183,7 +183,7 @@
                     </div>
         <section id="lowerSecChooseBasePiff">
             <div class="goBackDiv"> 
-             <button id="goBackB" class="goB" v-on:click="changeStep(false); removeItemFromOrder()"> <img class="arrow" src="images/backArrow.png"> </button>
+             <button id="goBackB" class="goB" v-on:click="changeStep(false); removeItemFromOrder(); filterIngType('fruit')"> <img class="arrow" src="images/backArrow.png"> </button>
             </div>
             <div class="goForwardDiv">
                 <h4 v-if =!baseShown  id="forwardInfo"> {{ uiLabels.next }} </h4>

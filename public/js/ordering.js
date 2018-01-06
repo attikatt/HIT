@@ -124,13 +124,19 @@ var vm = new Vue({
 /*------  Making the text of the chosing ingredient so it occurs in the circle-----*/
 // TRIED TO CONTACINATE... LOOK INTO MORE OBS	  
 	ingText: function (ingitem){
-		var ingredientCircle;
-		if(this.lang === 'en') {
+		console.log(ingitem);
+		var ingImg = ingitem.ingredient_img;
+		var img = document.createElement("img");
+		img.appendChild(ingImg);
+		
+		
+		/*if(this.lang === 'en') {
 			ingredientCircle = ingitem.ingredient_en;
 		}
 	  	else if(this.lang === 'sv'){
 			ingredientCircle = ingitem.ingredient_sv;	
 		}
+		
 		var currentStep = document.getElementById("step" + this.step);
 		var textIng = document.createTextNode(ingredientCircle);
 		
@@ -146,6 +152,7 @@ var vm = new Vue({
 		h5.style.margin ="-6vh";
 		h5.appendChild(textIng);
 		currentStep.appendChild(h5);
+				*/
 	},
      
       // adds drink to order
@@ -443,22 +450,7 @@ var vm = new Vue({
 			 return this.chosenSize; 
 		 }
 	 },
-	
-      /*
-	getLastOrders: function() {
-		var orderLength = this.fullOrder.length;
-        var allOrders = this.orders;
-        var allOrdersLength = Object.keys(allOrders).length;
-        var startIndex = (allOrdersLength - orderLength)+1;
-        console.log(startIndex);
-        console.log(orderLength);
-        console.log(allOrdersLength);
-		for (var i = startIndex; i <= allOrdersLength; i+=1) {
-			console.log(this.orders[i].name);
-            console.log(i);
-		}
-	  }, */
-      
+	  
       showOrderedItems: function(orderNumber) {
           var allOrders = this.orders;
           console.log(orderNumber);
