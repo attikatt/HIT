@@ -52,7 +52,7 @@ var sharedVueStuff = {
     uiLabels: {},
     ingredients: {},
     readymade: {},
-    lang: "en"
+    lang: "sv"
   },
   created: function () {
     socket.on('initialize', function (data) {

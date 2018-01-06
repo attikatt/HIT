@@ -5,7 +5,7 @@ Vue.component('ingredient', {
   props: ['item','lang','name'],
   template: ' <div v-bind:class="[{highlight: chosen}, \'ingredient\']" v-on:click="putToChosen()">\
                   <label id="ing_tit">\
-                  {{item["ingredient_sv"]}}\
+                  {{item["ingredient_" + lang]}}\
                   </label>\
                   <label id="ing_stock">\
                   {{item.stock}}\
