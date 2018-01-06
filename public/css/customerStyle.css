@@ -282,6 +282,12 @@ margin-left: auto;
     krånglar till det */
 }
 
+#forwardInfoChoose {
+  margin-left: 13vw;
+  position:absolute;
+  margin-top: 5vh;
+  font-size: 4vw;
+  }
 /* Change ingredients page */
 
 #headerChangeIngP {
