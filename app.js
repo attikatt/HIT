@@ -126,6 +126,7 @@ Data.prototype.addOrder = function (order) {
                        ingredient_id: i[k].ingredient_id,
                        change: -1});
   }
+    return orderId;
 };
 
 Data.prototype.changeLagerSaldo = function (item, saldo) {

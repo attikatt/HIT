@@ -76,6 +76,14 @@ var vm = new Vue({
     fullOrder: [],
 	allOrders: []
   },
+    
+ created: function() {
+    socket.on("orderNumber",function(orderNumber) {
+        console.log(orderNumber);
+      alert("Your ordernumber is " + orderNumber);
+    });
+  },
+    
   methods:{
       
 /*----------- Adding to order and placing order ---------- */
@@ -436,9 +444,15 @@ var vm = new Vue({
 	
 	getLastOrders: function() {
 		var orderLength = this.fullOrder.length;
-		var allOrders = this.orders; 
-		for (var i=0; i < 2; i+=1) {
-			console.log(this.orders[i]);
+        var allOrders = this.orders;
+        var allOrdersLength = Object.keys(allOrders).length;
+        var startIndex = (allOrdersLength - orderLength)+1;
+        console.log(startIndex);
+        console.log(orderLength);
+        console.log(allOrdersLength);
+		for (var i = startIndex; i <= allOrdersLength; i+=1) {
+			console.log(this.orders[i].name);
+            console.log(i);
 		}
 	  },
 /*------------- Cancelling order ---------------*/
