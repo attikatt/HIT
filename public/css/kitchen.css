@@ -358,8 +358,10 @@ li span{
 
 .smallOrderList{
 	display: grid;
+  height: 90%;
 	grid-template-columns: repeat(auto-fit, 46%);
   grid-gap: 4%;
+  overflow-y:scroll;
 
 }
 
@@ -368,6 +370,7 @@ li span{
 	border: 2px dotted white;
   border-radius: 0.5vw;
 	width:90%;
+  height: 5vw;
   padding: 1%;
   cursor: pointer;
 }
