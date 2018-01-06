@@ -62,7 +62,7 @@ var vm = new Vue({
         ingredientList.push(order.ingredients[i].ingredient_en)
       }
     },
-      takeOrderBack: function(order){
+      takeOrderBackButton: function(order){
         socket.emit("orderNotDone", order.orderId);
     },
     searchForOrder: function() {
