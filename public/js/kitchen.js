@@ -2,6 +2,7 @@
 /*global sharedVueStuff, Vue, socket */
 'use strict';
 
+/* Active orders */
 Vue.component('order-item-to-prepare',{
   props: ['uiLabels', 'order', 'orderId', 'lang'],
   template: '<div>\
@@ -22,6 +23,7 @@ Vue.component('order-item-to-prepare',{
   }
 });
 
+/* Samliga ordrar*/
 Vue.component('order-list',{
   props: ['uiLabels', 'order', 'orderId', 'lang', 'type'],
   template: '<div v-bind:class="order.type" v-on:click ="setActive()">\
@@ -41,14 +43,20 @@ Vue.component('order-list',{
            setActive: function(){
              this.active = !this.active;
              if (this.order.type === "juice"){
+               /*Meddela Vue att den är aktiv*/
                this.$emit('active-order-juice');
-               vm.activeOrderStage['juice']="not-started";
+               //vm.activeOrderStage['juice']="not-started";
+
+               /* Presentera i activa rutan */
                document.getElementById('notDone1').checked = true;
                document.getElementById('orderDiv1').style.border = "2pt solid white";
              }
              if (this.order.type === "smoothie"){
+               /*Meddela Vue att den är aktiv*/
                this.$emit('active-order-smoothie');
-               vm.activeOrderStage['smoothie']="not-started";
+               //vm.activeOrderStage['smoothie']="not-started";
+
+               /* Presentera i activa rutan */
                document.getElementById('notDone2').checked = true;
                document.getElementById('orderDiv2').style.border = "2pt dashed white";
              }
@@ -61,24 +69,34 @@ var vm = new Vue({
   mixins: [sharedVueStuff], // include stuff that is used both in the ordering system and in the kitchen
   data: {
     activeOrder: {juice: "no Juice chosen", smoothie:"no Smoothie chosen"},
-    activeOrderStage: {juice: "not-started", smoothie: "not-started" }
+    activeOrderStage: {juice: "not-started", smoothie: "not-started" },
+    startedOrders: []
   },
   methods: {
     getActiveOrderStage: function(order) {
+      console.log(order);
         if (this.activeOrder[order.type] == order)
           return this.activeOrderStage[order.type];
     },
-    markDone: function (orderid) {
-      socket.emit("orderDone", orderid);
+    getStarted: function(order) {
+      if (this.startedOrders.length > 0 ){
+        if (order.orderId = this.startedOrders[0].orderId){
+          console.log("Match");
+          console.log("Orderns id");
+          console.log(order.orderId);
+          console.log("Arrayens id");
+          console.log(this.startedOrders[0].orderId);
+        }
+      }
     },
     ejPaborjad: function (type,orderDiv,style){
       this.activeOrderStage[type] = "not-started";
       document.getElementById(orderDiv).style.border = "2pt " + style + " white";
     },
-    paborjad: function(type,orderDiv,style){
+    paborjad: function(order,type,orderDiv,style){
       this.activeOrderStage[type] = "started";
+      this.startedOrders.push(order);
       document.getElementById(orderDiv).style.border = "2pt " + style + " yellow";
-      console.log(type);
     },
     klar: function(order,type,orderDiv,style,button){
       document.getElementById(orderDiv).style.border = "2pt " + style + " white";
@@ -86,11 +104,15 @@ var vm = new Vue({
       this.activeOrder[type] = "none is chosen";
       document.getElementById(button).checked = true;
       vm.markDone(order.orderId);
-      }
+    },
+    markDone: function (orderid) {
+      socket.emit("orderDone", orderid);
+    }
     }
   }
 );
 
+/* Klocka*/
 function updateClock(){
 var now = new Date(),
     hours = now.getHours(),
@@ -102,7 +124,7 @@ var now = new Date(),
     if (seconds < 10) {
         seconds = "0" + seconds
     };
-document.getElementById('clock').innerHTML = [hours,minutes,seconds].join(':');
-setTimeout(updateClock,1000);
+    document.getElementById('clock').innerHTML = Object.keys(vm.orders).length + " ordrar i kön"+ " " + [hours,minutes,seconds].join(':');
+    setTimeout(updateClock,1000);
 }
  updateClock();
