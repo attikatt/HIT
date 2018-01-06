@@ -166,7 +166,7 @@ margin-left: auto;
     display: block;
     line-height: normal;
     position: fixed;
-	width;50vw;
+	width:50vw;
     bottom: 0px;
     right: 0px;
     background-color: white;
@@ -196,6 +196,7 @@ margin-left: auto;
 
 #goForwardB {
   right: 0;
+  float:right;
 }
 
 .arrow {
@@ -343,6 +344,13 @@ margin-left: auto;
     max-height: 10vw;
 }
 
+#forwardinfoSize {
+	margin-left: 0vw;
+	position:absolute;
+	margin-top: 5vh;
+	font-size: 4vw;
+}
+
 /* Choose Type page */
 #centerSecChooseTypeP {
     margin-top: 20vh;
@@ -378,6 +386,7 @@ margin-left: auto;
     height: 33vh;
     vertical-align: middle;
 }
+
 
 /* Cart Page*/
 
