@@ -312,7 +312,7 @@
 
           		<div>
                     <button id="goBackBCart" v-on:click = "showPage('showSize');removeDrinkFromOrder()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
-                    <button id="payB" v-on:click="showPage('showThanks');placeOrder();getLastOrders()" class="goB"> {{ uiLabels.pay }}</button> 
+                    <button id="payB" v-on:click="showPage('showThanks');placeOrder()" class="goB"> {{ uiLabels.pay }}</button> 
           		</div>		
 			</div>
 
@@ -376,17 +376,7 @@
 		<section id="centerSecStartP">
 			<div>
 				<h1 class="lowerCaseHeadline"> {{ uiLabels.thankOrder }}</h1>
-				<h4> {{ }} </h4>
-			</div>
-			<item-and-id 
-			v-for = "(order,key) in orders"
-			:key = "key"
-			:ui-labels="uiLabels"
-            :lang="lang"
-            :order-id="key"
-            :order="order">
-			</item-and-id>
-			<div>
+                <div id = "orderedItems"> </div> 
 			</div>
 			<div id="newOrderDiv">
 				<button id="newOrderB" v-on:click = "emptyOrder(); showPage('showStart')"> {{ uiLabels.newOrder }}</button>
