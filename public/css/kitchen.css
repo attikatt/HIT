@@ -180,7 +180,10 @@ li span{
 }
 
 #antalIngredienser{
-  text-align: right;
+  position:inherit;
+  float: right;
+  margin-right: 1vw;
+  margin-top: 1.7vh;
   color: white;
   font-size: 2vw;
 }

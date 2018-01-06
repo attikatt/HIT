@@ -192,6 +192,15 @@ li span{
   margin:0;
 }
 
+#antalIngredienser{
+  position:inherit;
+  float: right;
+  margin-right: 1vw;
+  margin-top: 1.7vh;
+  color: white;
+  font-size: 2vw;
+}
+
 #orderSize{
   text-transform: uppercase;
   font-size: 1.5vw;
