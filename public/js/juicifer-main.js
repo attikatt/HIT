@@ -9,31 +9,40 @@ Vue.component('order-item', {
   props: ['uiLabels', 'order', 'orderId', 'lang'],
   template: '<div id="section"><p class="headOrderInfo">#{{orderId}} {{order.name}}</p> <p id="orderSize"> {{order.size}}</p>\
   </br> <hr> <ul> <li v-for="item in order.ingredients" :class="item.ingredient_color">\
-  <span>{{item["ingredient_" + lang]}}</span> <span id="antalIngredienser"> {{getNum(order.size,item)}}</span></li></ul></div>',
+  <span>{{item["ingredient_" + lang]}}</span> <span id="antalIngredienser"> {{getNum(order.size,item,order.name,order.ingredients)}}</span></li></ul></div>',
   methods: {
-    getNum: function(size,order){
+    getNum: function(size,order,orderName,ingredientsList){
       if (size == 'small'){
-        if (order.juice_base || order.smoothie_base){
+        if (((order.juice_base && (orderName==="Egen smoothie" || orderName ==="Egen juice")) || (order.smoothie_base && (orderName==="Egen smoothie" || orderName ==="Egen juice"))) && ingredientsList.indexOf(order) === 0 ){
           return '2'
         }
-        else {
+        else if (order.ingredient_category != "piff"){
           return '1'
+        }
+        else{
+          return ''
         }
       }
       if (size == 'medium'){
-        if (order.juice_base || order.smoothie_base){
+        if (((order.juice_base && (orderName==="Egen smoothie" || orderName ==="Egen juice")) || (order.smoothie_base && (orderName==="Egen smoothie" || orderName ==="Egen juice"))) && ingredientsList.indexOf(order) === 0 ){
           return '4'
         }
-        else {
+        else if (order.ingredient_category != "piff"){
           return '2'
+        }
+        else{
+          return ''
         }
       }
       if (size == 'large'){
-        if (order.juice_base || order.smoothie_base){
+        if (((order.juice_base && (orderName==="Egen smoothie" || orderName ==="Egen juice")) || (order.smoothie_base && (orderName==="Egen smoothie" || orderName ==="Egen juice"))) && ingredientsList.indexOf(order) === 0 ){
           return '6'
         }
-        else {
+        else if (order.ingredient_category != "piff"){
           return '3'
+        }
+        else{
+          return ''
         }
       }
     }
