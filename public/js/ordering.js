@@ -132,21 +132,22 @@ var vm = new Vue({
 		img.style.width ="100%";
 		img.style.high = "40vh";
 		img.style.marginLeft ="-10vw";
+		img.style.overflow ="hidden";
 		
 		var numStep = document.createTextNode(this.step);
 		console.log(numStep);
-		var h3 = document.createElement("h3");
-		h3.appendChild(numStep);
-		h3.style.color= "pink";
-		h3.style.backgroundColor = "blue";
-		h3.style.position ="absolute";
-		h3.style.width ="100%";
-		h3.style.high = "20vh";
-		h3.style.marginLeft ="0vw";
+		var p = document.createElement("p");
+		p.appendChild(numStep);
+		p.style.color= "black";
+		p.style.backgroundColor = "transparent";
+		p.style.width ="100%";
+		p.style.marginLeft ="0vw";
+		p.style.marginTop ="-10vh";
+		p.style.position ="absolute";
 		
 		var currentStep = document.getElementById("step" + this.step);
 		currentStep.appendChild(img);
-		currentStep.appendChild(h3);
+		currentStep.appendChild(p);
 		
 		
 		
