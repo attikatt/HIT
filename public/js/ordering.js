@@ -101,14 +101,14 @@ var vm = new Vue({
         	this.volume += +item.vol_smoothie;
 			// if the drink is not one of juicifers, making the ingredient panel 
 			if(!this.drinkInfoShown){
-				vm.ingText(item);
+				vm.showStepImg(item);
 			}
 		}
 		else if(this.type === "juice"){
 			this.volume += +item.vol_juice;
 			// if the drink is not one of juicifers, making the ingredient panel 
 			if(!this.drinkInfoShown){
-				vm.ingText(item);
+				vm.showStepImg(item);
 			}
       }
     },
@@ -123,9 +123,9 @@ var vm = new Vue({
 
 /*------  Making the text of the chosing ingredient so it occurs in the circle-----*/
 // TRIED TO CONTACINATE... LOOK INTO MORE OBS	  
-	ingText: function (ingitem){
-		console.log(ingitem);
-		var ingImg = ingitem.ingredient_img;
+	showStepImg: function (ingItem){
+		console.log(ingItem);
+		var ingImg = ingItem.ingredient_img;
 		var img = document.createElement("img");
 		img.setAttribute("src",ingImg);
 		img.style.position ="absolute";
