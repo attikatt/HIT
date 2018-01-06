@@ -46,24 +46,20 @@ setTimeout(updateClock,1000);
      ];
      /*--- Initiera contentArr---*/
      for (var i = 0; i < this.ingredients.length; i ++){
-       //var amount = "antal-" + this.ingredients[i].ingredient_sv;
        contentArr.push([this.ingredients[i].ingredient_sv, 0]);
      }
      /*--- Gå igenom ordrar, dess ingredienser och jämför---*/
      for (var i = 1; i < Object.keys(this.orders).length +1; i += 1) { //loopa över alla ordrar
-      // console.log(this.orders[i].ingredients.length);
        for (var j = 0; j < this.orders[i].ingredients.length; j++){ //loopa över varje orders ingredienser
-        // console.log(this.orders[i].ingredients[j].ingredient_sv)
-         //var ingredientOfIntrest = this.orders[i].ingredients[j].ingredient_sv;
          for (var k = 1; k < contentArr.length; k++){ //loopa över alla ingredienser (för att jämföra)
-          // console.log(contentArr[k][0]);
            if (contentArr[k][0] == this.orders[i].ingredients[j].ingredient_sv){
              contentArr[k][1] ++;
            }
          }
        }
       }
-      console.log(contentArr);
+      console.log(contentArr.sort());
+      /*---Rensa ut ingredienser som inte är beställda tillräckligt ofta--*/
       var m = 1;
       while (m < contentArr.length){
         if(contentArr[m][1] < 2){
@@ -101,7 +97,7 @@ function drawChart() {
     colors: ['hotpink', 'limegreen', 'purple', 'yellow','orange'],
     'backgroundColor':'transparent',
     'titleTextStyle': {color:'white', fontName: 'champagne__limousinesregular', fontSize:'20', bold:'false'},
-    legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16', maxLines: 5}},
+    legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16'}},
     pieResidueSliceLabel: 'Övriga',
     pieResidueSliceColor: 'darkgreen',
     sliceVisibilityThreshold: 6/100
