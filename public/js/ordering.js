@@ -34,12 +34,14 @@ Vue.component('ingredient', {
     }
   }
 });
- //Hämtar ordeing number
 
+//Hämtar ordeing number
+
+/* Ska tas bort om ordernr-visning funkar
 Vue.component('item-and-id', {
-  props: ['uiLabels', 'order', 'orderId', 'lang','name'],
-  template: '<div id="yourOrderDiv"><h2 v-bind:class="order.name" class="lowerCaseHeadline">{{order.name}} #{{orderId}}</h2></br></div>'
-});
+  props: ['uiLabels', 'order', 'orderId', 'lang'],
+  template: '<div id="yourOrderDiv"><h2 v-bind:class="order.name" class="lowerCaseHeadline"> #{{orderId}}</h2></br></div>'
+}); */
 
 
 var vm = new Vue({
@@ -73,8 +75,16 @@ var vm = new Vue({
     chosenSize: 'medium',
 	changeFromId: 0,
     //all drinks in current order
-    fullOrder: []
+    fullOrder: [],
+	allOrders: []
   },
+    
+ created: function() {
+    socket.on("orderNumber",function(orderNumber) {
+        vm.showOrderedItems(orderNumber);
+    });
+  },
+    
   methods:{
       
 /*----------- Adding to order and placing order ---------- */
@@ -161,16 +171,17 @@ var vm = new Vue({
             size: this.chosenSize,
             name: name,
         };
-        //Add drink to the full order
+        //Add drink to the full order 
         this.fullOrder.push(order); 
     },
 	  
 	  //removes the drink from order
-	removeDrinkFromOrder: function () {
-	  this.fullOrder.pop();	
+	removeDrinkFromOrder: function (drink) {
+	  var index = this.fullOrder.indexOf(drink);
+	  this.fullOrder.splice(index,1);
 	},  
+	  
     placeOrder: function () {
-
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
         for (var i = 0; i < this.fullOrder.length; i += 1) {
             // sending each drink in full order to kitchen
@@ -201,7 +212,7 @@ var vm = new Vue({
       var ingredientList = "", tempIngredient;
       for (var i = 0; i < idArr.length ; i += 1) {
         tempIngredient = this.getIngredientById(idArr[i]);
-        ingredientList += tempIngredient["ingredient_" + this.lang] +", ";
+        ingredientList += tempIngredient["ingredient_" + this.lang] + ", ";
       }
       return ingredientList;
     },
@@ -258,7 +269,6 @@ var vm = new Vue({
         }
         else if(page === "showStartAgain"){
             this.startAgainShown = true;
-            this.step = 1;
             // set all drink order counters to 0.
             this.type = '';
             this.chosenIngredients = [];
@@ -396,11 +406,6 @@ var vm = new Vue({
     // NOTE: Fix so when you go back, the property will not be null and the marked button is shown not the medium  
     setSize: function (size) {
 		this.chosenSize = size;
-        var cups = document.getElementsByClassName("cup");
-        for (var i = 0; i < cups.length; i++) {
-            cups[i].style.backgroundColor = "white";  
-        }
-        document.getElementById(size+"B").style.backgroundColor = "rgb(255,170,100)";
     },
 	  
 	 getPrice: function(size) {
@@ -437,6 +442,42 @@ var vm = new Vue({
 			 return this.chosenSize; 
 		 }
 	 },
+	
+      /*
+	getLastOrders: function() {
+		var orderLength = this.fullOrder.length;
+        var allOrders = this.orders;
+        var allOrdersLength = Object.keys(allOrders).length;
+        var startIndex = (allOrdersLength - orderLength)+1;
+        console.log(startIndex);
+        console.log(orderLength);
+        console.log(allOrdersLength);
+		for (var i = startIndex; i <= allOrdersLength; i+=1) {
+			console.log(this.orders[i].name);
+            console.log(i);
+		}
+	  }, */
+      
+      showOrderedItems: function(orderNumber) {
+          var allOrders = this.orders;
+          console.log(allOrders);
+          console.log(this.fullOrder);
+          var h4 = document.createElement("h4");
+          var nodeRef = document.getElementById("orderedItems");
+          
+          var index = Object.keys(allOrders).map(function(e) { return e.orderId}).indexOf(orderNumber);
+          console.log(index);
+          
+          var name = Object.values(allOrders).name;
+          console.log(name);
+          
+          var text = document.createTextNode(" #" + orderNumber);
+          var br = document.createElement("br");
+          h4.appendChild(text);
+          nodeRef.appendChild(h4);
+          nodeRef.appendChild(br);
+          
+      },
 /*------------- Cancelling order ---------------*/
     emptyOrder: function () {
         this.fullOrder = [];
