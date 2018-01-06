@@ -270,6 +270,7 @@ var vm = new Vue({
         else if(page === "showStartAgain"){
             this.startAgainShown = true;
             // set all drink order counters to 0.
+            this.step=1;
             this.type = '';
             this.chosenIngredients = [];
         }
