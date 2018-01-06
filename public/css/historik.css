@@ -27,20 +27,20 @@ body{
   background-color: rgb(64,64,64);
 }
 
+/*-------------Storlek på alla olika divs--------------*/
 #mainDiv{
-  height: 97vh;
-  width: 99vw;
   text-align: center;
   color: white;
 }
 
 #historikHeader{
   font-size: 4vw;
+  margin: 0;
+  margin-bottom: 2vh;
 }
 
 #rightDiv{
   width: 65vw;
-  height: 95vh;
   float: right;
 }
 
@@ -51,7 +51,6 @@ body{
 
 #leftDiv{
   width: 30vw;
-  height: 95vh;
   float: left;
 }
 
@@ -63,18 +62,22 @@ body{
   height: 15%;
 }
 
-#homeButton{
-  float: left;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  border: 0pt;
+/* ------------- BUTTONS ----------------*/
+
+.button{
+  background-color:transparent;
   cursor: pointer;
   overflow: hidden;
-
+  border: 0pt;
 }
 
-#takeOrderBack{
+#homeButton{
+  float: left;
+}
+
+#takeOrderBackButton{
   font-family: 'champagne__limousinesregular', arial, sans-serif;
+  background: rgb(105,105,105);
   border: 1px solid white;
   border-radius: 1vh;
   font-size: 2vh;
@@ -84,24 +87,20 @@ body{
   position: absolute;
   left: 5vw;
   bottom: 6vh;
-  background: rgb(105,105,105);
-  cursor: pointer;
 }
 
 #searchButton{
   float: right;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  border: 0pt;
-  cursor: pointer;
-  overflow: hidden;
 }
 
+/*-------------Listan med alla ordrar------------*/
 .smallOrderList{
 	display: grid;
 	grid-template-columns: repeat(auto-fit, 25%);
   grid-gap: 10%;
   margin-right: 2vw;
+  height: 76vh;
+  overflow-y: scroll;
 }
 
 .smoothie{
@@ -123,91 +122,62 @@ body{
 }
 
 /*-------------------SÄTTER FÄRG PÅ INGREDIENSRUTORNA----------------*/
-.green {
+.colors{
   list-style-type: square;
   text-align: left;
-  color: green;
   font-size: 3vw;
+}
+
+.green {
+  color: green;
 }
 
 .brown {
-  list-style-type: square;
-  text-align: left;
   color: brown;
-  font-size: 3vw;
 }
 
 .white {
-  list-style-type: square;
-  text-align: left;
   color: white;
-  font-size: 3vw;
 }
 
 .yellow {
-  list-style-type: square;
-  text-align: left;
   color: yellow;
-  font-size: 3vw;
 }
 
 .red {
-  list-style-type: square;
-  text-align: left;
   color: red;
-  font-size: 3vw;
 }
 
 .blue {
-  list-style-type: square;
-  text-align: left;
   color: blue;
-  font-size: 3vw;
 }
 
 .orange {
-  list-style-type: square;
-  text-align: left;
   color: orange;
-  font-size: 3vw;
 }
 
 .black {
-  list-style-type: square;
-  text-align: left;
   color: black;
-  font-size: 3vw;
 }
 
 .pink {
-  list-style-type: square;
-  text-align: left;
   color: pink;
-  font-size: 3vw;
 }
 
 .purple {
-  list-style-type: square;
-  text-align: left;
   color: purple;
-  font-size: 3vw;
 }
 
 .lightblue {
-  list-style-type: square;
-  text-align: left;
   color: lightblue;
-  font-size: 3vw;
 }
 
 .green {
-  list-style-type: square;
-  text-align: left;
   color: green;
-  font-size: 3vw;
 }
 
 /*-----------Färglägger texten till vit i ingredienslistan-------------*/
+/*---------------------Diven med orderinformationen--------------------*/
 li span{
   color:white;
   font-size: 2vw;
@@ -217,9 +187,13 @@ li span{
 .headOrderInfo{
   text-transform: capitalize;
   font-size: 2.5vw;
-  margin-top: 0.5vh;
-  margin-bottom: 2vh;
-  position: center;
+  margin:0;
+}
+
+#orderSize{
+  text-transform: uppercase;
+  font-size: 1.5vw;
+  margin: 0;
 }
 
 hr{
@@ -227,13 +201,14 @@ hr{
   margin-right: 1vw;
 }
 
+/*------Klockan--------*/
 #clock{
     font-size: 4vh;
     float: right;
     margin-bottom: 0;
-    margin-top: 60vh;
 }
 
+/*------------ Popup med sifferconsolen-----------*/
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -288,21 +263,18 @@ hr{
 }
 
 #keyboard {
-width: 80%;
-height: auto;
-float:center;
+width: 20.5vw;
 display: inline-block;
-margin: 7%;
 margin-top: 0%;
 padding: 0;
 list-style: none;
+float:center;
 }
 
 #noSearchMatch {
   height: 3vh;
   font-size: 2.5vh;
 }
-
 
 .clearl {
     clear: left;
@@ -312,8 +284,8 @@ list-style: none;
 .letterButton{
     font-family: 'champagne__limousinesregular', arial, sans-serif;
     float: center;
-    margin: 0 5px 5px 0;
-    width: 25%;
+    margin: 0 0px 5px 0;
+    width: 30%;
     height: 10%;
     font-size: 24px;
     line-height: 60px;
@@ -321,17 +293,14 @@ list-style: none;
     border: 1px solid rgb(255,255,255);
     border-radius: 5px;
     background-color:  rgb(155,155,155);
-    background-repeat: no-repeat;
-    border: 0pt;
     color: white;
-    cursor: pointer;
-    overflow: hidden;
 }
 
 .letterButtonEnter{
     font-family: 'champagne__limousinesregular', arial, sans-serif;
     float: center;
     margin-right: 0.8vw;
+    margin-top: 0.5vh;
     font-size: 24px;
     line-height: 60px;
     text-align: center;
@@ -342,7 +311,9 @@ list-style: none;
     border: 0pt;
     cursor: pointer;
     overflow: hidden;
-    width: 80.5%;
+    width: 19vw;
+    margin-left: auto;
+    margin-right:auto;
 }
 
 .enter{
@@ -355,17 +326,17 @@ list-style: none;
 }
 
 #changeSaldoConsole{
-    float: center;
-    text-align: center;
     border: 1px solid rgb(255,255,255);
     border-radius: 5px;
     background-color: rgb(255,255,255,0.4);
-    width: 63%;
+    width:19vw;
     height: 15%;
-    margin: 19pt;
-    margin-left: 5vw;
-    margin-bottom: 5pt;
+    margin-left: auto;
+    margin-right:auto;
+    margin-bottom: 1vh;
 }
+
+/*---------Anpassar efter skärmstorlek-----------*/
 
 @media (max-width:720px) {
 	.smallOrderList {
