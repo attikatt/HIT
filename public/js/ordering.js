@@ -36,10 +36,12 @@ Vue.component('ingredient', {
 });
 
 //Hämtar ordeing number
+
+/* Ska tas bort om ordernr-visning funkar
 Vue.component('item-and-id', {
   props: ['uiLabels', 'order', 'orderId', 'lang'],
   template: '<div id="yourOrderDiv"><h2 v-bind:class="order.name" class="lowerCaseHeadline"> #{{orderId}}</h2></br></div>'
-});
+}); */
 
 
 var vm = new Vue({
@@ -79,8 +81,7 @@ var vm = new Vue({
     
  created: function() {
     socket.on("orderNumber",function(orderNumber) {
-        console.log(orderNumber);
-      alert("Your ordernumber is " + orderNumber);
+        vm.showOrderedItems(orderNumber);
     });
   },
     
@@ -269,6 +270,7 @@ var vm = new Vue({
         else if(page === "showStartAgain"){
             this.startAgainShown = true;
             // set all drink order counters to 0.
+            this.step=1;
             this.type = '';
             this.chosenIngredients = [];
         }
@@ -442,6 +444,7 @@ var vm = new Vue({
 		 }
 	 },
 	
+      /*
 	getLastOrders: function() {
 		var orderLength = this.fullOrder.length;
         var allOrders = this.orders;
@@ -454,7 +457,28 @@ var vm = new Vue({
 			console.log(this.orders[i].name);
             console.log(i);
 		}
-	  },
+	  }, */
+      
+      showOrderedItems: function(orderNumber) {
+          var allOrders = this.orders;
+          console.log(orderNumber);
+          //console.log(this.fullOrder);
+          var h4 = document.createElement("h4");
+          var nodeRef = document.getElementById("orderedItems");
+          
+          //var index = Object.keys(allOrders).map(function(e) { return e.orderId}).indexOf(orderNumber);
+          //console.log(index);
+          
+          var name = Object.values(allOrders).name;
+          //console.log(name);
+          
+          var text = document.createTextNode(orderNumber[1]+" #" + orderNumber[0]);
+          var br = document.createElement("br");
+          h4.appendChild(text);
+          nodeRef.appendChild(h4);
+          nodeRef.appendChild(br);
+          
+      },
 /*------------- Cancelling order ---------------*/
     emptyOrder: function () {
         this.fullOrder = [];

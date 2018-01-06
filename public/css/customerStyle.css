@@ -157,6 +157,7 @@ margin-left: auto;
     display: block;
     line-height: normal;
     position: fixed;
+	width:50vw;
     bottom: 0px;
     background-color: white;
 }
@@ -165,6 +166,8 @@ margin-left: auto;
     display: block;
     line-height: normal;
     position: fixed;
+	width:50vw;
+	height:14vh;
     bottom: 0px;
     right: 0px;
     background-color: white;
@@ -188,11 +191,13 @@ margin-left: auto;
 
 #goBackB {
     left: 0px;
+	float:left;
     bottom: 0px:
 }
 
 #goForwardB {
   right: 0;
+  float:right;
 }
 
 .arrow {
@@ -264,9 +269,15 @@ margin-left: auto;
 
 
 #forwardInfo {
+  margin-left: 18vw;
+  position:absolute;
+  margin-top: 5vh;
+  font-size: 4vw;
+  /*margin-left: 0vw;
 	vertical-align: middle;
 	display: inline-block;
-	margin-top: -35%;
+	margin-top: 5vh;
+  font-size: 4vw;
     /* want to vertical align: middle, baseline
     krånglar till det */
 }
@@ -340,6 +351,13 @@ margin-left: auto;
     max-height: 10vw;
 }
 
+#forwardinfoSize {
+	margin-left: 0vw;
+	position:absolute;
+	margin-top: 5vh;
+	font-size: 4vw;
+}
+
 /* Choose Type page */
 #centerSecChooseTypeP {
     margin-top: 20vh;
@@ -375,6 +393,7 @@ margin-left: auto;
     height: 33vh;
     vertical-align: middle;
 }
+
 
 /* Cart Page*/
 
@@ -704,6 +723,8 @@ hr {
     #goBackDiv {
         position: sticky;
         float: left;
+		width: 50vw;
+		background-color: white;
     }
     
     #goBackBCart {
