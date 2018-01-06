@@ -44,7 +44,11 @@ h2 {
 
 #topDiv{
     height: 8vw;
+    margin:0;
     font-size: 2vw;
+}
+h1{
+  margin-top:0;
 }
 
 #homeButton{
@@ -75,11 +79,15 @@ span {
   width: 28%;
 }
 
+ul{
+  margin-left:1vw;
+}
+
 #orderDiv1{
     float:left;
     border: 2px solid white;
     border-radius: 1vw;
-    height: 70vh;
+    height: 75vh;
     margin: 2%;
     width: 45%;
 }
@@ -88,7 +96,7 @@ span {
     float:right;
     border: 2px dashed white;
     border-radius: 1vw;
-    height: 70vh;
+    height: 75vh;
     margin: 2%;
     width: 45%;
 }

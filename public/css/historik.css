@@ -107,7 +107,8 @@ body{
   margin: 4%;
 	border: 2px dotted white;
   border-radius: 0.5vw;
-	width:90%;
+	width:30vh;
+  height: 5vw;
   padding: 1%;
   cursor: pointer;
 }
@@ -116,7 +117,8 @@ body{
   margin: 4%;
 	border: 2px solid white;
   border-radius: 0.5vw;
-	width:90%;
+  width:30vh;
+  height: 5vw;
   padding: 1%;
   cursor: pointer;
 }
