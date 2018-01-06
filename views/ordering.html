@@ -186,8 +186,8 @@
              <button id="goBackB" class="goB" v-on:click="changeStep(false); removeItemFromOrder()"> <img class="arrow" src="images/backArrow.png"> </button>
             </div>
             <div class="goForwardDiv">
-                <h4 id="forwardInfo"> {{ uiLabels.next }} </h4>
-              <button id="goForwardB" class="goB" v-on:click="changeStep(true)"> <img class="arrow" src="images/forwardArrow.png"> </button>
+                <h4 v-if =!baseShown  id="forwardInfo"> {{ uiLabels.next }} </h4>
+              <button v-if =!baseShown id="goForwardB" class="goB" v-on:click="changeStep(true)"> <img class="arrow" src="images/forwardArrow.png"> </button>
           </div>
         </section>
       </div>
