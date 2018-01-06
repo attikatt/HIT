@@ -35,29 +35,43 @@ setTimeout(updateClock,1000);
        }
      }
      return ([
-       ['Type of drink', 'Amount ordered'],
+       ['Drinktyp', 'Antal beställda'],
        ['Smoothie',     this.amountSmoothies],
        ['Juice',      this.amountJuices]
      ])
    },
    getIngredientData: function (){
      var contentArr = [
-       ['Ingredient', 'Amount ordered'],
-       ['Pear',     5],
-       ['Orange',   2]
+       ['Ingrediens', 'Antal beställda']
      ];
-  /*   for (var i = 1; i < 2; i += 1) {
-       //console.log(this.orders[i].ingredients)
-       //console.log(contentArr[i]);
-       //console.log("Order "+i);
-       console.log(this.orders[i].ingredients.length);
-      for(var j =0; j < (this.orders[i].ingredients.length); j+=1){
-            //console.log(this.orders[i].ingredients[j].ingredient_en);
-         for (var i = 0; i< contentArr.length; i+=1){
-           //console.log(contentArr[i]);
-         }
+     /*--- Initiera contentArr---*/
+     for (var i = 0; i < this.ingredients.length; i ++){
+       //var amount = "antal-" + this.ingredients[i].ingredient_sv;
+       contentArr.push([this.ingredients[i].ingredient_sv, 0]);
      }
-   }*/
+     /*--- Gå igenom ordrar, dess ingredienser och jämför---*/
+     for (var i = 1; i < Object.keys(this.orders).length +1; i += 1) { //loopa över alla ordrar
+      // console.log(this.orders[i].ingredients.length);
+       for (var j = 0; j < this.orders[i].ingredients.length; j++){ //loopa över varje orders ingredienser
+        // console.log(this.orders[i].ingredients[j].ingredient_sv)
+         //var ingredientOfIntrest = this.orders[i].ingredients[j].ingredient_sv;
+         for (var k = 1; k < contentArr.length; k++){ //loopa över alla ingredienser (för att jämföra)
+          // console.log(contentArr[k][0]);
+           if (contentArr[k][0] == this.orders[i].ingredients[j].ingredient_sv){
+             contentArr[k][1] ++;
+           }
+         }
+       }
+      }
+      console.log(contentArr);
+      var m = 1;
+      while (m < contentArr.length){
+        if(contentArr[m][1] < 2){
+          console.log("Remove");
+          contentArr.splice(m,1);
+        } else {m++;}
+      }
+      console.log(contentArr);
      return (contentArr)
    }
  }
@@ -72,7 +86,7 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
   var orderData = google.visualization.arrayToDataTable(dataVm.getOrderData());
   var orderOptions = {
-    title: 'Distribution of orders',
+    title: 'Fördelning av beställningar',
     pieHole: 0.4,
     colors: ['blue', 'green'],
     'backgroundColor':'transparent',
@@ -82,12 +96,15 @@ function drawChart() {
 
   var ingredientData = google.visualization.arrayToDataTable(dataVm.getIngredientData());
   var ingredientOptions = {
-    title: 'Distribution of ordered ingredients',
+    title: 'Fördelning av beställda ingredienser',
     pieHole: 0.4,
     colors: ['hotpink', 'limegreen', 'purple', 'yellow','orange'],
     'backgroundColor':'transparent',
     'titleTextStyle': {color:'white', fontName: 'champagne__limousinesregular', fontSize:'20', bold:'false'},
-    legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16'}}
+    legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16', maxLines: 5}},
+    pieResidueSliceLabel: 'Övriga',
+    pieResidueSliceColor: 'darkgreen',
+    sliceVisibilityThreshold: 6/100
   };
 
 
@@ -97,5 +114,5 @@ function drawChart() {
   var chart2 = new google.visualization.PieChart(document.getElementById('donutchartIngred'));
   chart2.draw(ingredientData, ingredientOptions);
 
-  setTimeout(drawChart,1000); //här regleras hur ofta grafen uppdateras, kan behöva sänkas om många klienter
+  //setTimeout(drawChart,1000); //här regleras hur ofta grafen uppdateras, kan behöva sänkas om många klienter
 }
