@@ -36,7 +36,7 @@
               <span class="checkmark"></span>
             </label>
             <label class="containerP">PÅBÖRJA
-              <input type="radio" name="radio1" v-on:Click="paborjad('juice','orderDiv1', 'solid')">
+              <input type="radio" name="radio1" v-on:Click="paborjad(activeOrder['juice'],'juice','orderDiv1', 'solid')">
               <span class="checkmark"></span>
             </label>
             <label class="containerK">KLAR
@@ -65,7 +65,7 @@
             <span class="checkmark"></span>
           </label>
           <label class="containerP">PÅBÖRJA
-            <input type="radio" name="radio2" v-on:Click="paborjad('smoothie','orderDiv2', 'dashed')">
+            <input type="radio" name="radio2" v-on:Click="paborjad(activeOrder['smoothie'],'smoothie','orderDiv2', 'dashed')">
             <span class="checkmark"></span>
           </label>
           <label class="containerK">KLAR
@@ -77,11 +77,11 @@
     <!---All undone orders-->
   <div id="rightDiv">
   <div id="orders">
-    <div class="smallOrderList">
+    <div class="smallOrderList"><!--lägg till ny klass-->
       <order-list
         v-for="(order, key) in orders"
         v-if="!order.done"
-        :class="getActiveOrderStage(order)"
+        :class = "[getActiveOrderStage(order),getStarted(order)]"
         v-on:active-order-juice = "activeOrder['juice'] = order"
         v-on:active-order-smoothie = "activeOrder['smoothie'] = order"
         :order-id="key"

@@ -114,6 +114,7 @@ Data.prototype.addOrder = function (order) {
   this.orders[orderId] = order.order;
   this.orders[orderId].orderId = orderId;
   this.orders[orderId].done = false;
+  var name = this.orders[orderId].name;
   var transactions = this.data[transactionsDataName],
     //find out the currently highest transaction id
     transId =  transactions[transactions.length - 1].transaction_id,
@@ -126,7 +127,7 @@ Data.prototype.addOrder = function (order) {
                        ingredient_id: i[k].ingredient_id,
                        change: -1});
   }
-    return orderId;
+    return [orderId, name];
 };
 
 Data.prototype.changeLagerSaldo = function (item, saldo) {
