@@ -492,6 +492,17 @@ var vm = new Vue({
           nodeRef.appendChild(br);
           
       },
+      
+      isDrinkAvailable: function (drinkIngs) {
+          console.log(drinkIngs);
+          for (var i = 0; i < drinkIngs.length; i++) {
+              var item = this.getIngredientById(drinkIngs[i]);
+              if (item.stock < 5) {
+                  return false;
+              }
+          }
+          return true;
+      },
 /*------------- Cancelling order ---------------*/
     emptyOrder: function () {
         this.fullOrder = [];
