@@ -44,7 +44,11 @@ h2 {
 
 #topDiv{
     height: 8vw;
+    margin:0;
     font-size: 2vw;
+}
+h1{
+  margin-top:0;
 }
 
 #homeButton{
@@ -75,11 +79,15 @@ span {
   width: 28%;
 }
 
+ul{
+  margin-left:1vw;
+}
+
 #orderDiv1{
     float:left;
     border: 2px solid white;
     border-radius: 1vw;
-    height: 70vh;
+    height: 75vh;
     margin: 2%;
     width: 45%;
 }
@@ -88,7 +96,7 @@ span {
     float:right;
     border: 2px dashed white;
     border-radius: 1vw;
-    height: 70vh;
+    height: 75vh;
     margin: 2%;
     width: 45%;
 }
@@ -111,88 +119,58 @@ hr{
 }
 
 /*-------------------SÄTTER FÄRG PÅ INGREDIENSRUTORNA----------------*/
-.green {
+.colors{
   list-style-type: square;
   text-align: left;
-  color: green;
   font-size: 3vw;
+}
+
+.green {
+  color: green;
 }
 
 .brown {
-  list-style-type: square;
-  text-align: left;
   color: brown;
-  font-size: 3vw;
 }
 
 .white {
-  list-style-type: square;
-  text-align: left;
   color: white;
-  font-size: 3vw;
 }
 
 .yellow {
-  list-style-type: square;
-  text-align: left;
   color: yellow;
-  font-size: 3vw;
 }
 
 .red {
-  list-style-type: square;
-  text-align: left;
   color: red;
-  font-size: 3vw;
 }
 
 .blue {
-  list-style-type: square;
-  text-align: left;
   color: blue;
-  font-size: 3vw;
 }
 
 .orange {
-  list-style-type: square;
-  text-align: left;
   color: orange;
-  font-size: 3vw;
 }
 
 .black {
-  list-style-type: square;
-  text-align: left;
   color: black;
-  font-size: 3vw;
 }
 
 .pink {
-  list-style-type: square;
-  text-align: left;
   color: pink;
-  font-size: 3vw;
 }
 
 .purple {
-  list-style-type: square;
-  text-align: left;
   color: purple;
-  font-size: 3vw;
 }
 
 .lightblue {
-  list-style-type: square;
-  text-align: left;
   color: lightblue;
-  font-size: 3vw;
 }
 
 .green {
-  list-style-type: square;
-  text-align: left;
   color: green;
-  font-size: 3vw;
 }
 
 /*-----------Färglägger texten till vit i ingredienslistan-------------*/
@@ -202,7 +180,10 @@ li span{
 }
 
 #antalIngredienser{
-  text-align: right;
+  position:inherit;
+  float: right;
+  margin-right: 1vw;
+  margin-top: 1.7vh;
   color: white;
   font-size: 2vw;
 }

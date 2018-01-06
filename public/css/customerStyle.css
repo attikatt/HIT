@@ -282,6 +282,12 @@ margin-left: auto;
     krånglar till det */
 }
 
+#forwardInfoChoose {
+  margin-left: 13vw;
+  position:absolute;
+  margin-top: 5vh;
+  font-size: 4vw;
+  }
 /* Change ingredients page */
 
 #headerChangeIngP {
@@ -338,8 +344,8 @@ margin-left: auto;
 }
 
 .ingredientSquareB {
-  width: 20vw;
-  height: 20vw;
+  width: 21vw;
+  height: 21vw;
     font-size: 2vw;
     border-radius: 6vw;
     

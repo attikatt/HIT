@@ -105,7 +105,7 @@
                         <ingredient
                           ref="ingredient"
                           v-for="item in ingredients"
-                          v-if="item.stock > 0 && item.smoothie_base"
+                          v-if="item.stock > 4 && item.smoothie_base"
                           v-on:increment="addItemToOrder(item)"
                           :item="item" 
                           :lang="lang"
@@ -116,7 +116,7 @@
                             <ingredient
                               ref="ingredient"
                               v-for="item in ingredients"
-                              v-if="item.stock > 0 && item.juice_base"
+                              v-if="item.stock > 4 && item.juice_base"
                               v-on:increment="addItemToOrder(item)"
                               :item="item" 
                               :lang="lang"
@@ -144,7 +144,7 @@
                         <ingredient
                           ref="ingredient"
                           v-for="item in ingredients"
-                          v-if="item.stock > 0 && item.ingredient_category === ingType"
+                          v-if="item.stock > 4 && item.ingredient_category === ingType"
                           v-on:increment="addItemToOrder(item)"  
                           :item="item" 
                           :lang="lang"
@@ -155,7 +155,7 @@
                         <ingredient
                           ref="ingredient"
                           v-for="item in ingredients"
-                          v-if="item.stock > 0 && item.ingredient_category === ingType && item.juice_ok === true"
+                          v-if="item.stock > 4 && item.ingredient_category === ingType && item.juice_ok === true"
                           v-on:increment="addItemToOrder(item)"  
                           :item="item" 
                           :lang="lang"
@@ -172,7 +172,7 @@
                             <ingredient
                               ref="ingredient"
                               v-for="item in ingredients"
-                              v-if="item.stock > 0 && item.ingredient_category === 'piff'"
+                              v-if="item.stock > 4 && item.ingredient_category === 'piff'"
                               v-on:increment="addItemToOrder(item)"  
                               :item="item" 
                               :lang="lang"
@@ -183,7 +183,7 @@
                     </div>
         <section id="lowerSecChooseBasePiff">
             <div class="goBackDiv"> 
-             <button id="goBackB" class="goB" v-on:click="changeStep(false); removeItemFromOrder()"> <img class="arrow" src="images/backArrow.png"> </button>
+             <button id="goBackB" class="goB" v-on:click="changeStep(false); removeItemFromOrder(); filterIngType('fruit')"> <img class="arrow" src="images/backArrow.png"> </button>
             </div>
             <div class="goForwardDiv">
                 <h4 v-if =!baseShown  id="forwardInfo"> {{ uiLabels.next }} </h4>
@@ -324,11 +324,11 @@
 
 <div v-if="favShown">
       <section id="favSec">
-        <h3 id="chooseFavTitle" v-if = "type ==='smoothie'">{{ uiLabels.chooseSmoothie }} </h3>
+        <h3 id="chooseFavTitle" v-if = "type ==='smoothie'">{{ uiLabels.chooseSmoothie }} </h3> 
 		<h3 id="chooseFavTitle" v-if = "type ==='juice'">{{ uiLabels.chooseJuice }} </h3>
         <div class="favGrid">
-            <div v-for="preparedDrink in readymade" >
-                <button class="favSquareB" v-if="preparedDrink.rm_type === type" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
+            <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_type === type && isDrinkAvailable(preparedDrink.rm_ingredients)">
+                <button class="favSquareB" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
             </div>
         </div>
       <div id="goBackFullDiv">
@@ -366,7 +366,7 @@
                   <button id="goBackB" class="goB" v-on:click ="showPage('showFav')"> <img class="arrow" src="images/backArrow.png"> </button>
                 </div>
                 <div class="goForwardDiv">
-                  <h4 id="forwardInfo">{{uiLabels.choose}}</h4>
+                  <h4 id="forwardInfoChoose"> {{uiLabels.choose}}</h4>
                   <button id="goForwardB" v-on:click = "orderReadymade(); showPage('showYourDrink')" class="goB">  <img class="arrow" src="images/forwardArrow.png"> </button>
                 </div>
           </div>

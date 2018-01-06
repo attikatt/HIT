@@ -46,7 +46,6 @@ Vue.component('order-list',{
                /*Meddela Vue att den är aktiv*/
                this.$emit('active-order-juice');
                //vm.activeOrderStage['juice']="not-started";
-
                /* Presentera i activa rutan */
                document.getElementById('notDone1').checked = true;
                document.getElementById('orderDiv1').style.border = "2pt solid white";
@@ -74,18 +73,16 @@ var vm = new Vue({
   },
   methods: {
     getActiveOrderStage: function(order) {
-      console.log(order);
         if (this.activeOrder[order.type] == order)
           return this.activeOrderStage[order.type];
+    },
+    markDone: function (orderid) {
+      socket.emit("orderDone", orderid);
     },
     getStarted: function(order) {
       if (this.startedOrders.length > 0 ){
         if (order.orderId = this.startedOrders[0].orderId){
-          console.log("Match");
-          console.log("Orderns id");
-          console.log(order.orderId);
-          console.log("Arrayens id");
-          console.log(this.startedOrders[0].orderId);
+          //console.log("getStarted functionen och order Id:" + order.orderId);
         }
       }
     },
@@ -95,22 +92,35 @@ var vm = new Vue({
     },
     paborjad: function(order,type,orderDiv,style){
       this.activeOrderStage[type] = "started";
+      //console.log(order.orderId);
       this.startedOrders.push(order);
+      var index;
+      for (index in this.startedOrders){
+        //console.log(this.startedOrders[index].orderId);
+      }
       document.getElementById(orderDiv).style.border = "2pt " + style + " yellow";
     },
     klar: function(order,type,orderDiv,style,button){
       document.getElementById(orderDiv).style.border = "2pt " + style + " white";
-      this.activeOrderStage[type] = "not-started";
       this.activeOrder[type] = "none is chosen";
+      this.activeOrderStage[type] = "not-started";
       document.getElementById(button).checked = true;
       vm.markDone(order.orderId);
-    },
-    markDone: function (orderid) {
-      socket.emit("orderDone", orderid);
     }
     }
   }
 );
+
+function antalEjKlaraOrdrar(){
+  var index;
+  var antal = 0;
+  for (index in vm.orders){
+    if (vm.orders[index].done === false){
+      antal = antal + 1;
+    }
+  }
+  return antal
+}
 
 /* Klocka*/
 function updateClock(){
@@ -124,7 +134,8 @@ var now = new Date(),
     if (seconds < 10) {
         seconds = "0" + seconds
     };
-    document.getElementById('clock').innerHTML = Object.keys(vm.orders).length + " ordrar i kön"+ " " + [hours,minutes,seconds].join(':');
+    document.getElementById('clock').innerHTML = antalEjKlaraOrdrar() + " ordrar i kön"+ " " + [hours,minutes,seconds].join(':');
     setTimeout(updateClock,1000);
 }
  updateClock();
+ antalEjKlaraOrdrar();
