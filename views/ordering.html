@@ -328,7 +328,7 @@
 		<h3 id="chooseFavTitle" v-if = "type ==='juice'">{{ uiLabels.chooseJuice }} </h3>
         <div class="favGrid">
             <div v-for="preparedDrink in readymade" > <!--här-->
-                <button class="favSquareB" v-if="preparedDrink.rm_type === type" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
+                <button class="favSquareB" v-if="preparedDrink.rm_type === type && isDrinkAvailable(preparedDrink.rm_ingredients)" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
             </div>
         </div>
       <div id="goBackFullDiv">
