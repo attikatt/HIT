@@ -33,7 +33,7 @@
         <table id="headTable">
           <tbody> 
             <tr>
-              <td> <button id="cancelOrderB"  v-on:click = "emptyOrder(); showPage('showStart')"> <div id="cancelOrderText"> {{ uiLabels.cancelOrder }} </div> </button></td>
+              <td> <button id="cancelOrderB"  v-on:click = "emptyOrder(); showPage('showStart')"> {{ uiLabels.cancelOrder }} </div> </button></td>
               <td id="title"> Juicifer </td>
               <td> <button id="basketB" v-on:click ="showPage('showCart')"> <img id="basketLogo" src="images/basket.png"> </button> </td>
             </tr>
@@ -328,7 +328,7 @@
 		<h3 id="chooseFavTitle" v-if = "type ==='juice'">{{ uiLabels.chooseJuice }} </h3>
         <div class="favGrid">
             <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_type === type && isDrinkAvailable(preparedDrink.rm_ingredients)">
-                <button class="favSquareB" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="ingImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
+                <button class="favSquareB" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="favImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
             </div>
         </div>
       <div id="goBackFullDiv">

@@ -244,8 +244,7 @@ var vm = new Vue({
       }
       return ingredientList;
     },
-    
-      
+ 
 /*----------- For replacing an ingredient ---------- */
 	markChangeFrom: function(ingredient_id){
 		this.changeFromId = ingredient_id;
@@ -483,7 +482,7 @@ var vm = new Vue({
           //var index = Object.keys(allOrders).map(function(e) { return e.orderId}).indexOf(orderNumber);
           //console.log(index);
           
-          var name = Object.values(allOrders).name;
+          //var name = Object.values(allOrders).name;
           //console.log(name);
           
           var text = document.createTextNode(orderNumber[1]+" #" + orderNumber[0]);
@@ -495,7 +494,7 @@ var vm = new Vue({
       },
       
       isDrinkAvailable: function (drinkIngs) {
-          console.log(drinkIngs);
+          //console.log(drinkIngs);
           for (var i = 0; i < drinkIngs.length; i++) {
               var item = this.getIngredientById(drinkIngs[i]);
               if (item.stock < 5) {
