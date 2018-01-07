@@ -108,17 +108,17 @@ font-family: 'champagne__limousinesregular', arial, sans-serif;
   width: 22vw;
   height: 12vh;
   float:left;
-    font-size: 4vw;
-    font-size-adjust: auto;
+  font-size: 3.5vw;
+    
 }
 
-#cancelOrderText {
+/*#cancelOrderText {
     display: block;
 width: auto;
  height: 60%;
 	font-size: 12px;
 padding-top: 2.5vh;
-}
+}*/
 
 #basketB {
   width: 22vw;
@@ -351,6 +351,12 @@ margin-left: auto;
     
 }
 
+.favImg {
+    height: 16vh;
+    max-width: 20vw;
+    max-height: 16vw;
+}
+
 .ingImg {
     height: 10vh;
     max-width: 17vw;
@@ -366,7 +372,7 @@ margin-left: auto;
 
 /* Choose Type page */
 #centerSecChooseTypeP {
-    margin-top: 20vh;
+    margin-top: 25vh;
     display: block;
     line-height: normal;
     height: 85vh;
@@ -633,9 +639,11 @@ hr {
 .favGrid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-row-gap: 2vh;
+    grid-row-gap: 1.4vh;
     margin-top: 25vh;
     margin-bottom: 14vh;
+    margin-left: 6vh;
+    margin-right: 6vh;
    /* background-color: blue*/
 }
 
@@ -654,7 +662,7 @@ hr {
 .favSquareB {
     width: 30vw;
     height: 30vw;
-    font-size: 3vw;
+    font-size: 2.85vw;
     border-radius: 6vw;
 }
 
@@ -670,6 +678,7 @@ hr {
 
 #drinkInfoDiv {
     margin-top: 8vh;
+    font-size: 2.5vh;
     /*background-color: blue;*/
 }
 
@@ -683,6 +692,7 @@ hr {
     bottom: 15vh;
     background-color: white;
     table-layout: fixed;
+    font-size: 2.25vh;
 }
 
 .tasteClock {
@@ -698,10 +708,11 @@ hr {
         height: 60px;
     }
     
-    #cancelOrderB {
+    /*#cancelOrderB {
         height: 50px;
+        font-size: 15px;
 		
-    }
+    }*/
         
     #basketB {
         height: 50px;
@@ -721,10 +732,6 @@ hr {
         höjden på fönstret minskas */
     }
 	
-    
-    #cancelOrderB {
-        font-size: 15px;
-    }
     
     #goBackDiv {
         position: sticky;
