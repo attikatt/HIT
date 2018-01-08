@@ -122,7 +122,7 @@ var vm = new Vue({
 
 
 /*------  Making the text of the chosing ingredient so it occurs in the circle-----*/
-// TRIED TO CONTACINATE... LOOK INTO MORE OBS	  
+// Måste fortfarande ändra imagen när man går bakåt	  
   	showStepImg: function (ingItem){
   		var ingImg = ingItem.ingredient_img;
   		var img = document.createElement("img");
@@ -212,8 +212,7 @@ var vm = new Vue({
       var ingredientList = "", tempIngredient;
       for (var i = 0; i < idArr.length ; i += 1) {
         tempIngredient = this.getIngredientById(idArr[i]);
-        ingredientList += tempIngredient["ingredient_" + this.lang] + " ";
-		 
+        ingredientList += tempIngredient["ingredient_" + this.lang] + ", ";
       }
       return ingredientList;
     },
@@ -230,9 +229,6 @@ var vm = new Vue({
   	swapIng: function (changeToId) {
   		var changeIndex = this.chosenIngredients.findIndex(this.findIngToReplace);
           this.chosenIngredients[changeIndex] = this.getIngredientById(changeToId);
-		  console.log(changeToId);
-		  console.log(document.getElementById(changeToId)).style.backgroundColor="blue";
-		  //style.boxShadow ="0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0";
   	},
 	  
 	  
@@ -308,7 +304,17 @@ var vm = new Vue({
               this.baseShown = true;
           }
         }
-    },   
+    },  
+/*-----------------------Har lagt till funktionen nedanför-----------------------------------------*/	  
+	goBackDrinkInfo: function() {
+	  if(this.drinkPath ==='myo') {
+		  vm.showPage('showYourDrink');
+	  }	
+	  else if(this.drinkPath === 'fav'){
+		  vm.showPage('showFavInfo');
+		  vm.emptyOrder();
+	  }
+	},
       
     changeStep: function(goesForward) {
       var steps = document.getElementsByClassName("stepCircle");
@@ -363,6 +369,7 @@ var vm = new Vue({
         }
         this.step -= 1;
       }
+/*----------------------------Detta är där jag ndrat med glowen i circlarna-----------------------*/
       var stylingSteps = document.getElementById("step"+this.step);
 	  stylingSteps.style.color = "black"; 
 	  stylingSteps.style.backgroundColor = "white";
