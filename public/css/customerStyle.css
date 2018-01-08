@@ -297,6 +297,7 @@ margin-left: auto;
 #upperSecChangeIngP {
   display: block;
   line-height: normal;
+	background-color: white;
     height: 25vh;
     position: fixed;
     top: 15vh;

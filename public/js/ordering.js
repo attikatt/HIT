@@ -129,19 +129,20 @@ var vm = new Vue({
   		img.setAttribute("src",ingImg);
   		img.style.position ="absolute";
   		img.style.width ="100%";
-  		img.style.high = "40vh";
-  		img.style.marginLeft ="-10vw";
+  		img.style.hight = "40vh";
+  		img.style.marginLeft ="-9vw";
   		img.style.overflow ="hidden";
   		
   		var numStep = document.createTextNode(this.step);
   		var p = document.createElement("p");
   		p.appendChild(numStep);
+		p.style.position ="relative";
   		p.style.color= "black";
   		p.style.backgroundColor = "transparent";
   		p.style.width ="100%";
   		p.style.marginLeft ="0vw";
-  		p.style.marginTop ="-10vh";
-  		p.style.position ="absolute";
+  		p.style.marginTop ="-14vw";
+
   		
   		var currentStep = document.getElementById("step" + this.step);
   		currentStep.appendChild(img);
