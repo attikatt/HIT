@@ -63,8 +63,8 @@ var vm = new Vue({
     drinkInfoShown: false,
     sizeShown: false,
     cartShown: false,
-	thanksShown:false,
-	changeIngShown: false,
+    thanksShown:false,
+    changeIngShown: false,
     step: 1,
     ingType: 'fruit',
     // drink currently being composed
@@ -73,15 +73,15 @@ var vm = new Vue({
     chosenIngredients: [],
     tempDrink: '',
     chosenSize: 'medium',
-	changeFromId: 0,
+    changeFromId: 0,
     //all drinks in current order
     fullOrder: [],
-	allOrders: []
+    allOrders: []
   },
     
  created: function() {
-    socket.on("orderNumber",function(orderNumber) {
-        vm.showOrderedItems(orderNumber);
+    socket.on("orderNumber",function(orderIdAndName) {
+        vm.showOrderedItems(orderIdAndName);
     });
   },
     
@@ -123,58 +123,31 @@ var vm = new Vue({
 
 /*------  Making the text of the chosing ingredient so it occurs in the circle-----*/
 // TRIED TO CONTACINATE... LOOK INTO MORE OBS	  
-	showStepImg: function (ingItem){
-		console.log(ingItem);
-		var ingImg = ingItem.ingredient_img;
-		var img = document.createElement("img");
-		img.setAttribute("src",ingImg);
-		img.style.position ="absolute";
-		img.style.width ="100%";
-		img.style.high = "40vh";
-		img.style.marginLeft ="-10vw";
-		img.style.overflow ="hidden";
-		
-		var numStep = document.createTextNode(this.step);
-		console.log(numStep);
-		var p = document.createElement("p");
-		p.appendChild(numStep);
-		p.style.color= "black";
-		p.style.backgroundColor = "transparent";
-		p.style.width ="100%";
-		p.style.marginLeft ="0vw";
-		p.style.marginTop ="-10vh";
-		p.style.position ="absolute";
-		
-		var currentStep = document.getElementById("step" + this.step);
-		currentStep.appendChild(img);
-		currentStep.appendChild(p);
-		
-		
-		
-		/*if(this.lang === 'en') {
-			ingredientCircle = ingitem.ingredient_en;
-		}
-	  	else if(this.lang === 'sv'){
-			ingredientCircle = ingitem.ingredient_sv;	
-		}
-		
-		var currentStep = document.getElementById("step" + this.step);
-		var textIng = document.createTextNode(ingredientCircle);
-		
-		var h5 = document.createElement("h5");
-		h5.style.position ="absolute";
-		h5.style.letterSpacing = "0em";
-		h5.style.maxWidth = "7vw";
-		h5.style.verticalAlign = "center";
-		h5.style.color = "black";
-		h5.style.width = "100%";
-		h5.style.paddingLeft = "12vw";
-		h5.style.paddingRight ="4vw";
-		h5.style.margin ="-6vh";
-		h5.appendChild(textIng);
-		currentStep.appendChild(h5);
-				*/
-	},
+  	showStepImg: function (ingItem){
+  		var ingImg = ingItem.ingredient_img;
+  		var img = document.createElement("img");
+  		img.setAttribute("src",ingImg);
+  		img.style.position ="absolute";
+  		img.style.width ="100%";
+  		img.style.hight = "40vh";
+  		img.style.marginLeft ="-9vw";
+  		img.style.overflow ="hidden";
+  		
+  		var numStep = document.createTextNode(this.step);
+  		var p = document.createElement("p");
+  		p.appendChild(numStep);
+		p.style.position ="relative";
+  		p.style.color= "black";
+  		p.style.backgroundColor = "transparent";
+  		p.style.width ="100%";
+  		p.style.marginLeft ="0vw";
+  		p.style.marginTop ="-14vw";
+
+  		
+  		var currentStep = document.getElementById("step" + this.step);
+  		currentStep.appendChild(img);
+  		currentStep.appendChild(p);
+  	},
      
       // adds drink to order
     addDrinkToOrder: function () {
@@ -204,10 +177,10 @@ var vm = new Vue({
     },
 	  
 	  //removes the drink from order
-	removeDrinkFromOrder: function (drink) {
-	  var index = this.fullOrder.indexOf(drink);
-	  this.fullOrder.splice(index,1);
-	},  
+  	removeDrinkFromOrder: function (drink) {
+  	  var index = this.fullOrder.indexOf(drink);
+  	  this.fullOrder.splice(index,1);
+  	},  
 	  
     placeOrder: function () {
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
@@ -224,7 +197,6 @@ var vm = new Vue({
       this.volume = 0;
       this.type = '';
       this.chosenIngredients = [];
-        console.log("placerat order");
     },
       
 /*----------- To identify/present ingredients ---------- */
@@ -240,25 +212,28 @@ var vm = new Vue({
       var ingredientList = "", tempIngredient;
       for (var i = 0; i < idArr.length ; i += 1) {
         tempIngredient = this.getIngredientById(idArr[i]);
-        ingredientList += tempIngredient["ingredient_" + this.lang] + ", ";
+        ingredientList += tempIngredient["ingredient_" + this.lang] + " ";
+		 
       }
       return ingredientList;
     },
-    
-      
+ 
 /*----------- For replacing an ingredient ---------- */
-	markChangeFrom: function(ingredient_id){
-		this.changeFromId = ingredient_id;
-	},
+  	markChangeFrom: function(ingredient_id){
+  		this.changeFromId = ingredient_id;
+  	},
       
     findIngToReplace: function(ingredient) {
         return ingredient.ingredient_id === this.changeFromId; 
     },
 	  
-	swapIng: function (changeToId) {
-		var changeIndex = this.chosenIngredients.findIndex(this.findIngToReplace);
-        this.chosenIngredients[changeIndex] = this.getIngredientById(changeToId);
-	},
+  	swapIng: function (changeToId) {
+  		var changeIndex = this.chosenIngredients.findIndex(this.findIngToReplace);
+          this.chosenIngredients[changeIndex] = this.getIngredientById(changeToId);
+		  console.log(changeToId);
+		  console.log(document.getElementById(changeToId)).style.backgroundColor="blue";
+		  //style.boxShadow ="0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0";
+  	},
 	  
 	  
 /*----------- For showing the right page/view ---------- */
@@ -298,160 +273,158 @@ var vm = new Vue({
         else if(page === "showStartAgain"){
             this.startAgainShown = true;
             // set all drink order counters to 0.
-            this.step=1;
+            this.step = 1;
+            this.ingType = "fruit";
             this.type = '';
             this.chosenIngredients = [];
         }
-        else if(page === "showYourDrink"){
+        else if(page === "showYourDrink") {
             this.yourDrinkShown = true;
         }
         else if(page === "showSize") {
             this.sizeShown = true;
         }
-        else if(page=== "showCart"){
+        else if(page=== "showCart") {
             this.cartShown = true;
         }
         
-        else if(page ==="showFav"){
+        else if(page ==="showFav") {
             this.favShown = true;
         }
-        else if (page === "showFavInfo"){
+        else if (page === "showFavInfo") {
             this.drinkInfoShown = true;
         }
-		else if (page ==="showThanks"){
-			this.thanksShown = true;
-		}
-		else if (page === "showChangeIng"){
-			this.changeIngShown = true;
-		}
-		
+		    else if (page ==="showThanks"){
+        this.thanksShown = true;
+		    }
+    		else if (page === "showChangeIng") {
+    			this.changeIngShown = true;
+    		}
         else if (page === "showFavOrMyo") {
-            if (this.drinkPath === 'fav') {
-                this.favShown = true;
-            }
-            else if (this.drinkPath === 'myo') {
-                this.baseShown = true;
-            }
+          if (this.drinkPath === 'fav') {
+              this.favShown = true;
+          }
+          else if (this.drinkPath === 'myo') {
+              this.baseShown = true;
+          }
         }
-        
     },   
       
     changeStep: function(goesForward) {
-        var steps = document.getElementsByClassName("stepCircle");
-		// Här har vi försökt markera med färg vilka ingredienser som har valts, så att det syns när man klickar bakåt. Ej färdig, ska ev. tas bort.
-        //var itemClass = document.getElementsByClassName("ingredientSquareB");
-		//var itemId = document.getElementById(3).style.backgroundColor ="pink";
-		//console.log(itemClass);
-        for (var i = 0; i < steps.length; i++) {
-            steps[i].style.color = "grey";
-            steps[i].style.backgroundColor = "lightgrey";  
-        }
+      var steps = document.getElementsByClassName("stepCircle");
 
-        if (goesForward) {
-            if (this.step <= 1) {
-                this.showPage("showIng");
-				this.step = 1;
-            }
-            else if (this.step === 2) {
-                this.showPage("showIng");
-            }
-            else if (this.step === 3) {
-                this.showPage("showIng");
-            }
-            else if (this.step === 4) {
-                this.showPage("showPiff");
-            }
-            else if (this.step === 5){
-                this.showPage("showYourDrink");
-				this.step = 4;
-            }
+      for (var i = 0; i < steps.length; i++) {
+          steps[i].style.color = "grey";
+          steps[i].style.backgroundColor = "lightgrey"; 
+		  steps[i].style.boxShadow ="none";
+      }
 
-            this.step += 1;
+      if (goesForward) {
+        if (this.step <= 1) {
+          this.showPage("showIng");
+		      this.step = 1;
         }
+        else if (this.step === 2) {
+          this.showPage("showIng");
+        }
+        else if (this.step === 3) {
+          this.showPage("showIng");
+        }
+        else if (this.step === 4) {
+          this.showPage("showPiff");
+        }
+        else if (this.step === 5){
+          this.showPage("showYourDrink");
+		    this.step = 4;
+        }
+        this.step += 1;
+      }
 
-        else {
-            if (this.step <= 1) {
-                this.showPage("showChooseType");
-				this.step =1;
-            }
-            else if (this.step === 2) {
-                this.showPage("showBase");
-            }
-            else if (this.step === 3) {
-                this.showPage("showIng");
-            }
-            else if (this.step === 4) {
-                this.showPage("showIng");
-            }
-            else if (this.step === 5){
-                this.showPage("showIng");
-            }
-			else if(this.step ===6){
-				this.showPage("showPiff");
-				this.step = 5;
-			}
-            this.step -= 1;
+      else {
+        if (this.step <= 1) {
+          this.showPage("showChooseType");
+		      this.step =1;
         }
-        document.getElementById("step"+this.step).style.color = "black"; document.getElementById("step"+this.step).style.backgroundColor = "white";
-        console.log(this.step);
-        return this.step;
+        else if (this.step === 2) {
+          this.showPage("showBase");
+        }
+        else if (this.step === 3) {
+          this.showPage("showIng");
+        }
+        else if (this.step === 4) {
+          this.showPage("showIng");
+        }
+        else if (this.step === 5){
+          this.showPage("showIng");
+        }
+        else if(this.step ===6){
+    		this.showPage("showPiff");
+    		this.step = 5;
+        }
+        this.step -= 1;
+      }
+      var stylingSteps = document.getElementById("step"+this.step);
+	  stylingSteps.style.color = "black"; 
+	  stylingSteps.style.backgroundColor = "white";
+	  stylingSteps.style.boxShadow ="0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0";
+      console.log(this.step);
+      return this.step;
     },
       
     filterIngType: function(chosenIngType) {
-        this.ingType = chosenIngType;
-        var categories = document.getElementsByClassName("categoryB");
-        for (var i = 0; i < categories.length; i++) {
-            categories[i].style.color = "grey";
-            categories[i].style.borderColor = "grey";
-        }
-        document.getElementById(chosenIngType+"B").style.color = "black"; document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)"; 
-        // när man går tillbaka från steg 5 till 4, ska det vara förvalt frukter (knappen är så nu) eller senast valda kategori? (filtreringen så nu)
+      this.ingType = chosenIngType;
+      var categories = document.getElementsByClassName("categoryB");
+      for (var i = 0; i < categories.length; i++) {
+          categories[i].style.color = "grey";
+          categories[i].style.borderColor = "grey";
+      }
+      document.getElementById(chosenIngType+"B").style.color = "black"; document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)"; 
     },
     
 /*--------- For composing drink ------------*/
     choosePath: function (fav_or_myo) {
-        if (fav_or_myo === 'fav') {
-            this.drinkPath = 'fav';
-        }
-        else if (fav_or_myo === 'myo') {
-            this.drinkPath = 'myo';
-        }
+      if (fav_or_myo === 'fav') {
+        this.drinkPath = 'fav';
+      }
+      else if (fav_or_myo === 'myo') {
+        this.drinkPath = 'myo';
+      }
     },
       
     chooseType: function (juice_or_smoothie) {
-        if (juice_or_smoothie === 'juice') {
-            this.type = 'juice';
-        }
-        else if (juice_or_smoothie === 'smoothie') {
-            this.type = 'smoothie';
-        }
+      if (juice_or_smoothie === 'juice') {
+        this.type = 'juice';
+      }
+      else if (juice_or_smoothie === 'smoothie') {
+        this.type = 'smoothie';
+      }
     },
       
     // marks which readymade drink customer is choosing
     markDrink: function (drink) {
-        this.tempDrink = drink;
+      this.tempDrink = drink;
     },
 	  
     // NOTE: Fix so when you go back, the property will not be null and the marked button is shown not the medium  
     setSize: function (size) {
-		this.chosenSize = size;
+		  this.chosenSize = size;
     },
 	  
-	 getPrice: function(size) {
-		if(size === "small"){
-			return "36 kr";
-		} 
-		else if(size === "medium"){
-			return "42 kr";
-		} 
-		else if(size === "large"){
-			return "49 kr";
-		} 		 
+    getPrice: function(size) {
+  		if(size === "small"){
+  			return "36 kr";
+  		} 
+  		else if(size === "medium"){
+  			return "42 kr";
+  		} 
+  		else if(size === "large"){
+  			return "49 kr";
+  		} 		 
 	 },
 	  
-	 calcPrice: function() {
-		 var totalPrice = 0;
-		 for (var i = 0; i < this.fullOrder.length; i++){
+    calcPrice: function() {
+      var totalPrice = 0;
+      for (var i = 0; i < this.fullOrder.length; i++){
 			if (this.fullOrder[i].size === "small") {
 				totalPrice += 36; 
 			}
@@ -461,56 +434,47 @@ var vm = new Vue({
 			else if (this.fullOrder[i].size === "large") {
 				totalPrice += 49; 
 			}	
-		 }
-		 return totalPrice;
-		  
-	 },
-	  
-	 getSize: function() {
-		 if (this.lang === "sv"){
+      }
+    return totalPrice;
+    },
+
+    getSize: function() {
+      if (this.lang === "sv"){
 			 return this.chosenSize; 
-		 }
-	 },
+		  }
+    },
 	  
-      showOrderedItems: function(orderNumber) {
-          var allOrders = this.orders;
-          console.log(orderNumber);
-          //console.log(this.fullOrder);
-          var h4 = document.createElement("h4");
-          var nodeRef = document.getElementById("orderedItems");
-          
-          //var index = Object.keys(allOrders).map(function(e) { return e.orderId}).indexOf(orderNumber);
-          //console.log(index);
-          
-          var name = Object.values(allOrders).name;
-          //console.log(name);
-          
-          var text = document.createTextNode(orderNumber[1]+" #" + orderNumber[0]);
-          var br = document.createElement("br");
-          h4.appendChild(text);
-          nodeRef.appendChild(h4);
-          nodeRef.appendChild(br);
-          
-      },
+    showOrderedItems: function(orderNumber) {
+      var allOrders = this.orders;
+
+      var h4 = document.createElement("h4");
+      var nodeRef = document.getElementById("orderedItems");
       
-      isDrinkAvailable: function (drinkIngs) {
-          console.log(drinkIngs);
-          for (var i = 0; i < drinkIngs.length; i++) {
-              var item = this.getIngredientById(drinkIngs[i]);
-              if (item.stock < 5) {
-                  return false;
-              }
-          }
-          return true;
-      },
+      var text = document.createTextNode(orderNumber[1]+" #" + orderNumber[0]);
+      var br = document.createElement("br");
+      h4.appendChild(text);
+      nodeRef.appendChild(h4);
+      nodeRef.appendChild(br);
+    },
+
+/*------------- Checking if favourites have all ingredients available ---------------*/      
+    isDrinkAvailable: function (drinkIngs) {
+      for (var i = 0; i < drinkIngs.length; i++) {
+        var item = this.getIngredientById(drinkIngs[i]);
+        if (item.stock < 5) {
+            return false;
+        }
+      }
+      return true;
+    },
 /*------------- Cancelling order ---------------*/
     emptyOrder: function () {
-        this.fullOrder = [];
-		this.ingredientList = [];
-		this.step = 1;
-		this.chosenIngredients = [];
-        this.chosenSize = 'medium';
-		
+      this.fullOrder = [];
+  		this.ingredientList = [];
+  		this.step = 1;
+  		this.chosenIngredients = [];
+      this.chosenSize = 'medium';
+  		this.ingType = "fruit";
     }
 
   }
