@@ -212,7 +212,8 @@ var vm = new Vue({
       var ingredientList = "", tempIngredient;
       for (var i = 0; i < idArr.length ; i += 1) {
         tempIngredient = this.getIngredientById(idArr[i]);
-        ingredientList += tempIngredient["ingredient_" + this.lang] + ", ";
+        ingredientList += tempIngredient["ingredient_" + this.lang] + " ";
+		 
       }
       return ingredientList;
     },
@@ -229,6 +230,9 @@ var vm = new Vue({
   	swapIng: function (changeToId) {
   		var changeIndex = this.chosenIngredients.findIndex(this.findIngToReplace);
           this.chosenIngredients[changeIndex] = this.getIngredientById(changeToId);
+		  console.log(changeToId);
+		  console.log(document.getElementById(changeToId)).style.backgroundColor="blue";
+		  //style.boxShadow ="0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0";
   	},
 	  
 	  
