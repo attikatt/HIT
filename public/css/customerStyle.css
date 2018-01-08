@@ -136,12 +136,16 @@ margin-left: auto;
 
 /* Central section */
 
-#buttonTable {
-	margin-top: 10vh;
+#buttonTableStartP {
+	margin-top: 5vh;
   width: 100%;
     /*background-color: red;*/
 }
 
+#buttonTableTypeP {
+  margin-top: 15vh;
+  width: 100%;
+}
 
 #lowerTable {
   width: 100%;

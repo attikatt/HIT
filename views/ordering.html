@@ -49,7 +49,7 @@
         <section id="centerSecStartP">       
           <img id="juiciferLogo" src="images/logo.png">
           <div>   
-            <table id="buttonTable" align="center">
+            <table id="buttonTableStartP" align="center">
               <tbody>
                   <tr><td> <button id="juicifersFavB" v-on:click="showPage('showChooseType'); choosePath('fav')"> {{ uiLabels.favorites }} </button> </td></tr>
                   <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showChooseType'); choosePath('myo')"> {{ uiLabels.makeYourOwn }} </button> </td></tr>
@@ -69,7 +69,7 @@
         <section id="centerSecChooseTypeP">       
           <h2> {{ uiLabels.chooseType }} {{ uiLabels.drink }}</h2>
             <div>   
-              <table id="buttonTable" align="center">
+              <table id="buttonTableTypeP" align="center">
                 <tbody>
                   <tr><td> <button id="juicifersFavB" v-on:click="showPage('showFavOrMyo');chooseType('juice')"> Juice </button> </td></tr>
                   <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showFavOrMyo');chooseType('smoothie')"> Smoothie </button> </td></tr>
