@@ -311,7 +311,8 @@ var vm = new Vue({
 
       for (var i = 0; i < steps.length; i++) {
           steps[i].style.color = "grey";
-          steps[i].style.backgroundColor = "lightgrey";  
+          steps[i].style.backgroundColor = "lightgrey"; 
+		  steps[i].style.boxShadow ="none";
       }
 
       if (goesForward) {
@@ -358,7 +359,10 @@ var vm = new Vue({
         }
         this.step -= 1;
       }
-      document.getElementById("step"+this.step).style.color = "black"; document.getElementById("step"+this.step).style.backgroundColor = "white";
+      var stylingSteps = document.getElementById("step"+this.step);
+	  stylingSteps.style.color = "black"; 
+	  stylingSteps.style.backgroundColor = "white";
+	  stylingSteps.style.boxShadow ="0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0";
       console.log(this.step);
       return this.step;
     },

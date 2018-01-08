@@ -566,7 +566,7 @@ hr {
   line-height: normal;
     width: 100vw;
     height: 13vh;
-    margin-top: -14vh;
+    margin-top: -12vh;
     background-color: white;
     position: fixed;
 }
@@ -582,7 +582,7 @@ hr {
   line-height: normal;
     width: 100vw;
     position: fixed;
-    margin-top: -7vh;
+    margin-top: -6vh;
     background-color: white;
 }
 
