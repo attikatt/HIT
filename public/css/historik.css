@@ -97,12 +97,14 @@ li span{
 }
 
 #antalIngredienser{
-  position:inherit;
   float: right;
+  padding-right:1vw;
+  margin-top: 1.6vh;
+
+  /*position:inherit;
   margin-right: 1vw;
-  margin-top: 1.7vh;
-  color: white;
-  font-size: 2vw;
+margin-top: 1.7vh;
+  font-size: 2vw;*/
 }
 
 #orderSize{
@@ -111,22 +113,13 @@ li span{
   margin: 0;
 }
 
-hr{
+/*hr{----------HÄR: Borde gå att ta bort?
   margin-left: 1vw;
   margin-right: 1vw;
-}
-
-/*------Klockan--------*/
-/*#clock{
-    grid-area: clock;
-    font-size: 4vh;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin-right: 1vw;
 }*/
 
-/*------------ Popup med sifferconsolen-----------*/
+
+/*------------ Popup med consolen-----------*/
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -167,6 +160,7 @@ hr{
     cursor: pointer;
 }
 
+/*---------Consolen-----*/
 #consoleHeader{
   text-align:center;
   margin-top: 3vh;
