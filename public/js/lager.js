@@ -97,7 +97,7 @@ function scrollFunction(value){
       var element = document.getElementById(vm.ingredients[i-1].ingredient_id);
       element.scrollIntoView();
       break;
-    } else { //vet inte hur hållbar denna lösning är, men den fungerar för denna situation
+    } else { //håller sålänge systemet ej innehåller överdrivet många ingredienser på z, å, ä, ö
       var element = document.getElementById(vm.ingredients[i].ingredient_id);
       element.scrollIntoView();
     }

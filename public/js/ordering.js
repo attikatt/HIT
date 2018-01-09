@@ -122,26 +122,27 @@ var vm = new Vue({
 
 
 /*------  Making the text of the chosing ingredient so it occurs in the circle-----*/
-// TRIED TO CONTACINATE... LOOK INTO MORE OBS	  
+// Måste fortfarande ändra imagen när man går bakåt	  
   	showStepImg: function (ingItem){
   		var ingImg = ingItem.ingredient_img;
   		var img = document.createElement("img");
   		img.setAttribute("src",ingImg);
   		img.style.position ="absolute";
   		img.style.width ="100%";
-  		img.style.high = "40vh";
-  		img.style.marginLeft ="-10vw";
+  		img.style.hight = "40vh";
+  		img.style.marginLeft ="-9vw";
   		img.style.overflow ="hidden";
   		
   		var numStep = document.createTextNode(this.step);
   		var p = document.createElement("p");
   		p.appendChild(numStep);
+		p.style.position ="relative";
   		p.style.color= "black";
   		p.style.backgroundColor = "transparent";
   		p.style.width ="100%";
   		p.style.marginLeft ="0vw";
-  		p.style.marginTop ="-10vh";
-  		p.style.position ="absolute";
+  		p.style.marginTop ="-14vw";
+
   		
   		var currentStep = document.getElementById("step" + this.step);
   		currentStep.appendChild(img);
@@ -303,14 +304,25 @@ var vm = new Vue({
               this.baseShown = true;
           }
         }
-    },   
+    },  
+/*-----------------------Har lagt till funktionen nedanför-----------------------------------------*/	  
+	goBackDrinkInfo: function() {
+	  if(this.drinkPath ==='myo') {
+		  vm.showPage('showYourDrink');
+	  }	
+	  else if(this.drinkPath === 'fav'){
+		  vm.showPage('showFavInfo');
+		  vm.emptyOrder();
+	  }
+	},
       
     changeStep: function(goesForward) {
       var steps = document.getElementsByClassName("stepCircle");
 
       for (var i = 0; i < steps.length; i++) {
           steps[i].style.color = "grey";
-          steps[i].style.backgroundColor = "lightgrey";  
+          steps[i].style.backgroundColor = "lightgrey"; 
+		  steps[i].style.boxShadow ="none";
       }
 
       if (goesForward) {
@@ -357,7 +369,11 @@ var vm = new Vue({
         }
         this.step -= 1;
       }
-      document.getElementById("step"+this.step).style.color = "black"; document.getElementById("step"+this.step).style.backgroundColor = "white";
+/*----------------------------Detta är där jag ndrat med glowen i circlarna-----------------------*/
+      var stylingSteps = document.getElementById("step"+this.step);
+	  stylingSteps.style.color = "black"; 
+	  stylingSteps.style.backgroundColor = "white";
+	  stylingSteps.style.boxShadow ="0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0";
       console.log(this.step);
       return this.step;
     },
