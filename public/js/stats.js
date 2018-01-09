@@ -79,17 +79,22 @@ google.charts.setOnLoadCallback(drawChart);
 
 function getColors(size){
   var colors = [];
-  var red = 0;
-  var green = 140;
-  var blue = 0;
+  var red = 244;
+  var green = 66;
+  var blue = 66;
+  var step = 30;
   for (var i = 0; i < size; i ++){
     var currColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
     colors.push(currColor);
-    red += 5;
-    green += 2;
-    blue += 5;
+    if (green < 244){
+      green += step;
+    } else if (red > 69) {
+      red -= step
+    } else if (blue < 244) {
+      blue += step;
+    }
   }
-//  console.log(colors);
+  console.log(colors);
   return colors;
 
 }
@@ -110,7 +115,8 @@ function drawChart() {
     title: 'Fördelning av beställda ingredienser',
     pieHole: 0.4,
     colors: getColors(dataVm.getIngredientData().length),
-    //colors: ['rgb(0, 140, 0)', 'rgb(255,255,255)'],
+    //colors: ['rgb(0, 140, 0)', 'rgb(10,150,10)', 'rgb(20,160,20)', 'rgb(30,170,30)'],
+    //colors: ['rgb(0, 60, 0)', 'rgb(0,80,0)'],
     'backgroundColor':'transparent',
     'titleTextStyle': {color:'white', fontName: 'champagne__limousinesregular', fontSize:'20', bold:'false'},
     legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16'}},
@@ -119,13 +125,16 @@ function drawChart() {
     sliceVisibilityThreshold: 6/100
   };
 
+  /* Vanliga
   var chart1 = new google.visualization.PieChart(document.getElementById('donutchartOrders'));
   chart1.draw(orderData, orderOptions);
 
   var chart2 = new google.visualization.PieChart(document.getElementById('donutchartIngred'));
   chart2.draw(ingredientData, ingredientOptions);
+  */
 
-  /*if (Object.keys(dataVm.getCurrentStatus()).length > 0){
+  /* Med ifsatser */
+  if (Object.keys(dataVm.getCurrentStatus()).length > 0){
     var chart1 = new google.visualization.PieChart(document.getElementById('donutchartOrders'));
     chart1.draw(orderData, orderOptions);
 
@@ -138,6 +147,27 @@ function drawChart() {
 
 } else {
   document.getElementById('VueDiv').innerHTML = "<span style='font-size:4vw;margin: 15vw;'>Not enough recived orders to display data</span>";
-}*/
+}
   setTimeout(drawChart,1000); //här regleras hur ofta graferna uppdateras, kan behöva sänkas om många klienter
 }
+
+function test(){
+  var colors = [];
+  var red = 244;
+  var green = 66;
+  var blue = 66;
+  var step = 30;
+  for (var i = 0; i < 70; i ++){
+    var currColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
+    colors.push(currColor);
+    if (green < 244){
+      green += step;
+    } else if (red > 69) {
+      red -= step
+    } else if (blue < 244) {
+      blue += step;
+    }
+  }
+  console.log(colors);
+}
+test();
