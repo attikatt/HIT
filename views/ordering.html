@@ -313,12 +313,11 @@
             <hr>
           </div>
           <div id ="cartGrid">
-              <!-- Här måste rätt info synas med uiLabels -->
             <div id="cartItem" v-for="drink in fullOrder">
               <div id="cartItemName" v-if="drink.compType === 'fav'"> {{ drink.name }} <br> {{ drink.size }} </div>
               <div id="cartItemName" v-if="drink.compType === 'myo' && drink.type === 'juice'"> {{ uiLabels.ownJuice }} <br> {{ drink.size }} </div>
               <div id="cartItemName" v-if="drink.compType === 'myo' && drink.type === 'smoothie'"> {{ uiLabels.ownSmoothie }} <br> {{ drink.size }} </div>
-              <div id="cartItemPrice"> {{getPrice(drink.size)}} <button id="cancelCartItemB" v-on:click="removeDrinkFromOrder()"><img src ="images/cross.png" id="crossImg"></button>
+              <div id="cartItemPrice"> {{getPrice(drink.size)}} <button id="cancelCartItemB" v-on:click="removeDrinkFromOrder(drink)"><img src ="images/cross.png" id="crossImg"></button>
               </div>
             </div>
           </div>
@@ -331,8 +330,8 @@
               </h4>
             </div>
         		<div>
-              <button id="goBackBCart" v-on:click = "showPage(pageBeforeCart); removeDrinkFromOrder()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
-              <button id="payB" v-on:click="showPage('thanks');placeOrder()" class="goB"> {{ uiLabels.pay }}</button> 
+              <button id="goBackBCart" v-on:click = "setComingFromCart(); showPage(pageBeforeCart)" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
+              <button id="payB" v-on:click="showPage('thanks'); placeOrder()" class="goB"> {{ uiLabels.pay }}</button> 
         		</div>		
       		</div>
         </section>

@@ -82,7 +82,8 @@ var vm = new Vue({
     fullOrder: [],
     allOrders: [],
     // to go back to previous page after being in cart
-    pageBeforeCart: 'start'
+    pageBeforeCart: 'start',
+    comingFromCart: false
   },
 
  created: function() {
@@ -355,6 +356,10 @@ var vm = new Vue({
         this.page = "yourDrink";
       }
       else if(page === "chooseSize") {
+        if (this.comingFromCart) {
+          this.removeDrinkFromOrder(this.fullOrder[2]);
+          console.log("hej");
+        }
         this.page = "chooseSize";
       }
       else if(page === "cart") {
@@ -396,6 +401,7 @@ var vm = new Vue({
           this.page = "chooseBase";
         }
       }
+      this.comingFromCart = false;
     },
   	  
   	goBackDrinkInfo: function() {
@@ -483,6 +489,11 @@ var vm = new Vue({
       }
       document.getElementById(chosenIngType+"B").style.color = "black";
       document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)";
+    },
+
+    setComingFromCart: function() {
+      this.comingFromCart = true;
+      console.log(this.comingFromCart);
     },
 
 /*--------- For composing drink ------------*/
