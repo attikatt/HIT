@@ -104,7 +104,7 @@ function drawChart() {
     pieHole: 0.4,
     colors: ['rgb(244,66,66)', 'rgb(64,246,96)'],
     'backgroundColor':'transparent',
-    'titleTextStyle': {color:'white', fontName: 'champagne__limousinesregular', fontSize:'20', bold:'false'},
+    'titleTextStyle': {color:'white', fontName: 'champagne__limousinesregular', fontSize:'25', bold:'false'},
     legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16'}}
   };
 
@@ -114,7 +114,7 @@ function drawChart() {
     pieHole: 0.4,
     colors: getColors(dataVm.getIngredientData().length),
     'backgroundColor':'transparent',
-    'titleTextStyle': {color:'white', fontName: 'champagne__limousinesregular', fontSize:'20', bold:'false'},
+    'titleTextStyle': {color:'white', fontName: 'champagne__limousinesregular', fontSize:'25', bold:'false'},
     legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16'}, maxLines: '6'},
     pieResidueSliceLabel: 'Övriga',
     //pieResidueSliceColor: '#365888',
@@ -130,11 +130,11 @@ function drawChart() {
       var chart2 = new google.visualization.PieChart(document.getElementById('donutchartIngred'));
       chart2.draw(ingredientData, ingredientOptions);
     } else  { //denna visas beorende på vad gränsen för sållningen är
-      document.getElementById('donutchartIngred').innerHTML = "<span style='font-size:1.5vw;margin: 5vw;'>Inte tillräckligt mycket många ingredienser beställda för att visa graft</span>";
+      document.getElementById('donutchartIngred').innerHTML = "<span>Inte tillräckligt mycket många ingredienser beställda för att visa graft</span>";
   }
 
 } else {
-  document.getElementById('VueDiv').innerHTML = "<span style='font-size:4vw;margin: 10vw;'>Inte tillräckligt många ordrar för att visa grafer data</span>";
+  document.getElementById('VueDiv').innerHTML = "<span>Inte tillräckligt många ordrar för att visa grafer</span>";
 }
   setTimeout(drawChart,2000); //här regleras hur ofta graferna uppdateras, kan behöva sänkas om många klienter
 }
