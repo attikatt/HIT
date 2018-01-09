@@ -23,8 +23,9 @@
 }
 
 body {
-  background-color: white;
+background-color: white;
 font-family: 'champagne__limousinesregular', arial, sans-serif;
+text-transform: capitalize;
 }
 
 html, body {
@@ -51,7 +52,7 @@ h1 {
 }
 
 h2 {
-    font-size: 5vh;
+    font-size: 4.5vh;
 }
 
 h3 {
@@ -109,7 +110,6 @@ button {
   height: 12vh;
   float:left;
   font-size: 3.5vw;
-
 }
 
 /*#cancelOrderText {
@@ -497,7 +497,12 @@ margin-left: auto;
 #addMoreDrinksDiv{
 	position: fixed;
 	width:100%;
-	top: 75vh;
+	top: 70vh;
+}
+
+#addMoreDrinksB{
+  width: 55%;
+  height: 10vh;
 }
 
 #goBackBCart {
@@ -511,6 +516,8 @@ margin-left: auto;
   right: 0px;
   bottom:0px;
   border-color: rgb(215,83,14);
+  width: 35%;
+  height: 10vh;
 }
 
 hr {
