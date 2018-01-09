@@ -6,14 +6,6 @@
   grid-template-rows: 1fr 11fr 0fr;
 }
 
-/*----Rubriker ligger i högra sidan----*/
-p {
-  margin: 2%;
-  margin-left: 0;
-  font-size:10vh;
-  text-transform: uppercase;
-}
-
 #searchButton{
   position:absolute;
   top: 2%;
@@ -136,7 +128,7 @@ hr{
 /* Modal Content/Box */
 .modal-content {
     background-color: rgb(64,64,64);
-    margin: 5% auto; 
+    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 30vw;

@@ -41,6 +41,27 @@ body{
   color: white;
 }
 
+/*---Rubrik på undersidorna----*/
+p {
+  margin: 2%;
+  margin-left: 0;
+  font-size:10vh;
+  text-transform: uppercase;
+}
+
+/*--------HEMKNAPP---------*/
+#homeButton{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0pt;
+    cursor: pointer;
+    overflow: hidden;
+    position:absolute;
+    top: 2%;
+    left: 0;
+}
+
+/*------Klocka--------*/
 #clock{
     font-size: 4vh;
     position:absolute;
@@ -73,18 +94,6 @@ body{
   border-radius: 0.5vw;
   padding: 1%;
   cursor: pointer;
-}
-
-/*--------HEMKNAPP---------*/
-#homeButton{
-    background-color: transparent;
-    background-repeat: no-repeat;
-    border: 0pt;
-    cursor: pointer;
-    overflow: hidden;
-    position:absolute;
-    top: 2%;
-    left: 0;
 }
 
 /*--------------SÄTTER FÄRG PÅ INGREDIENSRUTORNA I HISTORIKEN OCH KITCHEN----------------*/
@@ -143,7 +152,8 @@ body{
   color: green;
 }
 
-/*--STYLAR KNAPPSATSEN I HISTORIK OCH LAGER----------*/
+/*--------Stylar knappsatsen i lager och historik ----------
+--------kompletteras i de separata filerna-------*/
 #lagerConsole {
   width: 30vw;
   height: 75vh;
