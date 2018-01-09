@@ -1,3 +1,10 @@
+#clock{
+    font-size: 4vh;
+    position:absolute;
+    right: 4vw;
+    bottom: 4vh;
+}
+
 #centerDiv{
   display: inline-block;
   margin-top: 2vh;
@@ -12,23 +19,7 @@ h1 {
   letter-spacing: 1vw;
 }
 
-/*#clock{
-    font-family: 'champagne__limousinesregular', arial, sans-serif;
-    font-size: 4vh;
-    float:right;
-    font-weight: normal;
-    color: white;
-    padding-right: 1vw;
-    margin-bottom: 4vw;
-}*/
-
-#clock{
-    font-size: 4vh;
-    position:absolute;
-    right: 4vw;
-    bottom: 4vh;
-}
-
+/*--------Buttons------*/
 button {
   font-family: 'champagne__limousinesregular', arial, sans-serif;
   color: rgba(255,255,255,1);

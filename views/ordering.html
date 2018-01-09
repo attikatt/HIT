@@ -217,7 +217,7 @@
     				<div>
     					<button class="ingredientOblongB" 
     							v-for="(containsIng, index) in chosenIngredients" 
-    							v-on:click="showPage('showChangeIng'); markChangeFrom([containsIng.ingredient_id, index])">
+    							v-on:click="markChangeFrom([containsIng.ingredient_id, index]); showPage('showChangeIng')">
     							{{ containsIng["ingredient_"+ lang] }} <br> 
     					</button>
     				</div>
@@ -354,14 +354,16 @@
     </div>
     
 <!-- Drink Info Fav -->
-      
       <div v-if="page === 'drinkInfo'">
         <section id="drinkInfoSec">
           <div id="drinkInfoDiv">
             <img id="bigDrinkImg" v-bind:src="tempDrink.rm_img"> <br> 
             <h3>{{tempDrink.rm_name}}</h3> <br>
             <h4>{{uiLabels.content}}</h4> <br>
-            {{ getIngredientNameList(tempDrink.rm_ingredients) }}
+            <div v-for="numberId in tempDrink.rm_ingredients">
+              <div v-if ="lang ==='sv' ">{{ getIngredientById(numberId).ingredient_sv}} <br></div>
+              <div v-else >{{ getIngredientById(numberId).ingredient_en}} <br></div>
+            </div>
             <div>
               <table id="tastePanel"> 
                 <tr>

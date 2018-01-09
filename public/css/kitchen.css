@@ -5,21 +5,22 @@
   grid-template-rows: 1fr 9fr 1fr;
 }
 
-h2 {
-    font-size: 3vw;
-}
-
 #topDiv{
     height: 8vw;
     margin:0;
     font-size: 2vw;
     grid-area: top;
 }
+
 h1{
   margin:2%;
   margin-left: 0;
   font-size:10vh;
 }
+
+/*h2 {
+    font-size: 3vw;
+}*/
 
 span {
   text-transform: capitalize;
@@ -33,10 +34,10 @@ span {
   grid-area: waiting;
 
 }
-
+/*
 ul{
   margin-left:1vw;
-}
+}*/
 
 #orderDiv1{
     margin: 2%;

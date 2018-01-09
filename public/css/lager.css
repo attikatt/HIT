@@ -1,9 +1,56 @@
-/* Divs */
+/*#clock{
+    font-size: 4vh;
+    float: right;
+    padding-right: 1vw;
+    margin-bottom: 2vh;
+}*/
 
+#clock{
+    font-size: 4vh;
+    position:absolute;
+    right: 4vw;
+    bottom: 4vh;
+}
+
+#topDiv{
+  text-align: center;
+}
+
+p {
+  margin: 2%;
+  margin-left: 0;
+  font-size:10vh;
+}
+
+/*-------Right side----------*/
 #lager{
   width: 65vw;
   height: 75vh;
   float:left;
+}
+
+/*-----Alphabet---------*/
+.alphabet {
+  list-style-type: none;
+  margin-top:90px;
+  text-align: left;
+  margin: 1%;
+  width: 100%;
+  padding: 0px;
+  color:white;
+}
+
+.alphLetter {
+  font-family: 'champagne__limousinesregular', arial, sans-serif;
+  padding: 0px;
+  font-size: auto;
+  padding-left: 0.6vw;
+  padding-right: 0.6vw;
+  color: white;
+  background-color: transparent;
+  border: 0;
+  display: inline;
+  cursor: pointer;
 }
 
 #lagerList{
@@ -28,91 +75,65 @@
     border: 3px solid white;
 }
 
+#ing_tit{
+  font-size: auto;
+  margin-left: 1vw;
+}
+
 #ing_stock{
   float: right;
     padding-right:1%;
     padding-top: 0.5%;
 }
 
-#topDiv{
-  text-align: center;
+/*----Left side----- */
+/*Also in generalCSS*/
+#lagerConsole {
+  float:right;
+  height: 95%;
 }
 
-p {
-  margin: 2%;
-  margin-left: 0;
-  font-size:10vh;
-}
-/* Alphabet*/
-.alphabet {
-  list-style-type: none;
-  margin-top:90px;
-  text-align: left;
-  margin: 1%;
-  width: 100%;
-  padding: 0px;
-  color:white;
-}
-
-.alphLetter {
-  font-family: 'champagne__limousinesregular', arial, sans-serif;
-  padding:0px;
-  font-size: auto;
-  padding-left: 0.6vw;
-  padding-right: 0.6vw;
-  color:white;
-  background-color:transparent;
-  border: 0;
-  display:inline;
-  cursor: pointer;
-}
+/* #consoleHeader in generalCSS*/
 
 #chosenIngredient{
     text-align: center;
     margin-left: auto;
-    margin-right:6vw;;
-    font-size: 1.5vw;
-}
-
-#ing_tit{
-  font-size: auto;
-  margin-left: 1vw;
-}
-/* NumPad */
-#lagerConsole {
-  float:right;
+    margin-right:7vw;
+    font-size: 3vh;
+    text-transform: capitalize;
 }
 
 #changeSaldoConsole{
-    float: top;
-    text-align: center;
+    /*float: top;*/
     border: 1px solid rgb(255,255,255);
     border-radius: 5px;
     background-color: rgb(255,255,255,0.4);
     width: 63%;
-    height: 15%;
-    margin: 19pt;
-    margin-bottom: 5pt;
+    height: 40%;
+    margin-left: 7%;
+    margin-bottom: 2%;
 }
 
 #changeSaldoConsoleChild{
     text-align:center;
     float: center;
-    font-size: 3vw;
-    margin-top: 1.5vw;
+    font-size: 3vh;
+    height: 3vh;
+    /*font-size: 3vw;*/
+    /*font-size: 12px;*/
 }
 
+/*----------Buttons----------*/
 #keyboard {
-width: 80%;
-height: auto;
-float:left;
-display: inline-block;
-margin: 7%;
-margin-top: 0%;
-padding: 0;
-list-style: none;
+  width: 80%;
+  height: auto;
+  float:left;
+  display: inline-block;
+  margin: 7%;
+  margin-top: 0%;
+  padding: 0;
+  list-style: none;
 }
-
 
 .letterButton{
     float: left;
@@ -127,15 +148,5 @@ list-style: none;
     float: left;
     margin: 0 5px 5px 0;
     width: 79%;
-}
 
-.isActive{
-    border-color: red;
-}
-
-#clock{
-    font-size: 4vh;
-    float: right;
-    padding-right: 1vw;
-    margin-bottom: 2vh;
 }

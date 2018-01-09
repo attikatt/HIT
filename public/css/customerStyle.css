@@ -23,8 +23,9 @@
 }
 
 body {
-  background-color: white;
+background-color: white;
 font-family: 'champagne__limousinesregular', arial, sans-serif;
+text-transform: capitalize;
 }
 
 html, body {
@@ -51,7 +52,7 @@ h1 {
 }
 
 h2 {
-    font-size: 5vh;
+    font-size: 4.5vh;
 }
 
 h3 {
@@ -109,7 +110,6 @@ button {
   height: 12vh;
   float:left;
   font-size: 3.5vw;
-    
 }
 
 /*#cancelOrderText {
@@ -146,7 +146,7 @@ padding-top: 2.5vh;
   overflow: hidden;
   background-color: rgb(310,180,70);
   border-color: rgb(215,83,14); /*SYNS EJ! */
-  color: black; 
+  color: black;
 }
 
 /* Central section */
@@ -278,7 +278,7 @@ margin-left: auto;
     grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 1vh;
     margin-top: 3vh;
-    margin-bottom: 14vh;	
+    margin-bottom: 14vh;
 }
 
 .ingredientOblongB {
@@ -326,7 +326,7 @@ margin-left: auto;
 #middleSecChangeIng {
   display: block;
   line-height: normal;
-    margin-top: 40vh; 
+    margin-top: 40vh;
     margin-bottom: 17vh;
 }
 
@@ -350,7 +350,7 @@ margin-left: auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-row-gap: 1vh;
-	
+
 }
 
 .ordering {
@@ -368,7 +368,7 @@ margin-left: auto;
   height: 21vw;
     font-size: 2vw;
     border-radius: 6vw;
-    
+
 }
 
 .favImg {
@@ -458,11 +458,11 @@ margin-left: auto;
 	padding-left: 10vw;
 	padding-right: 10vw;
 	text-align: center;
-	
+
 }
 
 #cartItemName{
- 	float:left;	
+ 	float:left;
 }
 
 #cartItemPrice{
@@ -472,7 +472,7 @@ margin-left: auto;
 #crossImg {
 	height:100%;
 	margin: auto;
-	
+
 }
 
 #cancelCartItemB {
@@ -489,7 +489,7 @@ margin-left: auto;
 
 #cartBottomDiv {
 	position:fixed;
-	background-color: white; 
+	background-color: white;
     width: 100%;
     display: block;
 }
@@ -497,20 +497,27 @@ margin-left: auto;
 #addMoreDrinksDiv{
 	position: fixed;
 	width:100%;
-	top: 75vh;
+	top: 70vh;
+}
+
+#addMoreDrinksB{
+  width: 55%;
+  height: 10vh;
 }
 
 #goBackBCart {
     position:fixed;
     left: 0px;
-    bottom: 0px; 
+    bottom: 0px;
 }
 
 #payB{
   position:fixed;
   right: 0px;
-  bottom:0px; 
+  bottom:0px;
   border-color: rgb(215,83,14);
+  width: 35%;
+  height: 10vh;
 }
 
 hr {
@@ -540,7 +547,7 @@ hr {
     border-radius: 9vw;
     font-size: 12vw;
     font-weight: bold;
-    color: grey; 
+    color: grey;
 	position: relative;
 	overflow: hidden;
 }
@@ -559,7 +566,7 @@ hr {
     width: 80vw;
     margin-left: 10vw;
     margin-right: 10vw;
-    
+
 }
 
 #upperSecChooseIngP {
@@ -577,7 +584,7 @@ hr {
 #middleSecChooseIng {
   display: block;
   line-height: normal;
-    margin-top: 40vh; 
+    margin-top: 40vh;
     margin-bottom: 17vh;
 }
 
@@ -621,7 +628,7 @@ hr {
 #middleSec {
   display: block;
   line-height: normal;
-    margin-top: 33vh; 
+    margin-top: 33vh;
     margin-bottom: 17vh;
 }
 
@@ -646,7 +653,7 @@ hr {
 #favSec {
   display: block;
   line-height: normal;
-   margin-top: 10vh;    
+   margin-top: 10vh;
 }
 
 #chooseFavTitle {
@@ -725,7 +732,7 @@ hr {
 }
 
 .tasteClock {
-   
+
     width: auto;
     height: 13vw;
 }
@@ -736,39 +743,39 @@ hr {
     header {
         height: 60px;
     }
-    
+
     /*#cancelOrderB {
         height: 50px;
         font-size: 15px;
-		
+
     }*/
-        
+
     #basketB {
         height: 50px;
     }
-        
+
     .ingredientB {
         height: 40px;
     }
-    
+
     .goB {
         height: 50px;
     }
-    
+
     #bottomTable {
         position: relative;
         /* Måste fixa så den ej centreras då
         höjden på fönstret minskas */
     }
-	
-    
+
+
     #goBackDiv {
         position: sticky;
         float: left;
 		width: 50vw;
 		background-color: white;
     }
-    
+
     #goBackBCart {
     position: sticky;
     float: left;
@@ -778,7 +785,7 @@ hr {
     position: sticky;
     float: right;
     }
-    
+
 }
 
 
