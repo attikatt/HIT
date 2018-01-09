@@ -45,14 +45,6 @@ h1{
   height: 60vh;
 }
 
-#donutchartIngred{
-  display: inline-flex;
-}
-
-#donutchartOrders{
-  float: left;
-}
-
 #homeButton{
     float: left;
     background-color: transparent;
@@ -67,7 +59,13 @@ h1{
   font-size:10vh;
 }
 
+#donutchartOrders{
+  float: left;
+}
 
+#donutchartIngred{
+  display: inline-flex;
+}
 #clock{
     font-size: 4vh;
     float: right;

@@ -110,5 +110,5 @@ function drawChart() {
   var chart2 = new google.visualization.PieChart(document.getElementById('donutchartIngred'));
   chart2.draw(ingredientData, ingredientOptions);
 
-  //setTimeout(drawChart,1000); //här regleras hur ofta grafen uppdateras, kan behöva sänkas om många klienter
+  setTimeout(drawChart,1000); //här regleras hur ofta grafen uppdateras, kan behöva sänkas om många klienter
 }
