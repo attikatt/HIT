@@ -57,6 +57,11 @@ h1{
 #topDiv{
   text-align: center;
   font-size:10vh;
+
+}
+
+p{
+  margin-top: 0.5vh;
 }
 
 #donutchartOrders{
