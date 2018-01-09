@@ -748,6 +748,38 @@ hr {
     width: auto;
     height: 13vw;
 }
+/*Thanks Page*/
+
+#thanksSec{
+  display: block;
+  position: fixed;
+  line-height: normal;
+  height: 85vh;
+  margin-top: 2vh;
+  
+}
+
+#orderedItems{
+  padding-top:35vh;
+  padding-left:8vw;
+  padding-right: 8vw;
+}
+
+#thanksDiv{
+  top:0vh;
+  padding-top:20vh;
+  background-color: white;
+  width:100%;
+}
+
+#newOrderDiv{
+  bottom:0vh;
+  padding-bottom:8vh;
+  width:100%;
+  position:fixed;
+  background-color: white;
+  
+}
 
 /* MEDIA STUFF */
 
