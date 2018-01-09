@@ -169,8 +169,9 @@ var vm = new Vue({
         order = {
           ingredients: this.chosenIngredients,
           type: this.type,
-            size: this.chosenSize,
-            name: name,
+          size: this.chosenSize,
+          name: name,
+          compType: this.drinkPath
         };
         //Add drink to the full order 
         this.fullOrder.push(order); 
@@ -248,6 +249,9 @@ var vm = new Vue({
   		this.thanksShown = false;
   		this.changeIngShown = false;
     },
+
+/* FÖR ATT KUNNA KOMMA TILLBAKA TILL RÄTT SIDA DÅ KUNGKORGEN KLICKAS OCH SEDAN KLICKAR TILLBAKA
+Funkar ej just nu! */
 
     findCurPage: function() {
       var pages = [
@@ -475,13 +479,20 @@ var vm = new Vue({
 		  }
     },
 	  
-    showOrderedItems: function(orderNumber) {
+    showOrderedItems: function(orderIdAndName) {
       var allOrders = this.orders;
 
       var h4 = document.createElement("h4");
       var nodeRef = document.getElementById("orderedItems");
       
-      var text = document.createTextNode(orderNumber[1]+" #" + orderNumber[0]);
+      if (orderIdAndName[1] === 'Egen juice' && this.lang === 'en') {
+        orderIdAndName[1] = 'Own juice'
+      }
+      if (orderIdAndName[1] === 'Egen smoothie' && this.lang === 'en') {
+        orderIdAndName[1] = 'Own smoothie'
+      }
+
+      var text = document.createTextNode(orderIdAndName[1]+" #" + orderIdAndName[0]);
       var br = document.createElement("br");
       h4.appendChild(text);
       nodeRef.appendChild(h4);

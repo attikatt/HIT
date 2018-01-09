@@ -288,7 +288,7 @@
         </section>
       </div>      
       
-<!-- Page Cart  -->
+<!-- Cart page  -->
       <div v-if ="cartShown">
         <section id="centerSecYourDrinkP">
           <div>
@@ -298,7 +298,9 @@
           <div id ="cartGrid">
               <!-- Här måste rätt info synas med uiLabels -->
             <div id="cartItem" v-for="drink in fullOrder">
-              <div id="cartItemName">{{ drink.name }} <br> {{ drink.size }} </div>
+              <div id="cartItemName" v-if="drink.compType === 'fav'"> {{ drink.name }} <br> {{ drink.size }} </div>
+              <div id="cartItemName" v-if="drink.compType === 'myo' && drink.type === 'juice'"> {{ uiLabels.ownJuice }} <br> {{ drink.size }} </div>
+              <div id="cartItemName" v-if="drink.compType === 'myo' && drink.type === 'smoothie'"> {{ uiLabels.ownSmoothie }} <br> {{ drink.size }} </div>
               <div id="cartItemPrice"> {{getPrice(drink.size)}} <button id="cancelCartItemB" v-on:click="removeDrinkFromOrder()"><img src ="images/cross.png" id="crossImg"></button>
               </div>
             </div>
@@ -376,8 +378,8 @@
       <div v-if="thanksShown">
       	<section id="centerSecStartP">
       		<div>
-      			<h1 class="lowerCaseHeadline"> {{ uiLabels.thankOrder }}</h1>
-                    <div id = "orderedItems"> </div> 
+      			<h1 class="lowerCaseHeadline"> {{ uiLabels.thankOrder }} </h1>
+            <div id = "orderedItems"> </div> 
       		</div>
       		<div id="newOrderDiv">
       			<button id="newOrderB" v-on:click = "emptyOrder(); showPage('showStart')"> {{ uiLabels.newOrder }}</button>
