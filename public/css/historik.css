@@ -117,14 +117,14 @@ hr{
 }
 
 /*------Klockan--------*/
-#clock{
+/*#clock{
     grid-area: clock;
     font-size: 4vh;
     position: absolute;
     bottom: 0;
     right: 0;
     margin-right: 1vw;
-}
+}*/
 
 /*------------ Popup med sifferconsolen-----------*/
 /* The Modal (background) */
