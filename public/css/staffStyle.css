@@ -20,7 +20,7 @@
     font-style: normal;
 }
 
-@import url("reset.css")
+@import url("reset.css");
 
 #centerDiv{
   display: inline-block;
@@ -28,7 +28,32 @@
   line-height: normal;
 }
 
+body{
+  font-family: 'crapaudgros', arial, sans-serif; /* Ska denna font användas också? */
+}
+
+h1 {
+  font-size: 4vw;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-family: 'champagne__limousinesregular', arial, sans-serif;
+  font-size: 4vw;
+  text-transform: uppercase;
+}
+
+div.time {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 1vw;
+  font-size: 2vw;
+}
+
 button {
+  font-family: 'champagne__limousinesregular', arial, sans-serif;
+  color: rgba(255,255,255,1);
   padding: 10px;
   margin: 2vw;
   border: 0.1em solid;
