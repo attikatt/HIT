@@ -75,7 +75,7 @@ var vm = new Vue({
     chosenIngredients: [],
     tempDrink: '',
     chosenSize: 'medium',
-    changeFromId: 0,
+    changeFromIdIndex: [0, 0],
     //all drinks in current order
     fullOrder: [],
     allOrders: []
@@ -222,17 +222,12 @@ var vm = new Vue({
     },
 
 /*----------- For replacing an ingredient ---------- */
-  	markChangeFrom: function(ingredient_id){
-  		this.changeFromId = ingredient_id;
+  	markChangeFrom: function([ingredient_id, index]){
+  		this.changeFromIdIndex = [ingredient_id, index];
   	},
 
-    findIngToReplace: function(ingredient) {
-        return ingredient.ingredient_id === this.changeFromId;
-    },
-
   	swapIng: function (changeToId) {
-  		var changeIndex = this.chosenIngredients.findIndex(this.findIngToReplace);
-          this.chosenIngredients[changeIndex] = this.getIngredientById(changeToId);
+      this.chosenIngredients[this.changeFromIdIndex[1]] = this.getIngredientById(changeToId);
   	},
 
 

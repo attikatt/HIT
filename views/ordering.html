@@ -103,7 +103,7 @@
 
 <!-- Change Ing Page: upper section --> 
       <div id="centerSecYourDrinkP" id="upperSecChangeIngP" v-if ="page === 'changeIng'">
-        <h4> {{ uiLabels.changeIng + (getIngredientById(changeFromId))["ingredient_" + lang]}} </h4>
+        <h4> {{ uiLabels.changeIng + (getIngredientById(changeFromIdIndex[0]))["ingredient_" + lang]}} </h4>
         <h2> {{ uiLabels.chooseIng }} </h2>
       </div>
         
@@ -216,8 +216,8 @@
     			<div id="chosenIngGrid">
     				<div>
     					<button class="ingredientOblongB" 
-    							v-for="containsIng in chosenIngredients" 
-    							v-on:click="showPage('showChangeIng'); markChangeFrom(containsIng.ingredient_id)">
+    							v-for="(containsIng, index) in chosenIngredients" 
+    							v-on:click="showPage('showChangeIng'); markChangeFrom([containsIng.ingredient_id, index])">
     							{{ containsIng["ingredient_"+ lang] }} <br> 
     					</button>
     				</div>
