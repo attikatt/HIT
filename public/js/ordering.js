@@ -214,15 +214,6 @@ var vm = new Vue({
       }
     },
 
-    getIngredientNameList: function (idArr) {
-      var ingredientList = "", tempIngredient;
-      for (var i = 0; i < idArr.length ; i += 1) {
-        tempIngredient = this.getIngredientById(idArr[i]);
-        ingredientList += tempIngredient["ingredient_" + this.lang] + ", ";
-      }
-      return ingredientList;
-    },
-
 /*----------- For replacing an ingredient ---------- */
   	markChangeFrom: function([ingredient_id, index]){
   		this.changeFromIdIndex = [ingredient_id, index];
@@ -379,10 +370,11 @@ var vm = new Vue({
       else if (page === "showChangeIng") {
         this.page = "changeIng";
         var id = this.changeFromIdIndex[0];
+        console.log(id);
         var index = this.changeFromIdIndex[1];
         console.log(index);
-        console.log(this.this.getIngredientById(id).ingredient_category);
         console.log(this.getIngredientById(id));
+        console.log(this.getIngredientById(id).ingredient_category);
 
         if (index === 0) {
           this.changeIngType = 'base';
