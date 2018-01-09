@@ -51,7 +51,7 @@
 
     <!---All undone orders-->
         <div id="orders">
-          <div class="smallOrderList"><!--lägg till ny klass-->
+          <div class="smallOrderList">
             <order-list
               v-for="(order, key) in orders"
               v-if="order.status != 'done'"
