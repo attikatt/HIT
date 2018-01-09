@@ -30,7 +30,6 @@ span {
   line-height: normal;
   float: right;
   height: 90%;
-  width: 35%;
   grid-area: waiting;
 
 }
@@ -274,7 +273,7 @@ li span{
   border-style: dotted;
   border-width: 4px;
   border-radius: 10px;
-  height:70vh;
+  height:73vh;
 }
 
 .juice{
