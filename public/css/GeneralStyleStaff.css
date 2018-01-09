@@ -1,4 +1,5 @@
-@import url("reset.css")
+/*--------------Fonter------------*/
+@import url("reset.css");
 @import url('http://fonts.googleapis.com/css?family=Pacifico|Dois');
 
 @font-face {
@@ -26,6 +27,7 @@
 
 @import url("reset.css");
 
+/*-----------Element-------*/
 body{
   font-family: 'champagne__limousinesregular', arial, sans-serif;
   background-color: rgb(64,64,64);

@@ -94,9 +94,7 @@ function getColors(size){
       blue += step;
     }
   }
-  console.log(colors);
   return colors;
-
 }
 
 function drawChart() {
@@ -104,7 +102,7 @@ function drawChart() {
   var orderOptions = {
     title: 'Fördelning av beställningar',
     pieHole: 0.4,
-    colors: ['rgb(255,51,153)', 'rgb(220,220,51)'],
+    colors: ['rgb(244,66,66)', 'rgb(64,246,96)'],
     'backgroundColor':'transparent',
     'titleTextStyle': {color:'white', fontName: 'champagne__limousinesregular', fontSize:'20', bold:'false'},
     legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16'}}
@@ -115,25 +113,15 @@ function drawChart() {
     title: 'Fördelning av beställda ingredienser',
     pieHole: 0.4,
     colors: getColors(dataVm.getIngredientData().length),
-    //colors: ['rgb(0, 140, 0)', 'rgb(10,150,10)', 'rgb(20,160,20)', 'rgb(30,170,30)'],
-    //colors: ['rgb(0, 60, 0)', 'rgb(0,80,0)'],
     'backgroundColor':'transparent',
     'titleTextStyle': {color:'white', fontName: 'champagne__limousinesregular', fontSize:'20', bold:'false'},
-    legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16'}},
+    legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16'}, maxLines: '6'},
     pieResidueSliceLabel: 'Övriga',
     //pieResidueSliceColor: '#365888',
     sliceVisibilityThreshold: 6/100
   };
 
-  /* Vanliga
-  var chart1 = new google.visualization.PieChart(document.getElementById('donutchartOrders'));
-  chart1.draw(orderData, orderOptions);
-
-  var chart2 = new google.visualization.PieChart(document.getElementById('donutchartIngred'));
-  chart2.draw(ingredientData, ingredientOptions);
-  */
-
-  /* Med ifsatser */
+  /*---- Only show graphs if there is data----*/
   if (Object.keys(dataVm.getCurrentStatus()).length > 0){
     var chart1 = new google.visualization.PieChart(document.getElementById('donutchartOrders'));
     chart1.draw(orderData, orderOptions);
@@ -142,32 +130,11 @@ function drawChart() {
       var chart2 = new google.visualization.PieChart(document.getElementById('donutchartIngred'));
       chart2.draw(ingredientData, ingredientOptions);
     } else  { //denna visas beorende på vad gränsen för sållningen är
-      document.getElementById('donutchartIngred').innerHTML = "<span style='font-size:1.5vw;margin: 5vw;'>Not enough data on ingredients to display chart</span>";
+      document.getElementById('donutchartIngred').innerHTML = "<span style='font-size:1.5vw;margin: 5vw;'>Inte tillräckligt mycket många ingredienser beställda för att visa graft</span>";
   }
 
 } else {
-  document.getElementById('VueDiv').innerHTML = "<span style='font-size:4vw;margin: 15vw;'>Not enough recived orders to display data</span>";
+  document.getElementById('VueDiv').innerHTML = "<span style='font-size:4vw;margin: 10vw;'>Inte tillräckligt många ordrar för att visa grafer data</span>";
 }
-  setTimeout(drawChart,1000); //här regleras hur ofta graferna uppdateras, kan behöva sänkas om många klienter
+  setTimeout(drawChart,2000); //här regleras hur ofta graferna uppdateras, kan behöva sänkas om många klienter
 }
-
-function test(){
-  var colors = [];
-  var red = 244;
-  var green = 66;
-  var blue = 66;
-  var step = 30;
-  for (var i = 0; i < 70; i ++){
-    var currColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
-    colors.push(currColor);
-    if (green < 244){
-      green += step;
-    } else if (red > 69) {
-      red -= step
-    } else if (blue < 244) {
-      blue += step;
-    }
-  }
-  console.log(colors);
-}
-test();

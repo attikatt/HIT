@@ -15,7 +15,7 @@ h1{
 
 .donut{
   width: 45vw;
-  height: 60vh;
+  height: 65vh;
 }
 
 #homeButton{
@@ -42,12 +42,15 @@ p{
 }
 
 #donutchartIngred{
-  display: inline-flex;
+  float: right;
 }
 #clock{
-    font-size: 4vh;
+    /*font-size: 4vh;
     float: right;
-    padding-right: 1vw;
+    padding-right: 1vw;*/
+    position:absolute;
+    right: 2vw;
+    bottom: 2vh;
 }
 
 @media (max-width:720px) {
