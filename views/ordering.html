@@ -15,20 +15,20 @@
 <body>
   <div id="ordering">
 <!-- Headers -->
-    <div v-if="startShown">
+    <div v-if="page === 'start'">
       <header id="headerStart">
         <button id="languageB" v-on:click="switchLang()">{{ uiLabels.language }}</button>
       </header>
     </div>
       
-    <div id ="headerCart" v-if = "cartShown">
+    <div id ="headerCart" v-if = "page === 'cart'">
       <header>
         <button id="cancelOrderB" v-on:click = "emptyOrder(); showPage('showStart')"> {{ uiLabels.cancelOrder }}  </button>
         <h1 id = "titleCart"> Juicifer </h1>
       </header>
     </div>
       
-    <div v-if="chooseTypeShown || baseShown || ingShown || piffShown || startAgainShown || yourDrinkShown || sizeShown || favShown || drinkInfoShown || changeIngShown">
+    <div v-if="page === 'chooseType' || page === 'chooseBase' || page === 'chooseIng' || page === 'choosePiff' || page === 'startAgain' || page === 'yourDrink' || page === 'chooseSize' || page === 'favorites' || page === 'drinkInfo' || page === 'changeIng'">
       <header id="headerChangeIngP">
         <table id="headTable">
           <tbody> 
@@ -50,7 +50,7 @@
     <main>
       
 <!-- Page: start & startAgain -->
-      <div v-if="startShown || startAgainShown">
+      <div v-if="page === 'start' || page === 'startAgain'">
         <section id="centerSecStartP">       
           <img id="juiciferLogo" src="images/logo.png">
           <div>   
@@ -63,14 +63,14 @@
           </div>
         </section>
       </div>
-      <div v-if = "startAgainShown">
+      <div v-if = "page === 'startAgain'">
         <div class="goBackDiv">
           <button id="goBackB"  class="goB" v-on:click="showPage('showCart')"> <img class="arrow" src="images/backArrow.png"> </button>
         </div>
       </div>
       
 <!-- Page: choose type -->
-      <div v-if="chooseTypeShown">
+      <div v-if="page === 'chooseType'">
         <section id="centerSecChooseTypeP">       
           <h2> {{ uiLabels.chooseType }} {{ uiLabels.drink }}</h2>
             <div>   
@@ -88,7 +88,7 @@
       </div>
       
 <!-- Page: show base, ing and piff -->
-      <div v-if="baseShown || ingShown || piffShown">
+      <div v-if="page === 'chooseBase' || page === 'chooseIng' || page === 'choosePiff'">
         <section id="upperSecChooseBasePiff">
           <h5 id = "stepText"> {{ uiLabels.baseIngPiff }}</h5>
           <div id="stepPanel">
@@ -102,13 +102,13 @@
       </div>
 
 <!-- Change Ing Page: upper section --> 
-      <div id="centerSecYourDrinkP" id="upperSecChangeIngP" v-if ="changeIngShown">
+      <div id="centerSecYourDrinkP" id="upperSecChangeIngP" v-if ="page === 'changeIng'">
         <h4> {{ uiLabels.changeIng + (getIngredientById(changeFromId))["ingredient_" + lang]}} </h4>
         <h2> {{ uiLabels.chooseIng }} </h2>
       </div>
         
 <!-- This is step 1 -->
-      <div v-if="baseShown">
+      <div v-if="page === 'chooseBase'">
         <h4 id ="chooseBasePiffText"> {{ uiLabels.chooseBase }} </h4>
         <section id="middleSec">
           <div v-if="type === 'smoothie'" class="ingredientsGrid">
@@ -136,7 +136,7 @@
         </section>
       </div>
 <!-- This is step 2- 4 -->
-      <div v-if= "ingShown || changeIngShown">
+      <div v-if= "page === 'chooseIng' || page === 'changeIng'">
         <div id = "lowerUpperChooseIng">
           <h4> {{ uiLabels.chooseIng }}</h4>
             <table id="categoryTable">
@@ -175,7 +175,7 @@
         </section>
       </div>
 <!-- This is step 5 -->
-      <div v-if="piffShown">
+      <div v-if="page === 'choosePiff'">
         <h4 id ="chooseBasePiffText"> {{ uiLabels.choosePiff }} </h4>
         <section id="middleSec">
           <div class="ingredientsGrid">
@@ -192,7 +192,7 @@
         </section>
       </div>
 <!-- Lower section for choosing ingredients -->
-      <div v-if="baseShown || ingShown || piffShown">
+      <div v-if="page === 'chooseBase' || page === 'chooseIng' || page === 'choosePiff'">
         <section id="lowerSecChooseBasePiff">
           <div class="goBackDiv"> 
             <button id="goBackB" class="goB" v-on:click="changeStep(false); removeItemFromOrder(); filterIngType('fruit')"> <img class="arrow" src="images/backArrow.png"> </button>
@@ -201,7 +201,7 @@
       </div>
       
 <!-- Your drink page -->
-      <div v-if="yourDrinkShown">
+      <div v-if="page === 'yourDrink'">
         <section id="centerSecYourDrinkP">
           <div v-if = "drinkPath === 'fav'">
             <h4> {{uiLabels.your}} {{uiLabels.drink}} </h4>
@@ -273,13 +273,13 @@
       </div>
 -->
 <!-- Change Ing Page: lower section -->	  
-      <div id="goBackFullDiv" v-if="changeIngShown">
+      <div id="goBackFullDiv" v-if="page === 'changeIng'">
         <button id="goBackB" v-on:click="goBackDrinkInfo()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
       </div>
 
 <!-- Page: Choose size -->
       
-      <div v-if="sizeShown"> 
+      <div v-if="page === 'chooseSize'"> 
         <section id="centerSecYourDrinkP">
           <div>
             <h2> {{ uiLabels.chooseSize }} <br> {{ uiLabels.ofYourDrink }} </h2>
@@ -302,7 +302,7 @@
       </div>      
       
 <!-- Cart page  -->
-      <div v-if ="cartShown">
+      <div v-if ="page === 'cart'">
         <section id="centerSecYourDrinkP">
           <div>
             <h2> {{ uiLabels.basket }} </h2>
@@ -336,7 +336,7 @@
 
 <!-- Juicifers Favorites Page -->
 
-      <div v-if="favShown">
+      <div v-if="page === 'favorites'">
         <section id="favSec">
           <h3 id="chooseFavTitle" v-if = "type ==='smoothie'">{{ uiLabels.chooseSmoothie }} </h3> 
     		  <h3 id="chooseFavTitle" v-if = "type ==='juice'">{{ uiLabels.chooseJuice }} </h3>
@@ -353,7 +353,7 @@
     
 <!-- Drink Info Fav -->
       
-      <div v-if="drinkInfoShown">
+      <div v-if="page === 'drinkInfo'">
         <section id="drinkInfoSec">
           <div id="drinkInfoDiv">
             <img id="bigDrinkImg" v-bind:src="tempDrink.rm_img"> <br> 
@@ -388,7 +388,7 @@
       </div>    
 	  
 <!-- thanks Page -->
-      <div v-if="thanksShown">
+      <div v-if="page === 'thanks'">
       	<section id="centerSecStartP">
       		<div>
       			<h1 class="lowerCaseHeadline"> {{ uiLabels.thankOrder }} </h1>

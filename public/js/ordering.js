@@ -23,14 +23,14 @@ Vue.component('ingredient', {
       this.counter = 0;
     },
     changePage: function (goesForward) {
-        if (vm.baseShown || vm.ingShown || vm.piffShown) {
-            this.incrementCounter(); // behöver vi verkligen countern? Funkar ej nu: ändras nu ej när ingredienser byts ut. Men this.$emit('increment') behövs!
-            vm.changeStep(true);
-        }
-        else if (vm.changeIngShown) {
-            vm.swapIng(this.item.ingredient_id); // sending id of ingredient user is swapping to.
-            vm.showPage("showYourDrink");
-        }
+      if (vm.page === "chooseBase" || vm.page === "chooseIng" || vm.page === "choosePiff") {
+          this.incrementCounter(); // behöver vi verkligen countern? Funkar ej nu: ändras nu ej när ingredienser byts ut. Men this.$emit('increment') behövs!
+          vm.changeStep(true);
+      }
+      else if (vm.page === "changeIng") {
+          vm.swapIng(this.item.ingredient_id); // sending id of ingredient user is swapping to.
+          vm.showPage("showYourDrink");
+      }
     }
   }
 });
@@ -52,6 +52,8 @@ var vm = new Vue({
     volume: 0,
     price: 0,
     // page being shown
+    page: "start",
+    /*
     startShown: true,
     chooseTypeShown: false,
     baseShown: false,
@@ -64,7 +66,7 @@ var vm = new Vue({
     sizeShown: false,
     cartShown: false,
     thanksShown:false,
-    changeIngShown: false,
+    changeIngShown: false, */
     step: 1,
     ingType: 'fruit',
     // drink currently being composed
@@ -100,14 +102,14 @@ var vm = new Vue({
 		if (this.type === "smoothie") {
         	this.volume += +item.vol_smoothie;
 			// if the drink is not one of juicifers, making the ingredient panel
-			if(!this.drinkInfoShown){
+			if(this.page !== "drinkInfo"){ 
 				vm.showStepImg(item);
 			}
 		}
 		else if(this.type === "juice"){
 			this.volume += +item.vol_juice;
 			// if the drink is not one of juicifers, making the ingredient panel
-			if(!this.drinkInfoShown){
+			if(this.page !== "drinkInfo"){
 				vm.showStepImg(item);
 			}
       }
@@ -235,6 +237,8 @@ var vm = new Vue({
 
 
 /*----------- For showing the right page/view ---------- */
+
+/*
     hideAllPages: function() {
       this.startShown = false;
       this.chooseTypeShown = false;
@@ -250,9 +254,6 @@ var vm = new Vue({
   		this.thanksShown = false;
   		this.changeIngShown = false;
     },
-
-/* FÖR ATT KUNNA KOMMA TILLBAKA TILL RÄTT SIDA DÅ KUNGKORGEN KLICKAS OCH SEDAN KLICKAR TILLBAKA
-Funkar ej just nu! */
 
     findCurPage: function() {
       var pages = [
@@ -278,74 +279,130 @@ Funkar ej just nu! */
     },
 
     showPage: function(page) {
-        this.hideAllPages();
-        if(page === "showBase") {
+      if (page === "showBase") {
+        this.baseShown = true;
+      }
+      else if (page === "showIng"){
+        this.ingShown = true;
+      }
+      else if (page === "showPiff"){
+        this.piffShown = true;
+      }
+      else if (page === "showChooseType"){
+        this.chooseTypeShown = true;
+      }
+      else if(page === "showStart"){
+        this.startShown = true;
+      }
+      else if(page === "showStartAgain"){
+        this.startAgainShown = true;
+          // set all drink order counters to 0.
+        this.step = 1;
+        this.ingType = "fruit";
+        this.type = '';
+        this.chosenIngredients = [];
+      }
+      else if(page === "showYourDrink") {
+        this.yourDrinkShown = true;
+      }
+      else if(page === "showSize") {
+        this.sizeShown = true;
+      }
+      else if(page === "showCart") {
+        this.findCurPage();
+        this.cartShown = true;
+      }
+
+      else if(page ==="showFav") {
+        this.favShown = true;
+      }
+      else if (page === "showFavInfo") {
+        this.drinkInfoShown = true;
+      }
+	    else if (page ==="showThanks") {
+        this.thanksShown = true;
+	    }
+  		else if (page === "showChangeIng") {
+  			this.changeIngShown = true;
+  		}
+      else if (page === "showFavOrMyo") {
+        if (this.drinkPath === 'fav') {
+            this.favShown = true;
+        }
+        else if (this.drinkPath === 'myo') {
           this.baseShown = true;
         }
-        else if (page === "showIng"){
-          this.ingShown = true;
-        }
-        else if (page === "showPiff"){
-          this.piffShown = true;
-        }
-        else if (page === "showChooseType"){
-          this.chooseTypeShown = true;
-        }
-        else if(page === "showStart"){
-          this.startShown = true;
-        }
-        else if(page === "showStartAgain"){
-          this.startAgainShown = true;
-            // set all drink order counters to 0.
-          this.step = 1;
-          this.ingType = "fruit";
-          this.type = '';
-          this.chosenIngredients = [];
-        }
-        else if(page === "showYourDrink") {
-          this.yourDrinkShown = true;
-        }
-        else if(page === "showSize") {
-          this.sizeShown = true;
-        }
-        else if(page === "showCart") {
-          this.findCurPage();
-          this.cartShown = true;
-        }
-
-        else if(page ==="showFav") {
-          this.favShown = true;
-        }
-        else if (page === "showFavInfo") {
-          this.drinkInfoShown = true;
-        }
-		    else if (page ==="showThanks") {
-          this.thanksShown = true;
-		    }
-    		else if (page === "showChangeIng") {
-    			this.changeIngShown = true;
-    		}
-        else if (page === "showFavOrMyo") {
-          if (this.drinkPath === 'fav') {
-              this.favShown = true;
-          }
-          else if (this.drinkPath === 'myo') {
-            this.baseShown = true;
-          }
-        }
+      }
     },
-	  
-	goBackDrinkInfo: function() {
-		vm.showPage('showYourDrink');
-	},
+
+    */
+
+    showPage: function(page) {
+      if (page === "showBase") {
+        this.page = "chooseBase";
+      }
+      else if (page === "showIng") {
+        this.page = "chooseIng";
+      }
+      else if (page === "showPiff") {
+        this.page = "choosePiff";
+      }
+      else if (page === "showChooseType") {
+        this.page = "chooseType";
+      }
+      else if(page === "showStart") {
+        this.page = "start";
+      }
+      else if(page === "showStartAgain") {
+        this.page = "startAgain";
+          // set all drink order counters to 0.
+        this.step = 1;
+        this.ingType = "fruit";
+        this.type = '';
+        this.chosenIngredients = [];
+      }
+      else if(page === "showYourDrink") {
+        this.page = "yourDrink";
+      }
+      else if(page === "showSize") {
+        this.page = "chooseSize";
+      }
+      else if(page === "showCart") {
+        this.page = "cart";
+      }
+      else if(page === "showFav") {
+        this.page = "favorites";
+      }
+      else if (page === "showFavInfo") {
+        this.page = "drinkInfo";
+      }
+      else if (page === "showThanks") {
+        this.page = "thanks";
+      }
+      else if (page === "showChangeIng") {
+        this.page = "changeIng";
+      }
+      else if (page === "showFavOrMyo") {
+        if (this.drinkPath === 'fav') {
+          this.page = "favorites";
+        }
+        else if (this.drinkPath === 'myo') {
+          this.page = "chooseBase";
+        }
+      }
+    },
+  	  
+  	goBackDrinkInfo: function() {
+  		vm.showPage('showYourDrink');
+  	},
 
     changeStep: function(goesForward) {
       var steps = document.getElementsByClassName("stepCircle");
 
       for (var i = 0; i < steps.length; i++) {
-          steps[i].style.color = "grey";
-          steps[i].style.backgroundColor = "lightgrey";
-		  steps[i].style.boxShadow ="none";
+        steps[i].style.color = "grey";
+        steps[i].style.backgroundColor = "lightgrey";
+	      steps[i].style.boxShadow ="none";
       }
 
       if (goesForward) {
@@ -370,15 +427,13 @@ Funkar ej just nu! */
       }
 
       else {
-		  
-/*---------------------------------HÄÄÄÄRR-------------------------------*/
-		var removeStep = this.step-1;
-		var currentStepDivId = document.getElementById("step"+removeStep);
-		var removeP = document.getElementById(removeStep + "p");
-		var removeImg = document.getElementById(removeStep + "img");
-		currentStepDivId.removeChild(removeP);
-		currentStepDivId.removeChild(removeImg);  
-		
+        // tar bort bilden i steppaneln
+    		var removeStep = this.step-1;
+    		var currentStepDivId = document.getElementById("step"+removeStep);
+    		var removeP = document.getElementById(removeStep + "p");
+    		var removeImg = document.getElementById(removeStep + "img");
+    		currentStepDivId.removeChild(removeP);
+    		currentStepDivId.removeChild(removeImg);  
 		  
         if (this.step <= 1) {
           this.showPage("showChooseType");
@@ -404,9 +459,9 @@ Funkar ej just nu! */
       }
 		
       var stylingSteps = document.getElementById("step"+this.step);
-	  stylingSteps.style.color = "black";
-	  stylingSteps.style.backgroundColor = "white";
-	  stylingSteps.style.boxShadow ="0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0";
+  	  stylingSteps.style.color = "black";
+  	  stylingSteps.style.backgroundColor = "white";
+  	  stylingSteps.style.boxShadow ="0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0";
       return this.step;
     },
 
@@ -414,8 +469,8 @@ Funkar ej just nu! */
       this.ingType = chosenIngType;
       var categories = document.getElementsByClassName("categoryB");
       for (var i = 0; i < categories.length; i++) {
-          categories[i].style.color = "grey";
-          categories[i].style.borderColor = "grey";
+        categories[i].style.color = "grey";
+        categories[i].style.borderColor = "grey";
       }
       document.getElementById(chosenIngType+"B").style.color = "black";
       document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)";
