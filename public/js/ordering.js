@@ -358,7 +358,6 @@ var vm = new Vue({
       else if(page === "chooseSize") {
         if (this.comingFromCart) {
           this.removeDrinkFromOrder(this.fullOrder[2]);
-          console.log("hej");
         }
         this.page = "chooseSize";
       }
@@ -377,11 +376,10 @@ var vm = new Vue({
         this.page = "thanks";
       }
       else if (page === "changeIng") {
+        this.ingType = 'fruit';
         this.page = "changeIng";
         var id = this.changeFromIdIndex[0];
         var index = this.changeFromIdIndex[1];
-        console.log(this.getIngredientById(id));
-        console.log(this.getIngredientById(id).ingredient_category);
 
         if (index === 0) {
           this.changeIngType = 'base';
@@ -487,13 +485,14 @@ var vm = new Vue({
         categories[i].style.color = "grey";
         categories[i].style.borderColor = "grey";
       }
-      document.getElementById(chosenIngType+"B").style.color = "black";
-      document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)";
+      if (this.step > 1 || this.step < 5 ) {
+        document.getElementById(chosenIngType+"B").style.color = "black";
+        document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)";
+      }
     },
 
     setComingFromCart: function() {
       this.comingFromCart = true;
-      console.log(this.comingFromCart);
     },
 
 /*--------- For composing drink ------------*/
