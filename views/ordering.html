@@ -103,7 +103,8 @@
 
 <!-- Change Ing Page: upper section --> 
      <div id="centerSecYourDrinkP" id="upperSecChangeIngP" v-if ="page === 'changeIng'">
-        <h3> {{ uiLabels.changeIng + (getIngredientById(changeFromIdIndex[0]))["ingredient_" + lang]}} </h3>
+        <h4> {{ uiLabels.changeIng }}</h4> <br>
+        <h3> {{(getIngredientById(changeFromIdIndex[0]))["ingredient_" + lang]}} </h3>
         <br>
         <h4 v-if="changeIngType === 'base'"> {{ uiLabels.chooseBase }} </h4>
         <h4 v-if="changeIngType === 'ing'"> {{ uiLabels.chooseIng }} </h4>
