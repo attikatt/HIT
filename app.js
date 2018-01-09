@@ -113,7 +113,8 @@ Data.prototype.addOrder = function (order) {
   var orderId = this.getOrderNumber();
   this.orders[orderId] = order.order;
   this.orders[orderId].orderId = orderId;
-  this.orders[orderId].done = false;
+  this.orders[orderId].status = "not-started";
+  this.orders[orderId].state = "not-active";
   var name = this.orders[orderId].name;
   var transactions = this.data[transactionsDataName],
     //find out the currently highest transaction id
@@ -146,11 +147,27 @@ Data.prototype.getAllOrders = function () {
 };
 
 Data.prototype.markOrderDone = function (orderId) {
-  this.orders[orderId].done = true;
+  this.orders[orderId].status = "done";
 };
 
 Data.prototype.markOrderNotDone = function (orderId) {
-  this.orders[orderId].done = false;
+  this.orders[orderId].status = "not-started";
+};
+
+Data.prototype.markOrderStarted = function (orderId) {
+  this.orders[orderId].status = "started";
+};
+Data.prototype.markOrderNotStarted = function (orderId) {
+  this.orders[orderId].status = "not-started";
+};
+
+/*Sara testar att göra ordrar till aktiva*/
+
+Data.prototype.markOrderActive = function (orderId) {
+  this.orders[orderId].state = "active";
+};
+Data.prototype.markOrderNotActive = function (orderId) {
+  this.orders[orderId].state = "not-active";
 };
 
 /*-------------------------------------------------------------------------*/
@@ -180,9 +197,9 @@ io.on('connection', function (socket) {
 
   // When someone orders something
   socket.on('order', function (order) {
-    var orderIdAndName = data.addOrder(order);
+    var orderId = data.addOrder(order);
     // send updated info to all connected clients, note the use of io instead of socket
-    socket.emit('orderNumber', orderIdAndName);
+    socket.emit('orderNumber', orderId);
     io.emit('currentQueue', { orders: data.getAllOrders(),
                           ingredients: data.getIngredients() });
   });
@@ -198,6 +215,27 @@ io.on('connection', function (socket) {
 
   socket.on('orderNotDone', function (orderId) {
     data.markOrderNotDone(orderId);
+    io.emit('currentQueue', {orders: data.getAllOrders() });
+  });
+
+  socket.on('orderStarted', function (orderId) {
+    data.markOrderStarted(orderId);
+    io.emit('currentQueue', {orders: data.getAllOrders() });
+  });
+
+  socket.on('orderNotStarted', function (orderId) {
+    data.markOrderNotStarted(orderId);
+    io.emit('currentQueue', {orders: data.getAllOrders() });
+  });
+
+ /* Sara testar att göra order till active*/
+  socket.on('orderActive', function (orderId) {
+    data.markOrderActive(orderId);
+    io.emit('currentQueue', {orders: data.getAllOrders() });
+  });
+
+  socket.on('orderNotActive', function (orderId) {
+    data.markOrderNotActive(orderId);
     io.emit('currentQueue', {orders: data.getAllOrders() });
   });
 
