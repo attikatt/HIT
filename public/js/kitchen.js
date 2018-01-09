@@ -59,8 +59,6 @@ Vue.component('order-list',{
          },
          methods:{
            setActive: function(order){
-               /*Meddela Vue att den är aktiv*/
-               this.$emit('active-order');
                for (var key in vm.orders){
                  if (vm.orders[key].orderId != order.orderId &&  vm.orders[key].type == order.type){
                    socket.emit("orderNotActive", vm.orders[key].orderId);
@@ -69,8 +67,6 @@ Vue.component('order-list',{
                    socket.emit("orderActive", order.orderId);
                  }
                }
-
-
            }
         }
 });
@@ -81,25 +77,6 @@ var vm = new Vue({
   data: {
   },
   methods: {
-    activateOrder(order) {
-      var ok = true;
-
-      //kolla om det finns någon annan order av samma typ som är aktiverad och sätt isf 'ok' till false
-      /*for (var key in this.orders){
-        if (this.orders.hasOwnProperty(key) &&
-            this.orders[key].type == order.type &&
-            this.orders[key].state == 'active') {
-          ok = false;
-        }
-
-      if (ok) {
-        ;
-      }
-      else{
-        socket.emit("orderNotActive", order.orderId);
-      }*/
-
-    },
     getActiveOrderStage: function(order) {
       return order.status;
     },
@@ -116,7 +93,6 @@ var vm = new Vue({
       socket.emit("orderStarted", order.orderId);
     },
     klar: function(order){
-      console.log(order.orderId);
       this.markDone(order.orderId);
     }
     }

@@ -56,7 +56,6 @@
               v-for="(order, key) in orders"
               v-if="order.status != 'done'"
               v-bind:class = "getActiveOrderStage(order)"
-              v-on:active-order="activateOrder(order)"
               :order-id="key"
               :order="order"
               :ui-labels="uiLabels"
