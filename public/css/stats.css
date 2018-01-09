@@ -1,6 +1,3 @@
-
-
-
 #maindiv{
     font-family: 'champagne__limousinesregular', arial, sans-serif;
     text-align: center;
@@ -38,10 +35,18 @@ span{
   text-align: center;
   font-size:10vh;
 }
-
+/*
 p{
   margin-top: 2vh;
   margin-bottom: 13vh;
+}*/
+
+
+p {
+  margin: 2%;
+  margin-left: 0;
+  font-size:10vh;
+  margin-bottom: 10vh;
 }
 
 #donutchartOrders{
@@ -51,12 +56,20 @@ p{
 #donutchartIngred{
   float: right;
 }
+
 #clock{
   font-size: 4vh;
   position:absolute;
   right: 2vw;
   bottom: 1vh;
   margin:0;
+}
+
+#clock{
+  font-size: 4vh;
+  position:absolute;
+  right: 4vw;
+  bottom: 4vh;
 }
 
 @media (max-width:720px) {
