@@ -29,7 +29,7 @@ Vue.component('ingredient', {
       }
       else if (vm.page === "changeIng") {
           vm.swapIng(this.item.ingredient_id); // sending id of ingredient user is swapping to.
-          vm.showPage("showYourDrink");
+          vm.showPage("yourDrink");
       }
     }
   }
@@ -80,7 +80,9 @@ var vm = new Vue({
     changeIngType: '', 
     //all drinks in current order
     fullOrder: [],
-    allOrders: []
+    allOrders: [],
+    // to go back to previous page after being in cart
+    pageBeforeCart: 'start'
   },
 
  created: function() {
@@ -326,22 +328,22 @@ var vm = new Vue({
     */
 
     showPage: function(page) {
-      if (page === "showBase") {
+      if (page === "chooseBase") {
         this.page = "chooseBase";
       }
-      else if (page === "showIng") {
+      else if (page === "chooseIng") {
         this.page = "chooseIng";
       }
-      else if (page === "showPiff") {
+      else if (page === "choosePiff") {
         this.page = "choosePiff";
       }
-      else if (page === "showChooseType") {
+      else if (page === "chooseType") {
         this.page = "chooseType";
       }
-      else if(page === "showStart") {
+      else if(page === "start") {
         this.page = "start";
       }
-      else if(page === "showStartAgain") {
+      else if(page === "StartAgain") {
         this.page = "startAgain";
           // set all drink order counters to 0.
         this.step = 1;
@@ -349,30 +351,30 @@ var vm = new Vue({
         this.type = '';
         this.chosenIngredients = [];
       }
-      else if(page === "showYourDrink") {
+      else if(page === "yourDrink") {
         this.page = "yourDrink";
       }
-      else if(page === "showSize") {
+      else if(page === "chooseSize") {
         this.page = "chooseSize";
       }
-      else if(page === "showCart") {
+      else if(page === "cart") {
+        this.pageBeforeCart = this.page;
+        console.log(this.pageBeforeCart);
         this.page = "cart";
       }
-      else if(page === "showFav") {
+      else if(page === "favorites") {
         this.page = "favorites";
       }
-      else if (page === "showFavInfo") {
+      else if (page === "drinkInfo") {
         this.page = "drinkInfo";
       }
-      else if (page === "showThanks") {
+      else if (page === "thanks") {
         this.page = "thanks";
       }
-      else if (page === "showChangeIng") {
+      else if (page === "changeIng") {
         this.page = "changeIng";
         var id = this.changeFromIdIndex[0];
-        console.log(id);
         var index = this.changeFromIdIndex[1];
-        console.log(index);
         console.log(this.getIngredientById(id));
         console.log(this.getIngredientById(id).ingredient_category);
 
@@ -397,7 +399,7 @@ var vm = new Vue({
     },
   	  
   	goBackDrinkInfo: function() {
-  		vm.showPage('showYourDrink');
+  		vm.showPage('yourDrink');
   	},
 
     changeStep: function(goesForward) {
@@ -411,20 +413,20 @@ var vm = new Vue({
 
       if (goesForward) {
         if (this.step <= 1) {
-          this.showPage("showIng");
+          this.showPage("chooseIng");
 		      this.step = 1;
         }
         else if (this.step === 2) {
-          this.showPage("showIng");
+          this.showPage("chooseIng");
         }
         else if (this.step === 3) {
-          this.showPage("showIng");
+          this.showPage("chooseIng");
         }
         else if (this.step === 4) {
-          this.showPage("showPiff");
+          this.showPage("choosePiff");
         }
         else if (this.step === 5){
-          this.showPage("showYourDrink");
+          this.showPage("yourDrink");
 		    this.step = 4;
         }
         this.step += 1;
@@ -433,23 +435,23 @@ var vm = new Vue({
       else {
       
         if (this.step <= 1) {
-          this.showPage("showChooseType");
+          this.showPage("chooseType");
           this.step =1;
         }
         else if (this.step === 2) {
-          this.showPage("showBase");
+          this.showPage("chooseBase");
         }
         else if (this.step === 3) {
-          this.showPage("showIng");
+          this.showPage("chooseIng");
         }
         else if (this.step === 4) {
-          this.showPage("showIng");
+          this.showPage("chooseIng");
         }
         else if (this.step === 5){
-          this.showPage("showIng");
+          this.showPage("chooseIng");
         }
         else if(this.step ===6){
-        this.showPage("showPiff");
+        this.showPage("choosePiff");
         this.step = 5;
         }
     

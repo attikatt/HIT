@@ -14,7 +14,7 @@
 
 #verticalLine{
   grid-area: waiting;
-  height: 90%;
+  height: 80vh;
   width: 1px;
   border-right: 1px solid white;
 }
