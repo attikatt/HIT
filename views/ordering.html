@@ -397,18 +397,17 @@
 	  
 <!-- thanks Page -->
       <div v-if="page === 'thanks'">
-      	<section id="centerSecStartP">
-      		<div>
-      			<h1 class="lowerCaseHeadline"> {{ uiLabels.thankOrder }} </h1>
-            <div id = "orderedItems"> </div> 
-      		</div>
-      		<div id="newOrderDiv">
-      			<button id="newOrderB" v-on:click = "emptyOrder(); showPage('start')"> {{ uiLabels.newOrder }}</button>
-      		</div>
-      	</section>
+        <section id="thanksSec">
+          <div id="thanksDiv">
+        <h1 class="lowerCaseHeadline"> {{ uiLabels.thankOrder }} </h1>
+          </div>
+      <div id = "orderedItems"> </div> 
+          <div id="newOrderDiv">
+            <button id="newOrderB" v-on:click ="emptyOrder(); showPage('showStart')"> {{ uiLabels.newOrder }}</button>
+          </div>
+        </section>
       </div>  
     </main>
   </div>
 </body>
 </html>
- 
