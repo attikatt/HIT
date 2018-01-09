@@ -5,20 +5,38 @@
 /* Active orders */
 Vue.component('order-item-to-prepare',{
   props: ['uiLabels', 'order', 'orderId', 'lang'],
-  template: '<div>\
+  template: '<div :class="[{active : order.status},order.type]">\
           <order-item\
             :ui-labels="uiLabels"\
             :lang="lang"\
             :order-id="orderId"\
             :order="order">\
           </order-item>\
+          <div id ="radioButtons">\
+              <label class="containerEP">EJ PÅBÖRJAD\
+                <input name = "radioButton" value="ejpåbörjad" id="notDone2" type="radio" v-on:click="ejPaborjad">\
+                <span class="checkmark"></span>\
+              </label>\
+              <label class="containerP">PÅBÖRJAD\
+                <input name = "radioButton" value="påbörjad" type="radio" v-on:click="paborjad">\
+                <span class="checkmark"></span>\
+              </label>\
+              <label class="containerK">KLAR\
+                <input name = "radioButton" value="klar" type="radio" v-on:click="klar">\
+                <span class="checkmark"></span>\
+              </label>\
+          </div>\
          </div>',
   methods: {
-    orderDone: function () {
-      this.$emit('done');
-    },
-    cancelOrder: function () {
+    ejPaborjad: function () {
+      this.$emit('not-started');
 
+    },
+    paborjad: function () {
+      this.$emit('started');
+    },
+    klar: function () {
+      this.$emit('done');
     }
   }
 });
@@ -26,7 +44,7 @@ Vue.component('order-item-to-prepare',{
 /* Samliga ordrar*/
 Vue.component('order-list',{
   props: ['uiLabels', 'order', 'orderId', 'lang', 'type'],
-  template: '<div v-bind:class="order.type" v-on:click ="setActive()">\
+  template: '<div v-bind:class="order.type" v-on:click ="setActive(order)">\
           <order-item-short\
             :ui-labels="uiLabels"\
             :lang="lang"\
@@ -40,25 +58,19 @@ Vue.component('order-list',{
            }
          },
          methods:{
-           setActive: function(){
-             this.active = !this.active;
-             if (this.order.type === "juice"){
+           setActive: function(order){
                /*Meddela Vue att den är aktiv*/
-               this.$emit('active-order-juice');
-               //vm.activeOrderStage['juice']="not-started";
-               /* Presentera i activa rutan */
-               document.getElementById('notDone1').checked = true;
-               document.getElementById('orderDiv1').style.border = "2pt solid white";
-             }
-             if (this.order.type === "smoothie"){
-               /*Meddela Vue att den är aktiv*/
-               this.$emit('active-order-smoothie');
-               //vm.activeOrderStage['smoothie']="not-started";
+               this.$emit('active-order');
+               for (var key in vm.orders){
+                 if (vm.orders[key].orderId != order.orderId &&  vm.orders[key].type == order.type){
+                   socket.emit("orderNotActive", vm.orders[key].orderId);
+                 }
+                 if (vm.orders[key].orderId == order.orderId &&  vm.orders[key].type == order.type) {
+                   socket.emit("orderActive", order.orderId);
+                 }
+               }
 
-               /* Presentera i activa rutan */
-               document.getElementById('notDone2').checked = true;
-               document.getElementById('orderDiv2').style.border = "2pt dashed white";
-             }
+
            }
         }
 });
@@ -67,45 +79,45 @@ var vm = new Vue({
   el: '#mainDiv',
   mixins: [sharedVueStuff], // include stuff that is used both in the ordering system and in the kitchen
   data: {
-    activeOrder: {juice: "no Juice chosen", smoothie:"no Smoothie chosen"},
-    activeOrderStage: {juice: "not-started", smoothie: "not-started" },
-    startedOrders: []
   },
   methods: {
+    activateOrder(order) {
+      var ok = true;
+
+      //kolla om det finns någon annan order av samma typ som är aktiverad och sätt isf 'ok' till false
+      /*for (var key in this.orders){
+        if (this.orders.hasOwnProperty(key) &&
+            this.orders[key].type == order.type &&
+            this.orders[key].state == 'active') {
+          ok = false;
+        }
+
+      if (ok) {
+        ;
+      }
+      else{
+        socket.emit("orderNotActive", order.orderId);
+      }*/
+
+    },
     getActiveOrderStage: function(order) {
-        if (this.activeOrder[order.type] == order)
-          return this.activeOrderStage[order.type];
+      return order.status;
+    },
+    getActiveOrderState: function(order) {
+      return order.state;
     },
     markDone: function (orderid) {
       socket.emit("orderDone", orderid);
     },
-    getStarted: function(order) {
-      if (this.startedOrders.length > 0 ){
-        if (order.orderId = this.startedOrders[0].orderId){
-          //console.log("getStarted functionen och order Id:" + order.orderId);
-        }
-      }
+    ejPaborjad: function (order){
+      socket.emit("orderNotDone", order.orderId);
     },
-    ejPaborjad: function (type,orderDiv,style){
-      this.activeOrderStage[type] = "not-started";
-      document.getElementById(orderDiv).style.border = "2pt " + style + " white";
+    paborjad: function(order){
+      socket.emit("orderStarted", order.orderId);
     },
-    paborjad: function(order,type,orderDiv,style){
-      this.activeOrderStage[type] = "started";
-      //console.log(order.orderId);
-      this.startedOrders.push(order);
-      var index;
-      for (index in this.startedOrders){
-        //console.log(this.startedOrders[index].orderId);
-      }
-      document.getElementById(orderDiv).style.border = "2pt " + style + " yellow";
-    },
-    klar: function(order,type,orderDiv,style,button){
-      document.getElementById(orderDiv).style.border = "2pt " + style + " white";
-      this.activeOrder[type] = "none is chosen";
-      this.activeOrderStage[type] = "not-started";
-      document.getElementById(button).checked = true;
-      vm.markDone(order.orderId);
+    klar: function(order){
+      console.log(order.orderId);
+      this.markDone(order.orderId);
     }
     }
   }
@@ -115,7 +127,7 @@ function antalEjKlaraOrdrar(){
   var index;
   var antal = 0;
   for (index in vm.orders){
-    if (vm.orders[index].done === false){
+    if (vm.orders[index].status !== 'done'){
       antal = antal + 1;
     }
   }

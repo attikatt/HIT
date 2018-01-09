@@ -38,7 +38,7 @@
         <div class="smallOrderList">
           <order-list
             v-for="(order, key) in orders"
-            v-if="order.done"
+            v-if="order.status == 'done'"
             v-on:activate-order = "activeOrder = order"
             :order-id="key"
             :order="order"
