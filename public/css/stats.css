@@ -1,52 +1,18 @@
-#maindiv{
-    font-family: 'champagne__limousinesregular', arial, sans-serif;
-    text-align: center;
-}
-
-/* Divs */
-
-h1{
-  color: #670;
-	text-transform: uppercase;
-	letter-spacing: 2pt;
-}
-
-.donut{
-  width: 45vw;
-  height: 65vh;
-}
-
-span{
-  font-size: 5vh;
-  margin-left: 32%;
-}
-
-
-#homeButton{
-    float: left;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    border: 0pt;
-    cursor: pointer;
-    overflow: hidden;
-}
-
 #topDiv{
   text-align: center;
-  font-size:10vh;
 }
-/*
-p{
-  margin-top: 2vh;
-  margin-bottom: 13vh;
-}*/
-
 
 p {
   margin: 2%;
   margin-left: 0;
   font-size:10vh;
-  margin-bottom: 10vh;
+  margin-bottom: 10vh; /*spec för stats*/
+  text-transform: uppercase;
+}
+
+.donut{
+  width: 45vw;
+  height: 65vh;
 }
 
 #donutchartOrders{
@@ -56,14 +22,6 @@ p {
 #donutchartIngred{
   float: right;
 }
-
-/*#clock{
-  font-size: 4vh;
-  position:absolute;
-  right: 3vw;
-  bottom: 4vh;
-  margin: 0;
-}*/
 
 @media (max-width:720px) {
   .smallOrderList {
