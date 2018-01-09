@@ -177,6 +177,7 @@ padding-top: 2.5vh;
   line-height: normal;
   position: fixed;
   width: 100vw;
+  height:13vh;
   bottom: 0px;
   background-color: white;
 }
@@ -186,7 +187,7 @@ padding-top: 2.5vh;
     line-height: normal;
     position: fixed;
 	width:50vw;
-	height:14vh;
+	height:13vh;
     bottom: 0px;
     right: 0px;
     background-color: white;
@@ -211,12 +212,14 @@ padding-top: 2.5vh;
 #goBackB {
     left: 0px;
 	float:left;
-    bottom: 0px:
+    bottom: 0px;
+	width:20vw;
 }
 
 #goForwardB {
   right: 0;
   float:right;
+  width:20vw;
 }
 
 .arrow {
