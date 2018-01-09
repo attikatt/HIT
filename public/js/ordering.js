@@ -82,7 +82,8 @@ var vm = new Vue({
     fullOrder: [],
     allOrders: [],
     // to go back to previous page after being in cart
-    pageBeforeCart: 'start'
+    pageBeforeCart: 'start',
+    comingFromCart: false
   },
 
  created: function() {
@@ -355,11 +356,22 @@ var vm = new Vue({
         this.page = "yourDrink";
       }
       else if(page === "chooseSize") {
+        if (this.comingFromCart) {
+          this.removeDrinkFromOrder(this.fullOrder[2]);
+        }
         this.page = "chooseSize";
       }
       else if(page === "cart") {
-        this.pageBeforeCart = this.page;
-        console.log(this.pageBeforeCart);
+        // för att kunden ska komma tillbaka till basval om hen väljer att kolla på kundkorgen:
+        if (this.page === "chooseIng", "choosePiff") {
+          this.pageBeforeCart = "chooseBase";
+          this.step = 1;
+          this.chosenIngredients = [];
+        }
+        // annars kommer kunden som vanligt tillbaka till föregående sida:
+        else {
+          this.pageBeforeCart = this.page;
+        }
         this.page = "cart";
       }
       else if(page === "favorites") {
@@ -372,11 +384,10 @@ var vm = new Vue({
         this.page = "thanks";
       }
       else if (page === "changeIng") {
+        this.ingType = 'fruit';
         this.page = "changeIng";
         var id = this.changeFromIdIndex[0];
         var index = this.changeFromIdIndex[1];
-        console.log(this.getIngredientById(id));
-        console.log(this.getIngredientById(id).ingredient_category);
 
         if (index === 0) {
           this.changeIngType = 'base';
@@ -396,6 +407,7 @@ var vm = new Vue({
           this.page = "chooseBase";
         }
       }
+      this.comingFromCart = false;
     },
   	  
   	goBackDrinkInfo: function() {
@@ -481,8 +493,14 @@ var vm = new Vue({
         categories[i].style.color = "grey";
         categories[i].style.borderColor = "grey";
       }
-      document.getElementById(chosenIngType+"B").style.color = "black";
-      document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)";
+      if (this.step > 1 || this.step < 5 ) {
+        document.getElementById(chosenIngType+"B").style.color = "black";
+        document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)";
+      }
+    },
+
+    setComingFromCart: function() {
+      this.comingFromCart = true;
     },
 
 /*--------- For composing drink ------------*/
@@ -529,15 +547,15 @@ var vm = new Vue({
     calcPrice: function() {
       var totalPrice = 0;
       for (var i = 0; i < this.fullOrder.length; i++){
-			if (this.fullOrder[i].size === "small") {
-				totalPrice += 36;
-			}
-			else if (this.fullOrder[i].size === "medium") {
-				totalPrice += 42;
-			}
-			else if (this.fullOrder[i].size === "large") {
-				totalPrice += 49;
-			}
+  			if (this.fullOrder[i].size === "small") {
+  				totalPrice += 36;
+  			}
+  			else if (this.fullOrder[i].size === "medium") {
+  				totalPrice += 42;
+  			}
+  			else if (this.fullOrder[i].size === "large") {
+  				totalPrice += 49;
+  			}
       }
     return totalPrice;
     },
@@ -569,20 +587,20 @@ var vm = new Vue({
     },
 
 /*------------- Checking if favourites have all ingredients available ---------------*/
-isDrinkAvailable: function (drinkIngs) {
-  for (var i = 0; i < drinkIngs.length; i++) {
-    var item = this.getIngredientById(drinkIngs[i]);
-    if (item.stock < 5) {
-        return false;
-    }
-  }
-  return true;
-},
+    isDrinkAvailable: function (drinkIngs) {
+      for (var i = 0; i < drinkIngs.length; i++) {
+        var item = this.getIngredientById(drinkIngs[i]);
+        if (item.stock < 5) {
+            return false;
+        }
+      }
+      return true;
+    },
 
 /*------------- Getting number of drinks in the order ---------------*/
-getLengthOfOrder: function() {
-  return this.fullOrder.length;
-},
+    getLengthOfOrder: function() {
+      return this.fullOrder.length;
+    },
 /*------------- Cancelling order ---------------*/
     emptyOrder: function () {
       this.fullOrder = [];

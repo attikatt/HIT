@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Historik</title>
+  <title>Historik Juicifer</title>
   <link rel="stylesheet" href="css/GeneralStyleStaff.css">
   <link rel="stylesheet" href="css/historik.css">
   <script src="/vue/vue.js" defer></script>
   <script src="/socket.io/socket.io.js" defer></script>
   <script src="js/juicifer-main.js" defer></script>
+  <script src="js/staff.js" defer></script>
   <script src="js/historik.js" defer></script>
 </head>
 <body>
@@ -33,9 +34,9 @@
     </div>
       <div id="rightDiv">
         <div id="topDivRight">
-            <p id ="historikHeader"> HISTORIK
-              <button id=searchButton type="button" class = "button"> <img src="images/search.png" alt="Search Button" height=70px/> </button>
-            </p>
+            <p id ="historikHeader"> HISTORIK </p><!--HÄR: innan så låg knappen och bilden i p-->
+            <button id=searchButton type="button" class ="button">
+              <img src="images/search.png" alt="Search Button" height=70px/> </button>
         </div>
         <div class="smallOrderList">
           <order-list

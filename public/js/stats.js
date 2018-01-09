@@ -1,23 +1,9 @@
 'use strict';
-/*-------------------Klocka------------*/
-function updateClock(){
-var now = new Date(),
-    hours = now.getHours(),
-    minutes = now.getMinutes(),
-    seconds = now.getSeconds();
-    if (minutes < 10) {
-        minutes = "0" + minutes
-    };
-document.getElementById('clock').innerHTML = [hours,minutes,seconds].join(':');
-setTimeout(updateClock,1000);
-}
- updateClock();
 
- /*-------------------VueData------------*/
-
- var dataVm = new Vue({
+ /*-------------------Generera data------------*/
+ var vm = new Vue({
    el: '#VueDiv',
-   mixins: [sharedVueStuff], // include stuff that is used both in the ordering system and in the kitchen
+   mixins: [sharedVueStuff], 
    data: {
      amountSmoothies: 0,
      amountJuices: 0
@@ -98,7 +84,7 @@ function getColors(size){
 }
 
 function drawChart() {
-  var orderData = google.visualization.arrayToDataTable(dataVm.getOrderData());
+  var orderData = google.visualization.arrayToDataTable(vm.getOrderData());
   var orderOptions = {
     title: 'Fördelning av beställningar',
     pieHole: 0.4,
@@ -108,11 +94,11 @@ function drawChart() {
     legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16'}}
   };
 
-  var ingredientData = google.visualization.arrayToDataTable(dataVm.getIngredientData());
+  var ingredientData = google.visualization.arrayToDataTable(vm.getIngredientData());
   var ingredientOptions = {
     title: 'Fördelning av beställda ingredienser',
     pieHole: 0.4,
-    colors: getColors(dataVm.getIngredientData().length),
+    colors: getColors(vm.getIngredientData().length),
     'backgroundColor':'transparent',
     'titleTextStyle': {color:'white', fontName: 'champagne__limousinesregular', fontSize:'25', bold:'false'},
     legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16'}, maxLines: '6'},
@@ -122,11 +108,11 @@ function drawChart() {
   };
 
   /*---- Only show graphs if there is data----*/
-  if (Object.keys(dataVm.getCurrentStatus()).length > 0){
+  if (Object.keys(vm.getCurrentStatus()).length > 0){
     var chart1 = new google.visualization.PieChart(document.getElementById('donutchartOrders'));
     chart1.draw(orderData, orderOptions);
 
-    if (dataVm.getIngredientData().length > 1){
+    if (vm.getIngredientData().length > 1){
       var chart2 = new google.visualization.PieChart(document.getElementById('donutchartIngred'));
       chart2.draw(ingredientData, ingredientOptions);
     } else  { //denna visas beorende på vad gränsen för sållningen är

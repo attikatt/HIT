@@ -11,4 +11,5 @@ var now = new Date(),
 document.getElementById('clock').innerHTML = [hours,minutes,seconds].join(':');
 setTimeout(updateClock,1000);
 }
- updateClock();
+
+updateClock();
