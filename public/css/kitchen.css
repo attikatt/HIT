@@ -12,22 +12,18 @@
     grid-area: top;
 }
 
+p {
+  margin: 2%;
+  margin-left: 0;
+  font-size:10vh;
+}
+
 #verticalLine{
   grid-area: waiting;
   height: 80vh;
   width: 1px;
   border-right: 1px solid white;
 }
-
-h1{
-  margin:2%;
-  margin-left: 0;
-  font-size:10vh;
-}
-
-/*h2 {
-    font-size: 3vw;
-}*/
 
 span {
   text-transform: capitalize;
@@ -40,10 +36,6 @@ span {
   grid-area: waiting;
 
 }
-/*
-ul{
-  margin-left:1vw;
-}*/
 
 #orderDiv1{
     margin: 2%;
@@ -250,7 +242,7 @@ li span{
 }
 
 #radioButtons{
-  position: fixed;
+  position: absolute;
   bottom: 8vh;
 }
 
