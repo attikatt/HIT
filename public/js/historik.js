@@ -67,6 +67,9 @@ var vm = new Vue({
     },
     searchForOrder: function() {
       console.log(numLetterList.join(''));
+      if (Object.keys(this.orders).length == 0){
+        document.getElementById('noSearchMatch').innerHTML = "Order #" + Number(numLetterList.join('')) + " finns inte i historiken";
+      }
 
       for(var i = 1; i < Object.keys(this.orders).length +1; i +=1){
         if(Number(numLetterList.join(''))===this.orders[i].orderId){
