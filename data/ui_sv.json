@@ -7,7 +7,7 @@
 	"press2Change":"Tryck på ingrediensen för att ändra den",
   "cancelOrder" : "Avbryt köp",
   "next" : "Nästa",
-		"richness":"Fyllighet",
+	"richness":"Fyllighet",
 	"sweetness":"Sötma",
 	"tanginess":"Syrlighet",
   "chooseSmoothie" : "Välj din smoothie",
@@ -50,5 +50,7 @@
   "ready" : "Klart",
   "order" : "Min beställning",
   "language" : "English",
-  "test" : "test"
+  "test" : "test",
+  "today": "DAGENS"
+
 }
