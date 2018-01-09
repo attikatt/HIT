@@ -22,7 +22,7 @@ Vue.component('order-item-to-prepare',{
                 <span class="checkmark"></span>\
               </label>\
               <label class="containerK">KLAR\
-                <input name = "radioButton" value="klar" type="radio" v-on:click="klar">\
+                <input name = "radioButton" value="klar" type="radio" v-on:click="klar(order)">\
                 <span class="checkmark"></span>\
               </label>\
           </div>\
@@ -35,7 +35,16 @@ Vue.component('order-item-to-prepare',{
     paborjad: function () {
       this.$emit('started');
     },
-    klar: function () {
+    klar: function (order) {
+      order.status = 'done';
+      socket.emit("orderNotActive", order.orderId);
+      if (order.type == 'juice'){
+        activateOrdersJuice();
+      }
+      if (order.type == 'smoothie'){
+        activateOrdersSmoothie();
+      }
+
       this.$emit('done');
     }
   }
@@ -108,7 +117,49 @@ function antalEjKlaraOrdrar(){
     }
   }
   return antal
-}
+};
+
+function activateOrdersJuice(){
+  if (activateJuice() != 'false'){
+    var index;
+    for (index in vm.orders){
+      if (vm.orders[index].status != 'done' && vm.orders[index].state === 'not-active' && vm.orders[index].type == 'juice'){
+        socket.emit("orderActive", vm.orders[index].orderId);
+        break
+      }
+    }
+  }
+};
+
+function activateOrdersSmoothie(){
+  if (activateSmoothie() != 'false'){
+    for (var i in vm.orders){
+      if (vm.orders[i].status !== 'done' && vm.orders[i].state == 'not-active' && vm.orders[i].type == 'smoothie'){
+        socket.emit("orderActive", vm.orders[i].orderId);
+        break
+      }
+    }
+  }
+};
+
+
+function activateJuice(){
+  var activate = true;
+  for (var i in vm.orders){
+    if (vm.orders[i].type == 'juice' && vm.orders[i].state == 'active'){
+      return false
+    }
+  }
+};
+
+function activateSmoothie(){
+  var activate = true;
+  for (var i in vm.orders){
+    if (vm.orders[i].type == 'smoothie' && vm.orders[i].state == 'active'){
+      return false
+    }
+  }
+};
 
 /* Klocka*/
 function updateClock(){
@@ -127,3 +178,4 @@ var now = new Date(),
 }
  updateClock();
  antalEjKlaraOrdrar();
+ activateOrders();
