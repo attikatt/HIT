@@ -13,7 +13,7 @@ Vue.component('order-item', {
   methods: {
     getNum: function(size,order,orderName,ingredientsList){
       if (size == 'small'){
-        if (((order.juice_base && (orderName==="Egen smoothie" || orderName ==="Egen juice")) || (order.smoothie_base && (orderName==="Egen smoothie" || orderName ==="Egen juice"))) && ingredientsList.indexOf(order) === 0 ){
+        if(ingredientsList.indexOf(order) === 0 ){
           return '2'
         }
         else if (order.ingredient_category != "piff"){
@@ -24,7 +24,7 @@ Vue.component('order-item', {
         }
       }
       if (size == 'medium'){
-        if (((order.juice_base && (orderName==="Egen smoothie" || orderName ==="Egen juice")) || (order.smoothie_base && (orderName==="Egen smoothie" || orderName ==="Egen juice"))) && ingredientsList.indexOf(order) === 0 ){
+        if (ingredientsList.indexOf(order) === 0 ){
           return '4'
         }
         else if (order.ingredient_category != "piff"){
@@ -35,7 +35,7 @@ Vue.component('order-item', {
         }
       }
       if (size == 'large'){
-        if (((order.juice_base && (orderName==="Egen smoothie" || orderName ==="Egen juice")) || (order.smoothie_base && (orderName==="Egen smoothie" || orderName ==="Egen juice"))) && ingredientsList.indexOf(order) === 0 ){
+        if (ingredientsList.indexOf(order) === 0 ){
           return '6'
         }
         else if (order.ingredient_category != "piff"){
