@@ -348,7 +348,7 @@
               <span class="rotate">DAGENS</span><button class="favSquareB favvo" v-on:click="showPage('drinkInfo'); markDrink(preparedDrink)"><img class="favImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
           </div>
           <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_type === type && isDrinkAvailable(preparedDrink.rm_ingredients) && preparedDrink.rm_day == false">
-              <button class="favSquareB" v-on:click="showPage('favInfo'); markDrink(preparedDrink)"><img class="favImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
+              <button class="favSquareB" v-on:click="showPage('drinkInfo'); markDrink(preparedDrink)"><img class="favImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
           </div>
         </div>
         <div id="goBackFullDiv">
