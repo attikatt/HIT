@@ -27,10 +27,10 @@ button {
   margin: 2vw;
   border: 0.1em solid;
   border-radius: 12px;
-  font-size: 2.5vw;
   width: 22vw;
   height: 25vh;
   cursor: pointer;
+
 }
 
 .buttonText{

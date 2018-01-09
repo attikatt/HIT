@@ -49,5 +49,6 @@
   "with" : "with",
   "ready" : "Done",
   "order" : "My order",
-  "language" : "Svenska"
+  "language" : "Svenska",
+  "today": "TODAY'S"
 }
