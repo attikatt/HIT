@@ -362,8 +362,16 @@ var vm = new Vue({
         this.page = "chooseSize";
       }
       else if(page === "cart") {
-        this.pageBeforeCart = this.page;
-        console.log(this.pageBeforeCart);
+        // för att kunden ska komma tillbaka till basval om hen väljer att kolla på kundkorgen:
+        if (this.page === "chooseIng", "choosePiff") {
+          this.pageBeforeCart = "chooseBase";
+          this.step = 1;
+          this.chosenIngredients = [];
+        }
+        // annars kommer kunden som vanligt tillbaka till föregående sida:
+        else {
+          this.pageBeforeCart = this.page;
+        }
         this.page = "cart";
       }
       else if(page === "favorites") {
@@ -539,15 +547,15 @@ var vm = new Vue({
     calcPrice: function() {
       var totalPrice = 0;
       for (var i = 0; i < this.fullOrder.length; i++){
-			if (this.fullOrder[i].size === "small") {
-				totalPrice += 36;
-			}
-			else if (this.fullOrder[i].size === "medium") {
-				totalPrice += 42;
-			}
-			else if (this.fullOrder[i].size === "large") {
-				totalPrice += 49;
-			}
+  			if (this.fullOrder[i].size === "small") {
+  				totalPrice += 36;
+  			}
+  			else if (this.fullOrder[i].size === "medium") {
+  				totalPrice += 42;
+  			}
+  			else if (this.fullOrder[i].size === "large") {
+  				totalPrice += 49;
+  			}
       }
     return totalPrice;
     },
@@ -579,20 +587,20 @@ var vm = new Vue({
     },
 
 /*------------- Checking if favourites have all ingredients available ---------------*/
-isDrinkAvailable: function (drinkIngs) {
-  for (var i = 0; i < drinkIngs.length; i++) {
-    var item = this.getIngredientById(drinkIngs[i]);
-    if (item.stock < 5) {
-        return false;
-    }
-  }
-  return true;
-},
+    isDrinkAvailable: function (drinkIngs) {
+      for (var i = 0; i < drinkIngs.length; i++) {
+        var item = this.getIngredientById(drinkIngs[i]);
+        if (item.stock < 5) {
+            return false;
+        }
+      }
+      return true;
+    },
 
 /*------------- Getting number of drinks in the order ---------------*/
-getLengthOfOrder: function() {
-  return this.fullOrder.length;
-},
+    getLengthOfOrder: function() {
+      return this.fullOrder.length;
+    },
 /*------------- Cancelling order ---------------*/
     emptyOrder: function () {
       this.fullOrder = [];
