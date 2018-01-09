@@ -121,16 +121,64 @@ Data.prototype.addOrder = function (order) {
     transId =  transactions[transactions.length - 1].transaction_id,
     i = order.order.ingredients,
     k;
-console.log(order.order.size);
   for (k = 0; k < i.length; k += 1) {
     transId += 1;
-
-    transactions.push({transaction_id: transId,
-                       ingredient_id: i[k].ingredient_id,
-                       change: -1});
+    if (order.order.size == 'small'){
+      if(k == 0 ){
+        transactions.push({transaction_id: transId,
+                           ingredient_id: i[k].ingredient_id,
+                           change: - 2});
+      }
+      else if (i[k].ingredient_category != "piff"){
+        transactions.push({transaction_id: transId,
+                           ingredient_id: i[k].ingredient_id,
+                           change: - 1});
+      }
+      else{
+        transactions.push({transaction_id: transId,
+                           ingredient_id: i[k].ingredient_id,
+                           change: - 0});
+      }
+    }
+    if (order.order.size == 'medium'){
+      if (k == 0){
+        transactions.push({transaction_id: transId,
+                           ingredient_id: i[k].ingredient_id,
+                           change: - 4});
+      }
+      else if (i[k].ingredient_category != "piff"){
+        transactions.push({transaction_id: transId,
+                           ingredient_id: i[k].ingredient_id,
+                           change: - 2});
+      }
+      else{
+        transactions.push({transaction_id: transId,
+                           ingredient_id: i[k].ingredient_id,
+                           change: - 0});
+      }
+    }
+    if (order.order.size == 'large'){
+      if (k == 0){
+        transactions.push({transaction_id: transId,
+                           ingredient_id: i[k].ingredient_id,
+                           change: - 6});
+      }
+      else if (i[k].ingredient_category != "piff"){
+        transactions.push({transaction_id: transId,
+                           ingredient_id: i[k].ingredient_id,
+                           change: - 3});
+      }
+      else{
+        transactions.push({transaction_id: transId,
+                           ingredient_id: i[k].ingredient_id,
+                           change: - 0});
+      }
+    }
   }
     return [orderId, name];
 };
+
+
 
 Data.prototype.changeLagerSaldo = function (item, saldo) {
   var transactions = this.data[transactionsDataName]
