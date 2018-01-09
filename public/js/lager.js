@@ -50,8 +50,6 @@ var vm = new Vue({
   },
 });
 
-updateClock();
-
 var saldoLetterList = [];
 
 function numberPressed(letterButton){
