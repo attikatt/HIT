@@ -1,5 +1,6 @@
 'use strict';
 
+/*--------Stor version av active order----*/
 Vue.component('order-item-to-prepare',{
   props: ['uiLabels', 'order', 'orderId', 'lang'],
   template: '<div>\
@@ -20,6 +21,7 @@ Vue.component('order-item-to-prepare',{
   }
 });
 
+/*---------Samtliga avslutade ordrar----*/
 Vue.component('order-list',{
   props: ['uiLabels', 'order', 'orderId', 'lang', 'type'],
   template: '<div v-bind:class="order.type" v-on:click ="setActive()">\
@@ -44,6 +46,7 @@ Vue.component('order-list',{
         }
 });
 
+/*------------Vue----------*/
 var vm = new Vue({
   el: '#mainDiv',
   mixins: [sharedVueStuff], // include stuff that is used both in the ordering system and in the kitchen
@@ -90,48 +93,43 @@ var vm = new Vue({
       numLetterList = [];
       document.getElementById("changeSaldoConsoleChild").innerHTML = numLetterList.join("");
   }
-  
- // Get the modal
+
+/*---Modal---*/
  var modal = document.getElementById('myModal');
-
- // Get the button that opens the modal
  var btn = document.getElementById("searchButton");
-
- // Get the <span> element that closes the modal
  var span = document.getElementsByClassName("close")[0];
 
- // When the user clicks the button, open the modal
+/* Open on click */
  btn.onclick = function() {
      modal.style.display = "block";
      document.getElementById("noSearchMatch").innerHTML = '';
  }
 
- // When the user clicks on <span> (x), close the modal
+ /* Close on (X) and outside */
  span.onclick = function() {
      modal.style.display = "none";
  }
-
- // When the user clicks anywhere outside of the modal, close it
  window.onclick = function(event) {
      if (event.target == modal) {
          modal.style.display = "none";
      }
  }
 
-var numLetterList = [];
+ /*------Supports console search----*/
+ var numLetterList = [];
 
- function numberPressed(letterButton){
-     var letterButton = letterButton.value;
-     numLetterList.push(letterButton);
-     document.getElementById("changeSaldoConsoleChild").innerHTML = numLetterList.join("");
- }
+  function numberPressed(letterButton){
+      var letterButton = letterButton.value;
+      numLetterList.push(letterButton);
+      document.getElementById("changeSaldoConsoleChild").innerHTML = numLetterList.join("");
+  }
 
- function backSpaceLetter(){
-     numLetterList.pop();
-     document.getElementById("changeSaldoConsoleChild").innerHTML = numLetterList.join("");
- }
+  function backSpaceLetter(){
+      numLetterList.pop();
+      document.getElementById("changeSaldoConsoleChild").innerHTML = numLetterList.join("");
+  }
 
- function clearSaldoField(){
-     numLetterList = [];
-     document.getElementById("changeSaldoConsoleChild").innerHTML = numLetterList.join("");
- }
+  function clearSaldoField(){
+      numLetterList = [];
+      document.getElementById("changeSaldoConsoleChild").innerHTML = numLetterList.join("");
+  }

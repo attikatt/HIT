@@ -23,11 +23,11 @@ Vue.component('ingredient', {
             this.$emit('ingredientchosen');
           }
         }
-});//refs($)- föräldrar kan inte komma åt barnelements datastrukturer
+});
 
 var vm = new Vue({
   el: '#lagerDiv',
-  mixins: [sharedVueStuff], // include stuff that is used both in the ordering system and in the kitchen
+  mixins: [sharedVueStuff],
   data: {
     chosenIng: 'No ingredient chosen',
     type: ''
@@ -40,16 +40,37 @@ var vm = new Vue({
       vm.chosenIng.stock = saldo;
       clearSaldoField();
     }
-      //socket emit (meddelande till servern) updateStock,{ingredients:[chosenIng]+skicka med amount}
     },
     unmarkOtherIngredients: function() {
       for (var i = 0; i < this.$refs.ingredient.length; i += 1) {
-        this.$refs.ingredient[i].chosen = false; //unmark other Ingredients
+        this.$refs.ingredient[i].chosen = false;
       }
     }
   },
 });
 
+/*-------Scrollar i lagerlistan-----*/
+function scrollFunction(value){
+  var numericValue = (parseInt(value, 36)-9);
+  var i = '';
+  for (i = 0; i < vm.ingredients.length; i++){
+    if ((parseInt(vm.ingredients[i].ingredient_sv[0].toUpperCase(), 36)-9)===numericValue){
+      console.log("Ifsats");
+      var element = document.getElementById(vm.ingredients[i].ingredient_id);
+      element.scrollIntoView();
+      break;
+    } else if ((parseInt(vm.ingredients[i].ingredient_sv[0].toUpperCase(), 36)-9) > numericValue){
+      var element = document.getElementById(vm.ingredients[i-1].ingredient_id);
+      element.scrollIntoView();
+      break;
+    } else { //håller sålänge systemet ej innehåller överdrivet många ingredienser på z, å, ä, ö
+      var element = document.getElementById(vm.ingredients[i].ingredient_id);
+      element.scrollIntoView();
+    }
+  }
+}
+
+/*---------Supports console--------*/
 var saldoLetterList = [];
 
 function numberPressed(letterButton){
@@ -68,26 +89,4 @@ function backSpaceLetter(){
 function clearSaldoField(){
     saldoLetterList = [];
     document.getElementById("changeSaldoConsoleChild").innerHTML = saldoLetterList.join("");
-}
-
-function scrollFunction(value){
-
-  var numericValue = (parseInt(value, 36)-9);
-  var i = '';
-  for (i = 0; i < vm.ingredients.length; i++){
-    if ((parseInt(vm.ingredients[i].ingredient_sv[0].toUpperCase(), 36)-9)===numericValue){
-      console.log("Ifsats");
-      var element = document.getElementById(vm.ingredients[i].ingredient_id);
-      element.scrollIntoView();
-      break;
-    } else if ((parseInt(vm.ingredients[i].ingredient_sv[0].toUpperCase(), 36)-9) > numericValue){
-      var element = document.getElementById(vm.ingredients[i-1].ingredient_id);
-      element.scrollIntoView();
-      break;
-    } else { //håller sålänge systemet ej innehåller överdrivet många ingredienser på z, å, ä, ö
-      var element = document.getElementById(vm.ingredients[i].ingredient_id);
-      element.scrollIntoView();
-    }
-  }
-
 }
