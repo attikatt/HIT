@@ -46,10 +46,6 @@ margin-top: 3vh;
   border: 0pt;
 }
 
-#homeButton{
-  margin-top: 3vh;
-}
-
 #takeOrderBackButton{
   font-family: 'champagne__limousinesregular', arial, sans-serif;
   background: rgb(105,105,105);
@@ -77,11 +73,13 @@ margin-top: 3vh;
 .smoothie{
 	width:100%;
   height: 13vh;
+  text-transform: capitalize;
 }
 
 .juice{
   width:100%;
   height: 13vh;
+  text-transform: capitalize;
 }
 
 /*-----------Färglägger texten till vit i ingredienslistan-------------*/

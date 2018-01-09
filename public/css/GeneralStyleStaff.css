@@ -69,12 +69,15 @@ body{
 
 /*--------HEMKNAPP---------*/
 #homeButton{
-    float: left;
+
     background-color: transparent;
     background-repeat: no-repeat;
     border: 0pt;
     cursor: pointer;
     overflow: hidden;
+    position:absolute;
+    top: 2%;
+    left: 0;
 }
 
 /*--------------SÄTTER FÄRG PÅ INGREDIENSRUTORNA I HISTORIKEN OCH KITCHEN----------------*/
