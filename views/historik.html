@@ -4,6 +4,7 @@
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Historik</title>
+  <link rel="stylesheet" href="css/GeneralStyleStaff.css">
   <link rel="stylesheet" href="css/historik.css">
   <script src="/vue/vue.js" defer></script>
   <script src="/socket.io/socket.io.js" defer></script>
@@ -58,19 +59,19 @@
       <p id="noSearchMatch">  </p>
       <div id="changeSaldoConsole">  <p id="changeSaldoConsoleChild"></p> </div>
       <ul id="keyboard">
-          <input type="button" onClick="numberPressed(this)" id ="letterButton" class="letterButton button" value="1">
-          <input type="button" onClick="numberPressed(this)" id =letterButton class="letterButton button" value="2">
-          <input type="button" onClick="numberPressed(this)" id =letterButton class="letterButton button"letterButton value="3">
-          <input type="button" onClick="numberPressed(this)" id =letterButton class="letterButton button" value="4">
-          <input type="button" onClick="numberPressed(this)" id =letterButton class="letterButton button" letterButton value="5">
-          <input type="button" onClick="numberPressed(this)" id =letterButton class="letterButton button"letterButton value="6">
-          <input type="button" onClick="numberPressed(this)" id =letterButton class="letterButton button" value="7">
-          <input type="button" onClick="numberPressed(this)" id =letterButton class="letterButton button"letterButton value="8">
-          <input type="button" onClick="numberPressed(this)" id =letterButton class="letterButton button" value="9">
+          <input type="button" onClick="numberPressed(this)" class="letterButton" value="1">
+          <input type="button" onClick="numberPressed(this)" class="letterButton" value="2">
+          <input type="button" onClick="numberPressed(this)" class="letterButton"letterButton value="3">
+          <input type="button" onClick="numberPressed(this)" class="letterButton" value="4">
+          <input type="button" onClick="numberPressed(this)" class="letterButton" letterButton value="5">
+          <input type="button" onClick="numberPressed(this)" class="letterButton"letterButton value="6">
+          <input type="button" onClick="numberPressed(this)" class="letterButton" value="7">
+          <input type="button" onClick="numberPressed(this)" class="letterButton"letterButton value="8">
+          <input type="button" onClick="numberPressed(this)" class="letterButton" value="9">
           <button class="letterButton" type="button" onClick="clearSaldoField()"><li class="clearl delete">X</li></button>
-          <input type="button" onClick="numberPressed(this)" id =letterButton class="letterButton" value="0">
-          <button class="letterButton"letterButton type="button" value="backSpaceLetter" onClick="backSpaceLetter()"><li class="remove"><</li></button>
-          <button class="letterButtonEnter" type="button" v-on:Click="searchForOrder()"><li class="return clearl enter">SÖK</li></button>
+          <input type="button" onClick="numberPressed(this)" class="letterButton" value="0">
+          <button class="letterButton" type="button" value="backSpaceLetter" onClick="backSpaceLetter()"><li class="remove"><</li></button>
+          <button class="letterButtonEnter letterButton" type="button" v-on:Click="searchForOrder()"><li class="return clearl enter">SÖK</li></button>
       </ul>
     </div>
     </div>

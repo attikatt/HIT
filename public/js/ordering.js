@@ -78,15 +78,15 @@ var vm = new Vue({
     fullOrder: [],
     allOrders: []
   },
-    
+
  created: function() {
     socket.on("orderNumber",function(orderIdAndName) {
         vm.showOrderedItems(orderIdAndName);
     });
   },
-    
+
   methods:{
-      
+
 /*----------- Adding to order and placing order ---------- */
       // ordering readymades
     orderReadymade: function() {
@@ -99,20 +99,20 @@ var vm = new Vue({
       this.chosenIngredients.push(item);
 		if (this.type === "smoothie") {
         	this.volume += +item.vol_smoothie;
-			// if the drink is not one of juicifers, making the ingredient panel 
+			// if the drink is not one of juicifers, making the ingredient panel
 			if(!this.drinkInfoShown){
 				vm.showStepImg(item);
 			}
 		}
 		else if(this.type === "juice"){
 			this.volume += +item.vol_juice;
-			// if the drink is not one of juicifers, making the ingredient panel 
+			// if the drink is not one of juicifers, making the ingredient panel
 			if(!this.drinkInfoShown){
 				vm.showStepImg(item);
 			}
       }
     },
-      
+
     removeItemFromOrder: function () {
         this.chosenIngredients.pop();
     },
@@ -122,7 +122,7 @@ var vm = new Vue({
 
 
 /*------  Making the text of the chosing ingredient so it occurs in the circle-----*/
-// Måste fortfarande ändra imagen när man går bakåt	  
+// Måste fortfarande ändra imagen när man går bakåt
   	showStepImg: function (ingItem){
   		var ingImg = ingItem.ingredient_img;
   		var img = document.createElement("img");
@@ -132,7 +132,7 @@ var vm = new Vue({
   		img.style.hight = "40vh";
   		img.style.marginLeft ="-9vw";
   		img.style.overflow ="hidden";
-  		
+
   		var numStep = document.createTextNode(this.step);
   		var p = document.createElement("p");
   		p.appendChild(numStep);
@@ -143,12 +143,12 @@ var vm = new Vue({
   		p.style.marginLeft ="0vw";
   		p.style.marginTop ="-14vw";
 
-  		
+
   		var currentStep = document.getElementById("step" + this.step);
   		currentStep.appendChild(img);
   		currentStep.appendChild(p);
   	},
-     
+
       // adds drink to order
     addDrinkToOrder: function () {
         // give drink its name
@@ -173,23 +173,23 @@ var vm = new Vue({
           name: name,
           compType: this.drinkPath
         };
-        //Add drink to the full order 
-        this.fullOrder.push(order); 
+        //Add drink to the full order
+        this.fullOrder.push(order);
     },
-	  
+
 	  //removes the drink from order
   	removeDrinkFromOrder: function (drink) {
   	  var index = this.fullOrder.indexOf(drink);
   	  this.fullOrder.splice(index,1);
-  	},  
-	  
+  	},
+
     placeOrder: function () {
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
         for (var i = 0; i < this.fullOrder.length; i += 1) {
             // sending each drink in full order to kitchen
             socket.emit('order', {order: this.fullOrder[i]});
         }
-      
+
       //set all counters to 0. Notice the use of $refs
         /* CV: 'counter' ska nog bort:
       for (i = 0; i < this.$refs.ingredient.length; i += 1) {
@@ -199,7 +199,7 @@ var vm = new Vue({
       this.type = '';
       this.chosenIngredients = [];
     },
-      
+
 /*----------- To identify/present ingredients ---------- */
     getIngredientById: function (id) {
       for (var i =0; i < this.ingredients.length; i += 1) {
@@ -208,7 +208,7 @@ var vm = new Vue({
         }
       }
     },
-    
+
     getIngredientNameList: function (idArr) {
       var ingredientList = "", tempIngredient;
       for (var i = 0; i < idArr.length ; i += 1) {
@@ -217,22 +217,22 @@ var vm = new Vue({
       }
       return ingredientList;
     },
- 
+
 /*----------- For replacing an ingredient ---------- */
   	markChangeFrom: function(ingredient_id){
   		this.changeFromId = ingredient_id;
   	},
-      
+
     findIngToReplace: function(ingredient) {
-        return ingredient.ingredient_id === this.changeFromId; 
+        return ingredient.ingredient_id === this.changeFromId;
     },
-	  
+
   	swapIng: function (changeToId) {
   		var changeIndex = this.chosenIngredients.findIndex(this.findIngToReplace);
           this.chosenIngredients[changeIndex] = this.getIngredientById(changeToId);
   	},
-	  
-	  
+
+
 /*----------- For showing the right page/view ---------- */
     hideAllPages: function() {
       this.startShown = false;
@@ -274,8 +274,8 @@ Funkar ej just nu! */
         }
       }
 
-    }, 
-      
+    },
+
     showPage: function(page) {
         this.hideAllPages();
         if(page === "showBase") {
@@ -311,7 +311,7 @@ Funkar ej just nu! */
           this.findCurPage();
           this.cartShown = true;
         }
-        
+
         else if(page ==="showFav") {
           this.favShown = true;
         }
@@ -332,18 +332,18 @@ Funkar ej just nu! */
             this.baseShown = true;
           }
         }
-    },  
-/*-----------------------Har lagt till funktionen nedanför-----------------------------------------*/	  
+    },
+/*-----------------------Har lagt till funktionen nedanför-----------------------------------------*/
 	goBackDrinkInfo: function() {
 		vm.showPage('showYourDrink');
 	},
-      
+
     changeStep: function(goesForward) {
       var steps = document.getElementsByClassName("stepCircle");
 
       for (var i = 0; i < steps.length; i++) {
           steps[i].style.color = "grey";
-          steps[i].style.backgroundColor = "lightgrey"; 
+          steps[i].style.backgroundColor = "lightgrey";
 		  steps[i].style.boxShadow ="none";
       }
 
@@ -393,13 +393,13 @@ Funkar ej just nu! */
       }
 /*----------------------------Detta är där jag 'ndrat med glowen i circlarna-----------------------*/
       var stylingSteps = document.getElementById("step"+this.step);
-	  stylingSteps.style.color = "black"; 
+	  stylingSteps.style.color = "black";
 	  stylingSteps.style.backgroundColor = "white";
 	  stylingSteps.style.boxShadow ="0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0";
-      console.log(this.step);
+      //console.log(this.step);
       return this.step;
     },
-      
+
     filterIngType: function(chosenIngType) {
       this.ingType = chosenIngType;
       var categories = document.getElementsByClassName("categoryB");
@@ -408,9 +408,9 @@ Funkar ej just nu! */
           categories[i].style.borderColor = "grey";
       }
       document.getElementById(chosenIngType+"B").style.color = "black";
-      document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)"; 
+      document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)";
     },
-    
+
 /*--------- For composing drink ------------*/
     choosePath: function (fav_or_myo) {
       if (fav_or_myo === 'fav') {
@@ -420,7 +420,7 @@ Funkar ej just nu! */
         this.drinkPath = 'myo';
       }
     },
-      
+
     chooseType: function (juice_or_smoothie) {
       if (juice_or_smoothie === 'juice') {
         this.type = 'juice';
@@ -429,57 +429,57 @@ Funkar ej just nu! */
         this.type = 'smoothie';
       }
     },
-      
+
     // marks which readymade drink customer is choosing
     markDrink: function (drink) {
       this.tempDrink = drink;
     },
-	  
-    // NOTE: Fix so when you go back, the property will not be null and the marked button is shown not the medium  
+
+    // NOTE: Fix so when you go back, the property will not be null and the marked button is shown not the medium
     setSize: function (size) {
 		  this.chosenSize = size;
     },
-	  
+
     getPrice: function(size) {
   		if(size === "small"){
   			return "36 kr";
-  		} 
+  		}
   		else if(size === "medium"){
   			return "42 kr";
-  		} 
+  		}
   		else if(size === "large"){
   			return "49 kr";
-  		} 		 
+  		}
 	 },
-	  
+
     calcPrice: function() {
       var totalPrice = 0;
       for (var i = 0; i < this.fullOrder.length; i++){
 			if (this.fullOrder[i].size === "small") {
-				totalPrice += 36; 
+				totalPrice += 36;
 			}
 			else if (this.fullOrder[i].size === "medium") {
-				totalPrice += 42; 
+				totalPrice += 42;
 			}
 			else if (this.fullOrder[i].size === "large") {
-				totalPrice += 49; 
-			}	
+				totalPrice += 49;
+			}
       }
     return totalPrice;
     },
 
     getSize: function() {
       if (this.lang === "sv"){
-			 return this.chosenSize; 
+			 return this.chosenSize;
 		  }
     },
-	  
+
     showOrderedItems: function(orderIdAndName) {
       var allOrders = this.orders;
 
       var h4 = document.createElement("h4");
       var nodeRef = document.getElementById("orderedItems");
-      
+
       if (orderIdAndName[1] === 'Egen juice' && this.lang === 'en') {
         orderIdAndName[1] = 'Own juice'
       }
@@ -494,7 +494,7 @@ Funkar ej just nu! */
       nodeRef.appendChild(br);
     },
 
-/*------------- Checking if favourites have all ingredients available ---------------*/      
+/*------------- Checking if favourites have all ingredients available ---------------*/
 isDrinkAvailable: function (drinkIngs) {
   for (var i = 0; i < drinkIngs.length; i++) {
     var item = this.getIngredientById(drinkIngs[i]);
@@ -505,7 +505,7 @@ isDrinkAvailable: function (drinkIngs) {
   return true;
 },
 
-/*------------- Getting number of drinks in the order ---------------*/     
+/*------------- Getting number of drinks in the order ---------------*/
 getLengthOfOrder: function() {
   return this.fullOrder.length;
 },

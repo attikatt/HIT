@@ -1,46 +1,14 @@
-@font-face {
-    font-family: 'champagne__limousinesregular';
-    src: url('fonts/champagne/champagne_limousines-webfont.eot');
-    src: url('fonts/champagne/champagne_limousines-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/champagne/champagne_limousines-webfont.woff2') format('woff2'),
-         url('fonts/champagne/champagne_limousines-webfont.woff') format('woff'),
-         url('fonts/champagne/champagne_limousines-webfont.svg#champagne__limousinesregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'crapaudgros';
-    src: url('fonts/crapaud/crapaud_gros-webfont.eot');
-    src: url('fonts/crapaud/crapaud_gros-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/crapaud/crapaud_gros-webfont.woff2') format('woff2'),
-         url('fonts/crapaud/crapaud_gros-webfont.woff') format('woff'),
-         url('fonts/crapaud/crapaud_gros-webfont.svg#crapaudgros') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@import url("reset.css");
-
-body{
-  font-family: 'champagne__limousinesregular', arial, sans-serif;
-  background-color: rgb(64,64,64);
-}
-
 /*-------------Storlek på alla olika divs--------------*/
 #mainDiv{
-  height: 97vh;
-  width: 99vw;
-  color: white;
   display: grid;
-  grid-template-areas: "top top" "o1 o2" ". clock";
+  grid-template-areas: "top1 top2" "o1 o2" ". clock";
   grid-template-columns: 1.2fr 2.8fr;
   grid-template-rows: 1fr 11fr 0fr;
 }
 
 #historikHeader{
-  font-size: 4vw;
-  margin: 0;
+font-size:10vh;
+margin: 0;
 }
 
 #rightDiv{
@@ -60,12 +28,12 @@ body{
 }
 
 #topDivRight{
-  grid-area: top;
+  grid-area: top2;
   margin-bottom: 3vh;
 }
 
 #topDivLeft{
-  grid-area: top;
+  grid-area: top1;
   margin-bottom: 30%;
 }
 
@@ -76,10 +44,6 @@ body{
   cursor: pointer;
   overflow: hidden;
   border: 0pt;
-}
-
-#homeButton{
-  float: left;
 }
 
 #takeOrderBackButton{
@@ -102,86 +66,18 @@ body{
 
 /*-------------Listan med alla ordrar------------*/
 .smallOrderList{
-	display: grid;
-	grid-template-columns: repeat(auto-fit, 21%);
-  grid-gap: 4%;
-  height:70vh;
-  overflow-y: scroll;
+  margin-left:2vw;
+  grid-template-columns: repeat(auto-fit, 21%);
 }
 
 .smoothie{
-  margin: 4%;
-	border: 2px dotted white;
-  border-radius: 0.5vw;
 	width:100%;
   height: 13vh;
-  padding: 1%;
-  cursor: pointer;
 }
 
 .juice{
-  margin: 4%;
-	border: 2px solid white;
-  border-radius: 0.5vw;
   width:100%;
   height: 13vh;
-  padding: 1%;
-  cursor: pointer;
-}
-
-/*-------------------SÄTTER FÄRG PÅ INGREDIENSRUTORNA----------------*/
-.colors{
-  list-style-type: square;
-  text-align: left;
-  font-size: 3vw;
-}
-
-.green {
-  color: green;
-}
-
-.brown {
-  color: brown;
-}
-
-.white {
-  color: white;
-}
-
-.yellow {
-  color: yellow;
-}
-
-.red {
-  color: red;
-}
-
-.blue {
-  color: blue;
-}
-
-.orange {
-  color: orange;
-}
-
-.black {
-  color: black;
-}
-
-.pink {
-  color: pink;
-}
-
-.purple {
-  color: purple;
-}
-
-.lightblue {
-  color: lightblue;
-}
-
-.green {
-  color: green;
 }
 
 /*-----------Färglägger texten till vit i ingredienslistan-------------*/
@@ -221,7 +117,7 @@ hr{
 /*------Klockan--------*/
 #clock{
     grid-area: clock;
-    font-size: 2vw;
+    font-size: 4vh;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -269,17 +165,8 @@ hr{
     cursor: pointer;
 }
 
-#lagerConsole {
-  width: 30vw;
-  height: 75vh;
-  float:center;
-
-}
-
 #consoleHeader{
-    font-size: 2.1vw;
-    text-align:center;
-    margin-left: 2.6vw;
+  text-align:center;
 }
 
 #keyboard {
@@ -288,61 +175,28 @@ display: inline-block;
 margin-top: 0%;
 padding: 0;
 list-style: none;
-float:center;
 }
 
 #noSearchMatch {
   height: 3vh;
   font-size: 2.5vh;
-}
-
-.clearl {
-    clear: left;
-    color: white;
+  text-align:center;
 }
 
 .letterButton{
-    font-family: 'champagne__limousinesregular', arial, sans-serif;
     float: center;
-    margin: 0 0px 5px 0;
     width: 30%;
     height: 10%;
-    font-size: 24px;
-    line-height: 60px;
-    text-align: center;
-    border: 1px solid rgb(255,255,255);
-    border-radius: 5px;
     background-color:  rgb(155,155,155);
-    color: white;
 }
 
 .letterButtonEnter{
-    font-family: 'champagne__limousinesregular', arial, sans-serif;
     float: center;
     margin-right: 0.8vw;
     margin-top: 0.5vh;
-    font-size: 24px;
-    line-height: 60px;
-    text-align: center;
-    border: 1px solid rgb(255,255,255);
-    border-radius: 5px;
-    background-color: rgb(155,155,155);
-    background-repeat: no-repeat;
-    border: 0pt;
-    cursor: pointer;
-    overflow: hidden;
     width: 19vw;
     margin-left: auto;
     margin-right:auto;
-}
-
-.enter{
-    color:white;
-    text-align: center;
-}
-
-.remove{
-    color: white;
 }
 
 #changeSaldoConsole{
@@ -356,14 +210,6 @@ float:center;
     margin-bottom: 1vh;
 }
 
-/*---------Anpassar efter skärmstorlek-----------*/
-
-@media (max-width:720px) {
-	.smallOrderList {
-		display:block;
-	}
-	.smallOrder {
-		border: 1px solid #900;
-		width: calc(100% -2em);
-	}
+#changeSaldoConsoleChild{
+  text-align: center;
 }

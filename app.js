@@ -121,9 +121,10 @@ Data.prototype.addOrder = function (order) {
     transId =  transactions[transactions.length - 1].transaction_id,
     i = order.order.ingredients,
     k;
-
+console.log(order.order.size);
   for (k = 0; k < i.length; k += 1) {
     transId += 1;
+
     transactions.push({transaction_id: transId,
                        ingredient_id: i[k].ingredient_id,
                        change: -1});
