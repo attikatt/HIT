@@ -16,6 +16,15 @@
   float: right;
 }
 
+#bigSpan {
+  margin-left: 10%;
+  font-size: 5vh;
+}
+
+#smallSpan {
+  font-size: 3vh;
+}
+
 @media (max-width:720px) {
   .smallOrderList {
     display:block;

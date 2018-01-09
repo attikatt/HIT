@@ -3,7 +3,7 @@
  /*-------------------Generera data------------*/
  var vm = new Vue({
    el: '#VueDiv',
-   mixins: [sharedVueStuff], 
+   mixins: [sharedVueStuff],
    data: {
      amountSmoothies: 0,
      amountJuices: 0
@@ -47,7 +47,7 @@
       /*---Rensa ut ingredienser som inte är beställda tillräckligt ofta--*/
       var m = 1;
       while (m < contentArr.length){
-        if(contentArr[m][1] < 1){
+        if(contentArr[m][1] < 100){
           contentArr.splice(m,1);
         } else {m++;}
       }
@@ -116,11 +116,11 @@ function drawChart() {
       var chart2 = new google.visualization.PieChart(document.getElementById('donutchartIngred'));
       chart2.draw(ingredientData, ingredientOptions);
     } else  { //denna visas beorende på vad gränsen för sållningen är
-      document.getElementById('donutchartIngred').innerHTML = "<span>Inte tillräckligt mycket många ingredienser beställda för att visa graft</span>";
+      document.getElementById('donutchartIngred').innerHTML = "<span id='smallSpan'>Inte tillräckligt data för att visa graf över ingredienser</span>";
   }
 
 } else {
-  document.getElementById('VueDiv').innerHTML = "<span>Inte tillräckligt många ordrar för att visa grafer</span>";
+  document.getElementById('VueDiv').innerHTML = "<span id='bigSpan'>Inte tillräckligt många ordrar för att visa grafer</span>";
 }
   setTimeout(drawChart,2000); //här regleras hur ofta graferna uppdateras, kan behöva sänkas om många klienter
 }
