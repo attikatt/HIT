@@ -99,92 +99,100 @@
             <div class="stepCircle" id="step5"> 5 </div>
           </div>
         </section>
+      </div>
+
+<!-- Change Ing Page: upper section --> 
+      <div id="centerSecYourDrinkP" id="upperSecChangeIngP" v-if ="changeIngShown">
+        <h4> {{ uiLabels.changeIng + (getIngredientById(changeFromId))["ingredient_" + lang]}} </h4>
+        <h2> {{ uiLabels.chooseIng }} </h2>
+      </div>
         
 <!-- This is step 1 -->
-        <div v-if="baseShown">
-          <h4 id ="chooseBasePiffText"> {{ uiLabels.chooseBase }} </h4>
-          <section id="middleSec">
-            <div v-if="type === 'smoothie'" class="ingredientsGrid">
-              <ingredient
-                ref="ingredient"
-                v-for="item in ingredients"
-                v-if="item.stock > 4 && item.smoothie_base"
-                v-on:increment="addItemToOrder(item)"
-                :item="item" 
-                :lang="lang"
-                :key="item.ingredient_id">
-              </ingredient>
-            </div>
-            <div v-if="type === 'juice'" class="ingredientsGrid">
-              <ingredient
-                ref="ingredient"
-                v-for="item in ingredients"
-                v-if="item.stock > 4 && item.juice_base"
-                v-on:increment="addItemToOrder(item)"
-                :item="item" 
-                :lang="lang"
-                :key="item.ingredient_id">
-              </ingredient>
-            </div>
-          </section>
-        </div>
-<!-- This is step 2- 4 -->
-        <div v-if= "ingShown">
-          <div id = "lowerUpperChooseIng">
-            <h4> {{ uiLabels.chooseIng }}</h4>
-              <table id="categoryTable">
-                <tbody>
-                  <tr>
-                    <td> <button class="categoryB" id="fruitB" v-on:click="filterIngType('fruit')"> {{ uiLabels.fruit }} </button></td>
-                    <td> <button class="categoryB" id="vegetableB" v-on:click="filterIngType('vegetable')"> {{ uiLabels.vegetable }} </button></td>
-                    <td> <button class="categoryB" id="otherB" v-on:click="filterIngType('other')"> {{ uiLabels.other }} </button></td>
-                  </tr>
-                </tbody>
-              </table>
+      <div v-if="baseShown">
+        <h4 id ="chooseBasePiffText"> {{ uiLabels.chooseBase }} </h4>
+        <section id="middleSec">
+          <div v-if="type === 'smoothie'" class="ingredientsGrid">
+            <ingredient
+              ref="ingredient"
+              v-for="item in ingredients"
+              v-if="item.stock > 4 && item.smoothie_base"
+              v-on:increment="addItemToOrder(item)"
+              :item="item" 
+              :lang="lang"
+              :key="item.ingredient_id">
+            </ingredient>
           </div>
-          <section id="middleSecChooseIng">
-            <div v-if="type === 'smoothie'" class="ingredientsGrid">
-              <ingredient
-                ref="ingredient"
-                v-for="item in ingredients"
-                v-if="item.stock > 4 && item.ingredient_category === ingType"
-                v-on:increment="addItemToOrder(item)"  
-                :item="item" 
-                :lang="lang"
-                :key="item.ingredient_id">
-              </ingredient>
-            </div>  
-            <div v-if="type === 'juice'" class="ingredientsGrid">
-              <ingredient
-                ref="ingredient"
-                v-for="item in ingredients"
-                v-if="item.stock > 4 && item.ingredient_category === ingType && item.juice_ok === true"
-                v-on:increment="addItemToOrder(item)"  
-                :item="item" 
-                :lang="lang"
-                :key="item.ingredient_id">
-              </ingredient>
-            </div>  
-          </section>
+          <div v-if="type === 'juice'" class="ingredientsGrid">
+            <ingredient
+              ref="ingredient"
+              v-for="item in ingredients"
+              v-if="item.stock > 4 && item.juice_base"
+              v-on:increment="addItemToOrder(item)"
+              :item="item" 
+              :lang="lang"
+              :key="item.ingredient_id">
+            </ingredient>
+          </div>
+        </section>
+      </div>
+<!-- This is step 2- 4 -->
+      <div v-if= "ingShown || changeIngShown">
+        <div id = "lowerUpperChooseIng">
+          <h4> {{ uiLabels.chooseIng }}</h4>
+            <table id="categoryTable">
+              <tbody>
+                <tr>
+                  <td> <button class="categoryB" id="fruitB" v-on:click="filterIngType('fruit')"> {{ uiLabels.fruit }} </button></td>
+                  <td> <button class="categoryB" id="vegetableB" v-on:click="filterIngType('vegetable')"> {{ uiLabels.vegetable }} </button></td>
+                  <td> <button class="categoryB" id="otherB" v-on:click="filterIngType('other')"> {{ uiLabels.other }} </button></td>
+                </tr>
+              </tbody>
+            </table>
         </div>
+        <section id="middleSecChooseIng">
+          <div v-if="type === 'smoothie'" class="ingredientsGrid">
+            <ingredient
+              ref="ingredient"
+              v-for="item in ingredients"
+              v-if="item.stock > 4 && item.ingredient_category === ingType"
+              v-on:increment="addItemToOrder(item)"  
+              :item="item" 
+              :lang="lang"
+              :key="item.ingredient_id">
+            </ingredient>
+          </div>  
+          <div v-if="type === 'juice'" class="ingredientsGrid">
+            <ingredient
+              ref="ingredient"
+              v-for="item in ingredients"
+              v-if="item.stock > 4 && item.ingredient_category === ingType && item.juice_ok === true"
+              v-on:increment="addItemToOrder(item)"  
+              :item="item" 
+              :lang="lang"
+              :key="item.ingredient_id">
+            </ingredient>
+          </div>  
+        </section>
+      </div>
 <!-- This is step 5 -->
-        <div v-if="piffShown">
-          <h4 id ="chooseBasePiffText"> {{ uiLabels.choosePiff }} </h4>
-          <section id="middleSec">
-            <div class="ingredientsGrid">
-              <ingredient
-                ref="ingredient"
-                v-for="item in ingredients"
-                v-if="item.stock > 4 && item.ingredient_category === 'piff'"
-                v-on:increment="addItemToOrder(item)"  
-                :item="item" 
-                :lang="lang"
-                :key="item.ingredient_id">
-              </ingredient>
-            </div>
-          </section>
-        </div>
+      <div v-if="piffShown">
+        <h4 id ="chooseBasePiffText"> {{ uiLabels.choosePiff }} </h4>
+        <section id="middleSec">
+          <div class="ingredientsGrid">
+            <ingredient
+              ref="ingredient"
+              v-for="item in ingredients"
+              v-if="item.stock > 4 && item.ingredient_category === 'piff'"
+              v-on:increment="addItemToOrder(item)"  
+              :item="item" 
+              :lang="lang"
+              :key="item.ingredient_id">
+            </ingredient>
+          </div>
+        </section>
+      </div>
 <!-- Lower section for choosing ingredients -->
+      <div v-if="baseShown || ingShown || piffShown">
         <section id="lowerSecChooseBasePiff">
           <div class="goBackDiv"> 
             <button id="goBackB" class="goB" v-on:click="changeStep(false); removeItemFromOrder(); filterIngType('fruit')"> <img class="arrow" src="images/backArrow.png"> </button>
@@ -226,7 +234,7 @@
         </section>
       </div>
       
-<!-- Change Ing Page -->
+<!-- Change Ing Page 
       <div v-if ="changeIngShown">
       	<section id="centerSecYourDrinkP">
       		<section id="upperSecChangeIngP">
@@ -263,7 +271,12 @@
     			</div>
       	</section>
       </div>
-	  
+-->
+<!-- Change Ing Page: lower section -->	  
+      <div id="goBackFullDiv" v-if="changeIngShown">
+        <button id="goBackB" v-on:click="goBackDrinkInfo()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
+      </div>
+
 <!-- Page: Choose size -->
       
       <div v-if="sizeShown"> 
