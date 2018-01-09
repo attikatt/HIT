@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Juicifers Lager</title>
+  <title>Lager</title>
   <link rel="stylesheet" href="css/GeneralStyleStaff.css">
   <link rel="stylesheet" href="css/lager.css">
   <script src="/vue/vue.js" defer></script>
@@ -52,7 +52,6 @@
                     </ul>
             </div>
             <div id="lagerList" class="scrollbar">
-              <!--skickar till js-->
                 <ingredient
                   ref="ingredient"
                   type="ingredient_butt"
@@ -68,23 +67,22 @@
         <div id="lagerConsole">
                 <p id=consoleHeader> ÄNDRA LAGERSALDO</p>
             <p id=chosenIngredient>  {{chosenIng["ingredient_"+ lang]}}  <br>  STOCK: {{chosenIng.stock}}</p>
-            <div id=changeSaldoConsole>  <p id=changeSaldoConsoleChild></p> </div>
+            <div id=changeSaldoConsole>  <p id=changeSaldoConsoleChild> </p> </div>
                 <ul id="keyboard">
-                    <input type="button" onClick="numberPressed(this)" class=letterButton value="1">
-                    <input type="button" onClick="numberPressed(this)" class=letterButton value="2">
-                    <input type="button" onClick="numberPressed(this)" class=letterButton value="3">
-                    <input type="button" onClick="numberPressed(this)" class=letterButton value="4">
-                    <input type="button" onClick="numberPressed(this)" class=letterButton value="5">
-                    <input type="button" onClick="numberPressed(this)" class=letterButton value="6">
-                    <input type="button" onClick="numberPressed(this)" class=letterButton value="7">
-                    <input type="button" onClick="numberPressed(this)" class=letterButton value="8">
-                    <input type="button" onClick="numberPressed(this)" class=letterButton value="9">
-                    <button class=letterButton type="button" onClick="clearSaldoField()"><li class="clearl delete">X</li></button>
-                    <input type="button" onClick="numberPressed(this)" class=letterButton value="0">
-                    <button class=letterButton type="button" value="backSpaceLetter" onClick="backSpaceLetter()"><li class="remove"><</li></button>
-                    <button class="letterButtonEnter letterButton" type="button" v-on:Click="updateChosen()"><li class="return clearl enter">UPPDATERA</li></button>
+                    <input type="button" onClick="numberPressed(this)" class="letterButton" value="1">
+                    <input type="button" onClick="numberPressed(this)" class="letterButton" value="2">
+                    <input type="button" onClick="numberPressed(this)" class="letterButton" value="3">
+                    <input type="button" onClick="numberPressed(this)" class="letterButton" value="4">
+                    <input type="button" onClick="numberPressed(this)" class="letterButton" value="5">
+                    <input type="button" onClick="numberPressed(this)" class="letterButton" value="6">
+                    <input type="button" onClick="numberPressed(this)" class="letterButton" value="7">
+                    <input type="button" onClick="numberPressed(this)" class="letterButton" value="8">
+                    <input type="button" onClick="numberPressed(this)" class="letterButton" value="9">
+                    <button type="button" onClick="clearSaldoField()" class="letterButton"><li class="clearl delete">X</li></button>
+                    <input type="button" onClick="numberPressed(this)" class="letterButton" value="0">
+                    <button type="button" onClick="backSpaceLetter()" class="letterButton" value="backSpaceLetter"><li class="remove"><</li></button>
+                    <button type="button" v-on:Click="updateChosen()" class="letterButtonEnter letterButton"><li class="return clearl enter">UPPDATERA</li></button>
                 </ul>
-
         </div>
         <div id=clock> </div>
     </div>
