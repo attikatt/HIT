@@ -35,7 +35,12 @@
             <tr>
               <td> <button id="cancelOrderB"  v-on:click = "emptyOrder(); showPage('showStart')"> {{ uiLabels.cancelOrder }} </button></td>
               <td id="title"> Juicifer </td>
-              <td> <button id="basketB" v-on:click ="showPage('showCart')"> <img id="basketLogo" src="images/basket.png"> </button> </td>
+              <td>
+                <button id="basketB" v-on:click ="showPage('showCart')">
+                  <div id="basketCircle"> {{ getLengthOfOrder() }} </div>
+                  <img id="basketLogo" src="images/basket.png">
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -94,8 +99,6 @@
             <div class="stepCircle" id="step5"> 5 </div>
           </div>
         </section>
-
-<!-- Nu är allt smoothie-ing, vi måste fixa filtreringen-->
         
 <!-- This is step 1 -->
         <div v-if="baseShown">
@@ -181,13 +184,10 @@
             </div>
           </section>
         </div>
+<!-- Lower section for choosing ingredients -->
         <section id="lowerSecChooseBasePiff">
           <div class="goBackDiv"> 
             <button id="goBackB" class="goB" v-on:click="changeStep(false); removeItemFromOrder(); filterIngType('fruit')"> <img class="arrow" src="images/backArrow.png"> </button>
-          </div>
-          <div class="goForwardDiv">
-            <h4 v-if =!baseShown  id="forwardInfo"> {{ uiLabels.next }} </h4>
-            <button v-if =!baseShown id="goForwardB" class="goB" v-on:click="changeStep(true)"> <img class="arrow" src="images/forwardArrow.png"> </button>
           </div>
         </section>
       </div>
@@ -312,7 +312,7 @@
               </h4>
             </div>
         		<div>
-              <button id="goBackBCart" v-on:click = "showPage('showSize');removeDrinkFromOrder()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
+              <button id="goBackBCart" v-on:click = "showPage('showSize'); removeDrinkFromOrder()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
               <button id="payB" v-on:click="showPage('showThanks');placeOrder()" class="goB"> {{ uiLabels.pay }}</button> 
         		</div>		
       		</div>
