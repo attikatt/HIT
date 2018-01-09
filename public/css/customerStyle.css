@@ -124,7 +124,7 @@ padding-top: 2.5vh;
   width: 22vw;
   height: 12vh;
   float:right;
-  border-color: rgb(215,83,14);
+  border-color: transparent;
 }
 
 #basketLogo {
@@ -445,9 +445,17 @@ margin-left: auto;
     letter-spacing: 1.5vw;
 }
 
+#cartDiv {
+	position:fixed;
+	width:100%;
+	margin-top:-7.5vh;
+	background-color: white;
+}
+
 #cartGrid {
 	margin-bottom: 30vh;
 	display:grid;
+	margin-top:22vh;
 	grid-row-gap: 3vh;
 	grid-template-columns: repeat(1,1fr);
 
@@ -496,6 +504,7 @@ margin-left: auto;
 
 #addMoreDrinksDiv{
 	position: fixed;
+	background-color: white;
 	width:100%;
 	top: 70vh;
 }
