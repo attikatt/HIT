@@ -7,9 +7,9 @@
 
 #centerDiv{
   display: inline-block;
-  margin-top: 2vh;
+  margin-top: 5%;
+  height: 90%;
   line-height: normal;
-
 }
 
 h1 {
@@ -28,8 +28,8 @@ button {
   border: 0.1em solid;
   border-radius: 12px;
   font-size: 2.5vw;
-  width: 12em;
-  height: 6em;
+  width: 22vw;
+  height: 25vh;
   cursor: pointer;
 }
 
