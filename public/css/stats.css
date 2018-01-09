@@ -57,20 +57,13 @@ p {
   float: right;
 }
 
-#clock{
+/*#clock{
   font-size: 4vh;
   position:absolute;
-  right: 2vw;
-  bottom: 1vh;
-  margin:0;
-}
-
-#clock{
-  font-size: 4vh;
-  position:absolute;
-  right: 4vw;
+  right: 3vw;
   bottom: 4vh;
-}
+  margin: 0;
+}*/
 
 @media (max-width:720px) {
   .smallOrderList {

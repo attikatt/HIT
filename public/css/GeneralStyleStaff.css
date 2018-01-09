@@ -40,6 +40,14 @@ body{
   text-align: center;
   color: white;
 }
+
+#clock{
+    font-size: 4vh;
+    position:absolute;
+    right: 3vw;
+    bottom: 4vh;
+    margin: 0;
+}
 /*--------------STYLAR ORDRARNA I KITCHEN OCH I HISTORIK----------*/
 .smallOrderList{
 	display: grid;
