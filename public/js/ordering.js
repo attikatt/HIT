@@ -335,13 +335,7 @@ Funkar ej just nu! */
     },  
 /*-----------------------Har lagt till funktionen nedanför-----------------------------------------*/	  
 	goBackDrinkInfo: function() {
-	  if(this.drinkPath ==='myo') {
-		  vm.showPage('showYourDrink');
-	  }	
-	  else if(this.drinkPath === 'fav'){
-		  vm.showPage('showFavInfo');
-		  vm.emptyOrder();
-	  }
+		vm.showPage('showYourDrink');
 	},
       
     changeStep: function(goesForward) {
@@ -397,7 +391,7 @@ Funkar ej just nu! */
         }
         this.step -= 1;
       }
-/*----------------------------Detta är där jag ndrat med glowen i circlarna-----------------------*/
+/*----------------------------Detta är där jag 'ndrat med glowen i circlarna-----------------------*/
       var stylingSteps = document.getElementById("step"+this.step);
 	  stylingSteps.style.color = "black"; 
 	  stylingSteps.style.backgroundColor = "white";
@@ -413,7 +407,8 @@ Funkar ej just nu! */
           categories[i].style.color = "grey";
           categories[i].style.borderColor = "grey";
       }
-      document.getElementById(chosenIngType+"B").style.color = "black"; document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)"; 
+      document.getElementById(chosenIngType+"B").style.color = "black";
+      document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)"; 
     },
     
 /*--------- For composing drink ------------*/
