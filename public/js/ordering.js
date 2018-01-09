@@ -132,6 +132,7 @@ var vm = new Vue({
   		img.style.hight = "40vh";
   		img.style.marginLeft ="-9vw";
   		img.style.overflow ="hidden";
+		img.setAttribute("id",this.step + "img");
 
   		var numStep = document.createTextNode(this.step);
   		var p = document.createElement("p");
@@ -142,7 +143,7 @@ var vm = new Vue({
   		p.style.width ="100%";
   		p.style.marginLeft ="0vw";
   		p.style.marginTop ="-14vw";
-
+		p.setAttribute("id",this.step + "p");
 
   		var currentStep = document.getElementById("step" + this.step);
   		currentStep.appendChild(img);
@@ -333,7 +334,7 @@ Funkar ej just nu! */
           }
         }
     },
-/*-----------------------Har lagt till funktionen nedanför-----------------------------------------*/
+	  
 	goBackDrinkInfo: function() {
 		vm.showPage('showYourDrink');
 	},
@@ -369,6 +370,16 @@ Funkar ej just nu! */
       }
 
       else {
+		  
+/*---------------------------------HÄÄÄÄRR-------------------------------*/
+		var removeStep = this.step-1;
+		var currentStepDivId = document.getElementById("step"+removeStep);
+		var removeP = document.getElementById(removeStep + "p");
+		var removeImg = document.getElementById(removeStep + "img");
+		currentStepDivId.removeChild(removeP);
+		currentStepDivId.removeChild(removeImg);  
+		
+		  
         if (this.step <= 1) {
           this.showPage("showChooseType");
 		      this.step =1;
@@ -391,12 +402,11 @@ Funkar ej just nu! */
         }
         this.step -= 1;
       }
-/*----------------------------Detta är där jag 'ndrat med glowen i circlarna-----------------------*/
+		
       var stylingSteps = document.getElementById("step"+this.step);
 	  stylingSteps.style.color = "black";
 	  stylingSteps.style.backgroundColor = "white";
 	  stylingSteps.style.boxShadow ="0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0";
-      //console.log(this.step);
       return this.step;
     },
 
