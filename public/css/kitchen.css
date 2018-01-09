@@ -12,6 +12,13 @@
     grid-area: top;
 }
 
+#verticalLine{
+  grid-area: waiting;
+  height: 80vh;
+  width: 1px;
+  border-right: 1px solid white;
+}
+
 h1{
   margin:2%;
   margin-left: 0;
