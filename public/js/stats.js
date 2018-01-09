@@ -47,7 +47,7 @@
       /*---Rensa ut ingredienser som inte är beställda tillräckligt ofta--*/
       var m = 1;
       while (m < contentArr.length){
-        if(contentArr[m][1] < 100){
+        if(contentArr[m][1] < 1){
           contentArr.splice(m,1);
         } else {m++;}
       }
@@ -84,6 +84,7 @@ function getColors(size){
 }
 
 function drawChart() {
+  console.log("Jag ritar");
   var orderData = google.visualization.arrayToDataTable(vm.getOrderData());
   var orderOptions = {
     title: 'Fördelning av beställningar',
@@ -93,6 +94,7 @@ function drawChart() {
     'titleTextStyle': {color:'white', fontName: 'champagne__limousinesregular', fontSize:'25', bold:'false'},
     legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16'}}
   };
+  console.log(orderData);
 
   var ingredientData = google.visualization.arrayToDataTable(vm.getIngredientData());
   var ingredientOptions = {
@@ -103,24 +105,26 @@ function drawChart() {
     'titleTextStyle': {color:'white', fontName: 'champagne__limousinesregular', fontSize:'25', bold:'false'},
     legend: {textStyle: {color: 'white', fontName: 'champagne__limousinesregular', fontSize:'16'}, maxLines: '6'},
     pieResidueSliceLabel: 'Övriga',
-    //pieResidueSliceColor: '#365888',
     sliceVisibilityThreshold: 6/100
   };
+  console.log(ingredientData);
 
   /*---- Only show graphs if there is data----*/
   if (Object.keys(vm.getCurrentStatus()).length > 0){
+    document.getElementById('errorSpan').innerHTML = "";
     var chart1 = new google.visualization.PieChart(document.getElementById('donutchartOrders'));
     chart1.draw(orderData, orderOptions);
 
     if (vm.getIngredientData().length > 1){
       var chart2 = new google.visualization.PieChart(document.getElementById('donutchartIngred'));
       chart2.draw(ingredientData, ingredientOptions);
-    } else  { //denna visas beorende på vad gränsen för sållningen är
-      document.getElementById('donutchartIngred').innerHTML = "<span id='smallSpan'>Inte tillräckligt data för att visa graf över ingredienser</span>";
-  }
+    }
 
-} else {
-  document.getElementById('VueDiv').innerHTML = "<span id='bigSpan'>Inte tillräckligt många ordrar för att visa grafer</span>";
+} else if (document.getElementById('errorSpan').innerHTML === ""){
+  document.getElementById('errorSpan').innerHTML = "Inte tillräckligt många ordrar för att visa grafer";
+  document.getElementById('donutchartIngred').innerHTML ="";
+  document.getElementById('donutchartOrders').innerHTML ="";
+
 }
   setTimeout(drawChart,2000); //här regleras hur ofta graferna uppdateras, kan behöva sänkas om många klienter
 }

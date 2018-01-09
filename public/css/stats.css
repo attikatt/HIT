@@ -16,13 +16,9 @@
   float: right;
 }
 
-#bigSpan {
-  margin-left: 10%;
-  font-size: 5vh;
-}
-
-#smallSpan {
-  font-size: 3vh;
+#errorSpan{
+  font-size: 6vh;
+  float: bottom;
 }
 
 @media (max-width:720px) {
