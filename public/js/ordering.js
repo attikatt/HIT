@@ -169,8 +169,9 @@ var vm = new Vue({
         order = {
           ingredients: this.chosenIngredients,
           type: this.type,
-            size: this.chosenSize,
-            name: name,
+          size: this.chosenSize,
+          name: name,
+          compType: this.drinkPath
         };
         //Add drink to the full order 
         this.fullOrder.push(order); 
@@ -233,65 +234,92 @@ var vm = new Vue({
 	  
 	  
 /*----------- For showing the right page/view ---------- */
-    hideAllPages: function(){
-        this.startShown = false;
-        this.chooseTypeShown = false;
-        this.baseShown = false;
-        this.ingShown = false;
-        this.piffShown = false;
-        this.yourDrinkShown = false;
-        this.startAgainShown = false;
-        this.sizeShown = false;
-        this.cartShown = false;
-        this.favShown = false;
-        this.drinkInfoShown = false;
-		this.thanksShown = false;
-		this.changeIngShown =false;
-    },  
+    hideAllPages: function() {
+      this.startShown = false;
+      this.chooseTypeShown = false;
+      this.baseShown = false;
+      this.ingShown = false;
+      this.piffShown = false;
+      this.yourDrinkShown = false;
+      this.startAgainShown = false;
+      this.sizeShown = false;
+      this.cartShown = false;
+      this.favShown = false;
+      this.drinkInfoShown = false;
+  		this.thanksShown = false;
+  		this.changeIngShown = false;
+    },
+
+/* FÖR ATT KUNNA KOMMA TILLBAKA TILL RÄTT SIDA DÅ KUNGKORGEN KLICKAS OCH SEDAN KLICKAR TILLBAKA
+Funkar ej just nu! */
+
+    findCurPage: function() {
+      var pages = [
+        this.startShown,
+        this.chooseTypeShown,
+        this.baseShown,
+        this.ingShown,
+        this.piffShown,
+        this.yourDrinkShown,
+        this.startAgainShown,
+        this.sizeShown,
+        this.cartShown,
+        this.favShown,
+        this.drinkInfoShown,
+        this.thanksShown,
+        this.changeIngShown ];
+      for (var i = 0; i < pages.length; i++ ) {
+        if (pages[i] === true) {
+          return pages[i];
+        }
+      }
+
+    }, 
       
     showPage: function(page) {
         this.hideAllPages();
         if(page === "showBase") {
-            this.baseShown = true;
+          this.baseShown = true;
         }
         else if (page === "showIng"){
-            this.ingShown = true;
+          this.ingShown = true;
         }
         else if (page === "showPiff"){
-            this.piffShown = true;
+          this.piffShown = true;
         }
         else if (page === "showChooseType"){
-            this.chooseTypeShown = true;
+          this.chooseTypeShown = true;
         }
         else if(page === "showStart"){
-            this.startShown = true;
+          this.startShown = true;
         }
         else if(page === "showStartAgain"){
-            this.startAgainShown = true;
+          this.startAgainShown = true;
             // set all drink order counters to 0.
-            this.step = 1;
-            this.ingType = "fruit";
-            this.type = '';
-            this.chosenIngredients = [];
+          this.step = 1;
+          this.ingType = "fruit";
+          this.type = '';
+          this.chosenIngredients = [];
         }
         else if(page === "showYourDrink") {
-            this.yourDrinkShown = true;
+          this.yourDrinkShown = true;
         }
         else if(page === "showSize") {
-            this.sizeShown = true;
+          this.sizeShown = true;
         }
-        else if(page=== "showCart") {
-            this.cartShown = true;
+        else if(page === "showCart") {
+          this.findCurPage();
+          this.cartShown = true;
         }
         
         else if(page ==="showFav") {
-            this.favShown = true;
+          this.favShown = true;
         }
         else if (page === "showFavInfo") {
-            this.drinkInfoShown = true;
+          this.drinkInfoShown = true;
         }
-		    else if (page ==="showThanks"){
-        this.thanksShown = true;
+		    else if (page ==="showThanks") {
+          this.thanksShown = true;
 		    }
     		else if (page === "showChangeIng") {
     			this.changeIngShown = true;
@@ -301,19 +329,13 @@ var vm = new Vue({
               this.favShown = true;
           }
           else if (this.drinkPath === 'myo') {
-              this.baseShown = true;
+            this.baseShown = true;
           }
         }
     },  
 /*-----------------------Har lagt till funktionen nedanför-----------------------------------------*/	  
 	goBackDrinkInfo: function() {
-	  if(this.drinkPath ==='myo') {
-		  vm.showPage('showYourDrink');
-	  }	
-	  else if(this.drinkPath === 'fav'){
-		  vm.showPage('showFavInfo');
-		  vm.emptyOrder();
-	  }
+		vm.showPage('showYourDrink');
 	},
       
     changeStep: function(goesForward) {
@@ -369,7 +391,7 @@ var vm = new Vue({
         }
         this.step -= 1;
       }
-/*----------------------------Detta är där jag ndrat med glowen i circlarna-----------------------*/
+/*----------------------------Detta är där jag 'ndrat med glowen i circlarna-----------------------*/
       var stylingSteps = document.getElementById("step"+this.step);
 	  stylingSteps.style.color = "black"; 
 	  stylingSteps.style.backgroundColor = "white";
@@ -385,7 +407,8 @@ var vm = new Vue({
           categories[i].style.color = "grey";
           categories[i].style.borderColor = "grey";
       }
-      document.getElementById(chosenIngType+"B").style.color = "black"; document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)"; 
+      document.getElementById(chosenIngType+"B").style.color = "black";
+      document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)"; 
     },
     
 /*--------- For composing drink ------------*/
@@ -451,13 +474,20 @@ var vm = new Vue({
 		  }
     },
 	  
-    showOrderedItems: function(orderNumber) {
+    showOrderedItems: function(orderIdAndName) {
       var allOrders = this.orders;
 
       var h4 = document.createElement("h4");
       var nodeRef = document.getElementById("orderedItems");
       
-      var text = document.createTextNode(orderNumber[1]+" #" + orderNumber[0]);
+      if (orderIdAndName[1] === 'Egen juice' && this.lang === 'en') {
+        orderIdAndName[1] = 'Own juice'
+      }
+      if (orderIdAndName[1] === 'Egen smoothie' && this.lang === 'en') {
+        orderIdAndName[1] = 'Own smoothie'
+      }
+
+      var text = document.createTextNode(orderIdAndName[1]+" #" + orderIdAndName[0]);
       var br = document.createElement("br");
       h4.appendChild(text);
       nodeRef.appendChild(h4);
@@ -465,15 +495,20 @@ var vm = new Vue({
     },
 
 /*------------- Checking if favourites have all ingredients available ---------------*/      
-    isDrinkAvailable: function (drinkIngs) {
-      for (var i = 0; i < drinkIngs.length; i++) {
-        var item = this.getIngredientById(drinkIngs[i]);
-        if (item.stock < 5) {
-            return false;
-        }
-      }
-      return true;
-    },
+isDrinkAvailable: function (drinkIngs) {
+  for (var i = 0; i < drinkIngs.length; i++) {
+    var item = this.getIngredientById(drinkIngs[i]);
+    if (item.stock < 5) {
+        return false;
+    }
+  }
+  return true;
+},
+
+/*------------- Getting number of drinks in the order ---------------*/     
+getLengthOfOrder: function() {
+  return this.fullOrder.length;
+},
 /*------------- Cancelling order ---------------*/
     emptyOrder: function () {
       this.fullOrder = [];
