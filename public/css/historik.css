@@ -136,7 +136,7 @@ hr{
 /* Modal Content/Box */
 .modal-content {
     background-color: rgb(64,64,64);
-    margin: 5% auto; /* 15% from the top and centered */
+    margin: 5% auto; 
     padding: 20px;
     border: 1px solid #888;
     width: 30vw;

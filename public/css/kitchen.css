@@ -16,6 +16,7 @@ p {
   margin: 2%;
   margin-left: 0;
   font-size:10vh;
+  text-transform: uppercase;
 }
 
 #verticalLine{
@@ -300,7 +301,7 @@ li span{
   background: rgb(255, 204, 0);
   height: 5vw;
 }
-/*
+/* HÄR
 .ready {
   background: rgb(0, 153, 0);
 }*/
@@ -311,11 +312,3 @@ li span{
   margin-top: 0.5vh;
   margin-bottom: 0.5vh;
 }
-
-/*#clock{
-    font-size: 4vh;
-    position:absolute;
-    right: 2vw;
-    bottom: 2vh;
-    grid-area: clock;
-}*/

@@ -161,21 +161,5 @@ function activateSmoothie(){
   }
 };
 
-/* Klocka*/
-function updateClock(){
-var now = new Date(),
-    hours = now.getHours(),
-    minutes = now.getMinutes(),
-    seconds = now.getSeconds();
-    if (minutes < 10) {
-        minutes = "0" + minutes
-    };
-    if (seconds < 10) {
-        seconds = "0" + seconds
-    };
-    document.getElementById('clock').innerHTML = antalEjKlaraOrdrar() + " ordrar i kön"+ " " + [hours,minutes,seconds].join(':');
-    setTimeout(updateClock,1000);
-}
- updateClock();
- antalEjKlaraOrdrar();
- activateOrders();
+antalEjKlaraOrdrar();
+activateOrders();
