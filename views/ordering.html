@@ -23,7 +23,7 @@
       
     <div id ="headerCart" v-if = "page === 'cart'">
       <header>
-        <button id="cancelOrderB" v-on:click = "emptyOrder(); showPage('showStart')"> {{ uiLabels.cancelOrder }}  </button>
+        <button id="cancelOrderB" v-on:click = "emptyOrder(); showPage('start')"> {{ uiLabels.cancelOrder }}  </button>
         <h1 id = "titleCart"> Juicifer </h1>
       </header>
     </div>
@@ -33,10 +33,10 @@
         <table id="headTable">
           <tbody> 
             <tr>
-              <td> <button id="cancelOrderB"  v-on:click = "emptyOrder(); showPage('showStart')"> {{ uiLabels.cancelOrder }} </button></td>
+              <td> <button id="cancelOrderB"  v-on:click = "emptyOrder(); showPage('start')"> {{ uiLabels.cancelOrder }} </button></td>
               <td id="title"> Juicifer </td>
               <td>
-                <button id="basketB" v-on:click ="showPage('showCart')">
+                <button id="basketB" v-on:click ="showPage('cart')">
                   <div id="basketCircle"> {{ getLengthOfOrder() }} </div>
                   <img id="basketLogo" src="images/basket.png">
                 </button>
@@ -56,8 +56,8 @@
           <div>   
             <table id="buttonTableStartP" align="center">
               <tbody>
-                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('showChooseType'); choosePath('fav')"> {{ uiLabels.favorites }} </button> </td></tr>
-                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('showChooseType'); choosePath('myo')"> {{ uiLabels.makeYourOwn }} </button> </td></tr>
+                  <tr><td> <button id="juicifersFavB" v-on:click="showPage('chooseType'); choosePath('fav')"> {{ uiLabels.favorites }} </button> </td></tr>
+                  <tr><td> <button id="makeYourOwnB" v-on:click="showPage('chooseType'); choosePath('myo')"> {{ uiLabels.makeYourOwn }} </button> </td></tr>
               </tbody>
             </table>
           </div>
@@ -65,7 +65,7 @@
       </div>
       <div v-if = "page === 'startAgain'">
         <div class="goBackDiv">
-          <button id="goBackB"  class="goB" v-on:click="showPage('showCart')"> <img class="arrow" src="images/backArrow.png"> </button>
+          <button id="goBackB"  class="goB" v-on:click="showPage('cart')"> <img class="arrow" src="images/backArrow.png"> </button>
         </div>
       </div>
       
@@ -83,7 +83,7 @@
             </div>
         </section>
     		<div class="goBackDiv">
-          <button id="goBackB"  class="goB" v-on:click="showPage('showStart')"> <img class="arrow" src="images/backArrow.png"> </button>
+          <button id="goBackB"  class="goB" v-on:click="showPage('start')"> <img class="arrow" src="images/backArrow.png"> </button>
         </div>
       </div>
       
@@ -221,7 +221,7 @@
     				<div>
     					<button class="ingredientOblongB" 
     							v-for="(containsIng, index) in chosenIngredients" 
-    							v-on:click="markChangeFrom([containsIng.ingredient_id, index]); showPage('showChangeIng')">
+    							v-on:click="markChangeFrom([containsIng.ingredient_id, index]); showPage('changeIng')">
     							{{ containsIng["ingredient_"+ lang] }} <br> 
     					</button>
     				</div>
@@ -232,7 +232,7 @@
             </div>
             <div class="goForwardDiv">
               <h4 id="forwardinfoSize"> {{uiLabels.chooseSize}} </h4>
-              <button id="goForwardB" v-on:click = "showPage('showSize')" class="goB">  <img class="arrow" src="images/forwardArrow.png"> </button>
+              <button id="goForwardB" v-on:click = "showPage('chooseSize')" class="goB">  <img class="arrow" src="images/forwardArrow.png"> </button>
             </div>
           </div>
         </section>
@@ -292,15 +292,15 @@
             <table id="lowerTable">
               <tbody>
                 <tr>
-                  <td> <button id="smallB" class="cup" v-on:click="setSize('small');addDrinkToOrder();showPage('showCart')"> <img id="cupLogoS" src="images/cup.png"> <h5> {{ uiLabels.small }} (20cl)<br>36 kr</h5> </button> </td>
-                  <td> <button id="mediumB" class="cup" v-on:click="setSize('medium');addDrinkToOrder();showPage('showCart')"> <img id="cupLogoM" src="images/cup.png"> <h5> {{ uiLabels.medium}} (33cl)<br>42 kr </h5> </button> </td>
-                  <td> <button id="largeB" class="cup" v-on:click="setSize('large');addDrinkToOrder();showPage('showCart')"> <img id="cupLogoL" src="images/cup.png"> <h5> {{ uiLabels.large }} (50cl) <br>49 kr </h5></button></td>
+                  <td> <button id="smallB" class="cup" v-on:click="setSize('small');addDrinkToOrder();showPage('cart')"> <img id="cupLogoS" src="images/cup.png"> <h5> {{ uiLabels.small }} (20cl)<br>36 kr</h5> </button> </td>
+                  <td> <button id="mediumB" class="cup" v-on:click="setSize('medium');addDrinkToOrder();showPage('cart')"> <img id="cupLogoM" src="images/cup.png"> <h5> {{ uiLabels.medium}} (33cl)<br>42 kr </h5> </button> </td>
+                  <td> <button id="largeB" class="cup" v-on:click="setSize('large');addDrinkToOrder();showPage('cart')"> <img id="cupLogoL" src="images/cup.png"> <h5> {{ uiLabels.large }} (50cl) <br>49 kr </h5></button></td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="goBackDiv"> 
-            <button id="goBackB" v-on:click = "showPage('showYourDrink')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
+            <button id="goBackB" v-on:click = "showPage('yourDrink')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
           </div>
         </section>
       </div>      
@@ -324,15 +324,15 @@
           </div>
       		<div id="cartBottomDiv">
       			<div id ="addMoreDrinksDiv">
-              <button id="addMoreDrinksB" v-on:click = "showPage('showStartAgain');"> {{ uiLabels.addToOrder1 }}<br>{{ uiLabels.addToOrder2 }}</button>
+              <button id="addMoreDrinksB" v-on:click = "showPage('startAgain')"> {{ uiLabels.addToOrder1 }}<br>{{ uiLabels.addToOrder2 }}</button>
               <hr>
               <h4 id="sumCart">
               {{ uiLabels.sum }} : {{ calcPrice() }} kr
               </h4>
             </div>
         		<div>
-              <button id="goBackBCart" v-on:click = "showPage('showSize'); removeDrinkFromOrder()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
-              <button id="payB" v-on:click="showPage('showThanks');placeOrder()" class="goB"> {{ uiLabels.pay }}</button> 
+              <button id="goBackBCart" v-on:click = "showPage(pageBeforeCart); removeDrinkFromOrder()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button> 
+              <button id="payB" v-on:click="showPage('thanks');placeOrder()" class="goB"> {{ uiLabels.pay }}</button> 
         		</div>		
       		</div>
         </section>
@@ -345,14 +345,14 @@
          <h3 id="chooseFavTitle" v-if = "type ==='juice'">{{ uiLabels.chooseJuice }} </h3>
         <div class="favGrid">
           <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_type === type && isDrinkAvailable(preparedDrink.rm_ingredients) && preparedDrink.rm_day == true">
-              <span class="rotate">DAGENS</span><button class="favSquareB favvo" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="favImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
+              <span class="rotate">DAGENS</span><button class="favSquareB favvo" v-on:click="showPage('drinkInfo'); markDrink(preparedDrink)"><img class="favImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
           </div>
           <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_type === type && isDrinkAvailable(preparedDrink.rm_ingredients) && preparedDrink.rm_day == false">
-              <button class="favSquareB" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="favImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
+              <button class="favSquareB" v-on:click="showPage('drinkInfo'); markDrink(preparedDrink)"><img class="favImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
           </div>
         </div>
         <div id="goBackFullDiv">
-            <button id="goBackB" v-on:click ="showPage('showChooseType')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
+            <button id="goBackB" v-on:click ="showPage('chooseType')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
         </div>
       </section>
     </div>
@@ -385,11 +385,11 @@
           </div>
           <div>
             <div class="goBackDiv">
-              <button id="goBackB" class="goB" v-on:click ="showPage('showFav')"> <img class="arrow" src="images/backArrow.png"> </button>
+              <button id="goBackB" class="goB" v-on:click ="showPage('favorites')"> <img class="arrow" src="images/backArrow.png"> </button>
             </div>
             <div class="goForwardDiv">
               <h4 id="forwardInfoChoose"> {{uiLabels.choose}}</h4>
-              <button id="goForwardB" v-on:click = "orderReadymade(); showPage('showYourDrink')" class="goB">  <img class="arrow" src="images/forwardArrow.png"> </button>
+              <button id="goForwardB" v-on:click = "orderReadymade(); showPage('yourDrink')" class="goB">  <img class="arrow" src="images/forwardArrow.png"> </button>
             </div>
           </div>
         </section>
@@ -403,7 +403,7 @@
             <div id = "orderedItems"> </div> 
       		</div>
       		<div id="newOrderDiv">
-      			<button id="newOrderB" v-on:click = "emptyOrder(); showPage('showStart')"> {{ uiLabels.newOrder }}</button>
+      			<button id="newOrderB" v-on:click = "emptyOrder(); showPage('start')"> {{ uiLabels.newOrder }}</button>
       		</div>
       	</section>
       </div>  

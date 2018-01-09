@@ -343,7 +343,7 @@ var vm = new Vue({
       else if(page === "start") {
         this.page = "start";
       }
-      else if(page === "StartAgain") {
+      else if(page === "startAgain") {
         this.page = "startAgain";
           // set all drink order counters to 0.
         this.step = 1;
