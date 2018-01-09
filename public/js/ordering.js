@@ -75,7 +75,9 @@ var vm = new Vue({
     chosenIngredients: [],
     tempDrink: '',
     chosenSize: 'medium',
+    // To change ingredient
     changeFromIdIndex: [0, 0],
+    changeIngType: '', 
     //all drinks in current order
     fullOrder: [],
     allOrders: []
@@ -376,6 +378,21 @@ var vm = new Vue({
       }
       else if (page === "showChangeIng") {
         this.page = "changeIng";
+        var id = this.changeFromIdIndex[0];
+        var index = this.changeFromIdIndex[1];
+        console.log(index);
+        console.log(this.this.getIngredientById(id).ingredient_category);
+        console.log(this.getIngredientById(id));
+
+        if (index === 0) {
+          this.changeIngType = 'base';
+        }
+        else if (this.getIngredientById(id).ingredient_category === 'piff') {
+          this.changeIngType = 'piff';
+        }
+        else {
+          this.changeIngType = 'ing';
+        }
       }
       else if (page === "showFavOrMyo") {
         if (this.drinkPath === 'fav') {
@@ -422,17 +439,10 @@ var vm = new Vue({
       }
 
       else {
-        // tar bort bilden i steppaneln
-    		var removeStep = this.step-1;
-    		var currentStepDivId = document.getElementById("step"+removeStep);
-    		var removeP = document.getElementById(removeStep + "p");
-    		var removeImg = document.getElementById(removeStep + "img");
-    		currentStepDivId.removeChild(removeP);
-    		currentStepDivId.removeChild(removeImg);  
-		  
+      
         if (this.step <= 1) {
           this.showPage("showChooseType");
-		      this.step =1;
+          this.step =1;
         }
         else if (this.step === 2) {
           this.showPage("showBase");
@@ -447,11 +457,21 @@ var vm = new Vue({
           this.showPage("showIng");
         }
         else if(this.step ===6){
-    		this.showPage("showPiff");
-    		this.step = 5;
+        this.showPage("showPiff");
+        this.step = 5;
         }
-        this.step -= 1;
+    
+        if(this.step > 1) {
+          this.step -= 1;
+          var currentStepDivId = document.getElementById("step"+this.step);
+          var removeP = document.getElementById(this.step + "p");
+          var removeImg = document.getElementById(this.step + "img");
+          currentStepDivId.removeChild(removeP);
+          currentStepDivId.removeChild(removeImg);  
+        }
+        
       }
+
 		
       var stylingSteps = document.getElementById("step"+this.step);
   	  stylingSteps.style.color = "black";

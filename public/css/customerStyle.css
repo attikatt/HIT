@@ -659,16 +659,14 @@ hr {
 
 .favGrid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-row-gap: 1.4vh;
+    grid-template-columns: repeat(2, 0.5fr);
+    grid-row-gap: 1vh;
     margin-top: 25vh;
     margin-bottom: 14vh;
     margin-left: 6vh;
     margin-right: 6vh;
    /* background-color: blue*/
 }
-
-
 
 #goBackFullDiv {
     display: block;
@@ -681,10 +679,20 @@ hr {
 }
 
 .favSquareB {
-    width: 30vw;
-    height: 30vw;
-    font-size: 2.85vw;
-    border-radius: 6vw;
+  width: 30vw;
+  height: 30vw;
+  font-size: 2.85vw;
+  border-radius: 6vw;
+  margin-left: 4vw;
+  margin-right: 4vw;
+}
+.favvo {
+  margin-left: 0;
+}
+.rotate {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-weight: bold;
 }
 
 /* Drink Info page */

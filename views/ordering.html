@@ -108,7 +108,7 @@
       </div>
         
 <!-- This is step 1 -->
-      <div v-if="page === 'chooseBase'">
+      <div v-if="page === 'chooseBase' || page === 'changeIng' && changeIngType === 'base'">
         <h4 id ="chooseBasePiffText"> {{ uiLabels.chooseBase }} </h4>
         <section id="middleSec">
           <div v-if="type === 'smoothie'" class="ingredientsGrid">
@@ -136,7 +136,7 @@
         </section>
       </div>
 <!-- This is step 2- 4 -->
-      <div v-if= "page === 'chooseIng' || page === 'changeIng'">
+      <div v-if= "page === 'chooseIng' || page === 'changeIng' && changeIngType === 'ing'">
         <div id = "lowerUpperChooseIng">
           <h4> {{ uiLabels.chooseIng }}</h4>
             <table id="categoryTable">
@@ -175,7 +175,7 @@
         </section>
       </div>
 <!-- This is step 5 -->
-      <div v-if="page === 'choosePiff'">
+      <div v-if="page === 'choosePiff' || page === 'changeIng' && changeIngType === 'piff'">
         <h4 id ="chooseBasePiffText"> {{ uiLabels.choosePiff }} </h4>
         <section id="middleSec">
           <div class="ingredientsGrid">
@@ -335,21 +335,23 @@
       </div>      
 
 <!-- Juicifers Favorites Page -->
-
-      <div v-if="page === 'favorites'">
-        <section id="favSec">
-          <h3 id="chooseFavTitle" v-if = "type ==='smoothie'">{{ uiLabels.chooseSmoothie }} </h3> 
-    		  <h3 id="chooseFavTitle" v-if = "type ==='juice'">{{ uiLabels.chooseJuice }} </h3>
-          <div class="favGrid">
-            <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_type === type && isDrinkAvailable(preparedDrink.rm_ingredients)">
-                <button class="favSquareB" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="favImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
-            </div>
+    <div v-if="page === 'favorites'">
+      <section id="favSec">
+        <h3 id="chooseFavTitle" v-if = "type ==='smoothie'">{{ uiLabels.chooseSmoothie }} </h3>
+         <h3 id="chooseFavTitle" v-if = "type ==='juice'">{{ uiLabels.chooseJuice }} </h3>
+        <div class="favGrid">
+          <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_type === type && isDrinkAvailable(preparedDrink.rm_ingredients) && preparedDrink.rm_day == true">
+              <span class="rotate">DAGENS</span><button class="favSquareB favvo" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="favImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
           </div>
-          <div id="goBackFullDiv">
-              <button id="goBackB" v-on:click ="showPage('showChooseType')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
+          <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_type === type && isDrinkAvailable(preparedDrink.rm_ingredients) && preparedDrink.rm_day == false">
+              <button class="favSquareB" v-on:click="showPage('showFavInfo'); markDrink(preparedDrink)"><img class="favImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
           </div>
-        </section> 
-      </div>
+        </div>
+        <div id="goBackFullDiv">
+            <button id="goBackB" v-on:click ="showPage('showChooseType')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
+        </div>
+      </section>
+    </div>
     
 <!-- Drink Info Fav -->
       
