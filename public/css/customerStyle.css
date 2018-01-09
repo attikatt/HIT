@@ -545,6 +545,7 @@ hr {
 #step1 {
     background-color: white;
     color: black;
+	box-shadow:0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0;
 }
 
 #stepPanel {
@@ -582,7 +583,7 @@ hr {
   line-height: normal;
     width: 100vw;
     height: 13vh;
-    margin-top: -12vh;
+    margin-top: -14vh;
     background-color: white;
     position: fixed;
 }

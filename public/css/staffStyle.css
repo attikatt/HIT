@@ -33,13 +33,8 @@ body{
 }
 
 h1 {
-  font-size: 4vw;
-  text-transform: uppercase;
-}
-
-h1 {
   font-family: 'champagne__limousinesregular', arial, sans-serif;
-  font-size: 4vw;
+  font-size: 10vh;
   text-transform: uppercase;
 }
 
