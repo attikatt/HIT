@@ -482,7 +482,7 @@ var vm = new Vue({
       var stylingSteps = document.getElementById("step"+this.step);
   	  stylingSteps.style.color = "black";
   	  stylingSteps.style.backgroundColor = "white";
-  	  stylingSteps.style.boxShadow ="0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0";
+  	  stylingSteps.style.boxShadow ="0px 0px 6px 3px #fff, 0px 0px 8px 5px rgb(215,83,14), 0px 0px 11px 7px #FFFFE0";
       return this.step;
     },
 
@@ -491,12 +491,12 @@ var vm = new Vue({
       var categories = document.getElementsByClassName("categoryB");
       for (var i = 0; i < categories.length; i++) {
         categories[i].style.color = "grey";
-        categories[i].style.backgroundColor = "white";
-        categories[i].style.borderColor = "grey";
+        categories[i].style.boxShadow = "none";
+        categories[i].style.borderColor = "rgb(215,83,14)";
       }
       if (this.step > 1 || this.step < 5 ) {
         document.getElementById(chosenIngType+"B").style.color = "black";
-        document.getElementById(chosenIngType+"B").style.backgroundColor = "rgb(310,180,70)";
+        document.getElementById(chosenIngType+"B").style.boxShadow ="0px 0px 6px 3px #fff, 0px 0px 8px 5px rgb(215,83,14), 0px 0px 11px 7px #FFFFE0";
         document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)";
       }
     },

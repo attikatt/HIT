@@ -647,9 +647,8 @@ hr {
   background-color: white;
 }
 
-#vegetableB, #otherB {
-  color: grey;
-  border-color: grey;
+#fruitB{
+  box-Shadow:0px 0px 6px 3px #fff, 0px 0px 8px 5px rgb(215,83,14), 0px 0px 11px 7px #FFFFE0;
 }
 
 /* Fav Page */
@@ -703,6 +702,7 @@ hr {
 .rotate {
   writing-mode: vertical-rl;
   font-weight: bold;
+  font-size: 4vw;
 }
 
 /* Drink Info page */
