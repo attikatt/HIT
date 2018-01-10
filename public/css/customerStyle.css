@@ -142,7 +142,7 @@ button {
 /* Central section */
 
 #buttonTableStartP {
-	margin-top: 5vh;
+  margin-top: 3vh;
   width: 100%;
     /*background-color: red;*/
 }
@@ -464,10 +464,12 @@ margin-left: auto;
 
 #cartItemName{
  	float:left;
+    font-size: 4vw;
 }
 
 #cartItemPrice{
 	float:right;
+	font-size: 4vw;
 }
 
 #crossImg {
@@ -497,9 +499,10 @@ margin-left: auto;
 
 #addMoreDrinksDiv{
 	position: fixed;
-	background-color: white;
-	width:100%;
-	top: 70vh;
+    background-color: white;
+    width: 100%;
+    bottom: 0vh;
+    padding-bottom: 12vh;
 }
 
 #addMoreDrinksB{
@@ -557,6 +560,7 @@ hr {
 #step1 {
   color: black;
 	box-shadow:0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0;
+	background-color: white;
 }
 
 #stepPanel {
@@ -610,7 +614,8 @@ hr {
   line-height: normal;
     width: 100vw;
     position: fixed;
-    margin-top: -6vh;
+    padding-top: 1vh;
+    margin-top: -7vh;
     background-color: white;
 }
 
@@ -741,28 +746,33 @@ hr {
 
 #thanksSec{
   display: block;
-  position: fixed;
   line-height: normal;
   height: 85vh;
   margin-top: 2vh;
+  background-color: white;
   
 }
 
 #orderedItems{
-  padding-top:6vh;
-  padding-left:8vw;
-  padding-right: 8vw;
+  display: grid;
+  padding-top: 35vh;
+  margin-bottom: 30vh;
+  grid-row-gap: 0.5vh;
+  grid-template-columns: repeat(1,1fr);
 }
 
 #thanksDiv{
-  top:0vh;
-  padding-top:20vh;
+  top: 0vh;
+  padding-top: 20vh;
   background-color: white;
-  width:100%;
+  width: 100%;
+  position: fixed;
 }
 
 #newOrderDiv{
   bottom:0vh;
+	
+  display:block;
   padding-bottom:8vh;
   width:100%;
   position:fixed;
@@ -770,6 +780,16 @@ hr {
   
 }
 
+/*
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 2vw;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 2vw;
+  background-color: rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 0 1vw rgba(255, 255, 255, .5);
+}*/
 /* MEDIA STUFF */
 
 @media all and (max-height: 450px) {
