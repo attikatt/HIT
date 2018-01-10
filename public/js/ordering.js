@@ -363,7 +363,7 @@ var vm = new Vue({
       }
       else if(page === "cart") {
         // för att kunden ska komma tillbaka till basval om hen väljer att kolla på kundkorgen:
-        if (this.page === "chooseIng", "choosePiff") {
+        if (this.page === "chooseIng" ||  this.page === "choosePiff") {
           this.pageBeforeCart = "chooseBase";
           this.step = 1;
           this.chosenIngredients = [];
