@@ -450,6 +450,7 @@ button {
 	padding-left: 10vw;
 	padding-right: 10vw;
 	text-align: center;
+	    margin-top: 1vh;
 
 }
 
@@ -693,14 +694,14 @@ hr {
 .rotate {
   writing-mode: vertical-rl;
   font-weight: bold;
-  font-size: 4vw;
+  font-size: 3vw;
 }
 
 /* Drink Info page */
 #drinkInfoSec {
   display: block;
   line-height: normal;
-	margin-top: 9vh;
+  margin-top: 9vh;
   position: fixed;
   width: 100vw;
 }
