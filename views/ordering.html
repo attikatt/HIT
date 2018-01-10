@@ -65,7 +65,7 @@
       </div>
       <div v-if = "page === 'startAgain'">
         <div class="goBackDiv">
-          <button id="goBackB"  class="goB" v-on:click="showPage('cart')"> <img class="arrow" src="images/backArrow.png"> </button>
+          <button class="goBackB goB" v-on:click="showPage('cart')"> <img class="arrow" src="images/backArrow.png"> </button>
         </div>
       </div>
       
@@ -83,7 +83,7 @@
             </div>
         </section>
     		<div class="goBackDiv">
-          <button id="goBackB"  class="goB" v-on:click="showPage('start')"> <img class="arrow" src="images/backArrow.png"> </button>
+          <button class="goBackB goB" v-on:click="showPage('start')"> <img class="arrow" src="images/backArrow.png"> </button>
         </div>
       </div>
       
@@ -105,10 +105,6 @@
      <div id="upperSecChooseBasePiff" id="upperSecChangeIngP" v-if ="page === 'changeIng'">
         <h4> {{ uiLabels.changeIng }}</h4> <br>
         <h3> {{(getIngredientById(changeFromIdIndex[0]))["ingredient_" + lang]}} </h3>
-        <!--<br>
-        <h4 v-if="changeIngType === 'base'"> {{ uiLabels.chooseBase }} </h4>
-        <h4 v-if="changeIngType === 'ing'"> {{ uiLabels.chooseIng }} </h4>
-        <h4 v-if="changeIngType === 'piff'"> {{ uiLabels.choosePiff }} </h4>-->
       </div>
         
 <!-- This is step 1 -->
@@ -199,9 +195,14 @@
       <div v-if="page === 'chooseBase' || page === 'chooseIng' || page === 'choosePiff'">
         <section id="lowerSecChooseBasePiff">
           <div class="goBackDiv"> 
-            <button id="goBackB" class="goB" v-on:click="changeStep(false); removeItemFromOrder(); filterIngType('fruit')"> <img class="arrow" src="images/backArrow.png"> </button>
+            <button class ="goBackB goB" v-on:click="changeStep(false); removeItemFromOrder(); filterIngType('fruit')"> <img class="arrow" src="images/backArrow.png"> </button>
           </div>
         </section>
+      </div>
+
+<!-- Change Ing Page: lower section -->   
+      <div id="goBackFullDiv" v-if="page === 'changeIng'">
+        <button class ="goBackB goB" v-on:click="goBackDrinkInfo()"> <img class="arrow" src="images/backArrow.png"> </button>
       </div>
       
 <!-- Your drink page -->
@@ -228,7 +229,7 @@
     			</div>
           <div> 
             <div class="goBackDiv" v-if ="drinkPath === 'fav'">
-                <button id="goBackB" v-on:click = "showPage('showFavOrMyo'); removeFavFromOrder()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
+                <button class ="goBackB goB" v-on:click = "showPage('showFavOrMyo'); removeFavFromOrder()"> <img class="arrow" src="images/backArrow.png"> </button>
             </div>
             <div class="goForwardDiv">
               <h4 id="forwardinfoSize"> {{uiLabels.chooseSize}} </h4>
@@ -237,52 +238,8 @@
           </div>
         </section>
       </div>
-      
-<!-- Change Ing Page 
-      <div v-if ="changeIngShown">
-      	<section id="centerSecYourDrinkP">
-      		<section id="upperSecChangeIngP">
-      			<div>
-      				<h4> {{ uiLabels.changeIng + (getIngredientById(changeFromId))["ingredient_" + lang]}} </h4>
-      				<h2> {{ uiLabels.chooseIng }} </h2>
-      			</div>
-      			<table id="categoryTable">
-      				<tbody>
-      					<tr>
-    							<td> <button class="categoryB" id="fruitB" v-on:click="filterIngType('fruit')"> {{ uiLabels.fruit }} </button></td>
-    							<td> <button class="categoryB" id="vegetableB" v-on:click="filterIngType('vegetable')"> {{ uiLabels.vegetable }} </button></td>
-    							<td> <button class="categoryB" id="otherB" v-on:click="filterIngType('other')"> {{ uiLabels.other }} </button></td>
-      					</tr>
-      				</tbody>
-      			</table>
-      		</section>
-  				<section id="middleSecChangeIng">
-  					<div class="ingredientsGrid">
-  						<ingredient
-  						  ref="ingredient"
-  						  type="smoothie"
-  						  v-for="item in ingredients"
-  						  v-if="item.vol_smoothie > 0 && item.ingredient_category === ingType"
-  						  v-on:
-  						  :item="item" 
-  						  :lang="lang"
-  						  :key="item.ingredient_id">
-  						</ingredient>
-  					 </div>     
-  				</section>
-    			<div id="goBackFullDiv">
-    				<button id="goBackB" v-on:click="goBackDrinkInfo()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
-    			</div>
-      	</section>
-      </div>
--->
-<!-- Change Ing Page: lower section -->	  
-      <div id="goBackFullDiv" v-if="page === 'changeIng'">
-        <button id="goBackB" v-on:click="goBackDrinkInfo()" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
-      </div>
 
-<!-- Page: Choose size -->
-      
+<!-- Page: Choose size --> 
       <div v-if="page === 'chooseSize'"> 
         <section id="centerSecYourDrinkP">
           <div>
@@ -300,7 +257,7 @@
             </table>
           </div>
           <div class="goBackDiv"> 
-            <button id="goBackB" v-on:click = "showPage('yourDrink')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
+            <button class ="goBackB goB" v-on:click = "showPage('yourDrink')"> <img class="arrow" src="images/backArrow.png"> </button>
           </div>
         </section>
       </div>      
@@ -351,7 +308,7 @@
           </div>
         </div>
         <div id="goBackFullDiv">
-            <button id="goBackB" v-on:click ="showPage('chooseType')" class="goB"> <img class="arrow" src="images/backArrow.png"> </button>
+            <button class ="goBackB goB" v-on:click ="showPage('chooseType')"> <img class="arrow" src="images/backArrow.png"> </button>
         </div>
       </section>
     </div>
@@ -384,7 +341,7 @@
           </div>
           <div>
             <div class="goBackDiv">
-              <button id="goBackB" class="goB" v-on:click ="showPage('favorites')"> <img class="arrow" src="images/backArrow.png"> </button>
+              <button class="goBackB goB" v-on:click ="showPage('favorites')"> <img class="arrow" src="images/backArrow.png"> </button>
             </div>
             <div class="goForwardDiv">
               <h4 id="forwardInfoChoose"> {{uiLabels.choose}}</h4>
