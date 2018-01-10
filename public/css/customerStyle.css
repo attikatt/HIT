@@ -173,22 +173,22 @@ button {
 }
 
 .goForwardDiv {
-    display: block;
-    line-height: normal;
-    position: fixed;
+  display: block;
+  line-height: normal;
+  position: fixed;
 	width:50vw;
 	height:13vh;
-    bottom: 0px;
-    right: 0px;
-    background-color: white;
+  bottom: 0px;
+  right: 0px;
+  background-color: white;
 }
 
 /* Ta bort bottomTable? Används inte? */
 #bottomTable {
-    width: 100%;
-    position: fixed;
-    bottom: 0px;
-    background-color: white;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  background-color: white;
 }
 
 .goB {
@@ -196,13 +196,13 @@ button {
   height: 12vh;
   border-color: white;
   font-size: 4vw;
-    vertical-align: baseline;
+  vertical-align: baseline;
 }
 
 #goBackB {
-    left: 0px;
+  left: 0px;
 	float:left;
-    bottom: 0px;
+  bottom: 0px;
 	width:20vw;
 }
 
@@ -213,34 +213,33 @@ button {
 }
 
 .arrow {
- width: auto;
- height: 50%;
-margin-left: auto;
- margin-right: auto;
+  width: auto;
+  height: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Start page */
 
 #headerStart {
-    position: fixed;
-    width: 100vw;
+  position: fixed;
+  width: 100vw;
 }
 
 #centerSecStartP {
   display: block;
   line-height: normal;
-    position: fixed;
-    height: 85vh;
-    margin-top: 14vh;
-   /* background-color: yellow;*/
+  position: fixed;
+  height: 85vh;
+  margin-top: 14vh;
 }
 
 #languageB {
-    width: 22vw;
+  width: 22vw;
   height: 10vh;
   float: right;
-    margin: 1em;
-    font-size: 3vw;
+  margin: 1em;
+  font-size: 3vw;
 }
 
 #juiciferLogo {
@@ -262,16 +261,16 @@ margin-left: auto;
 #centerSecYourDrinkP {
   display: block;
   line-height: normal;
-    height: 85vh;
-    margin-top: 15vh;
+  height: 85vh;
+  margin-top: 15vh;
 }
 
 #chosenIngGrid{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-row-gap: 1vh;
-    margin-top: 3vh;
-    margin-bottom: 14vh;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-row-gap: 1vh;
+  margin-top: 3vh;
+  margin-bottom: 14vh;
 }
 
 .ingredientOblongB {
@@ -303,24 +302,24 @@ margin-left: auto;
 /* Change ingredients page */
 
 #headerChangeIngP {
-    position: fixed;
-    top: 0px;
+  position: fixed;
+  top: 0px;
 }
 #upperSecChangeIngP {
   display: block;
   line-height: normal;
 	background-color: white;
-    height: 25vh;
-    position: fixed;
-    top: 15vh;
+  height: 25vh;
+  position: fixed;
+  top: 15vh;
     /*background-color: red;*/
 }
 
 #middleSecChangeIng {
   display: block;
   line-height: normal;
-    margin-top: 40vh;
-    margin-bottom: 17vh;
+  margin-top: 40vh;
+  margin-bottom: 17vh;
 }
 
 #lowerSecChangeIngP {
@@ -329,51 +328,51 @@ margin-left: auto;
 }
 
 #categoryTable {
-    width: 100%;
+  width: 100%;
 }
 
 .categoryB {
-    width: 30vw;
-    height: 8vh;
-    font-size: 3vw;
-    font-size-adjust: auto;
+  width: 30vw;
+  height: 8vh;
+  font-size: 3vw;
+  font-size-adjust: auto;
 }
 
 .ingredientsGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-row-gap: 1vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 1vh;
 
 }
 
 .ordering {
-    margin-top: 70vh;
+  margin-top: 70vh;
 }
 
 .ingredient {
-    padding: 1vw;
-    width: 22vw;
-    margin: auto;
+  padding: 1vw;
+  width: 22vw;
+  margin: auto;
 }
 
 .ingredientSquareB {
   width: 21vw;
   height: 21vw;
-    font-size: 2vw;
-    border-radius: 6vw;
+  font-size: 2vw;
+  border-radius: 6vw;
 
 }
 
 .favImg {
-    height: 16vh;
-    max-width: 20vw;
-    max-height: 16vw;
+  height: 16vh;
+  max-width: 20vw;
+  max-height: 16vw;
 }
 
 .ingImg {
-    height: 10vh;
-    max-width: 17vw;
-    max-height: 10vw;
+  height: 10vh;
+  max-width: 17vw;
+  max-height: 10vw;
 }
 
 #forwardinfoSize {
@@ -385,38 +384,38 @@ margin-left: auto;
 
 /* Choose Type page */
 #centerSecChooseTypeP {
-    margin-top: 25vh;
-    display: block;
-    line-height: normal;
-    height: 85vh;
-    width: 100vw;
-    /*background-color: yellow;*/
-    position:fixed;
+  margin-top: 25vh;
+  display: block;
+  line-height: normal;
+  height: 85vh;
+  width: 100vw;
+  /*background-color: yellow;*/
+  position:fixed;
 }
 
 /* Choose Size page */
 
 #cupLogoS {
-    height: 37%;
-    width: auto;
-    margin-top: 6.5vh;
+  height: 37%;
+  width: auto;
+  margin-top: 6.5vh;
 }
 
 #cupLogoM {
-    height: 47%;
-    width: auto;
-    margin-top: 5vh;
+  height: 47%;
+  width: auto;
+  margin-top: 5vh;
 }
 
 #cupLogoL {
-    height: 57%;
-    width: auto;
+  height: 57%;
+  width: auto;
 }
 
 .cup {
-    width: 30vw;
-    height: 33vh;
-    vertical-align: middle;
+  width: 30vw;
+  height: 33vh;
+  vertical-align: middle;
 }
 
 
@@ -430,12 +429,12 @@ margin-left: auto;
 }
 
 #titleCart {
-    padding-top: 7%;
-    padding-right:23%;
-    text-align:center;
-    font-size: 5vh;
-    text-transform: uppercase;
-    letter-spacing: 1.5vw;
+  padding-top: 7%;
+  padding-right:23%;
+  text-align:center;
+  font-size: 5vh;
+  text-transform: uppercase;
+  letter-spacing: 1.5vw;
 }
 
 #cartDiv {
@@ -464,7 +463,7 @@ margin-left: auto;
 
 #cartItemName{
  	float:left;
-    font-size: 4vw;
+  font-size: 4vw;
 }
 
 #cartItemPrice{
@@ -475,7 +474,6 @@ margin-left: auto;
 #crossImg {
 	height:100%;
 	margin: auto;
-
 }
 
 #cancelCartItemB {
@@ -487,22 +485,22 @@ margin-left: auto;
 }
 
 #cartTable {
-    width: 100%;
+  width: 100%;
 }
 
 #cartBottomDiv {
 	position:fixed;
 	background-color: white;
-    width: 100%;
-    display: block;
+  width: 100%;
+  display: block;
 }
 
 #addMoreDrinksDiv{
 	position: fixed;
-    background-color: white;
-    width: 100%;
-    bottom: 0vh;
-    padding-bottom: 12vh;
+  background-color: white;
+  width: 100%;
+  bottom: 0vh;
+  padding-bottom: 12vh;
 }
 
 #addMoreDrinksB{
@@ -511,9 +509,9 @@ margin-left: auto;
 }
 
 #goBackBCart {
-    position:fixed;
-    left: 0px;
-    bottom: 0px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
 }
 
 #payB{
@@ -526,33 +524,33 @@ margin-left: auto;
 }
 
 hr {
-    border-color: black;
-    width: 80%;
+  border-color: black;
+  width: 80%;
 }
 
 /* Your order div*/
 #yourOrderDiv {
-    margin-top: 10vh;
+  margin-top: 10vh;
 }
 
 #newOrderDiv {
-    margin-top: 30vh;
+  margin-top: 30vh;
 }
 
 #newOrderB {
-    width: 50vw;
-    height: 15vh;
+  width: 50vw;
+  height: 15vh;
 }
 
 /* Choose Ingredient page */
 .stepCircle {
-    width: 13vw;
-    height: 13vw;
-    background-color: lightgrey;
-    border-radius: 9vw;
-    font-size: 12vw;
-    font-weight: bold;
-    color: grey;
+  width: 13vw;
+  height: 13vw;
+  background-color: lightgrey;
+  border-radius: 9vw;
+  font-size: 12vw;
+  font-weight: bold;
+  color: grey;
 	position: relative;
 	overflow: hidden;
 }
@@ -564,59 +562,59 @@ hr {
 }
 
 #stepPanel {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-column-gap: 2vw;
-    height: 1em;
-    width: 80vw;
-    margin-left: 10vw;
-    margin-right: 10vw;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 2vw;
+  height: 1em;
+  width: 80vw;
+  margin-left: 10vw;
+  margin-right: 10vw;
 
 }
 
 #upperSecChooseIngP {
   display: block;
   line-height: normal;
-    height: 22vh;
-    width: 100vw;
-    position: fixed;
-    top: 12vh;
-    /*background-color: yellow;*/
-    padding-bottom: 5vh;
-    margin-top: 2vh;
+  height: 22vh;
+  width: 100vw;
+  position: fixed;
+  top: 12vh;
+  /*background-color: yellow;*/
+  padding-bottom: 5vh;
+  margin-top: 2vh;
 }
 
 #middleSecChooseIng {
   display: block;
   line-height: normal;
-    margin-top: 40vh;
-    margin-bottom: 17vh;
+  margin-top: 40vh;
+  margin-bottom: 17vh;
 }
 
 #lowerUpperChooseIng {
-    display: block;
+  display: block;
   line-height: normal;
-    width: 100vw;
-    height: 13vh;
-    margin-top: -14vh;
-    background-color: white;
-    position: fixed;
+  width: 100vw;
+  height: 13vh;
+  margin-top: -14vh;
+  background-color: white;
+  position: fixed;
 }
 
 #stepText {
-    letter-spacing: 2.5vw;
+  letter-spacing: 2.5vw;
 }
 
 /* Choose Base Piff page*/
 
 #chooseBasePiffText {
-    display: block;
+  display: block;
   line-height: normal;
-    width: 100vw;
-    position: fixed;
-    padding-top: 1vh;
-    margin-top: -7vh;
-    background-color: white;
+  width: 100vw;
+  position: fixed;
+  padding-top: 1vh;
+  margin-top: -7vh;
+  background-color: white;
 }
 
 #upperSecChooseBasePiff{
@@ -634,24 +632,24 @@ hr {
 #middleSec {
   display: block;
   line-height: normal;
-    margin-top: 33vh;
-    margin-bottom: 17vh;
+  margin-top: 33vh;
+  margin-bottom: 17vh;
 }
 
 #lowerSecChooseBasePiff {
-    position: fixed;
-    display: block;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-top: 15vh;
-    background-color: white;
+  position: fixed;
+  display: block;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 15vh;
+  background-color: white;
 }
 
 #vegetableB, #otherB {
-    color: grey;
-    border-color: grey;
+  color: grey;
+  border-color: grey;
 }
 
 /* Fav Page */
@@ -659,36 +657,36 @@ hr {
 #favSec {
   display: block;
   line-height: normal;
-   margin-top: 10vh;
+  margin-top: 10vh;
 }
 
 #chooseFavTitle {
-    position: fixed;
-    background-color: white;
-    width: 100vw;
-    padding-bottom: 2vh;
-    margin-top: -11vh;
+  position: fixed;
+  background-color: white;
+  width: 100vw;
+  padding-bottom: 2vh;
+  margin-top: -11vh;
 }
 
 .favGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 0.5fr);
-    grid-row-gap: 1vh;
-    margin-top: 25vh;
-    margin-bottom: 14vh;
-    margin-left: 6vh;
-    margin-right: 6vh;
-   /* background-color: blue*/
+  display: grid;
+  grid-template-columns: repeat(2, 0.5fr);
+  grid-row-gap: 1vh;
+  margin-top: 25vh;
+  margin-bottom: 14vh;
+  margin-left: 6vh;
+  margin-right: 6vh;
+ /* background-color: blue*/
 }
 
 #goBackFullDiv {
-    display: block;
-    line-height: normal;
-    position: fixed;
-    bottom: 0px;
-    width: 100vw;
-    text-align: left;
-    background-color: white;
+  display: block;
+  line-height: normal;
+  position: fixed;
+  bottom: 0px;
+  width: 100vw;
+  text-align: left;
+  background-color: white;
 }
 
 .favSquareB {
@@ -704,7 +702,6 @@ hr {
 }
 .rotate {
   writing-mode: vertical-rl;
-  
   font-weight: bold;
 }
 
@@ -713,34 +710,33 @@ hr {
   display: block;
   line-height: normal;
 	margin-top: 9vh;
-    position: fixed;
-    width: 100vw;
+  position: fixed;
+  width: 100vw;
 }
 
 
 #drinkInfoDiv {
-    margin-top: 6vh;
-    font-size: 2.5vh;
-    /*background-color: blue;*/
+  margin-top: 6vh;
+  font-size: 2.5vh;
+  /*background-color: blue;*/
 }
 
 #bigDrinkImg {
-    height: 30vh;
+  height: 30vh;
 }
 
 #tastePanel {
-    width: 100vw;
-    position: fixed;
-    bottom: 13.5vh;
-    background-color: white;
-    table-layout: fixed;
-    font-size: 2.25vh;
+  width: 100vw;
+  position: fixed;
+  bottom: 13.5vh;
+  background-color: white;
+  table-layout: fixed;
+  font-size: 2.25vh;
 }
 
 .tasteClock {
-
-    width: auto;
-    height: 13vw;
+  width: auto;
+  height: 13vw;
 }
 /*Thanks Page*/
 
@@ -804,39 +800,39 @@ hr {
     }*/
 
     #basketB {
-        height: 50px;
+      height: 50px;
     }
 
     .ingredientB {
-        height: 40px;
+      height: 40px;
     }
 
     .goB {
-        height: 50px;
+      height: 50px;
     }
 
     #bottomTable {
-        position: relative;
-        /* Måste fixa så den ej centreras då
-        höjden på fönstret minskas */
+      position: relative;
+      /* Måste fixa så den ej centreras då
+      höjden på fönstret minskas */
     }
 
 
     #goBackDiv {
-        position: sticky;
-        float: left;
-		width: 50vw;
-		background-color: white;
+      position: sticky;
+      float: left;
+    	width: 50vw;
+    	background-color: white;
     }
 
     #goBackBCart {
-    position: sticky;
-    float: left;
+      position: sticky;
+      float: left;
     }
 
     #payB{
-    position: sticky;
-    float: right;
+      position: sticky;
+      float: right;
     }
 
 }
