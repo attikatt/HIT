@@ -193,15 +193,15 @@ button {
 
 .goBackB {
   left: 0px;
-	float:left;
+	float: left;
   bottom: 0px;
-	width:20vw;
+	width: 20vw;
 }
 
 #goForwardB {
   right: 0;
-  float:right;
-  width:20vw;
+  float: right;
+  width: 20vw;
 }
 
 .arrow {
@@ -270,21 +270,6 @@ button {
   height: 8vh;
 }
 
-
-#forwardInfo {
-  margin-left: 18vw;
-  position:absolute;
-  margin-top: 5vh;
-  font-size: 4vw;
-  /*margin-left: 0vw;
-	vertical-align: middle;
-	display: inline-block;
-	margin-top: 5vh;
-  font-size: 4vw;
-    /* want to vertical align: middle, baseline
-    krånglar till det */
-}
-
 #forwardInfoChoose {
   margin-left: 13vw;
   position:absolute;
@@ -304,19 +289,6 @@ button {
   height: 25vh;
   position: fixed;
   top: 15vh;
-    /*background-color: red;*/
-}
-
-#middleSecChangeIng {
-  display: block;
-  line-height: normal;
-  margin-top: 40vh;
-  margin-bottom: 17vh;
-}
-
-#lowerSecChangeIngP {
-  display: block;
-  line-height: normal;
 }
 
 #categoryTable {
@@ -474,11 +446,6 @@ button {
 	border-radius: 1vw;
 	height: 8vw;
 	border-color: transparent;
-
-}
-
-#cartTable {
-  width: 100%;
 }
 
 #cartBottomDiv {
@@ -522,9 +489,6 @@ hr {
 }
 
 /* Your order div*/
-#yourOrderDiv {
-  margin-top: 10vh;
-}
 
 #newOrderDiv {
   margin-top: 30vh;
@@ -562,19 +526,6 @@ hr {
   width: 80vw;
   margin-left: 10vw;
   margin-right: 10vw;
-
-}
-
-#upperSecChooseIngP {
-  display: block;
-  line-height: normal;
-  height: 14vh;
-  width: 100vw;
-  position: fixed;
-  top: 12vh;
-  /*background-color: yellow;*/
-  padding-bottom: 5vh;
-  margin-top: 2vh;
 }
 
 #middleSecChooseIng {
@@ -659,7 +610,7 @@ hr {
   margin-top: -11vh;
 }
 
-.favGrid {
+#favGrid {
   display: grid;
   grid-template-columns: repeat(2, 0.5fr);
   grid-row-gap: 1vh;
@@ -787,12 +738,6 @@ hr {
         height: 60px;
     }
 
-    /*#cancelOrderB {
-        height: 50px;
-        font-size: 15px;
-
-    }*/
-
     #basketB {
       height: 50px;
     }
@@ -805,14 +750,6 @@ hr {
       height: 50px;
     }
 
-
-    #goBackDiv {
-      position: sticky;
-      float: left;
-    	width: 50vw;
-    	background-color: white;
-    }
-
     #goBackBCart {
       position: sticky;
       float: left;
@@ -823,12 +760,4 @@ hr {
       float: right;
     }
 
-}
-
-
-
-
-@media screen and (aspect-ratio: 16/9) {
-  body {
-  }
 }

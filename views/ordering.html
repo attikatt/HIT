@@ -299,7 +299,7 @@
       <section id="favSec">
         <h3 id="chooseFavTitle" v-if = "type ==='smoothie'">{{ uiLabels.chooseSmoothie }} </h3>
          <h3 id="chooseFavTitle" v-if = "type ==='juice'">{{ uiLabels.chooseJuice }} </h3>
-        <div class="favGrid">
+        <div id="favGrid">
           <div v-for="preparedDrink in readymade" v-if="preparedDrink.rm_type === type && isDrinkAvailable(preparedDrink.rm_ingredients) && preparedDrink.rm_day == true">
               <span class="rotate">{{ uiLabels.today }}</span><button class="favSquareB favvo" v-on:click="showPage('drinkInfo'); markDrink(preparedDrink)"><img class="favImg" v-bind:src="preparedDrink.rm_img"><br> {{preparedDrink.rm_name}}</button>
           </div>
