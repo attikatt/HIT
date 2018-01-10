@@ -457,7 +457,7 @@ var vm = new Vue({
       for (var i = 0; i < drinkIngs.length; i++) {
         var item = this.getIngredientById(drinkIngs[i]);
         if (item.stock < 5) {
-            return false;
+          return false;
         }
       }
       return true;
