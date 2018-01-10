@@ -587,14 +587,14 @@ hr {
   display: block;
   line-height: normal;
   width: 100vw;
-  height: 13vh;
-  margin-top: -14vh;
+  top: 28vh;
   background-color: white;
   position: fixed;
 }
 
 #stepText {
   letter-spacing: 2.5vw;
+  padding-bottom: 1vw
 }
 
 /* Choose Base Piff page*/
@@ -604,21 +604,19 @@ hr {
   line-height: normal;
   width: 100vw;
   position: fixed;
-  padding-top: 1vh;
-  margin-top: -7vh;
+  top: 28vh;
   background-color: white;
 }
 
 #upperSecChooseBasePiff{
   display: block;
   line-height: normal;
-    height: 8vh;
-    width: 100vw;
-    position: fixed;
-    top: 12vh;
-    background-color: white;
-    padding-bottom: 5vh;
-    margin-top: 2vh;
+  height: 20vh;
+  width: 100vw;
+  position: fixed;
+  top: 12vh;
+  background-color: white;
+  margin-top: 2vh;
 }
 
 #middleSec {
@@ -768,7 +766,7 @@ hr {
   
 }
 
-/*
+
 ::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 2vw;
@@ -777,7 +775,9 @@ hr {
   border-radius: 2vw;
   background-color: rgba(0, 0, 0, .5);
   -webkit-box-shadow: 0 0 1vw rgba(255, 255, 255, .5);
-}*/
+}
+
+
 /* MEDIA STUFF */
 
 @media all and (max-height: 450px) {
