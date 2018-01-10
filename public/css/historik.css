@@ -58,8 +58,12 @@ hr{
 
 #orderSize{
   text-transform: uppercase;
-  font-size: 1.5vw;
+  font-size: 1.8vw;
   margin: 0;
+}
+
+#orderStatus{
+  font-size: 1.2pt;
 }
 
 /* ------------- Knapp ----------------*/
