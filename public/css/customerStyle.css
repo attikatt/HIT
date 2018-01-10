@@ -45,7 +45,7 @@ main {
   text-align: center;
 }
 
-/* Headlines */
+/* Text */
 h1 {
   font-size: 6vh;
 }
@@ -69,6 +69,11 @@ h5 {
 h1, h2, h3, h4, h5 {
   text-transform: uppercase;
   letter-spacing: 0.3em;
+}
+
+hr {
+  border-color: black;
+  width: 80%;
 }
 
 .lowerCaseHeadline {
@@ -139,29 +144,9 @@ button {
   color: black;
 }
 
-/* Central section */
-
-#buttonTableStartP {
-  margin-top: 3vh;
-  width: 100%;
-    /*background-color: red;*/
-}
-
-#buttonTableTypeP {
-  margin-top: 15vh;
-  width: 100%;
-}
-
-#lowerTable {
-  width: 100%;
-   /* background-color: red;*/
-    margin-top: 7vh;
-}
-
-
-
 /* Bottom section */
 /* Go back and forward buttons */
+
 .goBackDiv {
   display: block;
   line-height: normal;
@@ -189,19 +174,18 @@ button {
   border-color: white;
   font-size: 4vw;
   vertical-align: baseline;
+  width: 20vw;
 }
 
 .goBackB {
   left: 0px;
 	float: left;
   bottom: 0px;
-	width: 20vw;
 }
 
 #goForwardB {
-  right: 0;
+  right: 0px;
   float: right;
-  width: 20vw;
 }
 
 .arrow {
@@ -212,7 +196,6 @@ button {
 }
 
 /* Start page */
-
 #headerStart {
   position: fixed;
   width: 100vw;
@@ -224,6 +207,11 @@ button {
   position: fixed;
   height: 85vh;
   margin-top: 14vh;
+}
+
+#buttonTableStartP {
+  margin-top: 3vh;
+  width: 100%;
 }
 
 #languageB {
@@ -275,7 +263,8 @@ button {
   position:absolute;
   margin-top: 5vh;
   font-size: 4vw;
-  }
+}
+
 /* Change ingredients page */
 
 #headerChangeIngP {
@@ -347,17 +336,26 @@ button {
 }
 
 /* Choose Type page */
+#buttonTableTypeP {
+  margin-top: 15vh;
+  width: 100%;
+}
+
 #centerSecChooseTypeP {
   margin-top: 25vh;
   display: block;
   line-height: normal;
   height: 85vh;
   width: 100vw;
-  /*background-color: yellow;*/
-  position:fixed;
+  position: fixed;
 }
 
 /* Choose Size page */
+
+#sizeTable {
+  width: 100%;
+  margin-top: 7vh;
+}
 
 #cupLogoS {
   height: 37%;
@@ -384,12 +382,10 @@ button {
 
 
 /* Cart Page*/
-
-
-#headerCart{
+#headerCart {
 	position:fixed;
-	top:0px;
-	width:100%;
+	top: 0px;
+	width: 100%;
 }
 
 #titleCart {
@@ -410,11 +406,10 @@ button {
 
 #cartGrid {
 	margin-bottom: 30vh;
-	display:grid;
-	margin-top:22vh;
+	display: grid;
+	margin-top: 22vh;
 	grid-row-gap: 3vh;
 	grid-template-columns: repeat(1,1fr);
-
 }
 
 #cartItem {
@@ -422,17 +417,16 @@ button {
 	padding-left: 10vw;
 	padding-right: 10vw;
 	text-align: center;
-	    margin-top: 1vh;
-
+	margin-top: 1vh;
 }
 
-#cartItemName{
- 	float:left;
+#cartItemName {
+ 	float: left;
   font-size: 4vw;
 }
 
 #cartItemPrice{
-	float:right;
+	float: right;
 	font-size: 4vw;
 }
 
@@ -481,22 +475,6 @@ button {
   border-color: rgb(215,83,14);
   width: 35%;
   height: 10vh;
-}
-
-hr {
-  border-color: black;
-  width: 80%;
-}
-
-/* Your order div*/
-
-#newOrderDiv {
-  margin-top: 30vh;
-}
-
-#newOrderB {
-  width: 50vw;
-  height: 15vh;
 }
 
 /* Choose Ingredient page */
@@ -550,7 +528,6 @@ hr {
 }
 
 /* Choose Base Piff page*/
-
 #chooseBasePiffText {
   display: block;
   line-height: normal;
@@ -595,7 +572,6 @@ hr {
 }
 
 /* Fav Page */
-
 #favSec {
   display: block;
   line-height: normal;
@@ -618,7 +594,6 @@ hr {
   margin-bottom: 14vh;
   margin-left: 6vh;
   margin-right: 6vh;
- /* background-color: blue*/
 }
 
 #goBackFullDiv {
@@ -639,9 +614,11 @@ hr {
   margin-left: 4vw;
   margin-right: 4vw;
 }
+
 .favvo {
   margin-left: 0;
 }
+
 .rotate {
   writing-mode: vertical-rl;
   font-weight: bold;
@@ -657,11 +634,9 @@ hr {
   width: 100vw;
 }
 
-
 #drinkInfoDiv {
   margin-top: 6vh;
   font-size: 2.5vh;
-  /*background-color: blue;*/
 }
 
 #bigDrinkImg {
@@ -681,7 +656,13 @@ hr {
   width: auto;
   height: 13vw;
 }
-/*Thanks Page*/
+
+/* Thanks page */
+
+#newOrderB {
+  width: 50vw;
+  height: 15vh;
+}
 
 #thanksSec{
   display: block;
@@ -689,7 +670,6 @@ hr {
   height: 85vh;
   margin-top: 2vh;
   background-color: white;
-  
 }
 
 #orderedItems{
@@ -710,54 +690,10 @@ hr {
 
 #newOrderDiv{
   bottom:0vh;
-	
+  margin-top: 30vh;	
   display:block;
   padding-bottom:8vh;
   width:100%;
   position:fixed;
   background-color: white;
-  
-}
-
-
-::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 2vw;
-}
-::-webkit-scrollbar-thumb {
-  border-radius: 2vw;
-  background-color: rgba(0, 0, 0, .5);
-  -webkit-box-shadow: 0 0 1vw rgba(255, 255, 255, .5);
-}
-
-
-/* MEDIA STUFF */
-
-@media all and (max-height: 450px) {
-    header {
-        height: 60px;
-    }
-
-    #basketB {
-      height: 50px;
-    }
-
-    .ingredientB {
-      height: 40px;
-    }
-
-    .goB {
-      height: 50px;
-    }
-
-    #goBackBCart {
-      position: sticky;
-      float: left;
-    }
-
-    #payB{
-      position: sticky;
-      float: right;
-    }
-
 }
