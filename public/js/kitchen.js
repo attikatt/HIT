@@ -44,7 +44,6 @@ Vue.component('order-item-to-prepare',{
       if (order.type == 'smoothie'){
         activateOrdersSmoothie();
       }
-
       this.$emit('done');
     }
   }
@@ -88,6 +87,7 @@ var vm = new Vue({
   methods: {
     getActiveOrderStage: function(order) {
       return order.status;
+
     },
     getActiveOrderState: function(order) {
       return order.state;
@@ -121,8 +121,7 @@ function antalEjKlaraOrdrar(){
 
 function activateOrdersJuice(){
   if (activateJuice() != 'false'){
-    var index;
-    for (index in vm.orders){
+    for (var index in vm.orders){
       if (vm.orders[index].status != 'done' && vm.orders[index].state === 'not-active' && vm.orders[index].type == 'juice'){
         socket.emit("orderActive", vm.orders[index].orderId);
         break
@@ -146,7 +145,7 @@ function activateOrdersSmoothie(){
 function activateJuice(){
   var activate = true;
   for (var i in vm.orders){
-    if (vm.orders[i].type == 'juice' && vm.orders[i].state == 'active'){
+    if (vm.orders[i].type == 'juice' && vm.orders[i].state == 'active' && vm.orders[i].status != 'done'){
       return false
     }
   }
@@ -155,11 +154,11 @@ function activateJuice(){
 function activateSmoothie(){
   var activate = true;
   for (var i in vm.orders){
-    if (vm.orders[i].type == 'smoothie' && vm.orders[i].state == 'active'){
+    if (vm.orders[i].type == 'smoothie' && vm.orders[i].state == 'active' && vm.orders[i].status != 'done'){
       return false
     }
   }
+  return activate
 };
 
 antalEjKlaraOrdrar();
-activateOrders();
