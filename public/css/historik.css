@@ -154,7 +154,6 @@ hr{
 }
 
 /*-------Sök consolen-----*/
-/*HÄR -- dessa id är p - drabbas av CSSstäden (ser bra ut nu?) - byt ev till span*/
 #consoleHeader{
   text-align:center;
   margin-top: 4vh;

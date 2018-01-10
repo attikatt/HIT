@@ -298,10 +298,6 @@ li span{
   background: rgb(255, 204, 0);
   height: 5vw;
 }
-/* HÄR
-.ready {
-  background: rgb(0, 153, 0);
-}*/
 
 .headOrderInfo{
   text-transform: capitalize;
