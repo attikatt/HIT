@@ -191,7 +191,7 @@ button {
   vertical-align: baseline;
 }
 
-#goBackB {
+.goBackB {
   left: 0px;
 	float:left;
   bottom: 0px;
