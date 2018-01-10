@@ -567,7 +567,7 @@ hr {
 #upperSecChooseIngP {
   display: block;
   line-height: normal;
-  height: 20vh;
+  height: 14vh;
   width: 100vw;
   position: fixed;
   top: 12vh;
@@ -588,7 +588,7 @@ hr {
   line-height: normal;
   width: 100vw;
   height: 13vh;
-  margin-top: -14vh;
+  margin-top: -12vh;
   background-color: white;
   position: fixed;
 }
@@ -612,13 +612,13 @@ hr {
 #upperSecChooseBasePiff{
   display: block;
   line-height: normal;
-    height: 8vh;
-    width: 100vw;
-    position: fixed;
-    top: 12vh;
-    background-color: white;
-    padding-bottom: 5vh;
-    margin-top: 2vh;
+  height: 14vh;
+  width: 100vw;
+  position: fixed;
+  top: 12vh;
+  background-color: white;
+  padding-bottom: 5vh;
+  margin-top: 2vh;
 }
 
 #middleSec {
@@ -639,8 +639,8 @@ hr {
   background-color: white;
 }
 
-#fruitB{
-  box-Shadow:0px 0px 6px 3px #fff, 0px 0px 8px 5px rgb(215,83,14), 0px 0px 11px 7px #FFFFE0;
+#fruitB {
+  box-shadow: 0px 0px 6px 3px #fff, 0px 0px 8px 5px rgb(215,83,14), 0px 0px 11px 7px #FFFFE0;
 }
 
 /* Fav Page */
