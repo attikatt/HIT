@@ -29,15 +29,14 @@ text-transform: capitalize;
 }
 
 html, body {
-    max-width: 100%;
-    overflow-x: hidden;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* Layout */
 header {
   height: 15vh;
   background-color: white;
-    /*padding-bottom: 3vh;*/
 }
 
 main {
@@ -52,27 +51,28 @@ h1 {
 }
 
 h2 {
-    font-size: 4.5vh;
+  font-size: 4.5vh;
 }
 
 h3 {
-    font-size: 4vh;
+  font-size: 4vh;
 }
 
 h4 {
-    font-size: 3vh;
+  font-size: 3vh;
 }
 
 h5 {
-    font-size: 2vh;
+  font-size: 2vh;
 }
+
 h1, h2, h3, h4, h5 {
   text-transform: uppercase;
   letter-spacing: 0.3em;
 }
 
 .lowerCaseHeadline {
-    text-transform: inherit;
+  text-transform: inherit;
 }
 
 /* General */
@@ -85,24 +85,23 @@ button {
   border-color: rgb(215,83,14);
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  font-weight: bold;
   font-family: 'champagne__limousinesregular', arial, sans-serif;
 }
 
 /* Upper section */
 #headTable {
   width: 100%;
-    table-layout: fixed;
+  table-layout: fixed;
 }
 
 #title {
-    margin-top: 7%;
-    text-align: center;
-    vertical-align: middle;
-    background-color: white;
-    font-size: 5vh;
-    text-transform: uppercase;
-    letter-spacing: 1.5vw;
+  margin-top: 7%;
+  text-align: center;
+  vertical-align: middle;
+  background-color: white;
+  font-size: 5vh;
+  text-transform: uppercase;
+  letter-spacing: 1.5vw;
 }
 
 #cancelOrderB {
@@ -112,26 +111,18 @@ button {
   font-size: 3.5vw;
 }
 
-/*#cancelOrderText {
-    display: block;
-width: auto;
- height: 60%;
-	font-size: 12px;
-padding-top: 2.5vh;
-}*/
-
 #basketB {
   width: 22vw;
   height: 12vh;
-  float:right;
+  float: right;
   border-color: transparent;
 }
 
 #basketLogo {
- width: auto;
- height: 80%;
- margin-left: auto;
- margin-right: auto;
+  width: auto;
+  height: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #basketCircle {
@@ -145,7 +136,6 @@ padding-top: 2.5vh;
   position: absolute;
   overflow: hidden;
   background-color: rgb(310,180,70);
-  border-color: rgb(215,83,14); /*SYNS EJ! */
   color: black;
 }
 
@@ -565,8 +555,7 @@ hr {
 }
 
 #step1 {
-    background-color: white;
-    color: black;
+  color: black;
 	box-shadow:0px 0px 6px 3px #fff, 0px 0px 8px 5px #FF4500, 0px 0px 11px 7px #FFFFE0;
 }
 

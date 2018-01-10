@@ -491,10 +491,12 @@ var vm = new Vue({
       var categories = document.getElementsByClassName("categoryB");
       for (var i = 0; i < categories.length; i++) {
         categories[i].style.color = "grey";
+        categories[i].style.backgroundColor = "white";
         categories[i].style.borderColor = "grey";
       }
       if (this.step > 1 || this.step < 5 ) {
         document.getElementById(chosenIngType+"B").style.color = "black";
+        document.getElementById(chosenIngType+"B").style.backgroundColor = "rgb(310,180,70)";
         document.getElementById(chosenIngType+"B").style.borderColor = "rgb(215,83,14)";
       }
     },
