@@ -61,6 +61,10 @@ span {
   text-transform: uppercase;
 }
 
+#orderStatus{
+  font-size:0pt;
+}
+
 hr{
   margin-left: 1vw;
   margin-right: 1vw;
@@ -87,7 +91,7 @@ li span{
     display: inline-block;
     position: relative;
     padding-left: 3vw;
-    margin-bottom: 12px;
+    margin-bottom: 10%;
     margin-left: 2vw;
     text-align: left;
     cursor: pointer;
@@ -108,7 +112,7 @@ li span{
     display: inline-block;
     position: relative;
     padding-left: 3vw;
-    margin-bottom: 12px;
+    margin-bottom: 10%;
     margin-left: 2vw;
     text-align: left;
     cursor: pointer;
@@ -129,7 +133,7 @@ li span{
     display: inline-block;
     position: relative;
     padding-left: 3vw;
-    margin-bottom: 12px;
+    margin-bottom: 10%;
     margin-left: 2vw;
     text-align: left;
     cursor: pointer;
@@ -237,7 +241,7 @@ li span{
 
 #radioButtons{
   position: absolute;
-  bottom: 8vh;
+  bottom: 4%;
 }
 
 /*--------- SMALL ORDER LIST ---------*/
@@ -266,7 +270,7 @@ li span{
   border-style: dotted;
   border-width: 4px;
   border-radius: 10px;
-  height:70vh;
+  min-height:80%;
 }
 
 .juice{
