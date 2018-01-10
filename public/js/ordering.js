@@ -35,38 +35,12 @@ Vue.component('ingredient', {
   }
 });
 
-//Hämtar ordeing number
-
-/* Ska tas bort om ordernr-visning funkar
-Vue.component('item-and-id', {
-  props: ['uiLabels', 'order', 'orderId', 'lang'],
-  template: '<div id="yourOrderDiv"><h2 v-bind:class="order.name" class="lowerCaseHeadline"> #{{orderId}}</h2></br></div>'
-}); */
-
-
 var vm = new Vue({
   el: '#ordering',
   mixins: [sharedVueStuff], // include stuff that is used both in the ordering system and in the kitchen
   data: {
-    // ev. ta bort dessa
-    volume: 0,
-    price: 0,
     // page being shown
     page: "start",
-    /*
-    startShown: true,
-    chooseTypeShown: false,
-    baseShown: false,
-    piffShown: false,
-    ingShown: false,
-    yourDrinkShown: false,
-    startAgainShown: false,
-    favShown: false,
-    drinkInfoShown: false,
-    sizeShown: false,
-    cartShown: false,
-    thanksShown:false,
-    changeIngShown: false, */
     step: 1,
     ingType: 'fruit',
     // drink currently being composed
@@ -104,27 +78,27 @@ var vm = new Vue({
       // adds an ingredient to the drink being composed
     addItemToOrder: function (item) {
       this.chosenIngredients.push(item);
-		if (this.type === "smoothie") {
-        	this.volume += +item.vol_smoothie;
-			// if the drink is not one of juicifers, making the ingredient panel
-			if(this.page !== "drinkInfo"){ 
-				vm.showStepImg(item);
-			}
-		}
-		else if(this.type === "juice"){
-			this.volume += +item.vol_juice;
-			// if the drink is not one of juicifers, making the ingredient panel
-			if(this.page !== "drinkInfo"){
-				vm.showStepImg(item);
-			}
+  		if (this.type === "smoothie") {
+          	this.volume += +item.vol_smoothie;
+  			// if the drink is not one of juicifers, making the ingredient panel
+  			if(this.page !== "drinkInfo"){ 
+  				vm.showStepImg(item);
+  			}
+  		}
+  		else if(this.type === "juice"){
+  			this.volume += +item.vol_juice;
+  			// if the drink is not one of juicifers, making the ingredient panel
+  			if(this.page !== "drinkInfo"){
+  				vm.showStepImg(item);
+  			}
       }
     },
 
     removeItemFromOrder: function () {
-        this.chosenIngredients.pop();
+      this.chosenIngredients.pop();
     },
     removeFavFromOrder: function () {
-        this.chosenIngredients = [];
+      this.chosenIngredients = [];
     },
 
 
@@ -139,18 +113,18 @@ var vm = new Vue({
   		img.style.hight = "40vh";
   		img.style.marginLeft ="-9vw";
   		img.style.overflow ="hidden";
-		img.setAttribute("id",this.step + "img");
+		  img.setAttribute("id",this.step + "img");
 
   		var numStep = document.createTextNode(this.step);
   		var p = document.createElement("p");
   		p.appendChild(numStep);
-		p.style.position ="relative";
+		  p.style.position ="relative";
   		p.style.color= "black";
   		p.style.backgroundColor = "transparent";
   		p.style.width ="100%";
   		p.style.marginLeft ="0vw";
   		p.style.marginTop ="-14vw";
-		p.setAttribute("id",this.step + "p");
+		  p.setAttribute("id",this.step + "p");
 
   		var currentStep = document.getElementById("step" + this.step);
   		currentStep.appendChild(img);
@@ -159,30 +133,30 @@ var vm = new Vue({
 
       // adds drink to order
     addDrinkToOrder: function () {
-        // give drink its name
-        var name;
-        if (this.drinkPath === 'fav') {
-            name = this.tempDrink.rm_name;
+      // give drink its name
+      var name;
+      if (this.drinkPath === 'fav') {
+        name = this.tempDrink.rm_name;
+      }
+      else if (this.drinkPath === 'myo') {
+        if (this.type === 'juice') {
+            name = 'Egen juice';
         }
-        else if (this.drinkPath === 'myo') {
-            if (this.type === 'juice') {
-                name = 'Egen juice';
-            }
-            else if (this.type === 'smoothie') {
-                name = 'Egen smoothie';
-            }
+        else if (this.type === 'smoothie') {
+            name = 'Egen smoothie';
         }
-        var i,
-        //Wrap the order (a single drink) in an object
-        order = {
-          ingredients: this.chosenIngredients,
-          type: this.type,
-          size: this.chosenSize,
-          name: name,
-          compType: this.drinkPath
-        };
-        //Add drink to the full order
-        this.fullOrder.push(order);
+      }
+      var i,
+      //Wrap the order (a single drink) in an object
+      order = {
+        ingredients: this.chosenIngredients,
+        type: this.type,
+        size: this.chosenSize,
+        name: name,
+        compType: this.drinkPath
+      };
+      //Add drink to the full order
+      this.fullOrder.push(order);
     },
 
 	  //removes the drink from order
@@ -193,16 +167,10 @@ var vm = new Vue({
 
     placeOrder: function () {
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-        for (var i = 0; i < this.fullOrder.length; i += 1) {
-            // sending each drink in full order to kitchen
-            socket.emit('order', {order: this.fullOrder[i]});
-        }
-
-      //set all counters to 0. Notice the use of $refs
-        /* CV: 'counter' ska nog bort:
-      for (i = 0; i < this.$refs.ingredient.length; i += 1) {
-        this.$refs.ingredient[i].resetCounter();
-      }  */
+      for (var i = 0; i < this.fullOrder.length; i += 1) {
+        // sending each drink in full order to kitchen
+        socket.emit('order', {order: this.fullOrder[i]});
+      }
       this.volume = 0;
       this.type = '';
       this.chosenIngredients = [];
@@ -225,108 +193,6 @@ var vm = new Vue({
   	swapIng: function (changeToId) {
       this.chosenIngredients[this.changeFromIdIndex[1]] = this.getIngredientById(changeToId);
   	},
-
-
-/*----------- For showing the right page/view ---------- */
-
-/*
-    hideAllPages: function() {
-      this.startShown = false;
-      this.chooseTypeShown = false;
-      this.baseShown = false;
-      this.ingShown = false;
-      this.piffShown = false;
-      this.yourDrinkShown = false;
-      this.startAgainShown = false;
-      this.sizeShown = false;
-      this.cartShown = false;
-      this.favShown = false;
-      this.drinkInfoShown = false;
-  		this.thanksShown = false;
-  		this.changeIngShown = false;
-    },
-
-    findCurPage: function() {
-      var pages = [
-        this.startShown,
-        this.chooseTypeShown,
-        this.baseShown,
-        this.ingShown,
-        this.piffShown,
-        this.yourDrinkShown,
-        this.startAgainShown,
-        this.sizeShown,
-        this.cartShown,
-        this.favShown,
-        this.drinkInfoShown,
-        this.thanksShown,
-        this.changeIngShown ];
-      for (var i = 0; i < pages.length; i++ ) {
-        if (pages[i] === true) {
-          return pages[i];
-        }
-      }
-
-    },
-
-    showPage: function(page) {
-      if (page === "showBase") {
-        this.baseShown = true;
-      }
-      else if (page === "showIng"){
-        this.ingShown = true;
-      }
-      else if (page === "showPiff"){
-        this.piffShown = true;
-      }
-      else if (page === "showChooseType"){
-        this.chooseTypeShown = true;
-      }
-      else if(page === "showStart"){
-        this.startShown = true;
-      }
-      else if(page === "showStartAgain"){
-        this.startAgainShown = true;
-          // set all drink order counters to 0.
-        this.step = 1;
-        this.ingType = "fruit";
-        this.type = '';
-        this.chosenIngredients = [];
-      }
-      else if(page === "showYourDrink") {
-        this.yourDrinkShown = true;
-      }
-      else if(page === "showSize") {
-        this.sizeShown = true;
-      }
-      else if(page === "showCart") {
-        this.findCurPage();
-        this.cartShown = true;
-      }
-
-      else if(page ==="showFav") {
-        this.favShown = true;
-      }
-      else if (page === "showFavInfo") {
-        this.drinkInfoShown = true;
-      }
-	    else if (page ==="showThanks") {
-        this.thanksShown = true;
-	    }
-  		else if (page === "showChangeIng") {
-  			this.changeIngShown = true;
-  		}
-      else if (page === "showFavOrMyo") {
-        if (this.drinkPath === 'fav') {
-            this.favShown = true;
-        }
-        else if (this.drinkPath === 'myo') {
-          this.baseShown = true;
-        }
-      }
-    },
-
-    */
 
     showPage: function(page) {
       if (page === "chooseBase") {
@@ -411,7 +277,7 @@ var vm = new Vue({
     },
   	  
   	goBackDrinkInfo: function() {
-  		vm.showPage('yourDrink');
+  		this.showPage('yourDrink');
   	},
 
     changeStep: function(goesForward) {
@@ -475,10 +341,9 @@ var vm = new Vue({
           currentStepDivId.removeChild(removeP);
           currentStepDivId.removeChild(removeImg);  
         }
-        
       }
 
-		
+      // For highlighting the right step
       var stylingSteps = document.getElementById("step"+this.step);
   	  stylingSteps.style.color = "black";
   	  stylingSteps.style.backgroundColor = "white";
@@ -529,7 +394,6 @@ var vm = new Vue({
       this.tempDrink = drink;
     },
 
-    // NOTE: Fix so when you go back, the property will not be null and the marked button is shown not the medium
     setSize: function (size) {
 		  this.chosenSize = size;
     },
@@ -544,7 +408,7 @@ var vm = new Vue({
   		else if(size === "large"){
   			return "49 kr";
   		}
-	 },
+    },
 
     calcPrice: function() {
       var totalPrice = 0;
@@ -559,12 +423,12 @@ var vm = new Vue({
   				totalPrice += 49;
   			}
       }
-    return totalPrice;
+      return totalPrice;
     },
 
     getSize: function() {
-      if (this.lang === "sv"){
-			 return this.chosenSize;
+      if (this.lang === "sv") {
+        return this.chosenSize;
 		  }
     },
 

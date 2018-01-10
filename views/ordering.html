@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<!-- Common for every page -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,7 +48,7 @@
 
     <main>
       
-<!-- Page: start & startAgain -->
+<!-- Start & startAgain page -->
       <div v-if="page === 'start' || page === 'startAgain'">
         <section id="centerSecStartP">       
           <img id="juiciferLogo" src="images/logo.png">
@@ -69,7 +68,7 @@
         </div>
       </div>
       
-<!-- Page: choose type -->
+<!-- Choose type page -->
       <div v-if="page === 'chooseType'">
         <section id="centerSecChooseTypeP">       
           <h2> {{ uiLabels.chooseType }} {{ uiLabels.drink }}</h2>
@@ -87,7 +86,7 @@
         </div>
       </div>
       
-<!-- Page: show base, ing and piff -->
+<!-- Pages: show base, ingredients and piff -->
       <div v-if="page === 'chooseBase' || page === 'chooseIng' || page === 'choosePiff'">
         <section id="upperSecChooseBasePiff">
           <h5 id = "stepText"> {{ uiLabels.baseIngPiff }}</h5>
@@ -101,7 +100,7 @@
         </section>
       </div>
 
-<!-- Change Ing Page: upper section --> 
+<!-- Change ingredients page: upper section --> 
      <div id="upperSecChooseBasePiff" id="upperSecChangeIngP" v-if ="page === 'changeIng'">
         <h4> {{ uiLabels.changeIng }}</h4> <br>
         <h3> {{(getIngredientById(changeFromIdIndex[0]))["ingredient_" + lang]}} </h3>
@@ -191,7 +190,7 @@
           </div>
         </section>
       </div>
-<!-- Lower section for choosing ingredients -->
+<!-- Choose ingredients: lower section -->
       <div v-if="page === 'chooseBase' || page === 'chooseIng' || page === 'choosePiff'">
         <section id="lowerSecChooseBasePiff">
           <div class="goBackDiv"> 
@@ -200,7 +199,7 @@
         </section>
       </div>
 
-<!-- Change Ing Page: lower section -->   
+<!-- Change ingredients page: lower section -->   
       <div id="goBackFullDiv" v-if="page === 'changeIng'">
         <button class ="goBackB goB" v-on:click="goBackDrinkInfo()"> <img class="arrow" src="images/backArrow.png"> </button>
       </div>
@@ -239,7 +238,7 @@
         </section>
       </div>
 
-<!-- Page: Choose size --> 
+<!-- Choose size page --> 
       <div v-if="page === 'chooseSize'"> 
         <section id="centerSecYourDrinkP">
           <div>
@@ -294,7 +293,7 @@
         </section>
       </div>      
 
-<!-- Juicifers Favorites Page -->
+<!-- Juicifer's favorites page -->
     <div v-if="page === 'favorites'">
       <section id="favSec">
         <h3 id="chooseFavTitle" v-if = "type ==='smoothie'">{{ uiLabels.chooseSmoothie }} </h3>
@@ -313,7 +312,7 @@
       </section>
     </div>
     
-<!-- Drink Info Fav -->
+<!-- Drink info favorites page -->
       <div v-if="page === 'drinkInfo'">
         <section id="drinkInfoSec">
           <div id="drinkInfoDiv">
@@ -332,9 +331,9 @@
                   <td> <img class="tasteClock" v-bind:src="tempDrink.rm_full"> </td>
                 </tr>
                 <tr>
-                    <td> {{uiLabels.sweetness}} </td>
-                    <td> {{uiLabels.tanginess}} </td>
-                    <td> {{uiLabels.richness}} </td>
+                  <td> {{uiLabels.sweetness}} </td>
+                  <td> {{uiLabels.tanginess}} </td>
+                  <td> {{uiLabels.richness}} </td>
                 </tr>
               </table>
             </div>
@@ -351,7 +350,7 @@
         </section>
       </div>    
 	  
-<!-- thanks Page -->
+<!-- Thanks page -->
       <div v-if="page === 'thanks'">
         <section id="thanksSec">
           <div id="thanksDiv">

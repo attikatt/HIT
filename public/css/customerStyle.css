@@ -161,11 +161,11 @@ button {
   display: block;
   line-height: normal;
   position: fixed;
-	width:50vw;
+	width: 50vw;
 	height:13vh;
   bottom: 0px;
   right: 0px;
-  background-color: white;
+  background-color: transparent;
 }
 
 .goB {
