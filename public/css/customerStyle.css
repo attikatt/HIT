@@ -183,14 +183,6 @@ button {
   background-color: white;
 }
 
-/* Ta bort bottomTable? Används inte? */
-#bottomTable {
-  width: 100%;
-  position: fixed;
-  bottom: 0px;
-  background-color: white;
-}
-
 .goB {
   width: auto;
   height: 12vh;
@@ -575,7 +567,7 @@ hr {
 #upperSecChooseIngP {
   display: block;
   line-height: normal;
-  height: 22vh;
+  height: 20vh;
   width: 100vw;
   position: fixed;
   top: 12vh;
@@ -809,12 +801,6 @@ hr {
 
     .goB {
       height: 50px;
-    }
-
-    #bottomTable {
-      position: relative;
-      /* Måste fixa så den ej centreras då
-      höjden på fönstret minskas */
     }
 
 
