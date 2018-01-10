@@ -1,7 +1,7 @@
 /*jslint es5:true, indent: 2 */
 /*global sharedVueStuff, Vue, socket */
 'use strict';
-//Ska finnas v-on:click="incrementCounter" också enl. original
+
 Vue.component('ingredient', {
   props: ['item', 'type', 'lang'],
   template: ' <div class="ingredient">\
@@ -24,7 +24,7 @@ Vue.component('ingredient', {
     },
     changePage: function (goesForward) {
       if (vm.page === "chooseBase" || vm.page === "chooseIng" || vm.page === "choosePiff") {
-          this.incrementCounter(); // behöver vi verkligen countern? Funkar ej nu: ändras nu ej när ingredienser byts ut. Men this.$emit('increment') behövs!
+          this.incrementCounter();
           vm.changeStep(true);
       }
       else if (vm.page === "changeIng") {
@@ -62,7 +62,7 @@ var vm = new Vue({
 
  created: function() {
     socket.on("orderNumber",function(orderIdAndName) {
-        vm.showOrderedItems(orderIdAndName);
+      vm.showOrderedItems(orderIdAndName);
     });
   },
 
@@ -72,23 +72,23 @@ var vm = new Vue({
       // ordering readymades
     orderReadymade: function() {
       for (var i = 0; i < this.tempDrink.rm_ingredients.length; i += 1) {
-          this.addItemToOrder(this.getIngredientById(this.tempDrink.rm_ingredients[i]));
+        this.addItemToOrder(this.getIngredientById(this.tempDrink.rm_ingredients[i]));
       }
     },
       // adds an ingredient to the drink being composed
     addItemToOrder: function (item) {
       this.chosenIngredients.push(item);
   		if (this.type === "smoothie") {
-          	this.volume += +item.vol_smoothie;
+        this.volume += +item.vol_smoothie;
   			// if the drink is not one of juicifers, making the ingredient panel
   			if(this.page !== "drinkInfo"){ 
-  				vm.showStepImg(item);
+  			vm.showStepImg(item);
   			}
   		}
-  		else if(this.type === "juice"){
+  		else if (this.type === "juice") {
   			this.volume += +item.vol_juice;
   			// if the drink is not one of juicifers, making the ingredient panel
-  			if(this.page !== "drinkInfo"){
+  			if (this.page !== "drinkInfo") {
   				vm.showStepImg(item);
   			}
       }
@@ -101,10 +101,9 @@ var vm = new Vue({
       this.chosenIngredients = [];
     },
 
-
 /*------  Making the text of the chosing ingredient so it occurs in the circle-----*/
-// Måste fortfarande ändra imagen när man går bakåt
-  	showStepImg: function (ingItem){
+
+  	showStepImg: function (ingItem) {
   		var ingImg = ingItem.ingredient_img;
   		var img = document.createElement("img");
   		img.setAttribute("src",ingImg);
@@ -329,8 +328,8 @@ var vm = new Vue({
           this.showPage("chooseIng");
         }
         else if(this.step ===6){
-        this.showPage("choosePiff");
-        this.step = 5;
+          this.showPage("choosePiff");
+          this.step = 5;
         }
     
         if(this.step > 1) {
@@ -476,6 +475,5 @@ var vm = new Vue({
       this.chosenSize = 'medium';
   		this.ingType = "fruit";
     }
-
   }
 });
